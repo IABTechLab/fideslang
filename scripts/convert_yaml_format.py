@@ -26,10 +26,31 @@ if __name__ == "__main__":
                 # Compute a unique set of keys used across all the sub-items
                 list_of_keys = [item.keys() for item in yaml_dict[toplevel_key]]
                 flattened_keys = [keys for sublist in list_of_keys for keys in sublist]
-                unique_keys = set(flattened_keys)
+                unique_keys = sorted(list(set(flattened_keys)))
 
-                # Write out the CSV file
+                # Write out the CSV file headers. Put "description" last, for readability
+                if "description" in unique_keys:
+                    unique_keys.remove("description")
+                    unique_keys.append("description")
+
+                print(f"headers: {unique_keys}")
                 csv_writer = csv.DictWriter(csv_file, fieldnames=unique_keys)
                 csv_writer.writeheader()
+
+                # For convenience, generate a single "root" node
+                assert { "fidesKey", "name", "parentKey" }.issubset(unique_keys)
+                root_key = toplevel_key.replace("-", "_")
+                root_name = " ".join([word.capitalize() for word in root_key.split("_")])
+                root_node = { "fidesKey": root_key, "name": root_name }
+                print(f"Generating root node: {root_node}...")
+                csv_writer.writerow(root_node)
+
                 for item in yaml_dict[toplevel_key]:
-                    csv_writer.writerow(item)
+                    if item.get("parentKey", None) is not None:
+                        # Write out the item normally if it has a parent
+                        csv_writer.writerow(item)
+                    else:
+                        # Insert the new "root" node for items that have no parent
+                        new_item = { "parentKey": root_key }
+                        new_item.update(item)
+                        csv_writer.writerow(new_item)
