@@ -329,6 +329,12 @@
             "description": "Religion or religious belief."
         },
         {
+            "fidesKey": "unique_id",
+            "name": "Unique ID",
+            "parentKey": "user_identifiable_data",
+            "description": "Unique identifier for a user assigned through system use."
+        },
+        {
             "fidesKey": "device_id",
             "name": "Device ID",
             "parentKey": "device_data",
