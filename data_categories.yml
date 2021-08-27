@@ -279,6 +279,11 @@ data-category:
     parentKey: user_identifiable_data
     description: "Religion or religious belief."
 
+  - fidesKey: unique_id
+    name: "Unique ID"
+    parentKey: user_identifiable_data
+    description: "Unique identifier for a user assigned through system use."
+
   # Derived Data -> Device Data
   - fidesKey: device_id
     name: "Device ID"

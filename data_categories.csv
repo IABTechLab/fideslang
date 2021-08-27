@@ -55,6 +55,7 @@ derived_sexual_orientation,Derived Sexual Orientation,user_identifiable_data,Per
 derived_non_specific_age,Derived Non-Specific Age,user_identifiable_data,Age range information.
 derived_workplace,Derived Workplace,user_identifiable_data,Organization of employment.
 derived_religious_belief,Derived Religious Belief,user_identifiable_data,Religion or religious belief.
+unique_id,Unique ID,user_identifiable_data,Unique identifier for a user assigned through system use.
 device_id,Device ID,device_data,Device unique identification number.
 cookie_id,Cookie ID,device_data,Cookie unique identification number.
 ip_address,IP Address,device_data,Unique identifier related to device connection.
