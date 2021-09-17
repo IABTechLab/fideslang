@@ -1,0 +1,17 @@
+fidesKey,name,parentKey
+data_subject,Data Subject,
+anonymous_user,Anonymous User,data_subject
+citizen_voter,Citizen Voter,data_subject
+commuter,Commuter,data_subject
+consultant,Consultant,data_subject
+customer,Custom,data_subject
+employee,Employee,data_subject
+job_applicant,Job Applicant,data_subject
+next_of_kin,Next of Kin,data_subject
+passenger,Passenger,data_subject
+patient,Patient,data_subject
+prospect,Prospect,data_subject
+shareholder,Shareholder,data_subject
+supplier_vendor,Supplier/Vendor,data_subject
+trainee,Trainee,data_subject
+visitor,Visitor,data_subject

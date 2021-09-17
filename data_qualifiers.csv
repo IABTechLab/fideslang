@@ -1,0 +1,7 @@
+fidesKey,name,parentKey
+data_qualifier,Data Qualifier,
+identified_data,Identified Data,data_qualifier
+pseudonymized_data,Pseudonymized Data,data_qualifier
+unlinked_pseudonymized_data,Unlinked Pseudonymized Data,data_qualifier
+anonymized_data,Anonymized Data,data_qualifier
+aggregated_data,Aggregated Data,data_qualifier
