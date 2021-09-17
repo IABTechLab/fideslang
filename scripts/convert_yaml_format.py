@@ -5,7 +5,7 @@ import yaml
 import json
 import csv
 
-YAML_FILES = ["../data_categories.yml"]
+YAML_FILES = ["../data_categories.yml", "../data_uses.yml", "../data_subjects.yml", "../data_qualifiers.yml"]
 
 if __name__ == "__main__":
     for input_filename in YAML_FILES:
@@ -27,6 +27,10 @@ if __name__ == "__main__":
                 list_of_keys = [item.keys() for item in yaml_dict[toplevel_key]]
                 flattened_keys = [keys for sublist in list_of_keys for keys in sublist]
                 unique_keys = sorted(list(set(flattened_keys)))
+
+                # Insert the parentKey if not defined
+                if "parentKey" not in unique_keys:
+                    unique_keys.append("parentKey")
 
                 # Write out the CSV file headers. Put "description" last, for readability
                 if "description" in unique_keys:
