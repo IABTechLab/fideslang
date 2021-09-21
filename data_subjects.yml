@@ -1,45 +1,61 @@
 data_subject:
-  - fidesKey: "anonymous_user"
+  - fidesKey: anonymous_user
     name: "Anonymous User"
+    description: "An individual that is unidentifiable to the systems. 
+    Please note: This should only be applied to truly anonymous users where there is no risk of re-identification"
 
-  - fidesKey: "citizen_voter"
+  - fidesKey: citizen_voter
     name: "Citizen Voter"
+    description: "An individual registered to voter with a state or authority."
 
-  - fidesKey: "commuter"
+  - fidesKey: commuter
     name: "Commuter"
+    description: "An individual that is traveling or transiting in the context of location tracking."
 
-  - fidesKey: "consultant"
+  - fidesKey: consultant
     name: "Consultant"
+    description: "An individual employed in a consultative/temporary capacity by the organization."
 
-  - fidesKey: "customer"
+  - fidesKey: customer
     name: "Custom"
+    description: "An individual or other organization that purchases goods or services from the organization."
 
-  - fidesKey: "employee"
+  - fidesKey: employee
     name: "Employee"
+    description: "An individual employed by the organization."
 
-  - fidesKey: "job_applicant"
+  - fidesKey: job_applicant
     name: "Job Applicant"
-
-  - fidesKey: "next_of_kin"
+    description: "An individual applying for employment to the organization."
+    
+  - fidesKey: next_of_kin
     name: "Next of Kin"
-
-  - fidesKey: "passenger"
+    description: "A relative of any other individual subject where such a relationship is known."
+    
+  - fidesKey: passenger
     name: "Passenger"
-
-  - fidesKey: "patient"
+    description: "An individual traveling on some means of provided transport."
+    
+  - fidesKey: patient
     name: "Patient"
-
-  - fidesKey: "prospect"
+    description: "An individual identified for the purposes of any medical care."
+    
+  - fidesKey: prospect
     name: "Prospect"
-
-  - fidesKey: "shareholder"
+    description: "An individual or organization to whom an organization is selling goods or services."
+    
+  - fidesKey: shareholder
     name: "Shareholder"
-
-  - fidesKey: "supplier_vendor"
+    description: "An individual or organization that holds equity in the organization."
+    
+  - fidesKey: supplier_vendor
     name: "Supplier/Vendor"
-
-  - fidesKey: "trainee"
+    description: "An individual or organization that provides services or goods to the organization."
+    
+  - fidesKey: trainee
     name: "Trainee"
-
-  - fidesKey: "visitor"
+    description: "An individual undergoing training by the organization."
+    
+  - fidesKey: visitor
     name: "Visitor"
+    description: "An individual visiting a location."
