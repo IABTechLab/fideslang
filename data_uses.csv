@@ -1,20 +1,21 @@
-fidesKey,name,parentKey
-data_use,Data Use,
-provide_the_product_or_service,Provide the Product or Service,data_use
-support_the_product_or_service,Support the Product or Service,provide_the_product_or_service
-support_optimization,Support Optimization,provide_the_product_or_service
-offers_of_product_or_service_upgrades,Offers of Product or Service Upgrades,provide_the_product_or_service
-improve_the_product_or_service,Improve the Product or Service,data_use
-personalize_the_product_or_service,Personalize the Product or Service,data_use
-marketing_advertising_or_promotion,"Marketing, Advertising or Promotion",data_use
-first_party_advertising,First Party Advertising,marketing_advertising_or_promotion
-third_party_advertising,Third Party Advertising,marketing_advertising_or_promotion
-first_party_contextual_advertising,First Party Contextual Advertising,first_party_advertising
-first_party_personalized_advertising,First Party Personalized Advertising,first_party_advertising
-third_party_personalized_advertising,Third Party Personalized Advertising,third_party_advertising
-third_party_sharing,Third Party Sharing,data_use
-sharing_for_processing_payments,Sharing for Processing Payments,third_party_sharing
-sharing_for_personalized_advertising,Sharing for Personalized Advertising,third_party_sharing
-sharing_for_legal_obligation,Sharing for Legal Obligation,third_party_sharing
-collect,Collect,data_use
-train_ai_system,Train AI System,data_use
+fidesKey,name,parentKey,description
+data_use,Data Use,,
+provide_product_or_service,Provide the Product or Service,data_use,Use of specified data categories to provide the proposed service to the user.
+support_product_or_service,Support the Product or Service,provide_product_or_service,Use of specified data categories to operate and protect the system in order to provide the service.
+support_optimization,Support Optimization,provide_product_or_service,Use of specified data categories to ensure appropriate support for the service is being provided.
+offers_of_product_or_service_upgrades,Offers of Product or Service Upgrades,provide_product_or_service,Offer upgrades or upsales such as increased capacity for the service based on monitoring of service usage.
+improve_the_product_or_service,Improve the Product or Service,data_use,Use specified data categories related to the user or system in order to improve the quality of the service.
+personalize_product_or_service,Personalize the Product or Service,data_use,Use of specified data categories for the purpose of personalizing the features or services of the application.
+marketing_advertising_or_promotion,"Marketing, Advertising or Promotion",data_use,The promotion of products or services targeted to users based on the the processing of user provided data in the system.
+first_party_advertising,First Party Advertising,marketing_advertising_or_promotion,The promotion of products or services targeting users based on processing of derviced data from prior use of the system.
+third_party_advertising,Third Party Advertising,marketing_advertising_or_promotion,The promotion of products or services targeting users based on processing of specific categories of data acquired from third party sources.
+first_party_contextual_advertising,First Party Contextual Advertising,first_party_advertising,The promotion of products or services targeted to users based on the processing of derived data from the users prior use of the services.
+first_party_personalized_advertising,First Party Personalized Advertising,first_party_advertising,The targeting and changing of promotional content based on processing of specific data categories from the user.
+third_party_personalized_advertising,Third Party Personalized Advertising,third_party_advertising,The targeting and changing of promotional content based on processing of specific categories of user data acquired from third party sources.
+third_party_sharing,Third Party Sharing,data_use,The transfer of specified data categories to third parties outside of the system/application's scope.
+sharing_for_processing_payments,Sharing for Processing Payments,third_party_sharing,Sharing of specified data categories with a third party for payment processing.
+sharing_for_personalized_advertising,Sharing for Personalized Advertising,third_party_sharing,Sharing of specified data categories for the purpose of marketing/advertising/promotion.
+sharing_for_fraud_detection,Sharing for Fraud Detection,third_party_sharing,Sharing of specified data categories with a third party fo fraud prevention/detection.
+sharing_for_legal_obligation,Sharing for Legal Obligation,third_party_sharing,"Sharing of data for legal obligations, including contracts, applicable laws or regulations."
+collect,Collect,data_use,Collecting and storing data in order to use it for another purpose such as data training for ML.
+train_ai_system,Train AI System,data_use,"Training an AI system. Please note when this data use is specified, the method and degree to which a user may be directly identified in the resulting AI system should be appended."

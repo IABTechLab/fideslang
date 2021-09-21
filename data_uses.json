@@ -1,87 +1,111 @@
 {
     "data_use": [
         {
-            "fidesKey": "provide_the_product_or_service",
-            "name": "Provide the Product or Service"
+            "fidesKey": "provide_product_or_service",
+            "name": "Provide the Product or Service",
+            "description": "Use of specified data categories to provide the proposed service to the user."
         },
         {
-            "fidesKey": "support_the_product_or_service",
+            "fidesKey": "support_product_or_service",
             "name": "Support the Product or Service",
-            "parentKey": "provide_the_product_or_service"
+            "parentKey": "provide_product_or_service",
+            "description": "Use of specified data categories to operate and protect the system in order to provide the service."
         },
         {
             "fidesKey": "support_optimization",
             "name": "Support Optimization",
-            "parentKey": "provide_the_product_or_service"
+            "parentKey": "provide_product_or_service",
+            "description": "Use of specified data categories to ensure appropriate support for the service is being provided."
         },
         {
             "fidesKey": "offers_of_product_or_service_upgrades",
             "name": "Offers of Product or Service Upgrades",
-            "parentKey": "provide_the_product_or_service"
+            "parentKey": "provide_product_or_service",
+            "description": "Offer upgrades or upsales such as increased capacity for the service based on monitoring of service usage."
         },
         {
             "fidesKey": "improve_the_product_or_service",
-            "name": "Improve the Product or Service"
+            "name": "Improve the Product or Service",
+            "description": "Use specified data categories related to the user or system in order to improve the quality of the service."
         },
         {
-            "fidesKey": "personalize_the_product_or_service",
-            "name": "Personalize the Product or Service"
+            "fidesKey": "personalize_product_or_service",
+            "name": "Personalize the Product or Service",
+            "description": "Use of specified data categories for the purpose of personalizing the features or services of the application."
         },
         {
             "fidesKey": "marketing_advertising_or_promotion",
-            "name": "Marketing, Advertising or Promotion"
+            "name": "Marketing, Advertising or Promotion",
+            "description": "The promotion of products or services targeted to users based on the the processing of user provided data in the system."
         },
         {
             "fidesKey": "first_party_advertising",
             "name": "First Party Advertising",
-            "parentKey": "marketing_advertising_or_promotion"
+            "parentKey": "marketing_advertising_or_promotion",
+            "description": "The promotion of products or services targeting users based on processing of derviced data from prior use of the system."
         },
         {
             "fidesKey": "third_party_advertising",
             "name": "Third Party Advertising",
-            "parentKey": "marketing_advertising_or_promotion"
+            "parentKey": "marketing_advertising_or_promotion",
+            "description": "The promotion of products or services targeting users based on processing of specific categories of data acquired from third party sources."
         },
         {
             "fidesKey": "first_party_contextual_advertising",
             "name": "First Party Contextual Advertising",
-            "parentKey": "first_party_advertising"
+            "parentKey": "first_party_advertising",
+            "description": "The promotion of products or services targeted to users based on the processing of derived data from the users prior use of the services."
         },
         {
             "fidesKey": "first_party_personalized_advertising",
             "name": "First Party Personalized Advertising",
-            "parentKey": "first_party_advertising"
+            "parentKey": "first_party_advertising",
+            "description": "The targeting and changing of promotional content based on processing of specific data categories from the user."
         },
         {
             "fidesKey": "third_party_personalized_advertising",
             "name": "Third Party Personalized Advertising",
-            "parentKey": "third_party_advertising"
+            "parentKey": "third_party_advertising",
+            "description": "The targeting and changing of promotional content based on processing of specific categories of user data acquired from third party sources."
         },
         {
             "fidesKey": "third_party_sharing",
-            "name": "Third Party Sharing"
+            "name": "Third Party Sharing",
+            "description": "The transfer of specified data categories to third parties outside of the system/application's scope."
         },
         {
             "fidesKey": "sharing_for_processing_payments",
             "name": "Sharing for Processing Payments",
-            "parentKey": "third_party_sharing"
+            "parentKey": "third_party_sharing",
+            "description": "Sharing of specified data categories with a third party for payment processing."
         },
         {
             "fidesKey": "sharing_for_personalized_advertising",
             "name": "Sharing for Personalized Advertising",
-            "parentKey": "third_party_sharing"
+            "parentKey": "third_party_sharing",
+            "description": "Sharing of specified data categories for the purpose of marketing/advertising/promotion."
+        },
+        {
+            "fidesKey": "sharing_for_fraud_detection",
+            "name": "Sharing for Fraud Detection",
+            "parentKey": "third_party_sharing",
+            "description": "Sharing of specified data categories with a third party fo fraud prevention/detection."
         },
         {
             "fidesKey": "sharing_for_legal_obligation",
             "name": "Sharing for Legal Obligation",
-            "parentKey": "third_party_sharing"
+            "parentKey": "third_party_sharing",
+            "description": "Sharing of data for legal obligations, including contracts, applicable laws or regulations."
         },
         {
             "fidesKey": "collect",
-            "name": "Collect"
+            "name": "Collect",
+            "description": "Collecting and storing data in order to use it for another purpose such as data training for ML."
         },
         {
             "fidesKey": "train_ai_system",
-            "name": "Train AI System"
+            "name": "Train AI System",
+            "description": "Training an AI system. Please note when this data use is specified, the method and degree to which a user may be directly identified in the resulting AI system should be appended."
         }
     ]
 }
