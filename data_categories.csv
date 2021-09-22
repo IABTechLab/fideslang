@@ -20,7 +20,7 @@ user.derived.identifiable,Derived User Identifiable Data,user.derived,"Derived d
 user.derived.identifiable.biometric_health,Biometric Health Data,user.derived.identifiable,Encoded characteristic collected about a user.
 user.derived.identifiable.browsing_history,Browsing History,user.derived.identifiable,Content browsing history of a user.
 user.derived.identifiable.demographic,Demographic Data,user.derived.identifiable,Demographic data about a user.
-user.derived.identifiable.derived_contact,Derived Contact Data,user.derived.identifiable,Contact data collected about a user.
+user.derived.identifiable.contact,Derived Contact Data,user.derived.identifiable,Contact data collected about a user.
 user.derived.identifiable.device,Device Data,user.derived.identifiable,"Data related to a user's device, configuration and setting."
 user.derived.identifiable.device.cookie_id,Cookie ID,user.derived.identifiable.device,Cookie unique identification number.
 user.derived.identifiable.device.device_id,Device ID,user.derived.identifiable.device,Device unique identification number.
