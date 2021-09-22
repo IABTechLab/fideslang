@@ -1,75 +1,79 @@
 fidesKey,name,parentKey,description
 data_category,Data Category,,
-user_provided_data,User Provided Data,data_category,Data provided or created directly by a user of the system.
-credentials,Credentials,user_provided_data,User provided authentication data.
-name,Name,user_provided_data,User's real name.
-date_of_birth,Date of Birth,user_provided_data,User's date of birth.
-user_provided_gender,User Provided Gender,user_provided_data,Gender of an individual.
-user_provided_race,User Provided Race,user_provided_data,Racial or ethnic origin data.
-user_provided_sexual_orientation,User Provided Sexual Orientation,user_provided_data,Personal sex life or sexual information.
-user_provided_non_specific_age,User Provided Non-Specific Age,user_provided_data,Age range information.
-job_title,Job Title,user_provided_data,Professional information.
-user_provided_workplace,User Provided Workplace,user_provided_data,Organization of employment.
-user_provided_religious_belief,User Provided Religious Belief,user_provided_data,Religion or religious belief.
-provided_contact_information,Provided Contact Information,user_provided_data,User provided contact information for purposes other than account management.
-health_and_medical_data,Health and Medical Data,user_provided_data,Health records or individual's personal medical information.
-genetic_data,Genetic Data,user_provided_data,Data about the genetic makeup provided by a user.
-biometric_data,Biometric Data,user_provided_data,Encoded characteristics provided by a user.
-childrens_data,Children's Data,user_provided_data,Data relating to children.
-political_opinion,Political Opinion,user_provided_data,Data related to the individual's political opinions.
-financial_data,Financial Data,user_provided_data,Payment data and financial history.
-government_id,Government ID,user_provided_data,State provided identification information.
-user_provided_financial_account_number,User Provided Financial Account Number,financial_data,"User's account number for a payment card, bank account, or other financial system."
-password,Password,credentials,Password for system authentication.
-biometric_credentials,Biometric Credentials,credentials,Credentials for system authentication.
-user_provided_email,User Provided Email,provided_contact_information,User's provided email address.
-user_provided_street,User Provided Street,provided_contact_information,User's street level address information.
-user_provided_city,User Provided City,provided_contact_information,User's city level address information.
-user_provided_state,User Provided State,provided_contact_information,User's state level address information.
-user_provided_postal_code,User Provided Postal Code,provided_contact_information,User's postal code.
-user_provided_country,User Provided Country,provided_contact_information,User's country level address information.
-user_provided_phone_number,User Provided Phone Number,provided_contact_information,User's phone number.
-national_identification_number,National Identification Number,government_id,State issued personal identification number.
-drivers_license_number,Driver's License Number,government_id,State issued driving identification number.
-passport_number,Passport Number,government_id,State issued passport data.
-derived_data,Derived Data,data_category,Data derived from user provided data or as a result of user actions in the system.
-user_identifiable_data,User Identifiable Data,derived_data,"Derived data that is linked to, or identifies a user."
-organization_identifiable_data,Organization Identifiable Data,derived_data,"Derived data that is linked to, or identifies an organization."
-sensor_data,Sensor Data,derived_data,Non-user identifiable measurement data derived from sensors and monitoring systems.
-telemetry_data,Telemetry Data,user_identifiable_data,User identifiable measurement data from system sensors and monitoring.
-device_data,Device Data,user_identifiable_data,"Data related to a user's device, configuration and setting."
-observed_data,Observed Data,user_identifiable_data,Data collected through observation of use of the system.
-demographic_information,Demographic Information,user_identifiable_data,Demographic information about a user.
-profiling_data,Profiling Data,user_identifiable_data,Preference and interest information about a user.
-media_consumption_data,Media Consumption Data,user_identifiable_data,Media type consumption information of a user.
-browsing_history,Browsing History,user_identifiable_data,Content browsing history of a user.
-search_history,Search History,user_identifiable_data,Records of search history and queries of a user.
-location_data,Location Data,user_identifiable_data,Records of the location of a user.
-social_data,Social Data,user_identifiable_data,Social activity and interaction data.
-biometric_health_data,Biometric Health Data,user_identifiable_data,Encoded characteristic collected about a user.
-derived_contact_data,Derived Contact Data,user_identifiable_data,Contact information collected about a user.
-user_sensor_data,User Sensor Data,user_identifiable_data,Measurement data derived about a user's environment through system use.
-derived_gender,Derived Gender,user_identifiable_data,Gender of an individual.
-derived_race,Derived Race,user_identifiable_data,Racial or ethnic origin data.
-derived_sexual_orientation,Derived Sexual Orientation,user_identifiable_data,Personal sex life or sexual information.
-derived_non_specific_age,Derived Non-Specific Age,user_identifiable_data,Age range information.
-derived_workplace,Derived Workplace,user_identifiable_data,Organization of employment.
-derived_religious_belief,Derived Religious Belief,user_identifiable_data,Religion or religious belief.
-unique_id,Unique ID,user_identifiable_data,Unique identifier for a user assigned through system use.
-device_id,Device ID,device_data,Device unique identification number.
-cookie_id,Cookie ID,device_data,Cookie unique identification number.
-ip_address,IP Address,device_data,Unique identifier related to device connection.
-system_data,System Data,data_category,"Data unique to, and under control of the system."
-authentication_data,Authentication Data,system_data,Data used to manage access to the system.
-operations_data,Operations Data,system_data,Data used for system operations.
-account_data,Account Data,data_category,"Data unique to, and under control of the system"
-payment_information,Payment Information,account_data,Payment data related to user's account.
-account_contact_information,Account Contact Information,account_data,Account data related to user contact information.
-account_email,Account Email,account_contact_information,User account's email address.
-account_street,Account Street,account_contact_information,User account's street level address.
-account_city,Account City,account_contact_information,User's city level address information.
-account_state,Account State,account_contact_information,User's state level address information.
-account_postal_code,Account Postal Code,account_contact_information,User's postal code.
-account_country,Account Country,account_contact_information,User's country level address information.
-account_phone_number,Account Phone Number,account_contact_information,User's phone number.
-accounts_financial_account_number,Account's Financial Account Number,payment_information,"User's account number for a payment card, bank account, or other financial system."
+account,Account Data,data_category,"Data related to a system account."
+account.contact,Account Contact Data,account,Contact data related to a system account.
+account.contact.city,Account City,account.contact,Account's city level address data.
+account.contact.country,Account Country,account.contact,Account's country level address data.
+account.contact.email,Account Email,account.contact,Account's email address.
+account.contact.phone_number,Account Phone Number,account.contact,Account's phone number.
+account.contact.postal_code,Account Postal Code,account.contact,Account's postal code.
+account.contact.state,Account State,account.contact,Account's state level address data.
+account.contact.street,Account Street,account.contact,Account's street level address.
+account.payment,Payment Data,account,Payment data related to system account.
+account.payment.financial_account_number,Account Payment Financial Account Number,account.payment,"Financial account number for an account's payment card, bank account, or other financial system."
+system,System Data,data_category,"Data unique to, and under control of the system."
+system.authentication,Authentication Data,system,Data used to manage access to the system.
+system.operations,Operations Data,system,Data used for system operations.
+user,User Data,data_category,"Data related to the user of the system, either provided directly or derived based on their usage."
+user.derived,Derived Data,user,Data derived from user provided data or as a result of user actions in the system.
+user.derived.identifiable,Derived User Identifiable Data,user.derived,"Derived data that is linked to, or identifies a user."
+user.derived.identifiable.biometric_health,Biometric Health Data,user.derived.identifiable,Encoded characteristic collected about a user.
+user.derived.identifiable.browsing_history,Browsing History,user.derived.identifiable,Content browsing history of a user.
+user.derived.identifiable.demographic,Demographic Data,user.derived.identifiable,Demographic data about a user.
+user.derived.identifiable.derived_contact,Derived Contact Data,user.derived.identifiable,Contact data collected about a user.
+user.derived.identifiable.device,Device Data,user.derived.identifiable,"Data related to a user's device, configuration and setting."
+user.derived.identifiable.device.cookie_id,Cookie ID,user.derived.identifiable.device,Cookie unique identification number.
+user.derived.identifiable.device.device_id,Device ID,user.derived.identifiable.device,Device unique identification number.
+user.derived.identifiable.device.ip_address,IP Address,user.derived.identifiable.device,Unique identifier related to device connection.
+user.derived.identifiable.gender,Derived Gender,user.derived.identifiable,Gender of an individual.
+user.derived.identifiable.location,Location Data,user.derived.identifiable,Records of the location of a user.
+user.derived.identifiable.media_consumption,Media Consumption Data,user.derived.identifiable,Media type consumption data of a user.
+user.derived.identifiable.non_specific_age,Derived Non-Specific Age,user.derived.identifiable,Age range data.
+user.derived.identifiable.observed,Observed Data,user.derived.identifiable,Data collected through observation of use of the system.
+user.derived.identifiable.profiling,Profiling Data,user.derived.identifiable,Preference and interest data about a user.
+user.derived.identifiable.race,Derived Race,user.derived.identifiable,Racial or ethnic origin data.
+user.derived.identifiable.religious_belief,Derived Religious Belief,user.derived.identifiable,Religion or religious belief.
+user.derived.identifiable.search_history,Search History,user.derived.identifiable,Records of search history and queries of a user.
+user.derived.identifiable.sexual_orientation,Derived Sexual Orientation,user.derived.identifiable,Personal sex life or sexual data.
+user.derived.identifiable.social,Social Data,user.derived.identifiable,Social activity and interaction data.
+user.derived.identifiable.telemetry,Telemetry Data,user.derived.identifiable,User identifiable measurement data from system sensors and monitoring.
+user.derived.identifiable.unique_id,Unique ID,user.derived.identifiable,Unique identifier for a user assigned through system use.
+user.derived.identifiable.user_sensor,User Sensor Data,user.derived.identifiable,Measurement data derived about a user's environment through system use.
+user.derived.identifiable.organization,Organization Identifiable Data,user.derived,"Derived data that is linked to, or identifies an organization."
+user.derived.identifiable.workplace,Derived Workplace,user.derived.identifiable,Organization of employment.
+user.derived.nonidentifiable,Derived User Non-Identifiable Data,user.derived.nonidentifiable,Non-user identifiable data derived related to a user as a result of user actions in the system.
+user.derived.nonidentifiable.sensor,Sensor Data,user.derived.nonidentifiable,Non-user identifiable measurement data derived from sensors and monitoring systems.
+user.provided,User Provided Data,user,Data provided or created directly by a user of the system.
+user.provided.identifiable,User Provided Identifiable Data,user,Data provided or created directly by a user that is linked to or identifies a user.
+user.provided.identifiable.biometric,Biometric Data,user.provided.identifable,Encoded characteristics provided by a user.
+user.provided.identifiable.childrens,Children's Data,user.provided.identifable,Data relating to children.
+user.provided.identifiable.contact,Provided Contact Data,user.provided.identifable,User provided contact data for purposes other than account management.
+user.provided.identifiable.contact.city,User Provided City,user.provided.identifable.contact,User's city level address data.
+user.provided.identifiable.contact.country,User Provided Country,user.provided.identifable.contact,User's country level address data.
+user.provided.identifiable.contact.email,User Provided Email,user.provided.identifable.contact,User's provided email address.
+user.provided.identifiable.contact.phone_number,User Provided Phone Number,user.provided.identifable.contact,User's phone number.
+user.provided.identifiable.contact.postal_code,User Provided Postal Code,user.provided.identifable.contact,User's postal code.
+user.provided.identifiable.contact.state,User Provided State,user.provided.identifable.contact,User's state level address data.
+user.provided.identifiable.contact.street,User Provided Street,user.provided.identifable.contact,User's street level address data.
+user.provided.identifiable.credentials,Credentials,user.provided.identifable,User provided authentication data.
+user.provided.identifiable.credentials.biometric_credentials,Biometric Credentials,user.provided.identifable.credentials,Credentials for system authentication.
+user.provided.identifiable.credentials.password,Password,user.provided.identifable.credentials,Password for system authentication.
+user.provided.identifiable.date_of_birth,Date of Birth,user.provided.identifable,User's date of birth.
+user.provided.identifiable.financial,Financial Data,user.provided.identifable,Payment data and financial history.
+user.provided.identifiable.financial.account_number,User Provided Financial Account Number,user.provided.identifable.financial,"User's account number for a payment card, bank account, or other financial system."
+user.provided.identifiable.gender,User Provided Gender,user.provided.identifable,Gender of an individual.
+user.provided.identifiable.genetic,Genetic Data,user.provided.identifable,Data about the genetic makeup provided by a user.
+user.provided.identifiable.government_id,Government ID,user.provided.identifable,State provided identification data.
+user.provided.identifiable.government_id.drivers_license_number,Driver's License Number,user.provided.identifable.government_id,State issued driving identification number.
+user.provided.identifiable.government_id.national_identification_number,National Identification Number,user.provided.identifable.government_id,State issued personal identification number.
+user.provided.identifiable.government_id.passport_number,Passport Number,user.provided.identifable.government_id,State issued passport data.
+user.provided.identifiable.health_and_medical,Health and Medical Data,user.provided.identifable,Health records or individual's personal medical data.
+user.provided.identifiable.job_title,Job Title,user.provided.identifable,Professional data.
+user.provided.identifiable.name,Name,user.provided.identifable,User's real name.
+user.provided.identifiable.non_specific_age,User Provided Non-Specific Age,user.provided.identifable,Age range data.
+user.provided.identifiable.political_opinion,Political Opinion,user.provided.identifable,Data related to the individual's political opinions.
+user.provided.identifiable.race,User Provided Race,user.provided.identifable,Racial or ethnic origin data.
+user.provided.identifiable.religious_belief,User Provided Religious Belief,user.provided.identifable,Religion or religious belief.
+user.provided.identifiable.sexual_orientation,User Provided Sexual Orientation,user.provided.identifable,Personal sex life or sexual data.
+user.provided.identifiable.workplace,User Provided Workplace,user.provided.identifable,Organization of employment.
+user.provided.nonidentifiable,User Provided Non-Identifiable Data,user,Data provided or created directly by a user that is not identifiable.
