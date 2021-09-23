@@ -1,4 +1,4 @@
-fidesKey,name,parentKey
+fides_key,name,parent_key
 data_subject,Data Subject,
 anonymous_user,Anonymous User,data_subject
 citizen_voter,Citizen Voter,data_subject

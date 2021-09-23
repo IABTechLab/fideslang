@@ -1,4 +1,4 @@
-fidesKey,name,parentKey
+fides_key,name,parent_key
 data_use,Data Use,
 provide_the_product_or_service,Provide the Product or Service,data_use
 support_the_product_or_service,Support the Product or Service,provide_the_product_or_service
