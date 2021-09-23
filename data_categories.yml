@@ -79,7 +79,7 @@ data-category:
   name: Demographic Data
   parentKey: user.derived.identifiable
   description: Demographic data about a user.
-- fidesKey: user.derived.identifiable.derived_contact
+- fidesKey: user.derived.identifiable.contact
   name: Derived Contact Data
   parentKey: user.derived.identifiable
   description: Contact data collected about a user.

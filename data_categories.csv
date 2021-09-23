@@ -1,6 +1,6 @@
 fidesKey,name,parentKey,description
 data_category,Data Category,,
-account,Account Data,data_category,"Data related to a system account."
+account,Account Data,data_category,Data related to a system account.
 account.contact,Account Contact Data,account,Contact data related to a system account.
 account.contact.city,Account City,account.contact,Account's city level address data.
 account.contact.country,Account Country,account.contact,Account's country level address data.
