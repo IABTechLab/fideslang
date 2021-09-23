@@ -28,9 +28,9 @@ if __name__ == "__main__":
                 flattened_keys = [keys for sublist in list_of_keys for keys in sublist]
                 unique_keys = sorted(list(set(flattened_keys)))
 
-                # Insert the parentKey if not defined
-                if "parentKey" not in unique_keys:
-                    unique_keys.append("parentKey")
+                # Insert the parent_key if not defined
+                if "parent_key" not in unique_keys:
+                    unique_keys.append("parent_key")
 
                 # Write out the CSV file headers. Put "description" last, for readability
                 if "description" in unique_keys:
@@ -42,19 +42,19 @@ if __name__ == "__main__":
                 csv_writer.writeheader()
 
                 # For convenience, generate a single "root" node
-                assert { "fidesKey", "name", "parentKey" }.issubset(unique_keys)
+                assert { "fides_key", "name", "parent_key" }.issubset(unique_keys)
                 root_key = toplevel_key.replace("-", "_")
                 root_name = " ".join([word.capitalize() for word in root_key.split("_")])
-                root_node = { "fidesKey": root_key, "name": root_name }
+                root_node = { "fides_key": root_key, "name": root_name }
                 print(f"Generating root node: {root_node}...")
                 csv_writer.writerow(root_node)
 
                 for item in yaml_dict[toplevel_key]:
-                    if item.get("parentKey", None) is not None:
+                    if item.get("parent_key", None) is not None:
                         # Write out the item normally if it has a parent
                         csv_writer.writerow(item)
                     else:
                         # Insert the new "root" node for items that have no parent
-                        new_item = { "parentKey": root_key }
+                        new_item = { "parent_key": root_key }
                         new_item.update(item)
                         csv_writer.writerow(new_item)

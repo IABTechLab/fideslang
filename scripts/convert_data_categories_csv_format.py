@@ -19,9 +19,9 @@ if __name__ == "__main__":
             if line_no <= 2:
                 continue
             node = {
-                "fidesKey": row[0],
+                "fides_key": row[0],
                 "name": row[1],
-                "parentKey": row[2],
+                "parent_key": row[2],
                 "description": row[3]
             }
             yaml_dict["data-category"].append(node)

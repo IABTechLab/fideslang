@@ -1,4 +1,4 @@
-fidesKey,name,parentKey
+fides_key,name,parent_key
 data_qualifier,Data Qualifier,
 identified_data,Identified Data,data_qualifier
 pseudonymized_data,Pseudonymized Data,data_qualifier
