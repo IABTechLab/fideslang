@@ -1,7 +1,6 @@
-data-category:
+data_category:
 - fides_key: account
   name: Account Data
-  parent_key: data_category
   description: Data related to a system account.
 - fides_key: account.contact
   name: Account Contact Data
@@ -45,7 +44,6 @@ data-category:
   description: Financial account number for an account's payment card, bank account, or other financial system.
 - fides_key: system
   name: System Data
-  parent_key: data_category
   description: Data unique to, and under control of the system.
 - fides_key: system.authentication
   name: Authentication Data
@@ -57,7 +55,6 @@ data-category:
   description: Data used for system operations.
 - fides_key: user
   name: User Data
-  parent_key: data_category
   description: Data related to the user of the system, either provided directly or derived based on their usage.
 - fides_key: user.derived
   name: Derived Data
