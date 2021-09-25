@@ -39,41 +39,41 @@ user.derived.identifiable.social,Social Data,user.derived.identifiable,Social ac
 user.derived.identifiable.telemetry,Telemetry Data,user.derived.identifiable,User identifiable measurement data from system sensors and monitoring.
 user.derived.identifiable.unique_id,Unique ID,user.derived.identifiable,Unique identifier for a user assigned through system use.
 user.derived.identifiable.user_sensor,User Sensor Data,user.derived.identifiable,Measurement data derived about a user's environment through system use.
-user.derived.identifiable.organization,Organization Identifiable Data,user.derived,"Derived data that is linked to, or identifies an organization."
+user.derived.identifiable.organization,Organization Identifiable Data,user.derived.identifiable,"Derived data that is linked to, or identifies an organization."
 user.derived.identifiable.workplace,Derived Workplace,user.derived.identifiable,Organization of employment.
-user.derived.nonidentifiable,Derived User Non-Identifiable Data,user.derived.nonidentifiable,Non-user identifiable data derived related to a user as a result of user actions in the system.
+user.derived.nonidentifiable,Derived User Non-Identifiable Data,user.derived,Non-user identifiable data derived related to a user as a result of user actions in the system.
 user.derived.nonidentifiable.sensor,Sensor Data,user.derived.nonidentifiable,Non-user identifiable measurement data derived from sensors and monitoring systems.
 user.provided,User Provided Data,user,Data provided or created directly by a user of the system.
-user.provided.identifiable,User Provided Identifiable Data,user,Data provided or created directly by a user that is linked to or identifies a user.
-user.provided.identifiable.biometric,Biometric Data,user.provided.identifable,Encoded characteristics provided by a user.
-user.provided.identifiable.childrens,Children's Data,user.provided.identifable,Data relating to children.
-user.provided.identifiable.contact,Provided Contact Data,user.provided.identifable,User provided contact data for purposes other than account management.
-user.provided.identifiable.contact.city,User Provided City,user.provided.identifable.contact,User's city level address data.
-user.provided.identifiable.contact.country,User Provided Country,user.provided.identifable.contact,User's country level address data.
-user.provided.identifiable.contact.email,User Provided Email,user.provided.identifable.contact,User's provided email address.
-user.provided.identifiable.contact.phone_number,User Provided Phone Number,user.provided.identifable.contact,User's phone number.
-user.provided.identifiable.contact.postal_code,User Provided Postal Code,user.provided.identifable.contact,User's postal code.
-user.provided.identifiable.contact.state,User Provided State,user.provided.identifable.contact,User's state level address data.
-user.provided.identifiable.contact.street,User Provided Street,user.provided.identifable.contact,User's street level address data.
-user.provided.identifiable.credentials,Credentials,user.provided.identifable,User provided authentication data.
-user.provided.identifiable.credentials.biometric_credentials,Biometric Credentials,user.provided.identifable.credentials,Credentials for system authentication.
-user.provided.identifiable.credentials.password,Password,user.provided.identifable.credentials,Password for system authentication.
-user.provided.identifiable.date_of_birth,Date of Birth,user.provided.identifable,User's date of birth.
-user.provided.identifiable.financial,Financial Data,user.provided.identifable,Payment data and financial history.
-user.provided.identifiable.financial.account_number,User Provided Financial Account Number,user.provided.identifable.financial,"User's account number for a payment card, bank account, or other financial system."
-user.provided.identifiable.gender,User Provided Gender,user.provided.identifable,Gender of an individual.
-user.provided.identifiable.genetic,Genetic Data,user.provided.identifable,Data about the genetic makeup provided by a user.
-user.provided.identifiable.government_id,Government ID,user.provided.identifable,State provided identification data.
-user.provided.identifiable.government_id.drivers_license_number,Driver's License Number,user.provided.identifable.government_id,State issued driving identification number.
-user.provided.identifiable.government_id.national_identification_number,National Identification Number,user.provided.identifable.government_id,State issued personal identification number.
-user.provided.identifiable.government_id.passport_number,Passport Number,user.provided.identifable.government_id,State issued passport data.
-user.provided.identifiable.health_and_medical,Health and Medical Data,user.provided.identifable,Health records or individual's personal medical data.
-user.provided.identifiable.job_title,Job Title,user.provided.identifable,Professional data.
-user.provided.identifiable.name,Name,user.provided.identifable,User's real name.
-user.provided.identifiable.non_specific_age,User Provided Non-Specific Age,user.provided.identifable,Age range data.
-user.provided.identifiable.political_opinion,Political Opinion,user.provided.identifable,Data related to the individual's political opinions.
-user.provided.identifiable.race,User Provided Race,user.provided.identifable,Racial or ethnic origin data.
-user.provided.identifiable.religious_belief,User Provided Religious Belief,user.provided.identifable,Religion or religious belief.
-user.provided.identifiable.sexual_orientation,User Provided Sexual Orientation,user.provided.identifable,Personal sex life or sexual data.
-user.provided.identifiable.workplace,User Provided Workplace,user.provided.identifable,Organization of employment.
-user.provided.nonidentifiable,User Provided Non-Identifiable Data,user,Data provided or created directly by a user that is not identifiable.
+user.provided.identifiable,User Provided Identifiable Data,user.provided,Data provided or created directly by a user that is linked to or identifies a user.
+user.provided.identifiable.biometric,Biometric Data,user.provided.identifiable,Encoded characteristics provided by a user.
+user.provided.identifiable.childrens,Children's Data,user.provided.identifiable,Data relating to children.
+user.provided.identifiable.contact,Provided Contact Data,user.provided.identifiable,User provided contact data for purposes other than account management.
+user.provided.identifiable.contact.city,User Provided City,user.provided.identifiable.contact,User's city level address data.
+user.provided.identifiable.contact.country,User Provided Country,user.provided.identifiable.contact,User's country level address data.
+user.provided.identifiable.contact.email,User Provided Email,user.provided.identifiable.contact,User's provided email address.
+user.provided.identifiable.contact.phone_number,User Provided Phone Number,user.provided.identifiable.contact,User's phone number.
+user.provided.identifiable.contact.postal_code,User Provided Postal Code,user.provided.identifiable.contact,User's postal code.
+user.provided.identifiable.contact.state,User Provided State,user.provided.identifiable.contact,User's state level address data.
+user.provided.identifiable.contact.street,User Provided Street,user.provided.identifiable.contact,User's street level address data.
+user.provided.identifiable.credentials,Credentials,user.provided.identifiable,User provided authentication data.
+user.provided.identifiable.credentials.biometric_credentials,Biometric Credentials,user.provided.identifiable.credentials,Credentials for system authentication.
+user.provided.identifiable.credentials.password,Password,user.provided.identifiable.credentials,Password for system authentication.
+user.provided.identifiable.date_of_birth,Date of Birth,user.provided.identifiable,User's date of birth.
+user.provided.identifiable.financial,Financial Data,user.provided.identifiable,Payment data and financial history.
+user.provided.identifiable.financial.account_number,User Provided Financial Account Number,user.provided.identifiable.financial,"User's account number for a payment card, bank account, or other financial system."
+user.provided.identifiable.gender,User Provided Gender,user.provided.identifiable,Gender of an individual.
+user.provided.identifiable.genetic,Genetic Data,user.provided.identifiable,Data about the genetic makeup provided by a user.
+user.provided.identifiable.government_id,Government ID,user.provided.identifiable,State provided identification data.
+user.provided.identifiable.government_id.drivers_license_number,Driver's License Number,user.provided.identifiable.government_id,State issued driving identification number.
+user.provided.identifiable.government_id.national_identification_number,National Identification Number,user.provided.identifiable.government_id,State issued personal identification number.
+user.provided.identifiable.government_id.passport_number,Passport Number,user.provided.identifiable.government_id,State issued passport data.
+user.provided.identifiable.health_and_medical,Health and Medical Data,user.provided.identifiable,Health records or individual's personal medical data.
+user.provided.identifiable.job_title,Job Title,user.provided.identifiable,Professional data.
+user.provided.identifiable.name,Name,user.provided.identifiable,User's real name.
+user.provided.identifiable.non_specific_age,User Provided Non-Specific Age,user.provided.identifiable,Age range data.
+user.provided.identifiable.political_opinion,Political Opinion,user.provided.identifiable,Data related to the individual's political opinions.
+user.provided.identifiable.race,User Provided Race,user.provided.identifiable,Racial or ethnic origin data.
+user.provided.identifiable.religious_belief,User Provided Religious Belief,user.provided.identifiable,Religion or religious belief.
+user.provided.identifiable.sexual_orientation,User Provided Sexual Orientation,user.provided.identifiable,Personal sex life or sexual data.
+user.provided.identifiable.workplace,User Provided Workplace,user.provided.identifiable,Organization of employment.
+user.provided.nonidentifiable,User Provided Non-Identifiable Data,user.provided,Data provided or created directly by a user that is not identifiable.
