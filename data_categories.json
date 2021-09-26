@@ -403,7 +403,7 @@
             "fides_key": "user.provided.identifiable.health_and_medical",
             "name": "Health and Medical Data",
             "parent_key": "user.provided.identifiable",
-            "description": "Health records or individual's personal medical data."
+            "description": "Health records or individual's personal medical information."
         },
         {
             "fides_key": "user.provided.identifiable.job_title",

@@ -1,15 +1,20 @@
 data_qualifier:
   - fides_key: identified_data
     name: Identified Data
+    description: Data that directly identifies an individual.
 
   - fides_key: pseudonymized_data
     name: Pseudonymized Data
+    description: Data for which all identifiers have been substituted with unrelated values, rendering the individual unidentifiable and cannot be reasonably reversed other than by the party that performed the pseudonymization.
 
   - fides_key: unlinked_pseudonymized_data
     name: Unlinked Pseudonymized Data
+    description: Data for which all identifiers have been substituted with unrelated values and linkages broken such that it may not be reversed, even by the party that performed the pseudonymization.
 
   - fides_key: anonymized_data
     name: Anonymized Data
+    description: Data where all attributes have been sufficiently altered that the individaul cannot be reidentified by this data or in combination with other datasets.
 
   - fides_key: aggregated_data
     name: Aggregated Data
+    description: Statistical data that does not contain individually identifying information but includes information about groups of individuals that renders individual identification impossible.

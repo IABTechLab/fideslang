@@ -67,7 +67,7 @@ user.provided.identifiable.government_id,Government ID,user.provided.identifiabl
 user.provided.identifiable.government_id.drivers_license_number,Driver's License Number,user.provided.identifiable.government_id,State issued driving identification number.
 user.provided.identifiable.government_id.national_identification_number,National Identification Number,user.provided.identifiable.government_id,State issued personal identification number.
 user.provided.identifiable.government_id.passport_number,Passport Number,user.provided.identifiable.government_id,State issued passport data.
-user.provided.identifiable.health_and_medical,Health and Medical Data,user.provided.identifiable,Health records or individual's personal medical data.
+user.provided.identifiable.health_and_medical,Health and Medical Data,user.provided.identifiable,Health records or individual's personal medical information.
 user.provided.identifiable.job_title,Job Title,user.provided.identifiable,Professional data.
 user.provided.identifiable.name,Name,user.provided.identifiable,User's real name.
 user.provided.identifiable.non_specific_age,User Provided Non-Specific Age,user.provided.identifiable,Age range data.
