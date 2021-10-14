@@ -31,13 +31,13 @@ The taxonomy currently comprises  of four classification groups that are used to
     <div id="chart-type-control" class="control-group">
       <div class="btn-group">
         <button class="btn btn--icon is-selected" data-chart-type="tree">
-          <img src="../img/Tree@1x.svg" alt="tree" />
+          <img src="img/Tree@1x.svg" alt="tree" />
         </button>
         <button class="btn btn--icon" data-chart-type="radialTree">
-          <img src="../img/Radial%20Tree@1x.svg" alt="radial tree" />
+          <img src="img/Radial%20Tree@1x.svg" alt="radial tree" />
         </button>
         <button class="btn btn--icon" data-chart-type="sunburst" >
-          <img src="../img/Sunburst@1x.svg" alt="sunburst" />
+          <img src="img/Sunburst@1x.svg" alt="sunburst" />
         </button>
       </div>
     </div>

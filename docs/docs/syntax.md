@@ -32,7 +32,7 @@ user.provided.identifiable.contact.phone_number
 
 The diagram below shows you the structure of the statement:
 
-![alt text](../img/notation-conventions.svg "Privacy Taxonomy Declaration")
+![alt text](img/notation-conventions.svg "Privacy Taxonomy Declaration")
 
 
 
