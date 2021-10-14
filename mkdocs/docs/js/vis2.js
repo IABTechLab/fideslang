@@ -105,7 +105,7 @@ class VisTooltip {
   }
 }
 
-class VisSunburst {
+class Vis2Sunburst {
   constructor({ el, accessor, tooltip }) {
     this.el = el;
     this.accessor = accessor;
@@ -339,7 +339,7 @@ class VisSunburst {
 }
 
 
-class VisRadialTree {
+class Vis2RadialTree {
   constructor({ el, accessor, tooltip }) {
     this.el = el;
     this.accessor = accessor;
@@ -538,7 +538,7 @@ class VisRadialTree {
     this.wrangleData();
   }
 }
-class VisTree {
+class Vis2Tree {
   constructor({ el, accessor, tooltip }) {
     this.el = el;
     this.accessor = accessor;
@@ -893,15 +893,15 @@ Promise.all([
   // Chart type control
   const chartType = {
     sunburst: {
-      chart: VisSunburst,
+      chart: Vis2Sunburst,
       el: document.querySelector("#vis-sunburst"),
     },
     radialTree: {
-      chart: VisRadialTree,
+      chart: Vis2RadialTree,
       el: document.querySelector("#vis-radial-tree"),
     },
     tree: {
-      chart: VisTree,
+      chart: Vis2Tree,
       el: document.querySelector("#vis-tree"),
     },
   };
