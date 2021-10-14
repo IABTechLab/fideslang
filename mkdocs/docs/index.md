@@ -49,6 +49,8 @@ The taxonomy currently comprises  of four classification groups that are used to
   </div>
   <div id="vis-color-legend"></div>
 </div>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="js/vis.js"></script>
 
 ### 1. Data Categories
 Data Categories are labels to describe the type of data processed by a system. You can assign one or more data categories to a field when classifying a system.
