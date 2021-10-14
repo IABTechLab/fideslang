@@ -42,7 +42,7 @@ The taxonomy explorer is a useful way to visualize and review the taxonomy for t
   <div id="vis-color-legend"></div>
 </div>
 <script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="js/vis2.js"></script>
+<script src="../js/vis2.js"></script>
 
 
 
