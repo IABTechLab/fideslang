@@ -1,4 +1,4 @@
-class VisColorLegend {
+var VisColorLegend = class VisColorLegend {
   constructor({ el }) {
     this.el = el;
   }
@@ -29,7 +29,7 @@ class VisColorLegend {
   }
 }
 
-class VisTooltip {
+var VisTooltip = class VisTooltip {
   constructor() {
     this.tooltip = d3
       .select("body")
@@ -105,7 +105,7 @@ class VisTooltip {
   }
 }
 
-class Vis2Sunburst {
+var VisSunburst = class VisSunburst {
   constructor({ el, accessor, tooltip }) {
     this.el = el;
     this.accessor = accessor;
@@ -339,7 +339,7 @@ class Vis2Sunburst {
 }
 
 
-class Vis2RadialTree {
+var VisRadialTree = class VisRadialTree {
   constructor({ el, accessor, tooltip }) {
     this.el = el;
     this.accessor = accessor;
@@ -538,7 +538,7 @@ class Vis2RadialTree {
     this.wrangleData();
   }
 }
-class Vis2Tree {
+var VisTree = class VisTree {
   constructor({ el, accessor, tooltip }) {
     this.el = el;
     this.accessor = accessor;
@@ -891,20 +891,23 @@ Promise.all([
     });
 
   // Chart type control
+  
+  
   const chartType = {
     sunburst: {
-      chart: Vis2Sunburst,
+      chart: VisSunburst,
       el: document.querySelector("#vis-sunburst"),
     },
     radialTree: {
-      chart: Vis2RadialTree,
+      chart: VisRadialTree,
       el: document.querySelector("#vis-radial-tree"),
     },
     tree: {
-      chart: Vis2Tree,
+      chart: VisTree,
       el: document.querySelector("#vis-tree"),
     },
   };
+
   const chart = {};
   const chartTypeButtons = d3
     .select("#chart-type-control")
