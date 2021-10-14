@@ -9,7 +9,7 @@ This Privacy Taxonomy is a working draft of a proposed structure to describe dat
 
 The taxonomy currently comprises  of four classification groups that are used together to easily describe all of the data types and associated processing behaviors of an entire tech stack; both the application processes and any data storage. 
 
-[![alt text](docs/docs/img/taxonomy.png "Privacy Taxonomy Declaration")](https://ethyca.github.io/privacy-taxonomy/explorer.md)
+[![alt text](mkdocs/docs/img/taxonomy.png "Privacy Taxonomy Declaration")](https://ethyca.github.io/privacy-taxonomy/explorer.md)
 
 [Click here to view an interactive visualization of the taxonomy](https://ethyca.github.io/privacy-taxonomy/explorer.md)
 
