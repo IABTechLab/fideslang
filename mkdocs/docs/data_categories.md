@@ -60,9 +60,10 @@ In turn, `derived` and `provided` both have subclasses for `identifiable` and `n
 
 ### User Derived Data
 
+Data derived from user provided data or as a result of user actions in the system.
+
 | Label                             | Parent Key                                | Description                                                                                   |
 | ---                               | ---                                       | ---                                                                                           |
-| `user.derived`                    | `user`                                    |Data derived from user provided data or as a result of user actions in the system.             |
 | `identifiable`                    | `user.derived`                            |Derived data that is linked to, or identifies a user.                                          |
 | `biometric_health`                | `user.derived.identifiable`               |Encoded characteristic collected about a user.                                                 |
 | `browsing_history`                | `user.derived.identifiable`               |Content browsing history of a user.                                                            |
@@ -93,9 +94,10 @@ In turn, `derived` and `provided` both have subclasses for `identifiable` and `n
 
 ### User Provided Data
 
+Data provided or created directly by a user of the system.   
+
 | Label                             | Parent Key                                | Description                                                                                   |
 | ---                               | ---                                       | ---                                                                                           |
-| `provided`                        | `user`                                    |Data provided or created directly by a user of the system.                                     |
 | `identifiable`                    | `user.provided`                           |Data provided or created directly by a user that is linked to or identifies a user.            |
 | `biometric`                       | `user.provided.identifiable`              |Encoded characteristics provided by a user.                                                    |
 | `childrens`                       | `user.provided.identifiable`              |Data relating to children.                                                                     |
