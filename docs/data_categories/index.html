@@ -532,7 +532,7 @@
                 
                 
                 <h1 id="data-categories-reference">Data Categories Reference</h1>
-<p>Data Categories are labels to describe the type of data processed by a system. You can assign one or more data categories to a field when classifying a system.</p>
+<p>Data Categories are labels to describe the type of data processed by your software. These are most heavily used by the System and Dataset resources, where you can assign one or more data categories to each field.</p>
 <div class="admonition note">
 <p class="admonition-title">Extensibility and Interopability</p>
 <p>Data Categories in Fides are designed to support common privacy regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. </p>
@@ -567,8 +567,8 @@
 </tr>
 </tbody>
 </table>
-<p>For each top level classification there are multiple subclasses that provide richer context.
-Below is a reference for all subclasses of <code>account</code>, <code>system</code> and <code>user</code> to assist with describing all data across systems.</p>
+<p>For each top level category there are multiple subcategories that provide richer context.</p>
+<p>Below is a reference for all subcategories of <code>account</code>, <code>system</code> and <code>user</code> to assist with describing all data across systems.</p>
 <h2 id="account-data-categories">Account Data Categories</h2>
 <h3 id="account-contact-data">Account Contact Data</h3>
 <table>
@@ -660,16 +660,17 @@ Below is a reference for all subclasses of <code>account</code>, <code>system</c
 <td>Data used to manage access to the system.</td>
 </tr>
 <tr>
-<td><code>oeprations</code></td>
+<td><code>operations</code></td>
 <td><code>system</code></td>
 <td>Data used for system operations.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="user-data-categories">User Data Categories</h2>
-<p>The User Data classification has two inportant subclasses, for <code>derived</code> and <code>provided</code> data. 
-In turn, <code>derived</code> and <code>provided</code> both have subclasses for <code>identifiable</code> and <code>nonidentifiable</code> data.</p>
+<p>The "User" data category has two important subcategories for <code>derived</code> and <code>provided</code> data. </p>
+<p>In turn, <code>derived</code> and <code>provided</code> both have subcategories for <code>identifiable</code> and <code>nonidentifiable</code> data, to make it clear what data is considered identifiable in your systems.</p>
 <h3 id="user-derived-data">User Derived Data</h3>
+<p>Data derived from user provided data or as a result of user actions in the system.</p>
 <table>
 <thead>
 <tr>
@@ -679,11 +680,6 @@ In turn, <code>derived</code> and <code>provided</code> both have subclasses for
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>user.derived</code></td>
-<td><code>user</code></td>
-<td>Data derived from user provided data or as a result of user actions in the system.</td>
-</tr>
 <tr>
 <td><code>identifiable</code></td>
 <td><code>user.derived</code></td>
@@ -822,6 +818,7 @@ In turn, <code>derived</code> and <code>provided</code> both have subclasses for
 </tbody>
 </table>
 <h3 id="user-provided-data">User Provided Data</h3>
+<p>Data provided or created directly by a user of the system.</p>
 <table>
 <thead>
 <tr>
@@ -831,11 +828,6 @@ In turn, <code>derived</code> and <code>provided</code> both have subclasses for
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>provided</code></td>
-<td><code>user</code></td>
-<td>Data provided or created directly by a user of the system.</td>
-</tr>
 <tr>
 <td><code>identifiable</code></td>
 <td><code>user.provided</code></td>

@@ -552,15 +552,15 @@
 <script src="js/vis.js"></script>
 
 <h3 id="1-data-categories">1. Data Categories</h3>
-<p>Data Categories are labels to describe the type of data processed by a system. You can assign one or more data categories to a field when classifying a system.</p>
-<p>Data Categories are heirarchical with natural inheritance, meaning you can classify data coarsely with a high-level category (e.g. <code>user.provided</code> data), or you can classify it with greater precision using subclasses (e.g. <code>user.provided.identifiable.contact.email</code> data).</p>
+<p>Data Categories are labels to describe the type of data processed by your software. These are most heavily used by the System and Dataset resources, where you can assign one or more data categories to each field.</p>
+<p>Data Categories are hierarchical with natural inheritance, meaning you can classify data coarsely with a high-level category (e.g. <code>user.provided</code> data), or you can classify it with greater precision using subcategories (e.g. <code>user.provided.identifiable.contact.email</code> data).</p>
 <p>Learn more about <a href="data_categories/">Data Categories in the taxonomy reference now</a>.</p>
 <h3 id="2-data-use-categories">2. Data Use Categories</h3>
-<p>Data Use Categories are labels that describe how, or for what purpose(s) a component of your system is using data. Similar to data categories, you can assign one or multiple Data Use Categories to a system. </p>
-<p>Data Use Categories are also heirarchical with natural inheritance, meaning you can easily describe what you're using data for either coarsely (e.g. <code>provide.system.operations</code>) or with more precision using subclasses (e.g. <code>provide.system.operations.support.optimization</code>).</p>
+<p>Data Use Categories are labels that describe how, or for what purpose(s) a component of your system is using data.</p>
+<p>Data Use Categories are also hierarchical with natural inheritance, meaning you can easily describe what you're using data for either coarsely (e.g. <code>provide.system.operations</code>) or with more precision using subcategories (e.g. <code>provide.system.operations.support.optimization</code>).</p>
 <p>Learn more about <a href="data_use_categories/">Data Use Categories in the taxonomy reference now</a>.</p>
 <h3 id="3-data-subject-categories">3. Data Subject Categories</h3>
-<p>Data Subject is a label commonly used in the regulatory world to describe the users of a system who's data is being processed. In many systems a generic user label may be sufficient, however Fides language is intended to provide greater control through specificity where needed. Examples of Data Subject include:</p>
+<p>Data Subject is a label commonly used in the regulatory world to describe the users of a system who's data is being processed. In many systems a generic user label may be sufficient, however Fides language is intended to provide greater control through specificity where needed.</p>
 <p>Examples of this are:</p>
 <ul>
 <li><code>anonymous_user</code></li>
@@ -571,13 +571,12 @@
 </ul>
 <p>Learn more about <a href="data_subject_categories/">Data Subject Categories in the taxonomy reference now</a>.</p>
 <h3 id="4-data-identification-qualifiers">4. Data Identification Qualifiers</h3>
-<p>Data Identification Qualifiers describe the degree of identification of the given data. 
-Think of this as a spectrum: on one end is completely anonymous data, i.e. it is impossible to identify an individual from it, and on the other end is data that specifically identifies an individual. </p>
+<p>Data Identification Qualifiers describe the degree of identification of the given data. Think of this as a spectrum: on one end is completely anonymous data, i.e. it is impossible to identify an individual from it, and on the other end is data that specifically identifies an individual. </p>
 <p>Along this spectrum are labels that describe the degree of identification that a given data might provide, such as:</p>
 <ul>
-<li><code>identified_data</code></li>
-<li><code>anonymized_data</code></li>
-<li><code>aggregated_data</code></li>
+<li><code>identified</code></li>
+<li><code>anonymized</code></li>
+<li><code>aggregated</code></li>
 </ul>
 <p>Learn more about <a href="data_identification_qualifiers/">Data Identification Qualifiers in the taxonomy reference now</a>.</p>
 <h3 id="extensibility-interopability">Extensibility &amp; Interopability</h3>

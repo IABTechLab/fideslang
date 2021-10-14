@@ -410,7 +410,7 @@
                 
                 
                 <h1 id="data-identification-qualifiers-reference">Data Identification Qualifiers Reference</h1>
-<p>Data Identification Qualifiers describe the degree of identification of the given data. </p>
+<p>Data Identification Qualifiers describe the degree of identification of the given data. Think of this as a spectrum: on one end is completely anonymous data, i.e. it is impossible to identify an individual from it, and on the other end is data that specifically identifies an individual. </p>
 <div class="admonition note">
 <p class="admonition-title">Extensibility and Interopability</p>
 <p>Data Identification Qualifiers in Fides are designed to support common privacy regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. </p>
@@ -418,7 +418,7 @@
 <p>If you have suggestions for core classes that should ship with the taxonomy, please submit your requests here (<strong>needs link to feature requests</strong>).</p>
 </div>
 <h2 id="data-identification-qualifiers">Data Identification Qualifiers</h2>
-<p>At present, Data Identification Qualifiers are a flat structure with no subclassifications.</p>
+<p>Data Identification Qualifiers are arranged as a series of nested subcategories, going from least identifiable (aggregated) to most identifiable (identified).</p>
 <table>
 <thead>
 <tr>
@@ -429,29 +429,29 @@
 </thead>
 <tbody>
 <tr>
-<td><code>identified_data</code></td>
+<td><code>aggregated</code></td>
 <td><code>-</code></td>
-<td>Data that directly identifies an individual.</td>
+<td>Statistical data that does not contain individually identifying information but includes information about groups of individuals that renders individual identification impossible.</td>
 </tr>
 <tr>
-<td><code>pseudonymized_data</code></td>
-<td><code>-</code></td>
-<td>Data for which all identifiers have been substituted with unrelated values, rendering the individual unidentifiable and cannot be reasonably reversed other than by the party that performed the pseudonymization.</td>
-</tr>
-<tr>
-<td><code>unlinked_pseudonymized_data</code></td>
-<td><code>-</code></td>
-<td>Data for which all identifiers have been substituted with unrelated values and linkages broken such that it may not be reversed, even by the party that performed the pseudonymization.</td>
-</tr>
-<tr>
-<td><code>anonymized_data</code></td>
-<td><code>-</code></td>
+<td><code>anonymized</code></td>
+<td><code>anonymized</code></td>
 <td>Data where all attributes have been sufficiently altered that the individaul cannot be reidentified by this data or in combination with other datasets.</td>
 </tr>
 <tr>
-<td><code>aggregated_data</code></td>
-<td><code>-</code></td>
-<td>Statistical data that does not contain individually identifying information but includes information about groups of individuals that renders individual identification impossible.</td>
+<td><code>unlinked_pseudonymized</code></td>
+<td><code>aggregated.anonymized</code></td>
+<td>Data for which all identifiers have been substituted with unrelated values and linkages broken such that it may not be reversed, even by the party that performed the pseudonymization.</td>
+</tr>
+<tr>
+<td><code>pseudonymized</code></td>
+<td><code>aggregated.anonymized.unlinked_pseudonymized</code></td>
+<td>Data for which all identifiers have been substituted with unrelated values, rendering the individual unidentifiable and cannot be reasonably reversed other than by the party that performed the pseudonymization.</td>
+</tr>
+<tr>
+<td><code>identified</code></td>
+<td><code>aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified</code></td>
+<td>Data that directly identifies an individual.</td>
 </tr>
 </tbody>
 </table>

@@ -1,6 +1,6 @@
 # Data Categories Reference
 
-Data Categories are labels to describe the type of data processed by a system. You can assign one or more data categories to a field when classifying a system.
+Data Categories are labels to describe the type of data processed by your software. These are most heavily used by the System and Dataset resources, where you can assign one or more data categories to each field.
 
 !!! Note "Extensibility and Interopability"
     Data Categories in Fides are designed to support common privacy regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. 
@@ -21,8 +21,9 @@ There are three top-level categories:
 | `system`  | `-`           | Data unique to, and under control of the system.      |
 | `user`    | `-`           | Data related to the user of the system.               |
 
-For each top level classification there are multiple subclasses that provide richer context.
-Below is a reference for all subclasses of `account`, `system` and `user` to assist with describing all data across systems.
+For each top level category there are multiple subcategories that provide richer context.
+
+Below is a reference for all subcategories of `account`, `system` and `user` to assist with describing all data across systems.
 
 ## Account Data Categories
 
@@ -51,15 +52,15 @@ Below is a reference for all subclasses of `account`, `system` and `user` to ass
 | Label             | Parent Key    | Description                               |
 | ---               | ---           | ---                                       |
 | `authentication`  | `system`      | Data used to manage access to the system. |
-| `oeprations`      | `system` 	    | Data used for system operations.          |
+| `operations`      | `system` 	    | Data used for system operations.          |
 
 ## User Data Categories
 
-The User Data classification has two inportant subclasses, for `derived` and `provided` data. 
-In turn, `derived` and `provided` both have subclasses for `identifiable` and `nonidentifiable` data.
+The "User" data category has two important subcategories for `derived` and `provided` data. 
+
+In turn, `derived` and `provided` both have subcategories for `identifiable` and `nonidentifiable` data, to make it clear what data is considered identifiable in your systems.
 
 ### User Derived Data
-
 Data derived from user provided data or as a result of user actions in the system.
 
 | Label                             | Parent Key                                | Description                                                                                   |
@@ -93,8 +94,7 @@ Data derived from user provided data or as a result of user actions in the syste
 | `nonsensor`                       | `user.derived.nonidentifiable`            |Non-user identifiable measurement data derived from sensors and monitoring systems.            |
 
 ### User Provided Data
-
-Data provided or created directly by a user of the system.   
+Data provided or created directly by a user of the system.
 
 | Label                             | Parent Key                                | Description                                                                                   |
 | ---                               | ---                                       | ---                                                                                           |

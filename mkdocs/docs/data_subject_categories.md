@@ -10,9 +10,9 @@ Data Subject Categories are the group of labels commonly assigned to describe th
     If you have suggestions for core classes that should ship with the taxonomy, please submit your requests here (**needs link to feature requests**).
 
 
-## Data Subject Classes
+## Data Subject Categories
 
-At present, Data Subjects are a flat structure with no subclassifications, although this is likely to change over time.
+At present, Data Subjects are a flat structure with no subcategories, although this is likely to change over time.
 
 | Label                                          | Parent Key                 | Description                                                                                               |
 | ---                                            | ---                        | ---                                                                                                       |
