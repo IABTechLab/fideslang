@@ -1,4 +1,6 @@
 # Privacy Taxonomy
+
+[![License][license-image]][license-url]
 ## Overview
 This Privacy Taxonomy is a working draft of a proposed structure to describe data and data processing behaviors as part of a typical software development process. Our hope with standarizing this definition publicly with the community is to derive an interopable standard for describe types of data and how they're being used in applications to simplify global privacy regulations.
  
