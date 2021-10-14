@@ -1,4 +1,4 @@
-fides_key,name,parent_key,description
+privacy_key,name,parent_key,description
 data_subject,Data Subject,,
 anonymous_user,Anonymous User,data_subject,An individual that is unidentifiable to the systems. Note - This should only be applied to truly anonymous users where there is no risk of re-identification
 citizen_voter,Citizen Voter,data_subject,An individual registered to voter with a state or authority.

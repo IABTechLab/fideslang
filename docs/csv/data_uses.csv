@@ -1,4 +1,4 @@
-fides_key,name,parent_key,description
+privacy_key,name,parent_key,description
 data_use,Data Use,,
 provide,Provide the capability,data_use,"Provide, give, or make available the product, service, application or system."
 provide.system,System,provide,"The source system, product, service or application being provided to the user."

@@ -3,7 +3,7 @@
 Data Subject Categories are the group of labels commonly assigned to describe the type of system users to whom data may belong or is being processed. Examples might be customers, patients or simply abstract users.
 
 !!! Note "Extensibility and Interopability"
-    Data Subject Categories in Fides are designed to support common privacy regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. 
+    Data Subject Categories in the taxonomy are designed to support common privacy regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. 
     
     You can extend the taxonomy to support your system needs. If you do this, we recommend extending from the existing class structures to ensure interopability inside and outside your organization.
 

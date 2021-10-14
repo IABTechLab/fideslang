@@ -67,7 +67,7 @@ Data Use Categories are also hierarchical with natural inheritance, meaning you 
 Learn more about [Data Use Categories in the taxonomy reference now](data_use_categories.md).
 
 ### 3. Data Subject Categories
-Data Subject is a label commonly used in the regulatory world to describe the users of a system who's data is being processed. In many systems a generic user label may be sufficient, however Fides language is intended to provide greater control through specificity where needed.
+Data Subject is a label commonly used in the regulatory world to describe the users of a system who's data is being processed. In many systems a generic user label may be sufficient, however the taxonomy is intended to provide greater control through specificity where needed.
 
 Examples of this are:
 

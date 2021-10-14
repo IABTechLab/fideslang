@@ -1,4 +1,4 @@
-fides_key,name,parent_key,description
+privacy_key,name,parent_key,description
 data_qualifier,Data Qualifier,,
 aggregated_data,Aggregated Data,data_qualifier,Statistical data that does not contain individually identifying information but includes information about groups of individuals that renders individual identification impossible.
 aggregated.anonymized,Anonymized Data,aggregated,Data where all attributes have been sufficiently altered that the individaul cannot be reidentified by this data or in combination with other datasets.

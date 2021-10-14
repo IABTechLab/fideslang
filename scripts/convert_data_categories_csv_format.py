@@ -19,7 +19,7 @@ if __name__ == "__main__":
             if line_no <= 2:
                 continue
             node = {
-                "fides_key": row[0],
+                "privacy_key": row[0],
                 "name": row[1],
                 "parent_key": row[2],
                 "description": row[3]

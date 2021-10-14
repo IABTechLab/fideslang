@@ -847,11 +847,11 @@ Promise.all([
   });
 
   const accessor = {
-    id: (d) => d.fides_key,
+    id: (d) => d.privacy_key,
     parentId: (d) => d.parent_key,
     name: (d) =>
-      d.fides_key
-        .slice(d.fides_key.lastIndexOf(".") + 1)
+      d.privacy_key
+        .slice(d.privacy_key.lastIndexOf(".") + 1)
         .split("_")
         .map((d) => d[0].toUpperCase() + d.slice(1))
         .join(" "),

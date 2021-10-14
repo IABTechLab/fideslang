@@ -3,7 +3,7 @@
 Data Use Categories are labels that describe how, or for what purpose(s) a component of your system is using data.
 
 !!! Note "Extensibility and Interopability"
-    Data Use Categories in Fides are designed to support common privacy regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. 
+    Data Use Categories in the taxonomy are designed to support common privacy regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. 
     
     You can extend the taxonomy to support your system needs. If you do this, we recommend extending from the existing class structures to ensure interopability inside and outside your organization.
 

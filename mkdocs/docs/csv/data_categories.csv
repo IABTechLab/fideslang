@@ -1,4 +1,4 @@
-fides_key,name,parent_key,description
+privacy_key,name,parent_key,description
 data_category,Data Category,,
 account,Account Data,data_category,Data related to a system account.
 account.contact,Account Contact Data,account,Contact data related to a system account.
