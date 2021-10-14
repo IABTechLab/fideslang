@@ -1,7 +1,7 @@
 {
     "data_qualifier": [
         {
-            "privacy_key": "aggregated_data",
+            "privacy_key": "aggregated",
             "name": "Aggregated Data",
             "description": "Statistical data that does not contain individually identifying information but includes information about groups of individuals that renders individual identification impossible."
         },
