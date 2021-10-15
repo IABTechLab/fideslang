@@ -15,6 +15,7 @@
   --md-code-hl-punctuation-color: rgb(245, 251, 255);
   --md-bg-footer-color: #0861CE;
   --md-bg-table-header: rgba(79, 86, 107, 0.05);
+  --svg-highlight-col: #0657b9;
 } 
 
 
@@ -33,6 +34,7 @@
   --md-code-fg-color: #a3abd8;
   --md-bg-footer-color: #1A1D2E;
   --md-bg-table-header: rgba(233, 235, 252, 0.06);
+  --svg-highlight-col: #1FDF8F;
 } 
 
 
@@ -101,6 +103,17 @@ body {
   background-color: var(--md-bg-table-header);
 }
 
+.svg-illustration #path-lines rect, .svg-illustration #path-lines polyline{
+  stroke: var(--svg-highlight-col);
+  fill:none;
+}
+
+.svg-illustration #path-lines polygon {
+  fill: var(--svg-highlight-col);
+}
+.svg-illustration #text {
+  fill: var(--md-typeset-color);
+}
 
 /* -- Code Snippet Windows -- */
 
