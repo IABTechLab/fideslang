@@ -19,8 +19,11 @@ For example, to describe a field in a database as information provided by a user
 
 ``` yaml
 
+                
 # This declares that the data is provided by the user and identifies them directly
 user.provided.identifiable
+
+
 ```
 
 If we require greater specificity we could declare the contact type as email (assuming it's a phone number);

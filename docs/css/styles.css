@@ -120,6 +120,8 @@ body {
 
 .highlighttable .linenos, .highlighttable .code, .highlighttable .code, .md-typeset .highlighttable code {
   background-color: rgb(79, 86, 107);
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .highlighttable .linenos {
   border-radius: 5px 0 0 5px;
@@ -135,6 +137,8 @@ body {
 }
 .highlighttable .linenodiv {
   box-shadow: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 
