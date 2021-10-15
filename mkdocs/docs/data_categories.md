@@ -6,8 +6,8 @@ Data Categories are labels to describe the type of data processed by your softwa
     Data Categories in the taxonomy are designed to support common privacy regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. 
     
     You can extend the taxonomy to support your system needs. If you do this, we recommend extending from the existing class structures to ensure interopability inside and outside your organization.
-
-    If you have suggestions for core classes that should ship with the taxonomy, please submit your requests here (**needs link to feature requests**).
+    
+    If you have suggestions for core classes that should ship with the taxonomy, [please submit your requests here](https://github.com/ethyca/privacy-taxonomy/issues).
 
 
 ## Top Level Data Categories

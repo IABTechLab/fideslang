@@ -21,11 +21,14 @@ theme:
         icon: material/toggle-switch
         name: Switch to light mode
   name: material
+  favicon: img/favicon.png
+  logo: img/ethyca.svg
   font:
     text: Source Sans Pro
   features:
     - navigation.top
     - navigation.instant
+  custom_dir: overrides
 
 markdown_extensions:
   - attr_list

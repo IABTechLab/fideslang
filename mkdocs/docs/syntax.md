@@ -18,6 +18,7 @@ To make writing and reading the taxonomy as easy for humans as possible, declara
 For example, to describe a field in a database as information provided by a user that is personally identifiable, you can write:
 
 ``` yaml
+
 # This declares that the data is provided by the user and identifies them directly
 user.provided.identifiable
 ```

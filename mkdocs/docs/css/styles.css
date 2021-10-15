@@ -1,20 +1,71 @@
+/* -- START: Default mode CSS -- */
+[data-md-color-scheme="default"] { 
+  --md-typeset-color: rgb(79, 86, 107);
+  --md-default-fg-color--light: rgb(79, 86, 107);
+  --md-primary-fg-color: #0861CE;
+  --md-vis-bg-color: rgba(0, 0, 0, 0.02);
+  --md-code-bg-color: #0861ce27;
+  --md-code-fg-color: #0657b9;
+  --md-accent-fg-color: #1FDF8F;
+  --md-nav-border: #ccc;
+  --md-default-fg-color--lightest: rgb(164, 205, 254);
+  --md-code-hl-comment-color: rgb(193, 201, 210);
+  --md-code-hl-string-color:rgb(133, 217, 150);
+  --md-code-hl-keyword-color: rgb(245, 251, 255);
+  --md-code-hl-punctuation-color: rgb(245, 251, 255);
+  --md-bg-footer-color: #0861CE;
+  --md-bg-table-header: rgba(79, 86, 107, 0.05);
+} 
+
+
+/* -- START: Slate/Dark mode CSS -- */
+
+[data-md-color-scheme="slate"] { 
+  --md-typeset-color: rgb(247, 250, 252);
+  --md-default-fg-color--light: rgb(247, 250, 252);
+  --md-default-bg-color: #2A2F45;
+  --md-primary-fg-color: #1A1D2E;
+  --md-accent-fg-color: #1FDF8F;
+  --md-typeset-a-color: rgb(82, 108, 254);
+  --md-vis-bg-color: rgba(0, 0, 0, 0.12);
+  --md-nav-border: #61647b;
+  --md-code-bg-color: #1a1d2ea7;
+  --md-code-fg-color: #a3abd8;
+  --md-bg-footer-color: #1A1D2E;
+  --md-bg-table-header: rgba(233, 235, 252, 0.06);
+} 
+
+
 body {
   font-family: 'Source Sans Pro', sans-serif !important;
 }
 
-.md-header {
-  background-color: #0861ce;
+.md-header .md-logo img {
+  width: 30px;
+  height: auto;
 }
 
-.md-header .md-logo img {
-  width: 100px;
-  height: auto;
+.md-header__title {
+  margin-left: 0;
+}
+
+.md-main__inner {
+  margin-top: 0;
+}
+
+.md-sidebar {
+  padding-top: 0;
+}
+.md-sidebar__inner {
+  padding-top: 3.2em;
+}
+.md-sidebar__scrollwrap {
+  border-right: solid 1px var(--md-nav-border) !important;
 }
 
 .md-content h1,
 .md-content h2 {
   font-weight: 600;
-  color: #111439;
 }
 
 .md-footer {
@@ -36,6 +87,42 @@ body {
 .md-typeset table:not([class]){
   display: table;
 }
+.md-typeset code {
+  font-size: 0.65rem;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.md-footer {
+  background-color: var(--md-bg-footer-color);
+}
+
+.md-typeset__table thead {
+  background-color: var(--md-bg-table-header);
+}
+
+
+/* -- Code Snippet Windows -- */
+
+
+.highlighttable .linenos, .highlighttable .code, .highlighttable .code, .md-typeset .highlighttable code {
+  background-color: rgb(79, 86, 107);
+}
+.highlighttable .linenos {
+  border-radius: 5px 0 0 5px;
+}
+
+.highlighttable .code {
+  border-radius: 0 5px 5px 0;
+}
+
+.highlighttable .linenodiv pre {
+  color: rgb(105, 115, 134);
+  
+}
+.highlighttable .linenodiv {
+  box-shadow: none;
+}
 
 
 /* -- START: Taxonomy Visualization Explorer CSS -- */
@@ -47,8 +134,11 @@ body {
   font-size: 12px;
   line-height: 1.5;
   letter-spacing: 0.15px;
-  color: #313f4e;
+  color: var(--md-typeset-color);
   margin: 0 auto;
+  padding: 20px;
+  background-color: var(--md-vis-bg-color);
+  border-radius: 5px;
   }
   
 .vis h1 {
@@ -171,6 +261,7 @@ body {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.15s;
+  color: rgb(79, 86, 107) !important;
 }
 
 .vis-tooltip.is-visible {
@@ -226,8 +317,8 @@ body {
 
 .vis .radial-tree-svg .label-text .label-text__bg,
 .vis .tree-svg .label-text .label-text__bg {
-  stroke: #ffffff;
-  stroke-width: 3px;
+  
+  stroke: var(--md-default-bg-color);
 }
 
 .vis .radial-tree-svg .label-text.is-highlighted,

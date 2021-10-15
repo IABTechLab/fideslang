@@ -7,7 +7,7 @@ Data Use Categories are labels that describe how, or for what purpose(s) a compo
     
     You can extend the taxonomy to support your system needs. If you do this, we recommend extending from the existing class structures to ensure interopability inside and outside your organization.
 
-    If you have suggestions for core classes that should ship with the taxonomy, please submit your requests here (**needs link to feature requests**).
+    If you have suggestions for core classes that should ship with the taxonomy, [please submit your requests here](https://github.com/ethyca/privacy-taxonomy/issues)
 
 
 ## Top Level Data Use Categories
