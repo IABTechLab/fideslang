@@ -42,10 +42,10 @@ if __name__ == "__main__":
                 csv_writer.writeheader()
 
                 # For convenience, generate a single "root" node
-                assert { "fides_key", "name", "parent_key" }.issubset(unique_keys)
+                assert { "privacy_key", "name", "parent_key" }.issubset(unique_keys)
                 root_key = toplevel_key.replace("-", "_")
                 root_name = " ".join([word.capitalize() for word in root_key.split("_")])
-                root_node = { "fides_key": root_key, "name": root_name }
+                root_node = { "privacy_key": root_key, "name": root_name }
                 print(f"Generating root node: {root_node}...")
                 csv_writer.writerow(root_node)
 
