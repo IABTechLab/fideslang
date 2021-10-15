@@ -8,6 +8,7 @@ nav:
   - Data Use Categories: data_use_categories.md
   - Data Subject Categories: data_subject_categories.md
   - Data Identification Qualifiers: data_identification_qualifiers.md
+  - Github Repo: https://github.com/ethyca/privacy-taxonomy
   - License: license.md
 
 theme:
