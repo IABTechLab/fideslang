@@ -1,16 +1,16 @@
-# Data Use Categories Reference
+# Data Uses Reference
 
-Data Use Categories are labels that describe how, or for what purpose(s) a component of your system is using data.
+Data Uses are labels that describe how, or for what purpose(s) a component of your system is using data.
 
 !!! Note "Extensibility and Interopability"
-    Data Use Categories in the taxonomy are designed to support common privacy regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. 
+    Data Uses in the taxonomy are designed to support common privacy regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. 
     
     You can extend the taxonomy to support your system needs. If you do this, we recommend extending from the existing class structures to ensure interopability inside and outside your organization.
 
     If you have suggestions for core classes that should ship with the taxonomy, [please submit your requests here](https://github.com/ethyca/privacy-taxonomy/issues)
 
 
-## Top Level Data Use Categories
+## Top Level Data Uses
 
 There are seven top-level Data Use classes:
 

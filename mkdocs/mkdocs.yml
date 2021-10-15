@@ -5,9 +5,9 @@ nav:
   - Taxonomy Visual Explorer: explorer.md
   - Syntax: syntax.md
   - Data Categories: data_categories.md
-  - Data Use Categories: data_use_categories.md
-  - Data Subject Categories: data_subject_categories.md
-  - Data Identification Qualifiers: data_identification_qualifiers.md
+  - Data Uses: data_uses.md
+  - Data Subjects: data_subjects.md
+  - Data Qualifiers: data_qualifiers.md
   - Github Repo: https://github.com/ethyca/privacy-taxonomy
   - License: license.md
 

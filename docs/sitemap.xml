@@ -11,17 +11,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ethyca.github.io/privacy-taxonomy/data_identification_qualifiers/</loc>
+         <loc>https://ethyca.github.io/privacy-taxonomy/data_qualifiers/</loc>
          <lastmod>2021-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ethyca.github.io/privacy-taxonomy/data_subject_categories/</loc>
+         <loc>https://ethyca.github.io/privacy-taxonomy/data_subjects/</loc>
          <lastmod>2021-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ethyca.github.io/privacy-taxonomy/data_use_categories/</loc>
+         <loc>https://ethyca.github.io/privacy-taxonomy/data_uses/</loc>
          <lastmod>2021-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
