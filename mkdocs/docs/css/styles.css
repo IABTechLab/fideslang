@@ -93,7 +93,13 @@ body {
   font-size: 0.65rem;
   padding: 2px 4px;
   border-radius: 4px;
+  color: #fff;
 }
+
+p code {
+  color: var(--md-code-fg-color) !important;
+}
+
 
 .md-footer {
   background-color: var(--md-bg-footer-color);
