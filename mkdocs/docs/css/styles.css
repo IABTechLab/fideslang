@@ -93,11 +93,15 @@ body {
   font-size: 0.65rem;
   padding: 2px 4px;
   border-radius: 4px;
-  color: #fff;
+
+}
+
+.md-typeset .custom-license  code {
+  color: #fff !important;
 }
 
 p code, li code {
-  color: var(--md-code-fg-color) !important;
+  color: var(--md-code-fg-color);
 }
 
 
