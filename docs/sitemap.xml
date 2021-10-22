@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ethyca.github.io/privacy-taxonomy/</loc>
-         <lastmod>2021-10-15</lastmod>
+         <lastmod>2021-10-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ethyca.github.io/privacy-taxonomy/data_categories/</loc>
-         <lastmod>2021-10-15</lastmod>
+         <lastmod>2021-10-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ethyca.github.io/privacy-taxonomy/data_qualifiers/</loc>
-         <lastmod>2021-10-15</lastmod>
+         <lastmod>2021-10-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ethyca.github.io/privacy-taxonomy/data_subjects/</loc>
-         <lastmod>2021-10-15</lastmod>
+         <lastmod>2021-10-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ethyca.github.io/privacy-taxonomy/data_uses/</loc>
-         <lastmod>2021-10-15</lastmod>
+         <lastmod>2021-10-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ethyca.github.io/privacy-taxonomy/explorer/</loc>
-         <lastmod>2021-10-15</lastmod>
+         <lastmod>2021-10-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ethyca.github.io/privacy-taxonomy/license/</loc>
-         <lastmod>2021-10-15</lastmod>
+         <lastmod>2021-10-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ethyca.github.io/privacy-taxonomy/syntax/</loc>
-         <lastmod>2021-10-15</lastmod>
+         <lastmod>2021-10-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
