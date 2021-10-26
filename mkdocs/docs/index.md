@@ -10,14 +10,6 @@ This Privacy Taxonomy is a working draft of a proposed structure to describe dat
 
 The taxonomy currently comprises  of four classification groups that are used together to easily describe all of the data types and associated processing behaviors of an entire tech stack; both the application processes and any data storage. 
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    
-
 <div id="vis" class="vis vis-container">
   <div class="controls-container">
     <div id="data-control" class="control-group">
