@@ -1,10 +1,6 @@
 /* -- START: Logo CSS overrides specific to taxonomy repo -- */
 
 body header.md-header .md-logo img {
-    width: 30px;
+    width: 120px;
     height: auto;
-}
-
-body header.md-header .md-header__topic {
-    display: flex;
 }

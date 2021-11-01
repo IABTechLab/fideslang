@@ -1,5 +1,5 @@
 site_name: Privacy Taxonomy
-site_url: https://ethyca.github.io/privacy-taxonomy
+site_url: https://ethyca.github.io/fideslang
 nav:
   - What is the Privacy Taxonomy: index.md
   - Taxonomy Visual Explorer: explorer.md
@@ -8,7 +8,7 @@ nav:
   - Data Uses: data_uses.md
   - Data Subjects: data_subjects.md
   - Data Qualifiers: data_qualifiers.md
-  - Github Repo: https://github.com/ethyca/privacy-taxonomy
+  - Github Repo: https://github.com/ethyca/fideslang
   - License: license.md
 
 theme:
@@ -25,7 +25,7 @@ theme:
         name: Switch to light mode
   name: material
   favicon: img/favicon.png
-  logo: img/ethyca.svg
+  logo: img/fideslang.svg
   font:
     text: Source Sans Pro
   features:
