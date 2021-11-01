@@ -1,9 +1,9 @@
-# Privacy Taxonomy
+# Fideslang
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 ## Overview
-This Privacy Taxonomy is a working draft of a proposed structure to describe data and data processing behaviors as part of a typical software development process. Our hope with standarizing this definition publicly with the community is to derive an interopable standard for describe types of data and how they're being used in applications to simplify global privacy regulations.
+Fideslang or Fides Language is a privacy taxonomy and working draft of a proposed structure to describe data and data processing behaviors as part of a typical software development process. Our hope with standarizing this definition publicly with the community is to derive an interopable standard for describe types of data and how they're being used in applications to simplify global privacy regulations.
 
 **To view the detailed taxonomy documentation, please visit [https://ethyca.github.io/privacy-taxonomy/](https://ethyca.github.io/privacy-taxonomy)**
  
