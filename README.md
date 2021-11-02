@@ -1,6 +1,6 @@
 # Fideslang
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/) [![Twitter](https://img.shields.io/twitter/follow/ethyca?style=social)](https://twitter.com/ethyca)
 
 ![Fideslang banner](mkdocs/docs/img/fideslang.png "Fideslang banner")
 ## Overview
