@@ -1,7 +1,7 @@
-site_name: Privacy Taxonomy
+site_name: Fides Language
 site_url: https://ethyca.github.io/fideslang
 nav:
-  - What is the Privacy Taxonomy: index.md
+  - What is the Fides Language: index.md
   - Taxonomy Visual Explorer: explorer.md
   - Syntax: syntax.md
   - Data Categories: data_categories.md
