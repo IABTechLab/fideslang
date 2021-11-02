@@ -24,7 +24,7 @@ theme:
         icon: material/toggle-switch
         name: Switch to light mode
   name: material
-  favicon: img/favicon.png
+  favicon: img/favicon.ico
   logo: img/fideslang.svg
   font:
     text: Source Sans Pro
