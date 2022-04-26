@@ -6,8 +6,8 @@ on:
       - main
 
 env:
-  CONTAINER: fidesctl-local
-  IMAGE: ethyca/fidesctl:local
+  CONTAINER: fideslang-local
+  IMAGE: ethyca/fideslang:local
 
 jobs:
   Build:
@@ -20,7 +20,7 @@ jobs:
         id: buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Build fidesctl container
+      - name: Build fideslang container
         uses: docker/build-push-action@v2
         with:
           builder: ${{ steps.buildx.outputs.name }}
@@ -30,49 +30,24 @@ jobs:
           push: false
           tags: ${{ env.IMAGE }}
 
-      - name: Upload fidesctl container
+      - name: Upload fideslang container
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.CONTAINER }}
           path: /tmp/${{ env.CONTAINER }}.tar
           retention-days: 1
 
-  Fidesctl:
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download fidesctl container
-        uses: actions/download-artifact@v2
-        with:
-          name: ${{ env.CONTAINER }}
-          path: /tmp/
-
-      - name: Load fidesctl image
-        run: docker load --input /tmp/${{ env.CONTAINER }}.tar
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Check fidesctl installation
-        run: make check-install
-
-      - name: Run fidesctl evaluation
-        run: make fidesctl
-
-      - name: Scan fidesctl db
-        run: make fidesctl-db-scan
-
   Black:
     needs: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Download fidesctl container
+      - name: Download fideslang container
         uses: actions/download-artifact@v2
         with:
           name: ${{ env.CONTAINER }}
           path: /tmp/
 
-      - name: Load fidesctl image
+      - name: Load fideslang image
         run: docker load --input /tmp/${{ env.CONTAINER }}.tar
 
       - name: Checkout
@@ -85,13 +60,13 @@ jobs:
     needs: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Download fidesctl container
+      - name: Download fideslang container
         uses: actions/download-artifact@v2
         with:
           name: ${{ env.CONTAINER }}
           path: /tmp/
 
-      - name: Load fidesctl image
+      - name: Load fideslang image
         run: docker load --input /tmp/${{ env.CONTAINER }}.tar
 
       - name: Checkout
@@ -104,13 +79,13 @@ jobs:
     needs: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Download fidesctl container
+      - name: Download fideslang container
         uses: actions/download-artifact@v2
         with:
           name: ${{ env.CONTAINER }}
           path: /tmp/
 
-      - name: Load fidesctl image
+      - name: Load fideslang image
         run: docker load --input /tmp/${{ env.CONTAINER }}.tar
 
       - name: Checkout
@@ -123,13 +98,13 @@ jobs:
     needs: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Download fidesctl container
+      - name: Download fideslang container
         uses: actions/download-artifact@v2
         with:
           name: ${{ env.CONTAINER }}
           path: /tmp/
 
-      - name: Load fidesctl image
+      - name: Load fideslang image
         run: docker load --input /tmp/${{ env.CONTAINER }}.tar
 
       - name: Checkout
@@ -138,17 +113,17 @@ jobs:
       - name: Run cyclomatic complexity check
         run: make xenon
 
-  Pytest-Unit:
+  Pytest:
     needs: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Download fidesctl container
+      - name: Download fideslang container
         uses: actions/download-artifact@v2
         with:
           name: ${{ env.CONTAINER }}
           path: /tmp/
 
-      - name: Load fidesctl image
+      - name: Load fideslang image
         run: docker load --input /tmp/${{ env.CONTAINER }}.tar
 
       - name: Checkout
@@ -156,48 +131,3 @@ jobs:
 
       - name: Run unit test suite
         run: make pytest-unit
-
-  Pytest-Integration:
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download fidesctl container
-        uses: actions/download-artifact@v2
-        with:
-          name: ${{ env.CONTAINER }}
-          path: /tmp/
-
-      - name: Load fidesctl image
-        run: docker load --input /tmp/${{ env.CONTAINER }}.tar
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Run integration test suite
-        run: make pytest-integration
-
-  Pytest-External:
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download fidesctl container
-        uses: actions/download-artifact@v2
-        with:
-          name: ${{ env.CONTAINER }}
-          path: /tmp/
-
-      - name: Load fidesctl image
-        run: docker load --input /tmp/${{ env.CONTAINER }}.tar
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Run external test suite
-        run: make pytest-external
-        env:
-          SNOWFLAKE_FIDESCTL_PASSWORD: ${{ secrets.SNOWFLAKE_FIDESCTL_PASSWORD }}
-          REDSHIFT_FIDESCTL_PASSWORD: ${{ secrets.REDSHIFT_FIDESCTL_PASSWORD }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_FIDESCTL_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_FIDESCTL_ACCESS_KEY }}
-          OKTA_CLIENT_TOKEN: ${{ secrets.OKTA_FIDESCTL_CLIENT_TOKEN }}
-          AWS_DEFAULT_REGION: us-east-1

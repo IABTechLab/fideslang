@@ -1,7 +1,7 @@
 # Ignore existing build artifacts
 build/
 dist/
-src/fidesctl.egg-info/
+src/fideslang.egg-info/
 
 # Ignore the docs
 mkdocs/

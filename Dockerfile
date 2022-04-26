@@ -56,7 +56,7 @@ ENV RUNNING_IN_DOCKER=TRUE
 
 FROM builder as dev
 
-# Install fidesctl as a symlink
+# Install fideslang as a symlink
 RUN pip install -e ".[all]"
 
 ##################################

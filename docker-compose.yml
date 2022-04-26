@@ -1,29 +1,12 @@
 services:
-  fidesctl:
-    image: ethyca/fidesctl:local
-    command: uvicorn --host 0.0.0.0 --port 8080 --reload fidesapi.main:app
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://0.0.0.0:8080/health" ]
-      interval: 15s
-      timeout: 5s
-      retries: 5
-    depends_on:
-      fidesctl-db:
-        condition: service_healthy
-    expose:
-      - 8080
-    ports:
-      - "8080:8080"
+  fideslang:
+    image: ethyca/fideslang:local
+    command: /bin/bash
     volumes:
       - type: bind
         source: .
-        target: /fides
+        target: /fideslang
         read_only: False
-    environment:
-      FIDESCTL_TEST_MODE: "True"
-      FIDESCTL__CLI__SERVER_HOST: "fidesctl"
-      FIDESCTL__CLI__SERVER_PORT: "8080"
-      FIDESCTL__API__DATABASE_HOST: "fidesctl-db"
 
   docs:
     build:
@@ -35,6 +18,3 @@ services:
       - 8000
     ports:
       - "8000:8000"
-
-volumes:
-  postgres: null

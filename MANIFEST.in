@@ -3,6 +3,4 @@ include README.md
 include requirements.txt
 include dev-requirements.txt
 include versioneer.py
-include src/fidesapi/alembic.ini
-include src/fidesctl/_version.py
-include src/fidesctl/templates/fides_datamap_template.xlsx
+include src/fideslang/_version.py

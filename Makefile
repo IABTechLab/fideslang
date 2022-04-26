@@ -19,8 +19,7 @@ ifeq "$(CI)" "true"
 endif
 
 # Run in Compose
-RUN = docker compose run --rm $(ANALYTICS_ID_OVERRIDE) $(CI_ARGS) $(IMAGE_NAME)
-RUN_NO_DEPS = docker compose run --no-deps --rm $(ANALYTICS_ID_OVERRIDE) $(CI_ARGS) $(IMAGE_NAME)
+RUN = docker compose run --rm  $(CI_ARGS) $(IMAGE_NAME)
 START_APP = docker compose up -d $(IMAGE_NAME)
 
 .PHONY: help
@@ -28,33 +27,24 @@ help:
 	@echo --------------------
 	@echo Development Targets:
 	@echo ----
-	@echo api - Spins up the database and API, reachable on localhost:8080.
-	@echo ----
 	@echo build - Builds the fidesctl Docker image.
 	@echo ----
 	@echo check-all - Run all CI checks except for externally dependent ones.
 	@echo ----
 	@echo clean - Runs Docker commands to clean up the docker local environment.
 	@echo ----
-	@echo cli - Spins up the database, API, and starts a shell within the API container to run CLI commands.
-	@echo ----
-	@echo cli-integration - Spins up the CLI with additional containers needed for integration testing.
-	@echo ----
-	@echo db - Spins up the database, reachable on localhost:5432
+	@echo shell - Spins up the database, API, and starts a shell within the API container to run CLI commands.
 	@echo ----
 	@echo docs-serve - Spins up the docs server on localhost:8000
-	@echo ----
-	@echo reset-db - Resets the database back to its freshly initialized state.
 	@echo --------------------
 
 ####################
 # Dev
 ####################
 
-.PHONY: cli
-cli: build-local
+.PHONY: shell
+shell: build-local
 	@echo "Setting up a local development shell... (press CTRL-D to exit)"
-	@$(START_APP)
 	@$(RUN) /bin/bash
 	@make teardown
 
@@ -85,22 +75,13 @@ black:
 	@$(RUN_NO_DEPS) black --check src/
 
 # The order of dependent targets here is intentional
-check-all: teardown build-local-prod check-install fidesctl fidesctl-db-scan black \
+check-all: teardown build-local-prod check-install black \
 			pylint mypy xenon pytest-unit pytest-integration
 	@echo "Running formatter, linter, typechecker and tests..."
 
 check-install:
 	@echo "Checking that fidesctl is installed..."
-	@$(RUN_NO_DEPS) fidesctl ${WITH_TEST_CONFIG} --version
-
-.PHONY: fidesctl
-fidesctl:
-	@$(RUN_NO_DEPS) fidesctl --local ${WITH_TEST_CONFIG} evaluate
-
-fidesctl-db-scan:
-	@$(START_APP)
-	@$(RUN) fidesctl ${WITH_TEST_CONFIG} scan dataset db \
-	"postgresql+psycopg2://postgres:fidesctl@fidesctl-db:5432/fidesctl_test"
+	@$(RUN_NO_DEPS) python -c "import fideslang"
 
 mypy:
 	@$(RUN_NO_DEPS) mypy
@@ -108,28 +89,8 @@ mypy:
 pylint:
 	@$(RUN_NO_DEPS) pylint src/
 
-pytest-unit:
-	@$(START_APP)
-	@$(RUN_NO_DEPS) pytest -x -m unit
-
-pytest-integration:
-	@$(START_APP)
-	@docker compose run --rm $(CI_ARGS) $(IMAGE_NAME) \
-	pytest -x -m integration
-	@make teardown
-
-pytest-external:
-	@docker compose -f docker-compose.yml -f docker-compose.integration-tests.yml up -d $(IMAGE_NAME)
-	@docker compose run \
-	-e SNOWFLAKE_FIDESCTL_PASSWORD \
-	-e REDSHIFT_FIDESCTL_PASSWORD \
-	-e AWS_ACCESS_KEY_ID \
-	-e AWS_SECRET_ACCESS_KEY \
-	-e AWS_DEFAULT_REGION \
-	-e OKTA_CLIENT_TOKEN \
-	--rm $(CI_ARGS) $(IMAGE_NAME) \
-	pytest -x -m external
-	@make teardown
+pytest:
+	@$(RUN_NO_DEPS) pytest -x
 
 xenon:
 	@$(RUN_NO_DEPS) xenon src \
@@ -137,7 +98,7 @@ xenon:
 	--max-modules B \
 	--max-average A \
 	--ignore "data, tests, docs" \
-	--exclude "src/fidesctl/_version.py"
+	--exclude "src/fideslang/_version.py"
 
 ####################
 # Utils
@@ -146,14 +107,14 @@ xenon:
 .PHONY: clean
 clean:
 	@echo "Doing docker cleanup for this project..."
-	@docker compose -f docker-compose.yml -f docker-compose.integration-tests.yml down --remove-orphans --volumes --rmi all
+	@docker compose down --remove-orphans --volumes --rmi all
 	@docker system prune --force
 	@echo "Clean complete!"
 
 .PHONY: teardown
 teardown:
 	@echo "Tearing down the dev environment..."
-	@docker compose -f docker-compose.yml -f docker-compose.integration-tests.yml down --remove-orphans
+	@docker compose down --remove-orphans
 	@echo "Teardown complete"
 
 .PHONY: docs-build
