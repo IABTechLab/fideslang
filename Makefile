@@ -5,10 +5,9 @@
 ####################
 REGISTRY := ethyca
 IMAGE_TAG := $(shell git fetch --force --tags && git describe --tags --dirty --always)
-WITH_TEST_CONFIG := -f tests/test_config.toml
 
 # Image Names & Tags
-IMAGE_NAME := fidesctl
+IMAGE_NAME := fideslang
 IMAGE := $(REGISTRY)/$(IMAGE_NAME):$(IMAGE_TAG)
 IMAGE_LOCAL := $(REGISTRY)/$(IMAGE_NAME):local
 IMAGE_LATEST := $(REGISTRY)/$(IMAGE_NAME):latest
@@ -18,9 +17,6 @@ IMAGE_LATEST := $(REGISTRY)/$(IMAGE_NAME):latest
 ifeq "$(CI)" "true"
     CI_ARGS:=--no-TTY
 endif
-
-# If FIDESCTL__CLI__ANALYTICS_ID is set in the local environment, use its value as the analytics_id
-ANALYTICS_ID_OVERRIDE = -e FIDESCTL__CLI__ANALYTICS_ID
 
 # Run in Compose
 RUN = docker compose run --rm $(ANALYTICS_ID_OVERRIDE) $(CI_ARGS) $(IMAGE_NAME)
@@ -55,36 +51,12 @@ help:
 # Dev
 ####################
 
-.PHONY: reset-db
-reset-db: build-local
-	@echo "Reset the database..."
-	@$(START_APP)
-	@$(RUN) fidesctl db reset -y
-	@make teardown
-
-.PHONY: api
-api: build-local
-	@echo "Spinning up the webserver..."
-	@docker compose up $(IMAGE_NAME)
-	@make teardown
-
 .PHONY: cli
 cli: build-local
 	@echo "Setting up a local development shell... (press CTRL-D to exit)"
 	@$(START_APP)
 	@$(RUN) /bin/bash
 	@make teardown
-
-.PHONY: cli-integration
-cli-integration: build-local
-	@echo "Setting up a local development shell... (press CTRL-D to exit)"
-	@docker compose -f docker-compose.yml -f docker-compose.integration-tests.yml up -d $(IMAGE_NAME)
-	@$(RUN) /bin/bash
-	@make teardown
-	
-.PHONY: db
-db:
-	@docker compose up -d fidesctl-db
 
 ####################
 # Docker

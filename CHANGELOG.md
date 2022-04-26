@@ -14,17 +14,8 @@ The types of changes are:
 * `Fixed` for any bug fixes.
 * `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fides/compare/1.5.3...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/1.0.0...main)
 
 ### Added
 
-* CHANGELOG.md file
-
-### Changed
-
-* Published Docker image does a clean install of Fidesctl
-
-### Fixed
-
-* Third-Country formatting on Data Map
-* Potential Duplication on Data Map
+* Created the fideslang standalone python module

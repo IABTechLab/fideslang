@@ -4,7 +4,7 @@ dist/
 src/fidesctl.egg-info/
 
 # Ignore the docs
-docs/
+mkdocs/
 
 # Ignore dev files
 .github/

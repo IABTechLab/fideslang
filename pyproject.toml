@@ -70,18 +70,11 @@ good-names="_,i,setUp,tearDown,maxDiff,default_app_config"
 [tool.pytest.ini_options]
 testpaths="tests"
 log_level = "DEBUG"
-addopts = ["--cov=fidesctl.core",
-            "--cov=fidesctl.cli",
-            "--cov=fideslang",
+addopts = ["--cov=fideslang",
             "--cov-report=term-missing",
             "-vv",
             "--no-cov-on-fail",
             "--disable-pytest-warnings"]
 markers = [
     "unit: only runs tests that don't require non-python dependencies (i.e. a database)",
-    "integration: only runs tests that require application dependencies (i.e. a database)",
-    "external: only runs tests that require access to non-docker, external services (i.e. Snowflake)",
-    "postgres: only runs the integration tests for postgres",
-    "mssql: only runs the integration tests for sqlserver/mssql",
-    "mysql: only runs the integration tests for mysql"
 ]
