@@ -76,7 +76,7 @@ black:
 
 # The order of dependent targets here is intentional
 check-all: teardown build-local-prod check-install black \
-			pylint mypy xenon pytest-unit pytest-integration
+			pylint mypy xenon pytest
 	@echo "Running formatter, linter, typechecker and tests..."
 
 check-install:

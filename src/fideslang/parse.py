@@ -5,7 +5,6 @@ either from local files or the server.
 from typing import List, Dict
 
 from fideslang import model_map, FidesModel, Taxonomy
-from fidesctl.core.utils import echo_red
 
 
 def parse_dict(
@@ -16,13 +15,13 @@ def parse_dict(
     """
     resource_source = "server" if from_server else "manifest file"
     if resource_type not in list(model_map.keys()):
-        echo_red(f"This resource type does not exist: {resource_type}")
+        print(f"This resource type does not exist: {resource_type}")
         raise SystemExit(1)
 
     try:
         parsed_manifest = model_map[resource_type].parse_obj(resource)
     except Exception as err:
-        echo_red(
+        print(
             "Failed to parse {} from {}:\n{}".format(
                 resource_type, resource_source, resource
             )
