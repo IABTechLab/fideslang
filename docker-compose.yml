@@ -1,0 +1,19 @@
+services:
+  fideslang:
+    image: ethyca/fideslang:local
+    command: /bin/bash
+    volumes:
+      - type: bind
+        source: .
+        target: /fideslang
+        read_only: False
+
+  docs:
+    build:
+      context: mkdocs/
+    volumes:
+      - ./mkdocs:/docs
+    expose:
+      - 8000
+    ports:
+      - "8000:8000"

@@ -1,0 +1,11 @@
+# Ignore existing build artifacts
+build/
+dist/
+src/fideslang.egg-info/
+
+# Ignore the docs
+mkdocs/
+
+# Ignore dev files
+.github/
+.devcontainer/
