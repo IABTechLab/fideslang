@@ -5,11 +5,9 @@ by each other and building a dependency graph of relationships.
 
 import inspect
 from functools import reduce
-from typing import List, Set, Dict
+from typing import List, Set
 
-from pydantic import AnyHttpUrl
 
-from fidesctl.core.api_helpers import get_server_resources
 from fideslang.models import (
     FidesKey,
     Taxonomy,
@@ -81,28 +79,3 @@ def get_referenced_missing_keys(taxonomy: Taxonomy) -> List[FidesKey]:
         if get_resource_by_fides_key(taxonomy, fides_key) is None
     ]
     return keys_not_in_taxonomy
-
-
-def hydrate_missing_resources(
-    url: AnyHttpUrl,
-    headers: Dict[str, str],
-    missing_resource_keys: List[FidesKey],
-    dehydrated_taxonomy: Taxonomy,
-) -> Taxonomy:
-    """
-    Query the server for all of the missing resource keys and
-    hydrate a copy of the dehydrated taxonomy with them.
-    """
-
-    for resource_name in dehydrated_taxonomy.__fields__:
-        server_resources = get_server_resources(
-            url=url,
-            resource_type=resource_name,
-            headers=headers,
-            existing_keys=missing_resource_keys,
-        )
-        dehydrated_taxonomy.__setattr__(
-            resource_name,
-            getattr(dehydrated_taxonomy, resource_name) + server_resources,
-        )
-    return dehydrated_taxonomy

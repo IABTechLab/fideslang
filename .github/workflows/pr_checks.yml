@@ -130,4 +130,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run unit test suite
-        run: make pytest-unit
+        run: make pytest

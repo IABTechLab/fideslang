@@ -182,37 +182,3 @@ def test_get_referenced_missing_dataset_keys():
     }
     referenced_keys = relationships.get_referenced_missing_keys(taxonomy)
     assert sorted(referenced_keys) == sorted(set(expected_referenced_key))
-
-
-@pytest.mark.integration
-def test_hydrate_missing_resources(test_config):
-    dehydrated_taxonomy = Taxonomy(
-        data_category=[
-            DataCategory(
-                name="test_dc",
-                fides_key="key_1.test_dc",
-                description="test description",
-                parent_key="key_1",
-            ),
-        ],
-        system=[
-            System.construct(
-                name="test_dc",
-                fides_key="test_dc",
-                description="test description",
-                system_dependencies=["key_3", "key_4"],
-                system_type="test",
-                privacy_declarations=None,
-            )
-        ],
-    )
-    actual_hydrated_taxonomy = relationships.hydrate_missing_resources(
-        url=test_config.cli.server_url,
-        headers=test_config.user.request_headers,
-        dehydrated_taxonomy=dehydrated_taxonomy,
-        missing_resource_keys={
-            "user.provided.identifiable.credentials",
-            "user.provided",
-        },
-    )
-    assert len(actual_hydrated_taxonomy.data_category) == 3
