@@ -20,7 +20,6 @@ endif
 
 # Run in Compose
 RUN = docker compose run --rm  $(CI_ARGS) $(IMAGE_NAME)
-START_APP = docker compose up -d $(IMAGE_NAME)
 
 .PHONY: help
 help:
@@ -72,7 +71,7 @@ push: build
 ####################
 
 black:
-	@$(RUN_NO_DEPS) black --check src/
+	@$(RUN) black --check src/
 
 # The order of dependent targets here is intentional
 check-all: teardown build-local-prod check-install black \
@@ -81,19 +80,19 @@ check-all: teardown build-local-prod check-install black \
 
 check-install:
 	@echo "Checking that fidesctl is installed..."
-	@$(RUN_NO_DEPS) python -c "import fideslang"
+	@$(RUN) python -c "import fideslang"
 
 mypy:
-	@$(RUN_NO_DEPS) mypy
+	@$(RUN) mypy
 
 pylint:
-	@$(RUN_NO_DEPS) pylint src/
+	@$(RUN) pylint src/
 
 pytest:
-	@$(RUN_NO_DEPS) pytest -x
+	@$(RUN) pytest -x
 
 xenon:
-	@$(RUN_NO_DEPS) xenon src \
+	@$(RUN) xenon src \
 	--max-absolute B \
 	--max-modules B \
 	--max-average A \
@@ -126,4 +125,4 @@ docs-build: build-local
 docs-serve: docs-build
 	@docker compose build docs
 	@docker compose run --rm --service-ports $(CI_ARGS) docs \
-	/bin/bash -c "pip install -e /fides && mkdocs serve --dev-addr=0.0.0.0:8000"
+	/bin/bash -c "mkdocs serve --dev-addr=0.0.0.0:8000"
