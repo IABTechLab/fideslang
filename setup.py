@@ -26,6 +26,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/ethyca/fideslang",
     python_requires=">=3.7, <4",
+    packages=find_packages(where="src"),
     package_dir={"": "src"},
     author="Ethyca, Inc.",
     author_email="fidesteam@ethyca.com",
