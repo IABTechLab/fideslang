@@ -116,13 +116,8 @@ teardown:
 	@docker compose down --remove-orphans
 	@echo "Teardown complete"
 
-.PHONY: docs-build
-docs-build: build-local
-	@docker compose run --rm $(CI_ARGS) $(IMAGE_NAME) \
-	python generate_docs.py docs/fides/docs/
-
 .PHONY: docs-serve
-docs-serve: docs-build
+docs-serve:
 	@docker compose build docs
 	@docker compose run --rm --service-ports $(CI_ARGS) docs \
 	/bin/bash -c "mkdocs serve --dev-addr=0.0.0.0:8000"

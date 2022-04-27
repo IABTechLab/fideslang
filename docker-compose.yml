@@ -10,10 +10,9 @@ services:
 
   docs:
     build:
-      context: docs/fides/
+      context: mkdocs/
     volumes:
-      - ./docs/fides:/docs
-      - ./:/fides
+      - ./mkdocs:/docs
     expose:
       - 8000
     ports:
