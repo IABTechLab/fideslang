@@ -45,6 +45,7 @@ class FidesModel(BaseModel):
         default="default_organization",
         description="Defines the Organization that this resource belongs to.",
     )
+    tags: List[str]
     name: Optional[str] = name_field
     description: Optional[str] = description_field
 
