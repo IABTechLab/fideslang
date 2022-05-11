@@ -14,7 +14,13 @@ The types of changes are:
 * `Fixed` for any bug fixes.
 * `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/1.0.0...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/0.9.0...main)
+
+### Added
+
+* There is now a `tags` field on the `FidesModel` model [#45](https://github.com/ethyca/fideslang/pull/45)
+
+## 0.9.0
 
 ### Added
 
