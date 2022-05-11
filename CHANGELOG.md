@@ -19,3 +19,7 @@ The types of changes are:
 ### Added
 
 * Created the fideslang standalone python module
+
+### Developer Experience
+
+* Added a py.typed file
