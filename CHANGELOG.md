@@ -19,6 +19,7 @@ The types of changes are:
 ### Added
 
 * There is now a `tags` field on the `FidesModel` model [#45](https://github.com/ethyca/fideslang/pull/45)
+* Add DatasetFieldBase model [#49][https://github.com/ethyca/fideslang/pull/49]
 
 ## 0.9.0
 
