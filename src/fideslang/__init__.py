@@ -8,23 +8,25 @@ from typing import Dict, Type, Union
 from .models import (
     DataCategory,
     DataQualifier,
-    DataSubject,
-    DataUse,
     Dataset,
     DatasetField,
+    DatasetFieldBase,
+    DataSubject,
+    DataUse,
     Evaluation,
     FidesModel,
     Organization,
     Policy,
     PolicyRule,
+    PrivacyDeclaration,
     PrivacyRule,
     Registry,
-    PrivacyDeclaration,
     System,
     Taxonomy,
 )
-from .default_taxonomy import DEFAULT_TAXONOMY
+
 from .default_fixtures import COUNTRY_CODES
+from .default_taxonomy import DEFAULT_TAXONOMY
 
 FidesModelType = Union[Type[FidesModel], Type[Evaluation]]
 model_map: Dict[str, FidesModelType] = {

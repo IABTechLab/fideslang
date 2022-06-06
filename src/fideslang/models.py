@@ -6,14 +6,14 @@ from __future__ import annotations
 from enum import Enum
 from typing import Dict, List, Optional
 
-from pydantic import root_validator, validator, BaseModel, Field, AnyUrl, HttpUrl
+from pydantic import AnyUrl, BaseModel, Field, HttpUrl, root_validator, validator
 
 from fideslang.validation import (
     FidesKey,
-    sort_list_objects_by_name,
-    no_self_reference,
-    matching_parent_key,
     check_valid_country_code,
+    matching_parent_key,
+    no_self_reference,
+    sort_list_objects_by_name,
 )
 
 # Reusable components
@@ -240,11 +240,26 @@ class DataUse(FidesModel):
 
 
 # Dataset
-class DatasetField(BaseModel):
-    """
-    The DatasetField resource model.
+class DatasetFieldBase(BaseModel):
+    """Base DatasetField Resource model.
 
-    This resource is nested within a DatasetCollection.
+    This model is available for cases where the DatasetField information needs to be
+    customized. In general this will not be the case and you will instead want to use
+    the DatasetField model.
+
+    When this model is used you will need to implement your own recursive field in
+    to adding any new needed fields.
+
+    Example:
+
+    ```py
+    from typing import List, Optional
+    from fideslang import DatasetFieldBase
+
+    class MyDatasetField(DatasetFieldBase):
+        custom: str
+        fields: Optional[List[MyDatasetField]] = []
+    ```
     """
 
     name: str = name_field
@@ -259,6 +274,15 @@ class DatasetField(BaseModel):
     retention: Optional[str] = Field(
         description="An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
     )
+
+
+class DatasetField(DatasetFieldBase):
+    """
+    The DatasetField resource model.
+
+    This resource is nested within a DatasetCollection.
+    """
+
     fields: Optional[List[DatasetField]] = Field(
         description="An optional array of objects that describe hierarchical/nested fields (typically found in NoSQL databases).",
     )
