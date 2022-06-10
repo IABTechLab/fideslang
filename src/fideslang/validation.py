@@ -28,7 +28,7 @@ class FidesKey(ConstrainedStr):
     def validate(cls, value: str) -> str:
         if not cls.regex.match(value):
             raise FidesValidationError(
-                "FidesKey must only contain alphanumeric characters, '.', '_' or '-'."
+                f"FidesKeys must only contain alphanumeric characters, '.', '_' or '-'. Value provided: {value}"
             )
 
         return value
