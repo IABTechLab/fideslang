@@ -16,6 +16,10 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/1.0.0...main)
 
+### Changed
+
+* Simplification of Data Categories and Data Uses [#62](https://github.com/ethyca/fideslang/pull/62)
+
 ## 1.0.0
 
 ### Added
