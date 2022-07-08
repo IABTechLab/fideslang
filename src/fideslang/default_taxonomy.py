@@ -54,6 +54,13 @@ DEFAULT_TAXONOMY = Taxonomy(
             parent_key=None,
         ),
         DataCategory(
+            fides_key="user.biometric",
+            organization_fides_key="default_organization",
+            name="Biometric Data",
+            description="Encoded characteristics provided by a user.",
+            parent_key="user",
+        ),
+        DataCategory(
             fides_key="user.biometric_health",
             organization_fides_key="default_organization",
             name="Biometric Health Data",
@@ -96,11 +103,11 @@ DEFAULT_TAXONOMY = Taxonomy(
             parent_key="user",
         ),
         DataCategory(
-            fides_key="user.cookie_id",
+            fides_key="user.device.cookie_id",
             organization_fides_key="default_organization",
             name="Cookie ID",
             description="Cookie unique identification number.",
-            parent_key="user",
+            parent_key="user.device",
         ),
         DataCategory(
             fides_key="user.device.device_id",
@@ -115,6 +122,13 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="IP Address",
             description="Unique identifier related to device connection.",
             parent_key="user.device",
+        ),
+        DataCategory(
+            fides_key="user.nonidentifiable",
+            organization_fides_key="default_organization",
+            name="User Non-Identifiable Data",
+            description="Non-user identifiable data related to a user as a result of user actions in the system.",
+            parent_key="user",
         ),
         DataCategory(
             fides_key="user.gender",
