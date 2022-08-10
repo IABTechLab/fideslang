@@ -34,7 +34,7 @@ def test_fides_key_doesnt_match_stated_parent_key():
             fides_key="user.custom_test_data",
             name="Custom Test Data",
             description="Custom Test Data Category",
-            parent_key="user",
+            parent_key="user.account",
         )
     assert DataCategory
 
