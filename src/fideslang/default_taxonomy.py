@@ -17,6 +17,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Payment Data",
             description="Payment data related to user.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.payment.financial_account_number",
@@ -24,6 +25,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Account Payment Financial Account Number",
             description="Financial account number for an account's payment card, bank account, or other financial system.",
             parent_key="user.payment",
+            is_default=True,
         ),
         DataCategory(
             fides_key="system",
@@ -31,6 +33,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="System Data",
             description="Data unique to, and under control of the system.",
             parent_key=None,
+            is_default=True,
         ),
         DataCategory(
             fides_key="system.authentication",
@@ -38,6 +41,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Authentication Data",
             description="Data used to manage access to the system.",
             parent_key="system",
+            is_default=True,
         ),
         DataCategory(
             fides_key="system.operations",
@@ -45,6 +49,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Operations Data",
             description="Data used for system operations.",
             parent_key="system",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user",
@@ -52,6 +57,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="User Data",
             description="Data related to the user of the system, either provided directly or derived based on their usage.",
             parent_key=None,
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.biometric",
@@ -59,6 +65,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Biometric Data",
             description="Encoded characteristics provided by a user.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.biometric_health",
@@ -66,6 +73,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Biometric Health Data",
             description="Encoded characteristic collected about a user.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.browsing_history",
@@ -73,6 +81,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Browsing History",
             description="Content browsing history of a user.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.demographic",
@@ -80,6 +89,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Demographic Data",
             description="Demographic data about a user.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.contact",
@@ -87,6 +97,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Contact Data",
             description="Contact data collected about a user.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.contact.address",
@@ -94,6 +105,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Contact Data",
             description="Contact address data collected about a user.",
             parent_key="user.contact",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.device",
@@ -101,6 +113,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Device Data",
             description="Data related to a user's device, configuration and setting.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.device.cookie_id",
@@ -108,6 +121,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Cookie ID",
             description="Cookie unique identification number.",
             parent_key="user.device",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.device.device_id",
@@ -115,6 +129,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Device ID",
             description="Device unique identification number.",
             parent_key="user.device",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.device.ip_address",
@@ -122,6 +137,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="IP Address",
             description="Unique identifier related to device connection.",
             parent_key="user.device",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.nonidentifiable",
@@ -129,6 +145,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="User Non-Identifiable Data",
             description="Non-user identifiable data related to a user as a result of user actions in the system.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.gender",
@@ -136,6 +153,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Gender",
             description="Gender of an individual.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.location",
@@ -143,6 +161,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Location Data",
             description="Records of the location of a user.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.media_consumption",
@@ -150,6 +169,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Media Consumption Data",
             description="Media type consumption data of a user.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.non_specific_age",
@@ -157,6 +177,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Non-Specific Age",
             description="Age range data.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.observed",
@@ -164,6 +185,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Observed Data",
             description="Data collected through observation of use of the system.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.profiling",
@@ -171,6 +193,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Profiling Data",
             description="Preference and interest data about a user.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.race",
@@ -178,6 +201,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Race",
             description="Racial or ethnic origin data.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.religious_belief",
@@ -185,6 +209,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Religious Belief",
             description="Religion or religious belief.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.search_history",
@@ -192,6 +217,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Search History",
             description="Records of search history and queries of a user.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.sexual_orientation",
@@ -199,6 +225,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Sexual Orientation",
             description="Personal sex life or sexual data.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.social",
@@ -206,6 +233,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Social Data",
             description="Social activity and interaction data.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.telemetry",
@@ -213,6 +241,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Telemetry Data",
             description="User identifiable measurement data from system sensors and monitoring.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.unique_id",
@@ -220,6 +249,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Unique ID",
             description="Unique identifier for a user assigned through system use.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.user_sensor",
@@ -227,6 +257,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="User Sensor Data",
             description="Measurement data about a user's environment through system use.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.organization",
@@ -234,6 +265,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Organization Identifiable Data",
             description="Data that is linked to, or identifies an organization.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.workplace",
@@ -241,6 +273,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Workplace",
             description="Organization of employment.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.sensor",
@@ -248,6 +281,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Sensor Data",
             description="Measurement data from sensors and monitoring systems.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.childrens",
@@ -255,6 +289,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Children's Data",
             description="Data relating to children.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.contact.address.city",
@@ -262,6 +297,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="User Contact City",
             description="User's city level address data.",
             parent_key="user.contact.address",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.contact.address.country",
@@ -269,6 +305,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="User Contact Country",
             description="User's country level address data.",
             parent_key="user.contact.address",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.contact.email",
@@ -276,6 +313,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="User Contact Email",
             description="User's contact email address.",
             parent_key="user.contact",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.contact.phone_number",
@@ -283,6 +321,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="User Contact Phone Number",
             description="User's phone number.",
             parent_key="user.contact",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.contact.address.postal_code",
@@ -290,6 +329,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="User Contact Postal Code",
             description="User's postal code.",
             parent_key="user.contact.address",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.contact.address.state",
@@ -297,6 +337,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="User Contact State",
             description="User's state level address data.",
             parent_key="user.contact.address",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.contact.address.street",
@@ -304,6 +345,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="User Contact Street",
             description="User's street level address data.",
             parent_key="user.contact.address",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.credentials",
@@ -311,6 +353,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Credentials",
             description="User authentication data.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.credentials.biometric_credentials",
@@ -318,6 +361,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Biometric Credentials",
             description="Credentials for system authentication.",
             parent_key="user.credentials",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.credentials.password",
@@ -325,6 +369,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Password",
             description="Password for system authentication.",
             parent_key="user.credentials",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.date_of_birth",
@@ -332,6 +377,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Date of Birth",
             description="User's date of birth.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.financial",
@@ -339,6 +385,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Financial Data",
             description="Payment data and financial history.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.financial.account_number",
@@ -346,6 +393,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="User Financial Account Number",
             description="User's account number for a payment card, bank account, or other financial system.",
             parent_key="user.financial",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.genetic",
@@ -353,6 +401,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Genetic Data",
             description="Data about the genetic makeup provided by a user.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.government_id",
@@ -360,6 +409,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Government ID",
             description="State provided identification data.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.government_id.drivers_license_number",
@@ -367,6 +417,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Driver's License Number",
             description="State issued driving identification number.",
             parent_key="user.government_id",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.government_id.national_identification_number",
@@ -374,6 +425,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="National Identification Number",
             description="State issued personal identification number.",
             parent_key="user.government_id",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.government_id.passport_number",
@@ -381,6 +433,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Passport Number",
             description="State issued passport data.",
             parent_key="user.government_id",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.health_and_medical",
@@ -388,6 +441,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Health and Medical Data",
             description="Health records or individual's personal medical information.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.job_title",
@@ -395,6 +449,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Job Title",
             description="Professional data.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.name",
@@ -402,6 +457,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Name",
             description="User's real name.",
             parent_key="user",
+            is_default=True,
         ),
         DataCategory(
             fides_key="user.political_opinion",
@@ -409,6 +465,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Political Opinion",
             description="Data related to the individual's political opinions.",
             parent_key="user",
+            is_default=True,
         ),
     ],
     data_subject=[
@@ -417,90 +474,105 @@ DEFAULT_TAXONOMY = Taxonomy(
             organization_fides_key="default_organization",
             name="Anonymous User",
             description="An individual that is unidentifiable to the systems. Note - This should only be applied to truly anonymous users where there is no risk of re-identification",
+            is_default=True,
         ),
         DataSubject(
             fides_key="citizen_voter",
             organization_fides_key="default_organization",
             name="Citizen Voter",
             description="An individual registered to voter with a state or authority.",
+            is_default=True,
         ),
         DataSubject(
             fides_key="commuter",
             organization_fides_key="default_organization",
             name="Commuter",
             description="An individual that is traveling or transiting in the context of location tracking.",
+            is_default=True,
         ),
         DataSubject(
             fides_key="consultant",
             organization_fides_key="default_organization",
             name="Consultant",
             description="An individual employed in a consultative/temporary capacity by the organization.",
+            is_default=True,
         ),
         DataSubject(
             fides_key="customer",
             organization_fides_key="default_organization",
             name="Customer",
             description="An individual or other organization that purchases goods or services from the organization.",
+            is_default=True,
         ),
         DataSubject(
             fides_key="employee",
             organization_fides_key="default_organization",
             name="Employee",
             description="An individual employed by the organization.",
+            is_default=True,
         ),
         DataSubject(
             fides_key="job_applicant",
             organization_fides_key="default_organization",
             name="Job Applicant",
             description="An individual applying for employment to the organization.",
+            is_default=True,
         ),
         DataSubject(
             fides_key="next_of_kin",
             organization_fides_key="default_organization",
             name="Next of Kin",
             description="A relative of any other individual subject where such a relationship is known.",
+            is_default=True,
         ),
         DataSubject(
             fides_key="passenger",
             organization_fides_key="default_organization",
             name="Passenger",
             description="An individual traveling on some means of provided transport.",
+            is_default=True,
         ),
         DataSubject(
             fides_key="patient",
             organization_fides_key="default_organization",
             name="Patient",
             description="An individual identified for the purposes of any medical care.",
+            is_default=True,
         ),
         DataSubject(
             fides_key="prospect",
             organization_fides_key="default_organization",
             name="Prospect",
             description="An individual or organization to whom an organization is selling goods or services.",
+            is_default=True,
         ),
         DataSubject(
             fides_key="shareholder",
             organization_fides_key="default_organization",
             name="Shareholder",
             description="An individual or organization that holds equity in the organization.",
+            is_default=True,
         ),
         DataSubject(
             fides_key="supplier_vendor",
             organization_fides_key="default_organization",
             name="Supplier/Vendor",
             description="An individual or organization that provides services or goods to the organization.",
+            is_default=True,
         ),
         DataSubject(
             fides_key="trainee",
             organization_fides_key="default_organization",
             name="Trainee",
             description="An individual undergoing training by the organization.",
+            is_default=True,
         ),
         DataSubject(
             fides_key="visitor",
             organization_fides_key="default_organization",
             name="Visitor",
             description="An individual visiting a location.",
+            is_default=True,
         ),
     ],
     data_use=[
@@ -510,6 +582,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Provide the capability",
             description="Provide, give, or make available the product, service, application or system.",
             parent_key=None,
+            is_default=True,
         ),
         DataUse(
             fides_key="provide.service",
@@ -517,6 +590,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Service",
             description="The source service, system, or product being provided to the user.",
             parent_key="provide",
+            is_default=True,
         ),
         DataUse(
             fides_key="provide.service.operations",
@@ -524,6 +598,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Service Operations",
             description="Use of specified data categories to operate and protect in order to provide the service.",
             parent_key="provide.service",
+            is_default=True,
         ),
         DataUse(
             fides_key="provide.service.operations.support",
@@ -531,6 +606,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Operations Support",
             description="Use of specified data categories to provide support for operation and protection in order to provide the service.",
             parent_key="provide.service.operations",
+            is_default=True,
         ),
         DataUse(
             fides_key="provide.service.operations.support.optimization",
@@ -538,6 +614,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Support Optimization",
             description="Use of specified data categories to optimize and improve support operations in order to provide the service.",
             parent_key="provide.service.operations.support",
+            is_default=True,
         ),
         DataUse(
             fides_key="provide.service.upgrades",
@@ -545,6 +622,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Offer Upgrades",
             description="Offer upgrades or upsales such as increased capacity for the service based on monitoring of service usage.",
             parent_key="provide.service",
+            is_default=True,
         ),
         DataUse(
             fides_key="improve",
@@ -552,6 +630,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Improve the capability",
             description="Improve the product, service, application or system.",
             parent_key=None,
+            is_default=True,
         ),
         DataUse(
             fides_key="improve.system",
@@ -559,6 +638,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="System",
             description="The source system, product, service or application being improved.",
             parent_key="improve",
+            is_default=True,
         ),
         DataUse(
             fides_key="personalize",
@@ -566,6 +646,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Personalize the capability",
             description="Personalize the product, service, application or system.",
             parent_key=None,
+            is_default=True,
         ),
         DataUse(
             fides_key="personalize.system",
@@ -573,6 +654,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="System",
             description="The source system, product, service or application being personalized.",
             parent_key="personalize",
+            is_default=True,
         ),
         DataUse(
             fides_key="advertising",
@@ -580,6 +662,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Advertising, Marketing or Promotion",
             description="The promotion of products or services targeted to users based on the the processing of user provided data in the system.",
             parent_key=None,
+            is_default=True,
         ),
         DataUse(
             fides_key="advertising.first_party",
@@ -587,6 +670,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="First Party Advertising",
             description="The promotion of products or services targeting users based on processing of derviced data from prior use of the system.",
             parent_key="advertising",
+            is_default=True,
         ),
         DataUse(
             fides_key="advertising.third_party",
@@ -594,6 +678,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Third Party Advertising",
             description="The promotion of products or services targeting users based on processing of specific categories of data acquired from third party sources.",
             parent_key="advertising",
+            is_default=True,
         ),
         DataUse(
             fides_key="advertising.first_party.contextual",
@@ -601,6 +686,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="First Party Contextual Advertising",
             description="The promotion of products or services targeted to users based on the processing of data from the users prior use of the services.",
             parent_key="advertising.first_party",
+            is_default=True,
         ),
         DataUse(
             fides_key="advertising.first_party.personalized",
@@ -608,6 +694,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="First Party Personalized Advertising",
             description="The targeting and changing of promotional content based on processing of specific data categories from the user.",
             parent_key="advertising.first_party",
+            is_default=True,
         ),
         DataUse(
             fides_key="advertising.third_party.personalized",
@@ -615,6 +702,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Third Party Personalized Advertising",
             description="The targeting and changing of promotional content based on processing of specific categories of user data acquired from third party sources.",
             parent_key="advertising.third_party",
+            is_default=True,
         ),
         DataUse(
             fides_key="third_party_sharing",
@@ -622,6 +710,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Third Party Sharing",
             description="The transfer of specified data categories to third parties outside of the system/application's scope.",
             parent_key=None,
+            is_default=True,
         ),
         DataUse(
             fides_key="third_party_sharing.payment_processing",
@@ -629,6 +718,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Sharing for Processing Payments",
             description="Sharing of specified data categories with a third party for payment processing.",
             parent_key="third_party_sharing",
+            is_default=True,
         ),
         DataUse(
             fides_key="third_party_sharing.personalized_advertising",
@@ -636,6 +726,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Sharing for Personalized Advertising",
             description="Sharing of specified data categories for the purpose of marketing/advertising/promotion.",
             parent_key="third_party_sharing",
+            is_default=True,
         ),
         DataUse(
             fides_key="third_party_sharing.fraud_detection",
@@ -643,6 +734,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Sharing for Fraud Detection",
             description="Sharing of specified data categories with a third party fo fraud prevention/detection.",
             parent_key="third_party_sharing",
+            is_default=True,
         ),
         DataUse(
             fides_key="third_party_sharing.legal_obligation",
@@ -650,6 +742,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Sharing for Legal Obligation",
             description="Sharing of data for legal obligations, including contracts, applicable laws or regulations.",
             parent_key="third_party_sharing",
+            is_default=True,
         ),
         DataUse(
             fides_key="collect",
@@ -657,6 +750,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Collect",
             description="Collecting and storing data in order to use it for another purpose such as data training for ML.",
             parent_key=None,
+            is_default=True,
         ),
         DataUse(
             fides_key="train_ai_system",
@@ -664,6 +758,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Train AI System",
             description="Training an AI system. Please note when this data use is specified, the method and degree to which a user may be directly identified in the resulting AI system should be appended.",
             parent_key=None,
+            is_default=True,
         ),
     ],
     data_qualifier=[
@@ -673,6 +768,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Aggregated Data",
             description="Statistical data that does not contain individually identifying information but includes information about groups of individuals that renders individual identification impossible.",
             parent_key=None,
+            is_default=True,
         ),
         DataQualifier(
             fides_key="aggregated.anonymized",
@@ -680,6 +776,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Anonymized Data",
             description="Data where all attributes have been sufficiently altered that the individaul cannot be reidentified by this data or in combination with other datasets.",
             parent_key="aggregated",
+            is_default=True,
         ),
         DataQualifier(
             fides_key="aggregated.anonymized.unlinked_pseudonymized",
@@ -687,6 +784,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Unlinked Pseudonymized Data",
             description="Data for which all identifiers have been substituted with unrelated values and linkages broken such that it may not be reversed, even by the party that performed the pseudonymization.",
             parent_key="aggregated.anonymized",
+            is_default=True,
         ),
         DataQualifier(
             fides_key="aggregated.anonymized.unlinked_pseudonymized.pseudonymized",
@@ -694,6 +792,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Pseudonymized Data",
             description="Data for which all identifiers have been substituted with unrelated values, rendering the individual unidentifiable and cannot be reasonably reversed other than by the party that performed the pseudonymization.",
             parent_key="aggregated.anonymized.unlinked_pseudonymized",
+            is_default=True,
         ),
         DataQualifier(
             fides_key="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
@@ -701,6 +800,7 @@ DEFAULT_TAXONOMY = Taxonomy(
             name="Identified Data",
             description="Data that directly identifies an individual.",
             parent_key="aggregated.anonymized.unlinked_pseudonymized.pseudonymized",
+            is_default=True,
         ),
     ],
     organization=[Organization(fides_key="default_organization")],
