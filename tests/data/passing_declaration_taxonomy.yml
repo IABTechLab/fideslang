@@ -23,7 +23,7 @@ policy:
         data_categories:
           matches: ANY
           values:
-            - user.provided
+            - user
         data_uses:
           matches: ANY
           values:

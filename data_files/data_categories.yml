@@ -1,57 +1,58 @@
 data_category:
   # Account Data -- Data related to an account in the system.
-  - privacy_key: account
+  - privacy_key: user.account
     name: Account Data
-    description: Data related to a system account.
+    parent_key: user
+    description: Data related to a user account
 
-  - privacy_key: account.contact
+  - privacy_key: user.account.contact
     name: Account Contact Data
-    parent_key: account
-    description: Contact data related to a system account.
+    parent_key: user.account
+    description: Contact data related to a user account.
 
-  - privacy_key: account.contact.city
+  - privacy_key: user.account.contact.city
     name: Account City
-    parent_key: account.contact
+    parent_key: user.account.contact
     description: Account's city level address data.
 
-  - privacy_key: account.contact.country
+  - privacy_key: user.account.contact.country
     name: Account Country
-    parent_key: account.contact
+    parent_key: user.account.contact
     description: Account's country level address data.
 
-  - privacy_key: account.contact.email
+  - privacy_key: user.account.contact.email
     name: Account Email
-    parent_key: account.contact
+    parent_key: user.account.contact
     description: Account's email address.
 
-  - privacy_key: account.contact.phone_number
+  - privacy_key: user.account.contact.phone_number
     name: Account Phone Number
-    parent_key: account.contact
+    parent_key: user.account.contact
     description: Account's phone number.
 
-  - privacy_key: account.contact.postal_code
+  - privacy_key: user.account.contact.postal_code
     name: Account Postal Code
-    parent_key: account.contact
+    parent_key: user.account.contact
     description: Account's postal code.
 
-  - privacy_key: account.contact.state
+  - privacy_key: user.account.contact.state
     name: Account State
-    parent_key: account.contact
+    parent_key: user.account.contact
     description: Account's state level address data.
 
-  - privacy_key: account.contact.street
+  - privacy_key: user.account.contact.street
     name: Account Street
-    parent_key: account.contact
+    parent_key: user.account.contact
     description: Account's street level address.
 
-  - privacy_key: account.payment
+  - privacy_key: user.account.payment
     name: Payment Data
     parent_key: account
-    description: Payment data related to system account.
+    description: Payment data related to a user account.
 
-  - privacy_key: account.payment.financial_account_number
+  - privacy_key: user.account.payment.financial_account_number
     name: Account Payment Financial Account Number
-    parent_key: account.payment
+    parent_key: user.account.payment
     description: Financial account number for an account's payment card, bank account, or other financial system.
 
   # System Data -- Data unique to and under management of the system.
