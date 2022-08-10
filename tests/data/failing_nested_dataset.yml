@@ -11,13 +11,13 @@ dataset:
             fields:
               - name: street
                 data_categories:
-                  - account.contact.street
+                  - user.account.contact.street
               - name: city
                 data_categories:
-                  - account.contact.city
+                  - user.account.contact.city
               - name: state
                 data_categories:
-                  - account.contact.state
+                  - user.account.contact.state
 
 system:
   - fides_key: client_analytics
@@ -27,7 +27,7 @@ system:
     privacy_declarations:
       - name: Mesaure usage of users
         data_categories:
-          - user.derived
+          - user
         data_use: improve.system
         data_subjects:
           - customer
@@ -45,7 +45,7 @@ policy:
         data_categories:
           matches: OTHER
           values:
-            - user.derived
+            - user
         data_uses:
           matches: OTHER
           values:

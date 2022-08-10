@@ -739,9 +739,6 @@ Promise.all([
         "Data Category",
         "System Data",
         "User Data",
-        "User Provided Data",
-        "Account Data",
-        "Derived Data",
       ])
       .range([
         "#0861ce",

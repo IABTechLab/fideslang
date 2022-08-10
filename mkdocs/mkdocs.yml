@@ -1,13 +1,22 @@
 site_name: Fides Language
 site_url: https://ethyca.github.io/fideslang
 nav:
-  - What is the Fides Language: index.md
-  - Taxonomy Visual Explorer: explorer.md
+  - What is Fideslang?: index.md
+  - Fideslang Visual Explorer: explorer.md
   - Syntax: syntax.md
-  - Data Categories: data_categories.md
-  - Data Uses: data_uses.md
-  - Data Subjects: data_subjects.md
-  - Data Qualifiers: data_qualifiers.md
+  - Resources:
+      - Overview: resources/overview.md
+      - Organization: resources/organization.md
+      - Policy: resources/policy.md
+      - Registry: resources/registry.md
+      - System: resources/system.md
+      - Dataset: resources/dataset.md
+  - Taxonomy:
+      - Overview: taxonomy/overview.md
+      - Data Categories: taxonomy/data_categories.md
+      - Data Uses: taxonomy/data_uses.md
+      - Data Subjects: taxonomy/data_subjects.md
+      - Data Qualifiers: taxonomy/data_qualifiers.md
   - Github Repo: https://github.com/ethyca/fideslang
   - License: license.md
 

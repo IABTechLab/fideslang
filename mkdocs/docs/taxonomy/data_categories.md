@@ -1,11 +1,39 @@
 # Data Categories Reference
 
-Data Categories are labels to describe the type of data processed by your software. These are most heavily used by the System and Dataset resources, where you can assign one or more data categories to each field.
+Data Categories are labels to describe the type of data processed by your software. Data Category objects form a hierarchy: A Data Category can contain any number of children, but a given Category may only have one parent. You assign a child Category to a parent by setting the child's `parent_key` property. For example, the `user.job_title` Category is used for personally-identifiable job title information for a user.
 
-!!! Note "Extensibility and Interopability"
+These are most heavily used by the System and Dataset resources, where you can assign one or more data categories to each field.
+
+## Object Structure
+
+**fides_key**<span class="required"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_constrained string_
+
+A string token that uniquely identifies this Data Category. The value is a dot-separated concatenation of the `fides_key` values of the resource's ancestors plus a final element for this resource:
+
+`grandparent.parent.this_data_category`
+
+The final element (`this_data_category`) may only contain alphanumeric characters and underscores (`[A-Za-z0-9_.-]`). The dot character is reserved as a separator.
+
+**name**<span class="spacer"/>_string_
+
+A UI-friendly label for the Data Category.
+
+**description**<span class="spacer"/>_string_
+
+A human-readable description of the Data Category.
+
+**parent_key**<span class="spacer"/>_string_<span class="spacer"/>
+
+The fides key of the Data Category's parent.
+
+**organization_fides_key**<span class="spacer"/>_string_<span class="spacer"/>default: `default_organization`
+
+The fides key of the organization to which this Data Category belongs.
+
+!!! Note "Extensibility and interoperability"
     Data Categories in the taxonomy are designed to support common privacy regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944.
 
-    You can extend the taxonomy to support your system needs. If you do this, we recommend extending from the existing class structures to ensure interopability inside and outside your organization.
+    You can extend the taxonomy to support your system needs. If you do this, we recommend extending from the existing class structures to ensure interoperability inside and outside your organization.
 
     If you have suggestions for core classes that should ship with the taxonomy, [please submit your requests here](https://github.com/ethyca/privacy-taxonomy/issues).
 
@@ -84,4 +112,3 @@ Below is a reference for all subcategories of `system` and `user` to assist with
 | `drivers_license_number`          | `user.government_id`                      |State issued driving identification number.                                                    |
 | `national_identification_number`  | `user.government_id`                      |State issued personal identification number.                                                   |
 | `passport_number`                 | `user.government_id`                      |State issued passport data.                                                                    |
-| `nonidentifiable`                 | `user`                                    |Non-user identifiable data related to a user as a result of user actions in the system.        |

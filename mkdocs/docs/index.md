@@ -1,9 +1,8 @@
 # Fides Language
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+Fideslang (fee-dez-læŋg, from the Latin term "Fidēs" + "language") is an evolving design for a human-readable "taxonomy," or categorization, of data and data processing behaviors. Fideslang provides a proposed model for privacy-related data types, behaviors, and usages, with the goal of deriving an interoperable community standard to simply privacy regulation compliance in a typical software development process.
 
-## Overview
-The Fides Language is a working draft of a proposed taxonomy to describe data and data processing behaviors as part of a typical software development process. Our hope with standarizing this definition publicly with the community is to derive an interopable standard for describe types of data and how they're being used in applications to simplify global privacy regulations.
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/9eFQFrYbcas" title="Introduction to Fides Lang with Cillian Kieran" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  
@@ -48,14 +47,14 @@ The Fides taxonomy currently comprises  of four classification groups that are u
 ### 1. Data Categories
 Data Categories are labels to describe the type of data processed by your software. These are most heavily used by the System and Dataset resources, where you can assign one or more data categories to each field.
 
-Data Categories are hierarchical with natural inheritance, meaning you can classify data coarsely with a high-level category (e.g. `user.provided` data), or you can classify it with greater precision using subcategories (e.g. `user.provided.identifiable.contact.email` data).
+Data Categories are hierarchical with natural inheritance, meaning you can classify data coarsely with a high-level category (e.g. `user.contact` data), or you can classify it with greater precision using subcategories (e.g. `user.contact.email` data).
 
 Learn more about [Data Categories in the taxonomy reference now](data_categories.md).
 
 ### 2. Data Uses
 Data Uses are labels that describe how, or for what purpose(s) a component of your system is using data.
 
-Data Uses are also hierarchical with natural inheritance, meaning you can easily describe what you're using data for either coarsely (e.g. `provide.system.operations`) or with more precision using subcategories (e.g. `provide.system.operations.support.optimization`).
+Data Uses are also hierarchical with natural inheritance, meaning you can easily describe what you're using data for either coarsely (e.g. `provide.service.operations`) or with more precision using subcategories (e.g. `provide.service.operations.support.optimization`).
 
 Learn more about [Data Uses in the taxonomy reference now](data_uses.md).
 
@@ -83,10 +82,10 @@ Along this spectrum are labels that describe the degree of identification that a
 
 Learn more about [Data Qualifiers in the taxonomy reference now](data_qualifiers.md).
 
-### Extensibility & Interopability
-The taxonomy is designed to support common privacy compliance regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. 
+### Extensibility and Interoperability
+The taxonomy is designed to support common privacy compliance regulations `and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. 
 
-You can extend the taxonomy to support your system needs. If you do this, we recommend extending from the existing class structures to ensure interopability inside and outside your organization.
+You can extend the taxonomy to support your system needs. If you do this, we recommend extending from the existing class structures to ensure interoperability inside and outside your organization.
 
 If you have suggestions for missing classifications or concepts, please submit them for addition.
 

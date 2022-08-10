@@ -57,8 +57,8 @@ def test_load_manifests_into_taxonomy():
                 "description": "Test top-level category",
             },
             {
-                "name": "User Provided Data",
-                "fides_key": "user.provided",
+                "name": "User Account Data",
+                "fides_key": "user.account",
                 "parent_key": "user",
                 "description": "Test sub-category",
             },
@@ -73,8 +73,8 @@ def test_load_manifests_into_taxonomy():
                 description="Test top-level category",
             ),
             models.DataCategory(
-                name="User Provided Data",
-                fides_key="user.provided",
+                name="User Account Data",
+                fides_key="user.account",
                 parent_key="user",
                 description="Test sub-category",
             ),

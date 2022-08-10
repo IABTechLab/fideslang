@@ -4,29 +4,29 @@ data_use:
     name: Provide the capability
     description: Provide, give, or make available the product, service, application or system.
   
-  - privacy_key: provide.system
+  - privacy_key: provide.service
     name: System
     parent_key: provide
-    description: The source system, product, service or application being provided to the user.
+    description: The source service, product, system or application being provided to the user.
 
-  - privacy_key: provide.system.operations
+  - privacy_key: provide.service.operations
     name: System Operations
-    parent_key: provide.system
+    parent_key: provide.service
     description: Use of specified data categories to operate and protect the system in order to provide the service.
 
-  - privacy_key: provide.system.operations.support
+  - privacy_key: provide.service.operations.support
     name: Operations Support
-    parent_key: provide.system.operations
+    parent_key: provide.service.operations
     description: Use of specified data categories to provide support for operation and protection of the system in order to provide the service.
 
-  - privacy_key: provide.system.operations.support.optimization
+  - privacy_key: provide.service.operations.support.optimization
     name: Support Optimization
-    parent_key: provide.system.operations.support
+    parent_key: provide.service.operations.support
     description: Use of specified data categories to optimize and improve support operations in order to provide the service.
 
-  - privacy_key: provide.system.upgrades
+  - privacy_key: provide.service.upgrades
     name: Offer Upgrades
-    parent_key: provide.system
+    parent_key: provide.service
     description: Offer upgrades or upsales such as increased capacity for the service based on monitoring of service usage.
 
   # Improvement Data
