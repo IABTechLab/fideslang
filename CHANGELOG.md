@@ -16,6 +16,9 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/1.1.0...main)
 
+### Added
+
+* New field `is_default` added to DataCategory, DataUse, DataSubject, and DataQualifier [#68](https://github.com/ethyca/fideslang/pull/68)
 
 ## 1.1.0
 
