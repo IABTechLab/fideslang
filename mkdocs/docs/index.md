@@ -1,6 +1,6 @@
 # Fides Language
 
-Fideslang (fee-dez-læŋg, from the Latin term "Fidēs" + "language") is an evolving design for a human-readable "taxonomy," or categorization, of data and data processing behaviors. Fideslang provides a proposed model for privacy-related data types, behaviors, and usages, with the goal of deriving an interoperable community standard to simply privacy regulation compliance in a typical software development process.
+Fideslang (fee-dez-læŋg, from the Latin term "Fidēs" + "language") is a proposed model for a human-readable "taxonomy" of privacy-related data types, behaviors, and usages. Fideslang hopes to develop an interoperable community standard for building privacy regulation compliance into the typical software development process.
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
@@ -8,7 +8,7 @@ Fideslang (fee-dez-læŋg, from the Latin term "Fidēs" + "language") is an evol
  
 ## Summary of Taxonomy Classification Groups
 
-The Fides taxonomy currently comprises  of four classification groups that are used together to easily describe all of the data types and associated processing behaviors of an entire tech stack; both the application processes and any data storage. 
+The Fides taxonomy, or categorization, is made up of four main classification groups. These groups are used together to describe the data types, uses, and processing behaviors of an entire tech stack, including both application processes and data storage. 
 
 <div id="vis" class="vis vis-container">
   <div class="controls-container">
