@@ -49,14 +49,14 @@ Data Categories are labels to describe the type of data processed by your softwa
 
 Data Categories are hierarchical with natural inheritance, meaning you can classify data coarsely with a high-level category (e.g. `user.contact` data), or you can classify it with greater precision using subcategories (e.g. `user.contact.email` data).
 
-Learn more about [Data Categories in the taxonomy reference now](data_categories.md).
+Learn more about [Data Categories in the taxonomy reference now](taxonomy/data_categories.md).
 
 ### 2. Data Uses
 Data Uses are labels that describe how, or for what purpose(s) a component of your system is using data.
 
 Data Uses are also hierarchical with natural inheritance, meaning you can easily describe what you're using data for either coarsely (e.g. `provide.service.operations`) or with more precision using subcategories (e.g. `provide.service.operations.support.optimization`).
 
-Learn more about [Data Uses in the taxonomy reference now](data_uses.md).
+Learn more about [Data Uses in the taxonomy reference now](taxonomy/data_uses.md).
 
 ### 3. Data Subjects
 Data Subjects is a label commonly used in the regulatory world to describe the users of a system who's data is being processed. In many systems a generic user label may be sufficient, however the taxonomy is intended to provide greater control through specificity where needed.
@@ -69,7 +69,7 @@ Examples of this are:
 - `patient`
 - `next_of_kin`
 
-Learn more about [Data Subjects in the taxonomy reference now](data_subjects.md).
+Learn more about [Data Subjects in the taxonomy reference now](taxonomy/data_subjects.md).
 
 ### 4. Data Qualifiers
 Data Qualifiers describe the degree of identification of the given data. Think of this as a spectrum: on one end is completely anonymous data, i.e. it is impossible to identify an individual from it, and on the other end is data that specifically identifies an individual. 
@@ -80,7 +80,7 @@ Along this spectrum are labels that describe the degree of identification that a
 - `anonymized`
 - `aggregated`
 
-Learn more about [Data Qualifiers in the taxonomy reference now](data_qualifiers.md).
+Learn more about [Data Qualifiers in the taxonomy reference now](taxonomy/data_qualifiers.md).
 
 ### Extensibility and Interoperability
 The taxonomy is designed to support common privacy compliance regulations `and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. 

@@ -15,8 +15,6 @@ A Dataset takes a database schema (tables and columns) and adds Fides privacy ca
 
 * At each level -- Dataset, collection, and field, you can assign one or more Data Categories and Data Qualifiers. The Categories and Qualifiers declared at each child level is additive.
 
-While you can create Dataset objects by hand, you typically use the [generate](../../guides/generate_resources.md) command to create rudimentary Dataset manifest files that are based on your real-world databases. After you run the command, which creates the schema components, you add your Data Categories and Data Qualifiers to the manifest.
-
 You use your Datasets by adding them to Systems. A System can contain any number of Datasets, and a Dataset can be added to any number of Systems.
 When a dataset is referenced by a system, all applicable data categories set on the dataset are treated as part of the system.
 If a Dataset is not referenced by a System, a warning is surfaced denoting an orphan dataset exists.
