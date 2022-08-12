@@ -17,8 +17,8 @@ def resources_dict():
     resources_dict: Dict[str, Any] = {
         "data_category": models.DataCategory(
             organization_fides_key=1,
-            fides_key="user.provided.identifiable.custom",
-            parent_key="user.provided.identifiable",
+            fides_key="user.custom",
+            parent_key="user",
             name="Custom Data Category",
             description="Custom Data Category",
         ),
@@ -46,7 +46,7 @@ def resources_dict():
                             name="First_Name",
                             description="A First Name Field",
                             path="another.path",
-                            data_categories=["user.provided.identifiable.name"],
+                            data_categories=["user.name"],
                             data_qualifier="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
                         ),
                         models.DatasetField(
@@ -54,7 +54,7 @@ def resources_dict():
                             description="User's Email",
                             path="another.another.path",
                             data_categories=[
-                                "user.provided.identifiable.contact.email"
+                                "user.contact.email"
                             ],
                             data_qualifier="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
                         ),

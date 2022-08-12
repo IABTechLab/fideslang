@@ -22,7 +22,7 @@ The taxonomy is currently comprised of four classification groups that are used 
 
 Data Categories are labels used to describe the type of data processed by a system. You can assign one or more data categories to a field when classifying a system.
 
-Data Categories are hierarchical with natural inheritance, meaning you can classify data coarsely with a high-level category (e.g. `user.provided` data), or you can classify it with greater precision using subclasses (e.g. `user.provided.identifiable.contact.email` data).
+Data Categories are hierarchical with natural inheritance, meaning you can classify data coarsely with a high-level category (e.g. `user.contact` data), or you can classify it with greater precision using subclasses (e.g. `user.contact.email` data).
 
 Learn more about [Data Categories in the taxonomy reference now](https://ethyca.github.io/fideslang/data_categories/).
 
@@ -30,7 +30,7 @@ Learn more about [Data Categories in the taxonomy reference now](https://ethyca.
 
 Data Use Categories are labels that describe how, or for what purpose(s) a component of your system is using data. Similar to data categories, you can assign one or multiple Data Use Categories to a system.
 
-Data Use Categories are also hierarchical with natural inheritance, meaning you can easily describe what you're using data for either coarsely (e.g. `provide.system.operations`) or with more precision using subclasses (e.g. `provide.system.operations.support.optimization`).
+Data Use Categories are also hierarchical with natural inheritance, meaning you can easily describe what you're using data for either coarsely (e.g. `provide.service.operations`) or with more precision using subclasses (e.g. `provide.service.operations.support.optimization`).
 
 Learn more about [Data Use Categories in the taxonomy reference now](https://ethyca.github.io/fideslang/data_uses/).
 
