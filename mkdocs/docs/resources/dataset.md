@@ -11,7 +11,7 @@ A Dataset takes a database schema (tables and columns) and adds Fides privacy ca
                     |-> fields
   ```
 
-* The schema is represented as a set of "collections" (tables) that contain "fields" (columns).
+* The schema is represented as a set of "collections" (tables) that contain "fields" (columns). These can also be arbitrarily nested to handle document-type databases (e.g., NoSQL or S3).
 
 * At each level -- Dataset, collection, and field, you can assign one or more Data Categories and Data Qualifiers. The Categories and Qualifiers declared at each child level is additive.
 
