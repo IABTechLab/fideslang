@@ -31,10 +31,10 @@ def test_fides_key_doesnt_match_stated_parent_key():
     with pytest.raises(FidesValidationError):
         DataCategory(
             organization_fides_key=1,
-            fides_key="user.provided.identifiable.custom_test_data",
+            fides_key="user.custom_test_data",
             name="Custom Test Data",
             description="Custom Test Data Category",
-            parent_key="user.derived",
+            parent_key="user.account",
         )
     assert DataCategory
 
@@ -43,10 +43,10 @@ def test_fides_key_doesnt_match_stated_parent_key():
 def test_fides_key_matches_stated_parent_key():
     DataCategory(
         organization_fides_key=1,
-        fides_key="user.provided.identifiable.custom_test_data",
+        fides_key="user.account.custom_test_data",
         name="Custom Test Data",
         description="Custom Test Data Category",
-        parent_key="user.provided.identifiable",
+        parent_key="user.account",
     )
     assert DataCategory
 
@@ -56,7 +56,7 @@ def test_no_parent_key_but_fides_key_contains_parent_key():
     with pytest.raises(FidesValidationError):
         DataCategory(
             organization_fides_key=1,
-            fides_key="user.provided.identifiable.custom_test_data",
+            fides_key="user.custom_test_data",
             name="Custom Test Data",
             description="Custom Test Data Category",
         )
@@ -67,10 +67,10 @@ def test_no_parent_key_but_fides_key_contains_parent_key():
 def test_create_valid_data_category():
     DataCategory(
         organization_fides_key=1,
-        fides_key="user.provided.identifiable.custom_test_data",
+        fides_key="user.custom_test_data",
         name="Custom Test Data",
         description="Custom Test Data Category",
-        parent_key="user.provided.identifiable",
+        parent_key="user",
     )
     assert DataCategory
 
@@ -80,10 +80,10 @@ def test_circular_dependency_data_category():
     with pytest.raises(FidesValidationError):
         DataCategory(
             organization_fides_key=1,
-            fides_key="user.provided.identifiable",
-            name="User Provided Identifiable Data",
+            fides_key="user",
+            name="User Data",
             description="Test Data Category",
-            parent_key="user.provided.identifiable",
+            parent_key="user",
         )
     assert True
 
@@ -92,7 +92,7 @@ def test_circular_dependency_data_category():
 def test_create_valid_data_use():
     DataUse(
         organization_fides_key=1,
-        fides_key="provide.system",
+        fides_key="provide.service",
         name="Provide the Product or Service",
         parent_key="provide",
         description="Test Data Use",
@@ -105,10 +105,10 @@ def test_circular_dependency_data_use():
     with pytest.raises(FidesValidationError):
         DataUse(
             organization_fides_key=1,
-            fides_key="provide.system",
+            fides_key="provide.service",
             name="Provide the Product or Service",
             description="Test Data Use",
-            parent_key="provide.system",
+            parent_key="provide.service",
         )
     assert True
 
@@ -157,7 +157,7 @@ def test_valid_policy_rule():
         name="Test Policy",
         description="Test Policy",
         data_categories=PrivacyRule(matches="NONE", values=[]),
-        data_uses=PrivacyRule(matches="NONE", values=["provide.system"]),
+        data_uses=PrivacyRule(matches="NONE", values=["provide.service"]),
         data_subjects=PrivacyRule(matches="ANY", values=[]),
         data_qualifier="aggregated.anonymized.unlinked_pseudonymized.pseudonymized",
     )
@@ -189,7 +189,7 @@ def test_create_valid_system():
             PrivacyDeclaration(
                 name="declaration-name",
                 data_categories=[],
-                data_use="provide.system",
+                data_use="provide.service",
                 data_subjects=[],
                 data_qualifier="aggregated_data",
                 dataset_references=[],
@@ -214,7 +214,7 @@ def test_circular_dependency_system():
                 PrivacyDeclaration(
                     name="declaration-name",
                     data_categories=[],
-                    data_use="provide.system",
+                    data_use="provide.service",
                     data_subjects=[],
                     data_qualifier="aggregated_data",
                     dataset_references=["test_system"],
@@ -242,7 +242,7 @@ def test_invalid_country_identifier(country_code: str):
                 PrivacyDeclaration(
                     name="declaration-name",
                     data_categories=[],
-                    data_use="provide.system",
+                    data_use="provide.service",
                     data_subjects=[],
                     data_qualifier="aggregated_data",
                     dataset_references=["test_system"],
@@ -268,7 +268,7 @@ def test_valid_country_identifier(country_code: str):
             PrivacyDeclaration(
                 name="declaration-name",
                 data_categories=[],
-                data_use="provide.system",
+                data_use="provide.service",
                 data_subjects=[],
                 data_qualifier="aggregated_data",
                 dataset_references=["test_system"],

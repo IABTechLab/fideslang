@@ -2,10 +2,57 @@
 
 Data Subject are the group of labels commonly assigned to describe the type of system users to whom data may belong or is being processed. Examples might be customers, patients or simply abstract users.
 
-!!! Note "Extensibility and Interopability"
+A Data Subject is a label that describes a segment of individuals whose data you store. Data Subject labels are typically fairly broad -- "Citizen", "Visitor", "Passenger", and so on -- although you be as specific as your system needs: "Fans in Section K", for example.
+
+## Object Structure
+
+**fides_key**<span class="required"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_constrained string_
+
+A string token of your own invention that uniquely identifies this Data Subject. It's your responsibility to ensure that the value is unique across all of your Data Subject objects. The value can only contain alphanumeric characters, hyphens, periods and underscores (`[A-Za-z0-9_.-]`).
+
+**name**<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_
+
+A UI-friendly label for the Data Subject.
+
+**description**<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_
+
+A human-readable description of the Data Subject.
+
+**rights**<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_enum_
+
+An array of rights available to the data subject, made of available values coupled with Chapter 3 of the GDPR. The output of a data map is based upon the strategy for applying rights (`rights.strategy`) and the selections made from the following valid options:
+
+* `Informed`
+* `Access`
+* `Rectification`
+* `Erasure`
+* `Portability`
+* `Restrict Processing`
+* `Withdraw Consent`
+* `Object`
+* `Object to Automated Processing`
+
+**strategy**<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_enum_
+
+A strategy for selecting the rights available to the data subject.
+
+* `ALL`
+* `EXCLUDE`
+* `INCLUDE`
+* `NONE`
+
+**automated_decisions_or_profiling**<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boolean
+
+A boolean value of whether or not automated decision-making or profiling exists. Tied to article 22 of the GDPR.
+
+**organization_fides_key**<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default: `default_organization`
+
+The fides key of the organization to which this Data Subject belongs.
+
+!!! Note "Extensibility and interoperability"
     Data Subjects in the taxonomy are designed to support common privacy regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. 
     
-    You can extend the taxonomy to support your system needs. If you do this, we recommend extending from the existing class structures to ensure interopability inside and outside your organization.
+    You can extend the taxonomy to support your system needs. If you do this, we recommend extending from the existing class structures to ensure interoperability inside and outside your organization.
 
     If you have suggestions for core classes that should ship with the taxonomy, [please submit your requests here](https://github.com/ethyca/privacy-taxonomy/issues)
 
@@ -13,6 +60,8 @@ Data Subject are the group of labels commonly assigned to describe the type of s
 ## Data Subjects
 
 At present, Data Subjects are a flat structure with no subcategories, although this is likely to change over time.
+
+Currently, your collection of Data Subjects is given as a flat list: A Data Subject can't contain other Data Subjects.
 
 | Label                                          | Parent Key                 | Description                                                                                               |
 | ---                                            | ---                        | ---                                                                                                       |

@@ -140,14 +140,6 @@ DEFAULT_TAXONOMY = Taxonomy(
             is_default=True,
         ),
         DataCategory(
-            fides_key="user.nonidentifiable",
-            organization_fides_key="default_organization",
-            name="User Non-Identifiable Data",
-            description="Non-user identifiable data related to a user as a result of user actions in the system.",
-            parent_key="user",
-            is_default=True,
-        ),
-        DataCategory(
             fides_key="user.gender",
             organization_fides_key="default_organization",
             name="Gender",
