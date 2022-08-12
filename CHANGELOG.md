@@ -20,6 +20,10 @@ The types of changes are:
 
 * New field `is_default` added to DataCategory, DataUse, DataSubject, and DataQualifier [#68](https://github.com/ethyca/fideslang/pull/68)
 
+### Fixed
+
+* Add setuptools to dev-requirements to fix versioneer error [#72](https://github.com/ethyca/fideslang/pull/72)
+
 ## 1.1.0
 
 ### Changed
