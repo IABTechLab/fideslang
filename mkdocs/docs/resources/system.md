@@ -46,7 +46,7 @@ An optional array to identify any third countries where data is transited to. Fo
 
 **joint_controller**<span class="required"/>&nbsp;&nbsp;[array]
 
-An optional array of contact information if a Joint Controller exists. This information can also be more granularly stored at the [dataset](/fides/language/resources/dataset/) level (`name`, `address`, `email`, `phone`).
+An optional array of contact information if a Joint Controller exists. This information can also be more granularly stored at the [dataset](../../resources/dataset/) level (`name`, `address`, `email`, `phone`).
 
 **data_protection_impact_assessment**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[array]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -62,7 +62,7 @@ If a dataset is referenced as part of the system, all applicable data categories
 
 **organization_fides_key**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default: `default_organization`
 
-The fides key of the [Organization](/fides/language/resources/organization/) to which this System belongs.
+The fides key of the [Organization](../../resources/organization/) to which this System belongs.
 
 ## Examples
 

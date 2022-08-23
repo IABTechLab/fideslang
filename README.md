@@ -24,7 +24,7 @@ Data Categories are labels used to describe the type of data processed by a syst
 
 Data Categories are hierarchical with natural inheritance, meaning you can classify data coarsely with a high-level category (e.g. `user.contact` data), or you can classify it with greater precision using subclasses (e.g. `user.contact.email` data).
 
-Learn more about [Data Categories in the taxonomy reference now](https://ethyca.github.io/fideslang/data_categories/).
+Learn more about [Data Categories in the taxonomy reference now](https://ethyca.github.io/fideslang/taxonomy/data_categories/).
 
 ### 2. Data Use Categories
 
@@ -46,7 +46,7 @@ Examples of a Data Subject are:
 - `patient`
 - `next_of_kin`
 
-Learn more about [Data Subject Categories in the taxonomy reference now](https://ethyca.github.io/fideslang/data_subjects/).
+Learn more about [Data Subject Categories in the taxonomy reference now](https://ethyca.github.io/fideslang/taxonomy/data_subjects/).
 
 ### 4. Data Identification Qualifiers
 
@@ -59,7 +59,7 @@ Along this spectrum are labels that describe the degree of identification that a
 - `anonymized_data`
 - `aggregated_data`
 
-Learn more about [Data Identification Qualifiers in the taxonomy reference now](https://ethyca.github.io/fideslang/data_qualifiers/).
+Learn more about [Data Identification Qualifiers in the taxonomy reference now](https://ethyca.github.io/fideslang/taxonomy/data_qualifiers/).
 
 ### Extensibility & Interoperability
 

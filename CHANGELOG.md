@@ -16,6 +16,10 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/1.1.0...main)
 
+### Fixed
+
+* Fixed broken links in docs [#74](https://github.com/ethyca/fideslang/pull/74)
+
 ## [1.2.0](https://github.com/ethyca/fideslang/compare/1.1.0...1.2.0)
 
 ### Added
