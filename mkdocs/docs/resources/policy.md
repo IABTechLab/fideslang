@@ -24,21 +24,21 @@ A human-readable description of the Policy.
 
 **data_categories**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-The [Data Categories](/fides/language/taxonomy/data_categories/) privacy attribute describes types of sensitive data as defined in the taxonomy.
+The [Data Categories](../../taxonomy/data_categories/) privacy attribute describes types of sensitive data as defined in the taxonomy.
 
 **data_uses**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-The [Data Use](/fides/language/taxonomy/data_uses/) privacy attribute describes the various categories of data processing and operations at your organization.
+The [Data Use](../../taxonomy/data_uses/) privacy attribute describes the various categories of data processing and operations at your organization.
 
 **data_subject**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-The [Data Subjects](/fides/language/taxonomy/data_subjects/) privacy attribute describes the individual persons whose data your rule pertains to.
+The [Data Subjects](../../taxonomy/data_subjects/) privacy attribute describes the individual persons whose data your rule pertains to.
 
 **data_qualifier**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-The [Data Qualifier](/fides/language/taxonomy/data_qualifiers/) privacy attribute describes the acceptable or non-acceptable level of deidentification for this data.
+The [Data Qualifier](../../taxonomy/data_qualifiers/) privacy attribute describes the acceptable or non-acceptable level of deidentification for this data.
 
-**matches**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_enum_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+**matches**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_enum_&nbsp;&nbsp;&nbsp;&nbsp;&nbspr
 
 * `ANY`
 * `ALL`
@@ -49,7 +49,7 @@ The matches criteria describes how you would like this rule to be evaluated. The
 
 **organization_fides_key**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default: `default_organization`
 
-The fides key of the [Organization](/fides/language/resources/organization/) to which this Policy belongs.
+The fides key of the [Organization](../..//resources/organization/) to which this Policy belongs.
 
 ## Examples
 

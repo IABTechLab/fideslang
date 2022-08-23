@@ -37,7 +37,7 @@ A human-readable description of the Dataset.
 
 **organization_fides_key**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default: `default_organization`
 
-The fides key of the [Organization](/fides/language/resources/organization/) to which this Dataset belongs.
+The fides key of the [Organization](../../resources/organization/) to which this Dataset belongs.
 
 **meta**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_object_
 
@@ -49,7 +49,7 @@ An optional array to identify any third countries where data is transited to. Fo
 
 **joint_controller**<span class="required"/>&nbsp;&nbsp;[array]
 
-An optional array of contact information if a Joint Controller exists. This information can also be stored at the [system](/fides/language/resources/system/) level (`name`, `address`, `email`, `phone`).
+An optional array of contact information if a Joint Controller exists. This information can also be stored at the [system](../../resources/system/) level (`name`, `address`, `email`, `phone`).
 
 **retention**<span class="required"/>&nbsp;&nbsp;_string_
 

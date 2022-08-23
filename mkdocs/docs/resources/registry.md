@@ -29,7 +29,7 @@ A human-readable description of the Registry.
 
 **organization_fides_key**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default: `default_organization`
 
-The fides key of the [Organization](/fides/language/resources/organization/) to which this Registry belongs.
+The fides key of the [Organization](../../resources/organization/) to which this Registry belongs.
 
 ## Examples
 
