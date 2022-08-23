@@ -38,7 +38,7 @@ The [Data Subjects](../../taxonomy/data_subjects/) privacy attribute describes t
 
 The [Data Qualifier](../../taxonomy/data_qualifiers/) privacy attribute describes the acceptable or non-acceptable level of deidentification for this data.
 
-**matches**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_enum_&nbsp;&nbsp;&nbsp;&nbsp;&nbspr
+**matches**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_enum_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 * `ANY`
 * `ALL`
