@@ -1,4 +1,4 @@
-name: Publish fidesctl
+name: Publish fideslang
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
 
       - name: Twine Upload
         run: |
-          python setup.py sdist 
+          python setup.py sdist
           twine upload dist/*
         env:
           TWINE_USERNAME: __token__

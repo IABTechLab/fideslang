@@ -2,10 +2,77 @@
 
 Data Uses are labels that describe how, or for what purpose(s) a component of your system is using data.
 
-!!! Note "Extensibility and Interopability"
-    Data Uses in the taxonomy are designed to support common privacy regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. 
-    
-    You can extend the taxonomy to support your system needs. If you do this, we recommend extending from the existing class structures to ensure interopability inside and outside your organization.
+A Data Use is a label that denotes the way data is used in your system: "Advertising, Marketing or Promotion", "First Party Advertising", and "Sharing for Legal Obligation", as examples.
+
+Data Use objects form a hierarchy: A Data Use can contain any number of children, but a given Data Use may only have one parent. You assign a child Data Use to a parent by setting the child's `parent_key` property. For example, the `third_party_sharing.personalized_advertising` Data Use type is data used for personalized advertising when shared with third parties.
+
+## Object Structure
+
+**fides_key**<span class="required"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_constrained string_
+
+A string token that uniquely identifies this Data Use. The value is a dot-separated concatenation of the `fides_key` values of the resource's ancestors plus a final element for this resource:
+
+`grandparent.parent.this_data_use`
+
+The final element (`this_data_use`) may only contain alphanumeric characters and underscores (`[A-Za-z0-9_.-]`). The dot character is reserved as a separator.
+
+**name**<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_
+
+A UI-friendly label for the Data Use.
+
+**description**<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_
+
+A human-readable description of the Data Use.
+
+**parent_key**<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_<span class="spacer"/>
+
+The fides key of the the Data Use's parent.
+
+**legal_basis**<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_enum_<span class="spacer"/>
+
+The legal basis category of which the data use falls under. This field is used as part of the creation of an exportable data map. Current valid options:
+
+* `Consent`
+* `Contract`
+* `Legal Obligation`
+* `Vital Interest`
+* `Public Interest`
+* `Legitimate Interest`
+
+**special_category**<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_enum_
+
+The special category for processing of which the data use falls under. This field is used as part of the creation of an exportable data map. Current valid options:
+
+* `Consent`
+* `Employment`
+* `Vital Interests`
+* `Non-profit Bodies`
+* `Public by Data Subject`
+* `Legal Claims`
+* `Substantial Public Interest`
+* `Medical`
+* `Public Health Interest`
+
+**recipent**<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_
+
+An array of recipients is applied here when sharing personal data outside of your organization (e.g. Internal Revenue Service, HMRC, etc.)
+
+**legitimate_interest**<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boolean<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default: `False`
+
+A boolean value representing whether the legal basis is a `Legitimate Interest`. This is validated at run time and looks for a `legitimate_interest_impact_assessment` to exist if true.
+
+**legitimate_interest_impact_assessment**<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_url_
+
+A url to the legitimate interest impact assessment. Can be any valid url (e.g. http, file, etc.)
+
+**organization_fides_key**<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_<span class="spacer"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default: `default_organization`
+
+The fides key of the organization to which this Data Use belongs.
+
+!!! Note "Extensibility and interoperability"
+    Data Uses in the taxonomy are designed to support common privacy regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944.
+
+    You can extend the taxonomy to support your system needs. If you do this, we recommend extending from the existing class structures to ensure interoperability inside and outside your organization.
 
     If you have suggestions for core classes that should ship with the taxonomy, [please submit your requests here](https://github.com/ethyca/privacy-taxonomy/issues)
 
@@ -30,13 +97,13 @@ Below is a reference for all subclasses of `account`, `system` and `user` to ass
 
 ### Provide Data Uses
 
-| Label                                          | Parent Key                        | Description                                                                                          |
-| ---                                            | ---                               | ---                                                                                                  |
-|`system`                                        |`provide`                          |The source system, product, service or application being provided to the user.                                                                                                     |
-|`provide.system.operations`                     |`provide.system`                   |Use of specified data categories to operate and protect the system in order to provide the service.                                                                                |
-|`provide.system.operations.support`             |`provide.system.operations`        |Use of specified data categories to provide support for operation and protection of the system in order to provide the service.                                                    |
-|`provide.system.operations.support.optimization`|`provide.system.operations.support`|Use of specified data categories to optimize and improve support operations in order to provide the service.                                                                       |
-|`provide.system.upgrades`                       |`provide.system`                   |Offer upgrades or upsales such as increased capacity for the service based on monitoring of service usage.                                                                         |
+| Label                                           | Parent Key                         | Description                                                                                          |
+| ---                                             | ---                                | ---                                                                                                  |
+|`service`                                         |`provide`                           |The source service, product, system or application being provided to the user.                                                                                                     |
+|`provide.service.operations`                     |`provide.service`                   |Use of specified data categories to operate and protect the system in order to provide the service.                                                                                |
+|`provide.service.operations.support`             |`provide.service.operations`        |Use of specified data categories to provide support for operation and protection of the system in order to provide the service.                                                    |
+|`provide.service.operations.support.optimization`|`provide.service.operations.support`|Use of specified data categories to optimize and improve support operations in order to provide the service.                                                                       |
+|`provide.service.upgrades`                       |`provide.service`                   |Offer upgrades or upsales such as increased capacity for the service based on monitoring of service usage.                                                                         |
 
 ### Improve Data Uses
 
@@ -74,7 +141,7 @@ Below is a reference for all subclasses of `account`, `system` and `user` to ass
 
 ### Collection & AI Training Data Uses
 
-In the case of `collection` and `train_ai_system`, you will see these have no subclasses at present however define very specific data use cases that should be captured in data processes if they occur. 
+In the case of `collection` and `train_ai_system`, you will see these have no subclasses at present however define very specific data use cases that should be captured in data processes if they occur.
 
 | Label                | Parent Key  | Description                                                                                                                                                                          |
 | ---                  | ---         | ---                                                                                                                                                                                  |

@@ -740,17 +740,11 @@ Promise.all([
         "Data Category",
         "System Data",
         "User Data",
-        "User Provided Data",
-        "Account Data",
-        "Derived Data",
       ])
       .range([
         "#0861ce",
         "#8459cc",
         "#c14cbb",
-        "#ed43a0",
-        "#ff4a7f",
-        "#ffa600",
       ]),
     uses: d3
       .scaleOrdinal()

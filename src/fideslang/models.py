@@ -32,6 +32,10 @@ name_field = Field(description="Human-Readable name for this resource.")
 description_field = Field(
     description="A detailed description of what this resource is."
 )
+is_default_field = Field(
+    default=False,
+    description="Denotes whether the resource is part of the default taxonomy or not.",
+)
 
 
 # Fides Base Model
@@ -139,6 +143,7 @@ class DataCategory(FidesModel):
     """The DataCategory resource model."""
 
     parent_key: Optional[FidesKey]
+    is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
@@ -148,6 +153,7 @@ class DataQualifier(FidesModel):
     """The DataQualifier resource model."""
 
     parent_key: Optional[FidesKey]
+    is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
@@ -191,6 +197,7 @@ class DataSubject(FidesModel):
     automated_decisions_or_profiling: Optional[bool] = Field(
         description="A boolean value to annotate whether or not automated decisions/profiling exists for the data subject.",
     )
+    is_default: bool = is_default_field
 
 
 class DataUse(FidesModel):
@@ -213,6 +220,7 @@ class DataUse(FidesModel):
     legitimate_interest_impact_assessment: Optional[AnyUrl] = Field(
         description="A url pointing to the legitimate interest impact assessment. Required if the legal bases used is legitimate interest.",
     )
+    is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator

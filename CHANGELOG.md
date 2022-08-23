@@ -14,7 +14,32 @@ The types of changes are:
 * `Fixed` for any bug fixes.
 * `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/1.0.0...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/1.1.0...main)
+
+### Fixed
+
+* Fixed broken links in docs [#74](https://github.com/ethyca/fideslang/pull/74)
+
+## [1.2.0](https://github.com/ethyca/fideslang/compare/1.1.0...1.2.0)
+
+### Added
+
+* New field `is_default` added to DataCategory, DataUse, DataSubject, and DataQualifier [#68](https://github.com/ethyca/fideslang/pull/68)
+
+### Docs
+
+* Updated documentation for new Data Category and Use taxonomy [#69](https://github.com/ethyca/fideslang/pull/69)
+
+### Changed
+
+* Docker images now use Debian `bullseye` instead of `buster`
+
+
+## 1.1.0
+
+### Changed
+
+* Simplification of Data Categories and Data Uses [#62](https://github.com/ethyca/fideslang/pull/62)
 
 ## 1.0.0
 
