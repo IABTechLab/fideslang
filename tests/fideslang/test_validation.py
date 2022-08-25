@@ -12,7 +12,7 @@ from fideslang.models import (
     System,
 )
 
-from fideslang.validation import FidesValidationError, check_valid_country_code
+from fideslang.validation import FidesValidationError
 
 
 @pytest.mark.unit
@@ -59,6 +59,18 @@ def test_no_parent_key_but_fides_key_contains_parent_key():
             fides_key="user.custom_test_data",
             name="Custom Test Data",
             description="Custom Test Data Category",
+        )
+    assert DataCategory
+
+
+@pytest.mark.unit
+def test_invalid_chars_in_fides_key():
+    with pytest.raises(FidesValidationError):
+        DataCategory(
+            organization_fides_key=1,
+            fides_key="!",
+            name="Example invalid key",
+            description="This key contains a ! so it is invalid",
         )
     assert DataCategory
 

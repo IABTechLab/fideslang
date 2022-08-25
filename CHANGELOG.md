@@ -25,6 +25,7 @@ The types of changes are:
 ### Added
 
 * New field `is_default` added to DataCategory, DataUse, DataSubject, and DataQualifier [#68](https://github.com/ethyca/fideslang/pull/68)
+* Return invalid key values as part of the stack trace for easier debugging [#55](https://github.com/ethyca/fideslang/pull/55)
 
 ### Docs
 
