@@ -35,6 +35,9 @@ The types of changes are:
 
 * Docker images now use Debian `bullseye` instead of `buster`
 
+### Fixed
+
+* Add setuptools to dev-requirements to fix versioneer error [#72](https://github.com/ethyca/fideslang/pull/72)
 
 ## 1.1.0
 
