@@ -36,7 +36,8 @@ user.government_id,Government ID,user,State provided identification data.
 user.government_id.drivers_license_number,"Driver's License Number",user.government_id,State issued driving identification number.
 user.government_id.national_identification_number,National Identification Number,user.government_id,State issued personal identification number.
 user.government_id.passport_number,Passport Number,user.government_id,State issued passport data.
-user.biometric_health,Biometric Health Data,user,Encoded characteristic collected about a user.
+user.biometric,Biometric Data,user,Encoded characteristics of a user.
+user.biometric_health,Biometric Health Data,user,"Encoded characteristics of a user's health."
 user.browsing_history,Browsing History,user,Content browsing history of a user.
 user.childrens,Children's Data,user,Data relating to children.
 user.date_of_birth,Date of Birth,user,"User's date of birth."
