@@ -19,6 +19,7 @@ The types of changes are:
 ### Fixed
 
 * Fixed broken links in docs [#74](https://github.com/ethyca/fideslang/pull/74)
+* Pydantic 1.10.0 was causing issues so specified the pydantic version needs to be less than 1.10.0 [#79](https://github.com/ethyca/fideslang/pull/79)
 
 ## [1.2.0](https://github.com/ethyca/fideslang/compare/1.1.0...1.2.0)
 
