@@ -645,6 +645,12 @@ class PrivacyDeclaration(BaseModel):
     dataset_references: Optional[List[FidesKey]] = Field(
         description="Referenced Dataset fides keys used by the system.",
     )
+    egress: Optional[List[FidesKey]] = Field(
+        description="The resources to which data is sent."
+    )
+    ingress: Optional[List[FidesKey]] = Field(
+        description="The resources from which data is received."
+    )
 
 
 class SystemMetadata(BaseModel):
