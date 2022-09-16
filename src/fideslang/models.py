@@ -718,6 +718,12 @@ class System(FidesModel):
         default=DataResponsibilityTitle.CONTROLLER,
         description=DataResponsibilityTitle.__doc__,
     )
+    egress: Optional[List[DataFlow]] = Field(
+        description="The resources to which the System sends data."
+    )
+    ingress: Optional[List[DataFlow]] = Field(
+        description="The resources from which the System receives data."
+    )
     privacy_declarations: List[PrivacyDeclaration] = Field(
         description=PrivacyDeclaration.__doc__,
     )
