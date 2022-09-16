@@ -171,7 +171,9 @@ system:
       "data_qualifier": "identified_data",
       "dataset_references": [
         "demo_users_dataset"
-      ]
+      ],
+      "egress": ["another_demo_system"],
+      "ingress": ["yet_another_demo_system"]
     }
   ]
 }
