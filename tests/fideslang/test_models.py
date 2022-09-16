@@ -44,6 +44,29 @@ class TestSystem:
             tags=["some", "tags"],
         )
 
+    def test_system_valid_no_egress_or_ingress(self) -> None:
+        assert System(
+            description="Test Policy",
+            fides_key="test_system",
+            meta={"some": "meta stuff"},
+            name="Test System",
+            organization_fides_key=1,
+            privacy_declarations=[
+                PrivacyDeclaration(
+                    data_categories=[],
+                    data_qualifier="aggregated_data",
+                    data_subjects=[],
+                    data_use="provide",
+                    dataset_references=[],
+                    name="declaration-name",
+                )
+            ],
+            registry_id=1,
+            system_dependencies=[],
+            system_type="SYSTEM",
+            tags=["some", "tags"],
+        )
+
     def test_system_no_egress(self) -> None:
         with pytest.raises(ValueError):
             assert System(
