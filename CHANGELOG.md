@@ -16,10 +16,20 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/1.1.0...main)
 
+### Added
+
+* The `DataFlow` resource model defines a resource with which a `System` resource may communicate [#85](https://github.com/ethyca/fideslang/pull/85)
+* `PrivacyDeclaration`s may define resources to contextualize communications with other resources [#85](https://github.com/ethyca/fideslang/pull/85)
+
+### Developer Experience
+
+* The `DataFlow` resource model is exposed when importing `fideslang` [#85](https://github.com/ethyca/fideslang/pull/85)
+
 ### Fixed
 
 * Fixed broken links in docs [#74](https://github.com/ethyca/fideslang/pull/74)
 * Pydantic 1.10.0 was causing issues so specified the pydantic version needs to be less than 1.10.0 [#79](https://github.com/ethyca/fideslang/pull/79)
+* Resolved a circular import in `default_taxonomy.py` [#85](https://github.com/ethyca/fideslang/pull/85)
 
 ## [1.2.0](https://github.com/ethyca/fideslang/compare/1.1.0...1.2.0)
 
