@@ -665,6 +665,36 @@ class SystemMetadata(BaseModel):
     )
 
 
+class FlowableResources(str, Enum):
+    """
+    The resource types with which DataFlows can be created.
+    """
+
+    DATASET = "dataset"
+    SYSTEM = "system"
+    USER = "user"
+
+
+class DataFlow(BaseModel):
+    """
+    The DataFlow resource model.
+
+    Describes a resource model with which a given System resource communicates.
+    """
+
+    fides_key: FidesKey = Field(
+        ...,
+        description="Identifies the System or Dataset resource with which the communication occurs. May also be 'user', to represent communication with the user(s) of a System.",
+    )
+    type: FlowableResources = Field(
+        ...,
+        description=f"Specifies the resource model class for which the `fides_key` applies. May be any of {', '.join([v.value for _, v in FlowableResources.__members__.items()])}.",
+    )
+    data_categories: Optional[List[FidesKey]] = Field(
+        description="An array of data categories describing the data in transit.",
+    )
+
+
 class System(FidesModel):
     """
     The System resource model.
