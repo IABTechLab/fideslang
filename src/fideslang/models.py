@@ -646,10 +646,10 @@ class PrivacyDeclaration(BaseModel):
         description="Referenced Dataset fides keys used by the system.",
     )
     egress: Optional[List[FidesKey]] = Field(
-        description="The resources to which data is sent."
+        description="The resources to which data is sent. Any `fides_key`s included in this list reference `DataFlow` entries in the `egress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
     )
     ingress: Optional[List[FidesKey]] = Field(
-        description="The resources from which data is received."
+        description="The resources from which data is received. Any `fides_key`s included in this list reference `DataFlow` entries in the `ingress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
     )
 
 
