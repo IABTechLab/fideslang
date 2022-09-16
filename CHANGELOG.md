@@ -19,7 +19,7 @@ The types of changes are:
 ### Added
 
 * The `DataFlow` resource model defines a resource with which a `System` resource may communicate [#85](https://github.com/ethyca/fideslang/pull/85)
-* `PrivacyDeclaration`s may define resources to contextualize communications with other resources [#85](https://github.com/ethyca/fideslang/pull/85)
+* `PrivacyDeclaration`s may define `egress` and `ingress`, to contextualize communications with other resources [#85](https://github.com/ethyca/fideslang/pull/85)
 
 ### Developer Experience
 
