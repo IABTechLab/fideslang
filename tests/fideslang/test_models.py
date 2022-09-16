@@ -1,32 +1,29 @@
 import pytest
 
-import fideslang as models
+from fideslang import PrivacyDeclaration, System
 
 
 @pytest.mark.unit
 class TestSystem:
     def test_system_valid(self) -> None:
-        system = (
-            models.System(
-                organization_fides_key=1,
-                registry_id=1,
-                meta={"some": "meta stuff"},
-                fides_key="test_system",
-                system_type="SYSTEM",
-                name="Test System",
-                tags=["some", "tags"],
-                description="Test Policy",
-                privacy_declarations=[
-                    models.PrivacyDeclaration(
-                        name="declaration-name",
-                        data_categories=[],
-                        data_use="provide",
-                        data_subjects=[],
-                        data_qualifier="aggregated_data",
-                        dataset_references=[],
-                    )
-                ],
-                system_dependencies=[],
-            ),
+        assert System(
+            description="Test Policy",
+            fides_key="test_system",
+            meta={"some": "meta stuff"},
+            name="Test System",
+            organization_fides_key=1,
+            privacy_declarations=[
+                PrivacyDeclaration(
+                    data_categories=[],
+                    data_qualifier="aggregated_data",
+                    data_subjects=[],
+                    data_use="provide",
+                    dataset_references=[],
+                    name="declaration-name",
+                )
+            ],
+            registry_id=1,
+            system_dependencies=[],
+            system_type="SYSTEM",
+            tags=["some", "tags"],
         )
-        assert system
