@@ -694,7 +694,7 @@ class DataFlow(BaseModel):
     )
     type: FlowableResources = Field(
         ...,
-        description=f"Specifies the resource model class for which the `fides_key` applies. May be any of {', '.join([v.value for _, v in FlowableResources.__members__.items()])}.",
+        description="Specifies the resource model class for which the `fides_key` applies. May be any of 'dataset', 'system', or 'user'.",
     )
     data_categories: Optional[List[FidesKey]] = Field(
         description="An array of data categories describing the data in transit.",
