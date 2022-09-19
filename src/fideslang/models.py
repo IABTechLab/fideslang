@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from enum import Enum
 from typing import Dict, List, Optional
+from warnings import warn
 
 from pydantic import AnyUrl, BaseModel, Field, HttpUrl, root_validator, validator
 
@@ -786,6 +787,21 @@ class System(FidesModel):
                     assert fides_key in [
                         data_flow.fides_key for data_flow in data_flows
                     ], f"PrivacyDeclaration '{value.name}' defines {direction} with '{fides_key}' and is applied to the System '{system}', which does not itself define {direction} with that resource."
+
+        return value
+
+    @validator("system_dependencies")
+    @classmethod
+    def deprecate_system_dependencies(cls, value: List[FidesKey]) -> List[FidesKey]:
+        """
+        Warn that the `system_dependencies` field is deprecated, if set.
+        """
+
+        if value is not None:
+            warn(
+                "The system_dependencies field is deprecated, and will be removed in a future version of fideslang. Use the 'egress' and 'ingress` fields instead.",
+                DeprecationWarning,
+            )
 
         return value
 
