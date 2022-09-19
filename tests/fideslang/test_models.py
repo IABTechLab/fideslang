@@ -207,3 +207,32 @@ class TestSystem:
                 system_type="SYSTEM",
                 tags=["some", "tags"],
             )
+
+    def test_system_user_ingress_valid(self) -> None:
+        assert System(
+            description="Test Policy",
+            fides_key="test_system",
+            ingress=[
+                DataFlow(
+                    fides_key="user",
+                    type="user",
+                    data_categories=[],
+                )
+            ],
+            meta={"some": "meta stuff"},
+            name="Test System",
+            organization_fides_key=1,
+            privacy_declarations=[
+                PrivacyDeclaration(
+                    data_categories=[],
+                    data_qualifier="aggregated_data",
+                    data_subjects=[],
+                    data_use="provide",
+                    ingress=["user"],
+                    name="declaration-name",
+                )
+            ],
+            registry_id=1,
+            system_type="SYSTEM",
+            tags=["some", "tags"],
+        )
