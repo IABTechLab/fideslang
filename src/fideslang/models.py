@@ -716,6 +716,21 @@ class DataFlow(BaseModel):
         description="An array of data categories describing the data in transit.",
     )
 
+    @root_validator()
+    @classmethod
+    def user_special_case(cls, values: Dict) -> Dict:
+        """
+        If either the `fides_key` or the `type` are set to "user",
+        then the other must also be set to "user".
+        """
+
+        if values["fides_key"] == "user" or values["type"] == "user":
+            assert (
+                values["fides_key"] == "user" and values["type"] == "user"
+            ), "The 'user' fides_key is required for, and requires, the type 'user'"
+
+        return values
+
 
 class System(FidesModel):
     """

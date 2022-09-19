@@ -1,9 +1,27 @@
-import pytest
+from pytest import deprecated_call, mark, raises
 
 from fideslang import DataFlow, PrivacyDeclaration, System
 
+pytestmark = mark.unit
 
-@pytest.mark.unit
+
+class TestDataFlow:
+    def test_dataflow_valid(self) -> None:
+        assert DataFlow(
+            fides_key="test_system_1",
+            type="system",
+            data_categories=[],
+        )
+
+    def test_dataflow_user_fides_key_no_user_type(self) -> None:
+        with raises(ValueError):
+            assert DataFlow(fides_key="user", type="system")
+
+    def test_dataflow_user_type_no_user_fides_key(self) -> None:
+        with raises(ValueError):
+            assert DataFlow(fides_key="test_system_1", type="user")
+
+
 class TestPrivacyDeclaration:
     def test_privacydeclaration_valid(self) -> None:
         assert PrivacyDeclaration(
@@ -17,7 +35,7 @@ class TestPrivacyDeclaration:
         )
 
     def test_dataset_references_deprecation(self) -> None:
-        with pytest.deprecated_call(match="dataset_references"):
+        with deprecated_call(match="dataset_references"):
             assert PrivacyDeclaration(
                 data_categories=[],
                 data_qualifier="aggregated_data",
@@ -30,7 +48,6 @@ class TestPrivacyDeclaration:
             )
 
 
-@pytest.mark.unit
 class TestSystem:
     def test_system_valid(self) -> None:
         assert System(
@@ -70,7 +87,7 @@ class TestSystem:
         )
 
     def test_system_dependencies_deprecation(self) -> None:
-        with pytest.deprecated_call(match="system_dependencies"):
+        with deprecated_call(match="system_dependencies"):
             assert System(
                 description="Test Policy",
                 egress=[
@@ -130,7 +147,7 @@ class TestSystem:
         )
 
     def test_system_no_egress(self) -> None:
-        with pytest.raises(ValueError):
+        with raises(ValueError):
             assert System(
                 description="Test Policy",
                 fides_key="test_system",
@@ -161,7 +178,7 @@ class TestSystem:
             )
 
     def test_system_no_ingress(self) -> None:
-        with pytest.raises(ValueError):
+        with raises(ValueError):
             assert System(
                 description="Test Policy",
                 egress=[
