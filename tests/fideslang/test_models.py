@@ -4,6 +4,33 @@ from fideslang import DataFlow, PrivacyDeclaration, System
 
 
 @pytest.mark.unit
+class TestPrivacyDeclaration:
+    def test_privacydeclaration_valid(self) -> None:
+        assert PrivacyDeclaration(
+            data_categories=[],
+            data_qualifier="aggregated_data",
+            data_subjects=[],
+            data_use="provide",
+            egress=[],
+            ingress=[],
+            name="declaration-name",
+        )
+
+    def test_dataset_references_deprecation(self) -> None:
+        with pytest.deprecated_call(match="dataset_references"):
+            assert PrivacyDeclaration(
+                data_categories=[],
+                data_qualifier="aggregated_data",
+                data_subjects=[],
+                data_use="provide",
+                dataset_references=[],
+                egress=["test_system_2"],
+                ingress=["test_system_3"],
+                name="declaration-name",
+            )
+
+
+@pytest.mark.unit
 class TestSystem:
     def test_system_valid(self) -> None:
         assert System(
@@ -32,7 +59,6 @@ class TestSystem:
                     data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
-                    dataset_references=[],
                     egress=["test_system_2"],
                     ingress=["test_system_3"],
                     name="declaration-name",
@@ -71,7 +97,6 @@ class TestSystem:
                         data_qualifier="aggregated_data",
                         data_subjects=[],
                         data_use="provide",
-                        dataset_references=[],
                         egress=["test_system_2"],
                         ingress=["test_system_3"],
                         name="declaration-name",
@@ -96,7 +121,6 @@ class TestSystem:
                     data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
-                    dataset_references=[],
                     name="declaration-name",
                 )
             ],
@@ -126,7 +150,6 @@ class TestSystem:
                         data_qualifier="aggregated_data",
                         data_subjects=[],
                         data_use="provide",
-                        dataset_references=[],
                         egress=["test_system_2"],
                         ingress=["test_system_3"],
                         name="declaration-name",
@@ -158,7 +181,6 @@ class TestSystem:
                         data_qualifier="aggregated_data",
                         data_subjects=[],
                         data_use="provide",
-                        dataset_references=[],
                         egress=["test_system_2"],
                         ingress=["test_system_3"],
                         name="declaration-name",

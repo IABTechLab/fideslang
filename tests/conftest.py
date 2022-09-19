@@ -118,7 +118,6 @@ def resources_dict():
                     data_use="provide",
                     data_subjects=[],
                     data_qualifier="aggregated_data",
-                    dataset_references=[],
                 )
             ],
         ),

@@ -653,6 +653,21 @@ class PrivacyDeclaration(BaseModel):
         description="The resources from which data is received. Any `fides_key`s included in this list reference `DataFlow` entries in the `ingress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
     )
 
+    @validator("dataset_references")
+    @classmethod
+    def deprecate_dataset_references(cls, value: List[FidesKey]) -> List[FidesKey]:
+        """
+        Warn that the `dataset_references` field is deprecated, if set.
+        """
+
+        if value is not None:
+            warn(
+                "The dataset_references field is deprecated, and will be removed in a future version of fideslang. Use the 'egress' and 'ingress` fields instead.",
+                DeprecationWarning,
+            )
+
+        return value
+
 
 class SystemMetadata(BaseModel):
     """

@@ -21,6 +21,9 @@ system:
     name: Customer Data Sharing System
     description: Share data about our users with third-parties for advertising
     system_type: Service
+    ingress:
+      - fides_key: test_db_dataset_failing_dataset
+        type: dataset
     privacy_declarations:
       - name: Share Political Opinions
         data_categories:
@@ -29,7 +32,7 @@ system:
         data_qualifier: aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified
         data_subjects:
           - customer
-        dataset_references:
+        ingress:
           - test_db_dataset_failing_dataset
 
 policy:
