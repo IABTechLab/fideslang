@@ -24,6 +24,9 @@ system:
     name: Client Usage Analytics
     description: Use aggregated and anonymous data to measure usage
     system_type: Service
+    ingress:
+      - fides_key: test_failing_nested_dataset_field
+        type: dataset
     privacy_declarations:
       - name: Mesaure usage of users
         data_categories:
@@ -32,7 +35,7 @@ system:
         data_subjects:
           - customer
         data_qualifier: aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified
-        dataset_references:
+        ingress:
           - test_failing_nested_dataset_field
 
 policy:

@@ -54,6 +54,14 @@ The array of properties that declare the requirement for and information surroun
 
 Information will be exported as part of the data map or Record of Processing Activites (RoPA)
 
+**egress**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[array]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+The resources to which the System sends data.
+
+**ingress**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[array]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+The resources from which the System receives data.
+
 **privacy_declarations**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[array]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 The array of declarations describing the types of data in your system. This is a list of the privcy attributes (`data_category`, `data_use`, `data_subject`, and `data_qualifier`) for each of your systems.
@@ -88,6 +96,16 @@ system:
       is_required: True
       progress: Complete
       link: https://example.org/analytics_system_data_protection_impact_assessment
+    egress:
+      - fides_key: another_demo_system
+        type: system
+        data_categories:
+          - user.contact
+    ingress:
+      - fides_key: yet_another_demo_system
+        type: system
+        data_categories:
+          - user.device.cookie_id
     privacy_declarations:
       - name: Analyze customer behaviour for improvements.
         data_categories:
@@ -97,8 +115,10 @@ system:
         data_subjects:
           - customer
         data_qualifier: identified_data
-        dataset_references:
-          - demo_users_dataset
+        egress:
+          - another_demo_system
+        ingress:
+          - yet_another_demo_system
 ```
 
 **Demo manifest file:** `/fides/fidesctl/demo_resources/demo_system.yml`
@@ -121,6 +141,20 @@ system:
     "email": "controller@acmeinc.com",
     "phone": "+1 555 555 5555"
   },
+  "egress": [
+    {
+      "fides_key": "another_demo_system",
+      "type": "system",
+      "data_categories": ["user.contact"]
+    }
+  ],
+  "ingress": [
+    {
+      "fides_key": "yet_another_demo_system",
+      "type": "system",
+      "data_categories": ["user.device.cookie_id"]
+    }
+  ],
   "privacy_declarations": [
     {
       "name": "Analyze customer behaviour for improvements.",
@@ -133,9 +167,8 @@ system:
         "customer"
       ],
       "data_qualifier": "identified_data",
-      "dataset_references": [
-        "demo_users_dataset"
-      ]
+      "egress": ["another_demo_system"],
+      "ingress": ["yet_another_demo_system"]
     }
   ]
 }

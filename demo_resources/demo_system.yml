@@ -12,6 +12,9 @@ system:
       is_required: True
       progress: Complete
       link: https://example.org/analytics_system_data_protection_impact_assessment
+    ingress:
+      - fides_key: demo_users_dataset
+        type: dataset
     privacy_declarations:
       - name: Analyze customer behaviour for improvements.
         data_categories:
@@ -21,7 +24,7 @@ system:
         data_subjects:
           - customer
         data_qualifier: aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified
-        dataset_references:
+        ingress:
           - demo_users_dataset
 
   - fides_key: demo_marketing_system

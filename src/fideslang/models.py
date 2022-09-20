@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from enum import Enum
 from typing import Dict, List, Optional
+from warnings import warn
 
 from pydantic import AnyUrl, BaseModel, Field, HttpUrl, root_validator, validator
 
@@ -645,6 +646,27 @@ class PrivacyDeclaration(BaseModel):
     dataset_references: Optional[List[FidesKey]] = Field(
         description="Referenced Dataset fides keys used by the system.",
     )
+    egress: Optional[List[FidesKey]] = Field(
+        description="The resources to which data is sent. Any `fides_key`s included in this list reference `DataFlow` entries in the `egress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
+    )
+    ingress: Optional[List[FidesKey]] = Field(
+        description="The resources from which data is received. Any `fides_key`s included in this list reference `DataFlow` entries in the `ingress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
+    )
+
+    @validator("dataset_references")
+    @classmethod
+    def deprecate_dataset_references(cls, value: List[FidesKey]) -> List[FidesKey]:
+        """
+        Warn that the `dataset_references` field is deprecated, if set.
+        """
+
+        if value is not None:
+            warn(
+                "The dataset_references field is deprecated, and will be removed in a future version of fideslang. Use the 'egress' and 'ingress` fields instead.",
+                DeprecationWarning,
+            )
+
+        return value
 
 
 class SystemMetadata(BaseModel):
@@ -663,6 +685,51 @@ class SystemMetadata(BaseModel):
     endpoint_port: Optional[str] = Field(
         description="The port of the external resource for the system being modeled."
     )
+
+
+class FlowableResources(str, Enum):
+    """
+    The resource types with which DataFlows can be created.
+    """
+
+    DATASET = "dataset"
+    SYSTEM = "system"
+    USER = "user"
+
+
+class DataFlow(BaseModel):
+    """
+    The DataFlow resource model.
+
+    Describes a resource model with which a given System resource communicates.
+    """
+
+    fides_key: FidesKey = Field(
+        ...,
+        description="Identifies the System or Dataset resource with which the communication occurs. May also be 'user', to represent communication with the user(s) of a System.",
+    )
+    type: FlowableResources = Field(
+        ...,
+        description="Specifies the resource model class for which the `fides_key` applies. May be any of 'dataset', 'system', or 'user'.",
+    )
+    data_categories: Optional[List[FidesKey]] = Field(
+        description="An array of data categories describing the data in transit.",
+    )
+
+    @root_validator()
+    @classmethod
+    def user_special_case(cls, values: Dict) -> Dict:
+        """
+        If either the `fides_key` or the `type` are set to "user",
+        then the other must also be set to "user".
+        """
+
+        if values["fides_key"] == "user" or values["type"] == "user":
+            assert (
+                values["fides_key"] == "user" and values["type"] == "user"
+            ), "The 'user' fides_key is required for, and requires, the type 'user'"
+
+        return values
 
 
 class System(FidesModel):
@@ -687,6 +754,12 @@ class System(FidesModel):
     data_responsibility_title: DataResponsibilityTitle = Field(
         default=DataResponsibilityTitle.CONTROLLER,
         description=DataResponsibilityTitle.__doc__,
+    )
+    egress: Optional[List[DataFlow]] = Field(
+        description="The resources to which the System sends data."
+    )
+    ingress: Optional[List[DataFlow]] = Field(
+        description="The resources from which the System receives data."
     )
     privacy_declarations: List[PrivacyDeclaration] = Field(
         description=PrivacyDeclaration.__doc__,
@@ -718,6 +791,49 @@ class System(FidesModel):
     )(no_self_reference)
 
     _check_valid_country_code: classmethod = country_code_validator
+
+    @validator("privacy_declarations", each_item=True)
+    @classmethod
+    def privacy_declarations_reference_data_flows(
+        cls,
+        value: PrivacyDeclaration,
+        values: Dict,
+    ) -> PrivacyDeclaration:
+        """
+        Any `PrivacyDeclaration`s which include `egress` and/or `ingress` fields must
+        only reference the `fides_key`s of defined `DataFlow`s in said field(s).
+        """
+
+        for direction in ["egress", "ingress"]:
+            fides_keys = getattr(value, direction, None)
+            if fides_keys is not None:
+                data_flows = values[direction]
+                system = values["fides_key"]
+                assert (
+                    data_flows is not None and len(data_flows) > 0
+                ), f"PrivacyDeclaration '{value.name}' defines {direction} with one or more resources and is applied to the System '{system}', which does not itself define any {direction}."
+
+                for fides_key in fides_keys:
+                    assert fides_key in [
+                        data_flow.fides_key for data_flow in data_flows
+                    ], f"PrivacyDeclaration '{value.name}' defines {direction} with '{fides_key}' and is applied to the System '{system}', which does not itself define {direction} with that resource."
+
+        return value
+
+    @validator("system_dependencies")
+    @classmethod
+    def deprecate_system_dependencies(cls, value: List[FidesKey]) -> List[FidesKey]:
+        """
+        Warn that the `system_dependencies` field is deprecated, if set.
+        """
+
+        if value is not None:
+            warn(
+                "The system_dependencies field is deprecated, and will be removed in a future version of fideslang. Use the 'egress' and 'ingress` fields instead.",
+                DeprecationWarning,
+            )
+
+        return value
 
     class Config:
         "Class for the System config"

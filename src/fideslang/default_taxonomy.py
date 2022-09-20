@@ -1,6 +1,6 @@
 """This module contains the the default resources that Fideslang ships with."""
 
-from fideslang import (
+from .models import (
     DataCategory,
     DataQualifier,
     DataSubject,
