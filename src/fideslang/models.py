@@ -708,15 +708,15 @@ class DataFlow(BaseModel):
         ...,
         description="Identifies the System or Dataset resource with which the communication occurs. May also be 'user', to represent communication with the user(s) of a System.",
     )
-    type: FlowableResources = Field(
+    type: str = Field(
         ...,
-        description="Specifies the resource model class for which the `fides_key` applies. May be any of 'dataset', 'system', or 'user'.",
+        description=f"Specifies the resource model class for which the `fides_key` applies. May be any of {', '.join([member.value for member in FlowableResources])}.",
     )
     data_categories: Optional[List[FidesKey]] = Field(
         description="An array of data categories describing the data in transit.",
     )
 
-    @root_validator()
+    @root_validator(skip_on_failure=True)
     @classmethod
     def user_special_case(cls, values: Dict) -> Dict:
         """
@@ -730,6 +730,18 @@ class DataFlow(BaseModel):
             ), "The 'user' fides_key is required for, and requires, the type 'user'"
 
         return values
+
+    @validator("type")
+    @classmethod
+    def verify_type_is_flowable(cls, value: str) -> str:
+        """
+        Assert that the value of the `type` field is a member
+        of the `FlowableResources` Enum.
+        """
+
+        flowables = [member.value for member in FlowableResources]
+        assert value in flowables, f"'type' must be one of {', '.join(flowables)}"
+        return value
 
 
 class System(FidesModel):

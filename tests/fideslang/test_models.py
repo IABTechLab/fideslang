@@ -21,6 +21,10 @@ class TestDataFlow:
         with raises(ValueError):
             assert DataFlow(fides_key="test_system_1", type="user")
 
+    def test_dataflow_invalid_type(self) -> None:
+        with raises(ValueError):
+            assert DataFlow(fides_key="test_system_1", type="invalid")
+
 
 class TestPrivacyDeclaration:
     def test_privacydeclaration_valid(self) -> None:
