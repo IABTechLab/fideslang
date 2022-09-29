@@ -14,7 +14,13 @@ The types of changes are:
 * `Fixed` for any bug fixes.
 * `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/1.1.0...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/1.3.0...main)
+
+### Fixed
+
+* `DataFlow` resource models included in `System` resource models are now exported to valid YAML [#89](https://github.com/ethyca/fideslang/pull/89)
+
+## [1.3.0](https://github.com/ethyca/fideslang/compare/1.2.0...1.3.0)
 
 ### Added
 
