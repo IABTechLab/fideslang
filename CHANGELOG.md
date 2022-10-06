@@ -38,6 +38,8 @@ The types of changes are:
 
 * The `DataFlow` resource model is exposed when importing `fideslang` [#85](https://github.com/ethyca/fideslang/pull/85)
 
+### Docs
+* Updated the brand colors and footer on the docs site [#87](https://github.com/ethyca/fideslang/pull/87)
 ### Fixed
 
 * Fixed broken links in docs [#74](https://github.com/ethyca/fideslang/pull/74)
