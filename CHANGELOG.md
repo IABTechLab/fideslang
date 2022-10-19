@@ -16,6 +16,9 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/1.3.1...main)
 
+## Docs
+* Update the visual taxonomy to reflect appropriate `user.contact.address` nesting [#92](https://github.com/ethyca/fideslang/pull/92)
+
 ## [1.3.1](https://github.com/ethyca/fideslang/compare/1.3.0...1.3.1)
 
 ### Fixed
