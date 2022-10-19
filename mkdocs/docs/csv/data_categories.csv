@@ -20,13 +20,14 @@ user.device.cookie_id,Cookie ID,user.device,Cookie unique identification number.
 user.device.device_id,Device ID,user.device,Device unique identification number.
 user.device.ip_address,IP Address,user.device,Unique identifier related to device connection.
 user.contact,Contact Data,user,User contact data for purposes other than account management.
-user.contact.city,User Contact City,user.contact,"User's city level address data."
-user.contact.country,User Contact Country,user.contact,"User's country level address data."
 user.contact.email,User Contact Email,user.contact,"User's email address."
 user.contact.phone_number,User Contact Phone Number,user.contact,"User's phone number."
-user.contact.postal_code,User Contact Postal Code,user.contact,"User's postal code."
-user.contact.state,User Contact State,user.contact,"User's state level address data."
-user.contact.street,User Contact Street,user.contact,"User's street level address data."
+user.contact.address,Address Data,user.contact,User contact data related to an address.
+user.contact.address.city,User Contact City,user.contact.address,"User's city level address data."
+user.contact.address.country,User Contact Country,user.contact.address,"User's country level address data."
+user.contact.address.postal_code,User Contact Postal Code,user.contact.address,"User's postal code."
+user.contact.address.state,User Contact State,user.contact.address,"User's state level address data."
+user.contact.address.street,User Contact Street,user.contact.address,"User's street level address data."
 user.credentials,Credentials,user,User authentication data.
 user.credentials.biometric_credentials,Biometric Credentials,user.credentials,Credentials for system authentication.
 user.credentials.password,Password,user.credentials,Password for system authentication.
