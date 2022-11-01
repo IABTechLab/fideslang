@@ -1,6 +1,6 @@
 # Fides Language Documentation
 
-This is the documentation for Fides' configuration language. It is relevant to users of **Fides Control** ([`fidesctl`](https://github.com/ethyca/fides/)), **Fides Ops** ([`fidesops`](https://github.com/ethyca/fidesops/), and other privacy tools that are in the roadmap.
+This is the documentation for Fides' configuration language. It is relevant to users of [**Fides**](https://github.com/ethyca/fides/) and other privacy tools that are in the roadmap.
 
 The Fides language is Fides' primary user interface. In every use of Fides, configuration files written in the Fides language is always at the heart of the workflow.
 
@@ -27,4 +27,4 @@ A System declaration in Fides language represents the privacy properties of a si
 
 ### Policy YAML
 
-A Policy declaration in Fides language represents a set of rules for privacy or compliance that the system must adhere to. The `fidesctl` tool evaluates these policies against the system & dataset declarations to ensure automated compliance.
+A Policy declaration in Fides language represents a set of rules for privacy or compliance that the system must adhere to. Fides CLI tools evaluates these policies against the system and dataset declarations to ensure automated compliance.

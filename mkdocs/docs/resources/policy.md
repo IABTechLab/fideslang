@@ -79,7 +79,7 @@ policy:
         data_qualifier: aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified
 ```
 
-**Demo manifest file:** `/fides/fidesctl/demo_resources/demo_policy.yml`
+**Demo manifest file:** `/fides/demo_resources/demo_policy.yml`
 
 ### **API Payload**
 
