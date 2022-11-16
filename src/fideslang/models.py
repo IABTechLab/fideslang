@@ -292,9 +292,65 @@ class DatasetField(DatasetFieldBase):
     This resource is nested within a DatasetCollection.
     """
 
+    fides_meta: Optional[FidesMeta]
     fields: Optional[List[DatasetField]] = Field(
         description="An optional array of objects that describe hierarchical/nested fields (typically found in NoSQL databases).",
     )
+
+    @validator("data_categories")
+    def valid_data_categories(
+        cls, v: Optional[List[FidesKey]]
+    ) -> Optional[List[FidesKey]]:
+        """Validate that all annotated data categories exist in the taxonomy"""
+        return _valid_data_categories(v)
+
+    @validator("fides_meta")
+    def valid_meta(cls, meta_values: Optional[FidesMeta]) -> Optional[FidesMeta]:
+        """Validate upfront that the return_all_elements flag can only be specified on array fields"""
+        if not meta_values:
+            return meta_values
+
+        is_array: bool = bool(
+            meta_values.data_type and meta_values.data_type.endswith("[]")
+        )
+        if not is_array and meta_values.return_all_elements is not None:
+            raise ValueError(
+                "The 'return_all_elements' attribute can only be specified on array fields."
+            )
+        return meta_values
+
+    @validator("fields")
+    def validate_object_fields(
+        cls,
+        fields: Optional[List["DatasetField"]],
+        values: Dict[str, Any],
+    ) -> Optional[List["DatasetField"]]:
+        """Two validation checks for object fields:
+        - If there are sub-fields specified, type should be either empty or 'object'
+        - Additionally object fields cannot have data_categories.
+        """
+        declared_data_type = None
+
+        if values.get("fides_meta"):
+            declared_data_type = values["fides_meta"].data_type
+
+        if fields and declared_data_type:
+            data_type, _ = parse_data_type_string(declared_data_type)
+            if data_type != "object":
+                # TODO Put proper exception here
+                raise Exception(
+                    f"The data type {data_type} is not compatible with specified sub-fields."
+                )
+
+        if (fields or declared_data_type == "object") and values.get("data_categories"):
+            raise ValueError(
+                "Object fields cannot have specified data_categories. Specify category on sub-field instead"
+            )
+
+        return fields
+
+
+DatasetField.update_forward_refs()
 
 
 class DatasetCollection(BaseModel):
@@ -320,9 +376,19 @@ class DatasetCollection(BaseModel):
         description="An array of objects that describe the collection's fields.",
     )
 
+    fidesops_meta: Optional[FidesCollectionMeta]
+    fields: List[DatasetField]
+
     _sort_fields: classmethod = validator("fields", allow_reuse=True)(
         sort_list_objects_by_name
     )
+
+    @validator("data_categories")
+    def valid_data_categories(
+        cls, v: Optional[List[FidesKey]]
+    ) -> Optional[List[FidesKey]]:
+        """Validate that all annotated data categories exist in the taxonomy"""
+        return _valid_data_categories(v)
 
 
 class ContactDetails(BaseModel):
@@ -393,10 +459,19 @@ class Dataset(FidesModel):
     collections: List[DatasetCollection] = Field(
         description="An array of objects that describe the Dataset's collections.",
     )
+    fides_meta: Optional[FidesDatasetMeta]
+
     _sort_collections: classmethod = validator("collections", allow_reuse=True)(
         sort_list_objects_by_name
     )
     _check_valid_country_code: classmethod = country_code_validator
+
+    @validator("data_categories")
+    def valid_data_categories(
+        cls, v: Optional[List[FidesKey]]
+    ) -> Optional[List[FidesKey]]:
+        """Validate that all annotated data categories exist in the taxonomy"""
+        return _valid_data_categories(v)
 
 
 # Evaluation
@@ -850,6 +925,150 @@ class System(FidesModel):
     class Config:
         "Class for the System config"
         use_enum_values = True
+
+
+class FidesCollectionKey(ConstrainedStr):
+    """
+    Dataset:Collection name where both dataset and collection names are valid FidesKeys
+    """
+
+    @classmethod
+    def validate(cls, value: str) -> str:
+        """
+        Overrides validation to check FidesCollectionKey format, and that both the dataset
+        and collection names have the FidesKey format.
+        """
+        values = value.split(".")
+        if len(values) == 2:
+            FidesKey.validate(values[0])
+            FidesKey.validate(values[1])
+            return value
+        raise ValueError(
+            "FidesCollection must be specified in the form 'FidesKey.FidesKey'"
+        )
+
+
+EdgeDirection = Literal["from", "to"]
+
+# NOTE: this extends pydantic.BaseModel instead of our BaseSchema, for
+# consistency with other fideslang models
+class FidesDatasetReference(BaseModel):
+    """Reference to a field from another Collection"""
+
+    dataset: FidesKey
+    field: str
+    direction: Optional[EdgeDirection]
+
+
+class FidesDatasetMeta(BaseModel):
+    """ "Dataset-level specific annotations used for query traversal"""
+
+    after: Optional[List[FidesKey]]
+
+
+class FidesCollectionMeta(BaseModel):
+    """Collection-level specific annotations used for query traversal"""
+
+    after: Optional[List[FidesCollectionKey]]
+
+
+def generate_fides_data_categories() -> Type[Enum]:
+    """Programmatically generated the DataCategory enum based on the imported Fides data."""
+    FidesDataCategory = Enum(  # type: ignore
+        "FidesDataCategory",
+        {cat.fides_key: cat.fides_key for cat in DEFAULT_TAXONOMY.data_category},
+    )
+    return FidesDataCategory
+
+
+DataCategory = generate_fides_data_categories()
+
+
+def _validate_data_category(data_category: str) -> str:
+    """Checks that the data category passed in is currently supported."""
+    valid_categories = DataCategory.__members__.keys()
+    if data_category not in valid_categories:
+        # TODO: Updated to use proper exception type
+        raise Exception(f"The data category {data_category} is not supported.")
+    return data_category
+
+
+def _valid_data_categories(
+    data_categories: Optional[List[FidesKey]],
+) -> Optional[List[FidesKey]]:
+    """
+    Ensure that every data category provided matches a valid category defined in
+    the current taxonomy. Throws an error if any of the categories are invalid,
+    or otherwise returns the list of categories unchanged.
+    """
+
+    if data_categories:
+        return [dc for dc in data_categories if _validate_data_category(dc)]
+    return data_categories
+
+
+def parse_data_type_string(type_string: Optional[str]) -> Tuple[Optional[str], bool]:
+    """Parse the data type string. Arrays are expressed in the form 'type[]'.
+
+    e.g.
+    - 'string' -> ('string', false)
+    - 'string[]' -> ('string', true)
+    """
+    if not type_string:
+        return None, False
+    idx = type_string.find("[]")
+    if idx == -1:
+        return type_string, False
+    return type_string[:idx], True
+
+
+def _valid_data_type(data_type_str: Optional[str]) -> Optional[str]:
+    """If the data_type is provided ensure that it is a member of DataType."""
+
+    dt, _ = parse_data_type_string(data_type_str)
+    if not is_valid_data_type(dt):  # type: ignore
+        # TODO: Updated to use proper exception type
+        raise Exception(f"The data type {data_type_str} is not supported.")
+
+    return data_type_str
+
+
+def _valid_data_length(data_length: Optional[int]) -> Optional[int]:
+    """If the data_length is provided ensure that it is a positive non-zero value."""
+
+    if data_length is not None and data_length <= 0:
+        # TODO: Updated to use proper exception type
+        raise Exception(
+            f"Illegal length ({data_length}). Only positive non-zero values are allowed."
+        )
+
+    return data_length
+
+
+class FidesMeta(BaseModel):
+    """Annotations used for query traversal"""
+
+    references: Optional[List[FidesDatasetReference]]
+    identity: Optional[str]
+    primary_key: Optional[bool]
+    data_type: Optional[str]
+    """Optionally specify the data type. Fides will attempt to cast values to this type when querying."""
+    length: Optional[int]
+    """Optionally specify the allowable field length. Fides will not generate values that exceed this size."""
+    return_all_elements: Optional[bool]
+    """Optionally specify to query for the entire array if the array is an entrypoint into the node. Default is False."""
+    read_only: Optional[bool]
+    """Optionally specify if a field is read-only, meaning it can't be updated or deleted."""
+
+    @validator("data_type")
+    def valid_data_type(cls, v: Optional[str]) -> Optional[str]:
+        """Validate that all annotated data categories exist in the taxonomy"""
+        return _valid_data_type(v)
+
+    @validator("length")
+    def valid_length(cls, v: Optional[int]) -> Optional[int]:
+        """Validate that the provided length is valid"""
+        return _valid_data_length(v)
 
 
 # Taxonomy
