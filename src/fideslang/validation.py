@@ -26,6 +26,12 @@ class FidesKey(ConstrainedStr):
 
     @classmethod  # This overrides the default method to throw the custom FidesValidationError
     def validate(cls, value: str) -> str:
+        """Throws ValueError if val is not a valid FidesKey"""
+        if value == "<instance_fides_key>":
+            # Ignore <instance_fides_key> in saas templates.  This value will be replaced with a
+            # user-specified value.
+            return value
+
         if not cls.regex.match(value):
             raise FidesValidationError(
                 f"FidesKeys must only contain alphanumeric characters, '.', '_' or '-'. Value provided: {value}"
