@@ -3,11 +3,14 @@ Contains all of the Fides resources modeled as Pydantic models.
 """
 from __future__ import annotations
 
+from pydantic import ConstrainedStr
+
 from enum import Enum
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Literal, Type, Any, Tuple
 from warnings import warn
 
 from pydantic import AnyUrl, BaseModel, Field, HttpUrl, root_validator, validator
+# from fideslang.utils import valid_data_categories
 
 from fideslang.validation import (
     FidesKey,
@@ -16,6 +19,21 @@ from fideslang.validation import (
     no_self_reference,
     sort_list_objects_by_name,
 )
+
+
+import fideslang.default_taxonomy as taxonomy
+
+# def generate_fides_data_categories() -> Type[Enum]:
+#     """Programmatically generated the DataCategory enum based on the imported Fides data."""
+#     FidesDataCategory = Enum(  # type: ignore
+#         "FidesDataCategory",
+#         {cat.fides_key: cat.fides_key for cat in taxonomy.DEFAULT_TAXONOMY.data_category},
+#     )
+#     return FidesDataCategory
+#
+#
+# valid_data_categories = generate_fides_data_categories()
+
 
 # Reusable components
 country_code_validator = validator("third_country_transfers", allow_reuse=True)(
@@ -284,6 +302,30 @@ class DatasetFieldBase(BaseModel):
         description="An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
     )
 
+class FidesMeta(BaseModel):
+    """Annotations used for query traversal"""
+
+    references: Optional[List[FidesDatasetReference]]
+    identity: Optional[str]
+    primary_key: Optional[bool]
+    data_type: Optional[str]
+    """Optionally specify the data type. Fides will attempt to cast values to this type when querying."""
+    length: Optional[int]
+    """Optionally specify the allowable field length. Fides will not generate values that exceed this size."""
+    return_all_elements: Optional[bool]
+    """Optionally specify to query for the entire array if the array is an entrypoint into the node. Default is False."""
+    read_only: Optional[bool]
+    """Optionally specify if a field is read-only, meaning it can't be updated or deleted."""
+
+    @validator("data_type")
+    def valid_data_type(cls, v: Optional[str]) -> Optional[str]:
+        """Validate that all annotated data categories exist in the taxonomy"""
+        return _valid_data_type(v)
+
+    @validator("length")
+    def valid_length(cls, v: Optional[int]) -> Optional[int]:
+        """Validate that the provided length is valid"""
+        return _valid_data_length(v)
 
 class DatasetField(DatasetFieldBase):
     """
@@ -292,7 +334,7 @@ class DatasetField(DatasetFieldBase):
     This resource is nested within a DatasetCollection.
     """
 
-    fides_meta: Optional[FidesMeta]
+    fides_meta: Optional["FidesMeta"]
     fields: Optional[List[DatasetField]] = Field(
         description="An optional array of objects that describe hierarchical/nested fields (typically found in NoSQL databases).",
     )
@@ -305,7 +347,7 @@ class DatasetField(DatasetFieldBase):
         return _valid_data_categories(v)
 
     @validator("fides_meta")
-    def valid_meta(cls, meta_values: Optional[FidesMeta]) -> Optional[FidesMeta]:
+    def valid_meta(cls, meta_values: Optional["FidesMeta"]) -> Optional["FidesMeta"]:
         """Validate upfront that the return_all_elements flag can only be specified on array fields"""
         if not meta_values:
             return meta_values
@@ -456,22 +498,22 @@ class Dataset(FidesModel):
     third_country_transfers: Optional[List[str]] = Field(
         description="An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).",
     )
-    collections: List[DatasetCollection] = Field(
-        description="An array of objects that describe the Dataset's collections.",
-    )
+    # collections: List[DatasetCollection] = Field(
+    #     description="An array of objects that describe the Dataset's collections.",
+    # )
     fides_meta: Optional[FidesDatasetMeta]
 
-    _sort_collections: classmethod = validator("collections", allow_reuse=True)(
-        sort_list_objects_by_name
-    )
+    # _sort_collections: classmethod = validator("collections", allow_reuse=True)(
+    #     sort_list_objects_by_name
+    # )
     _check_valid_country_code: classmethod = country_code_validator
 
-    @validator("data_categories")
-    def valid_data_categories(
-        cls, v: Optional[List[FidesKey]]
-    ) -> Optional[List[FidesKey]]:
-        """Validate that all annotated data categories exist in the taxonomy"""
-        return _valid_data_categories(v)
+    # @validator("data_categories")
+    # def valid_data_categories(
+    #     cls, v: Optional[List[FidesKey]]
+    # ) -> Optional[List[FidesKey]]:
+    #     """Validate that all annotated data categories exist in the taxonomy"""
+    #     return _valid_data_categories(v)
 
 
 # Evaluation
@@ -927,6 +969,7 @@ class System(FidesModel):
         use_enum_values = True
 
 
+
 class FidesCollectionKey(ConstrainedStr):
     """
     Dataset:Collection name where both dataset and collection names are valid FidesKeys
@@ -972,21 +1015,15 @@ class FidesCollectionMeta(BaseModel):
     after: Optional[List[FidesCollectionKey]]
 
 
-def generate_fides_data_categories() -> Type[Enum]:
-    """Programmatically generated the DataCategory enum based on the imported Fides data."""
-    FidesDataCategory = Enum(  # type: ignore
-        "FidesDataCategory",
-        {cat.fides_key: cat.fides_key for cat in DEFAULT_TAXONOMY.data_category},
-    )
-    return FidesDataCategory
 
 
-DataCategory = generate_fides_data_categories()
+
 
 
 def _validate_data_category(data_category: str) -> str:
     """Checks that the data category passed in is currently supported."""
-    valid_categories = DataCategory.__members__.keys()
+    # valid_categories = valid_data_categories.__members__.keys()
+    valid_categories = []
     if data_category not in valid_categories:
         # TODO: Updated to use proper exception type
         raise Exception(f"The data category {data_category} is not supported.")
@@ -1045,30 +1082,19 @@ def _valid_data_length(data_length: Optional[int]) -> Optional[int]:
     return data_length
 
 
-class FidesMeta(BaseModel):
-    """Annotations used for query traversal"""
 
-    references: Optional[List[FidesDatasetReference]]
-    identity: Optional[str]
-    primary_key: Optional[bool]
-    data_type: Optional[str]
-    """Optionally specify the data type. Fides will attempt to cast values to this type when querying."""
-    length: Optional[int]
-    """Optionally specify the allowable field length. Fides will not generate values that exceed this size."""
-    return_all_elements: Optional[bool]
-    """Optionally specify to query for the entire array if the array is an entrypoint into the node. Default is False."""
-    read_only: Optional[bool]
-    """Optionally specify if a field is read-only, meaning it can't be updated or deleted."""
+# anothaone
 
-    @validator("data_type")
-    def valid_data_type(cls, v: Optional[str]) -> Optional[str]:
-        """Validate that all annotated data categories exist in the taxonomy"""
-        return _valid_data_type(v)
 
-    @validator("length")
-    def valid_length(cls, v: Optional[int]) -> Optional[int]:
-        """Validate that the provided length is valid"""
-        return _valid_data_length(v)
+
+class TestingImporting():
+    pass
+
+
+
+
+
+
 
 
 # Taxonomy
@@ -1092,3 +1118,6 @@ class Taxonomy(BaseModel):
 
     registry: Optional[List[Registry]] = Field(default_factory=list)
     organization: List[Organization] = Field(default_factory=list)
+
+    class Config:
+        extra = "allow"

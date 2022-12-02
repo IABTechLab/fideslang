@@ -9,6 +9,7 @@ from .default_taxonomy import DEFAULT_TAXONOMY
 
 # Export the Models
 from .models import (
+
     DataCategory,
     DataFlow,
     DataQualifier,
@@ -18,7 +19,10 @@ from .models import (
     DataSubject,
     DataUse,
     Evaluation,
+    FidesMeta,
     FidesModel,
+    FidesDatasetReference,
+    FidesCollectionKey,
     Organization,
     Policy,
     PolicyRule,
