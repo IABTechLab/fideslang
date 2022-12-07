@@ -2,7 +2,6 @@
 
 from .models import (
     DataCategory,
-    FidesDatasetReference,
     DataQualifier,
     DataSubject,
     DataUse,

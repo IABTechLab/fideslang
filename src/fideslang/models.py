@@ -410,7 +410,7 @@ DatasetField.update_forward_refs()
 
 class FidesCollectionKey(ConstrainedStr):
     """
-    Dataset:Collection name where both dataset and collection names are valid FidesKeys
+    Dataset.Collection name where both dataset and collection names are valid FidesKeys
     """
 
     @classmethod
@@ -1023,6 +1023,3 @@ class Taxonomy(BaseModel):
 
     registry: Optional[List[Registry]] = Field(default_factory=list)
     organization: List[Organization] = Field(default_factory=list)
-
-    class Config:
-        extra = "allow"

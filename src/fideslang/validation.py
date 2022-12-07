@@ -103,6 +103,8 @@ def parse_data_type_string(type_string: Optional[str]) -> Tuple[Optional[str], b
     e.g.
     - 'string' -> ('string', false)
     - 'string[]' -> ('string', true)
+
+    These data_types are for use in DatasetField.fides_meta.
     """
     if not type_string:
         return None, False
@@ -112,6 +114,7 @@ def parse_data_type_string(type_string: Optional[str]) -> Tuple[Optional[str], b
     return type_string[:idx], True
 
 
+# Data types that Fides is currently configured to handle
 data_type_names: Set[str] = {
     "string",
     "integer",
@@ -123,7 +126,7 @@ data_type_names: Set[str] = {
 
 
 def is_valid_data_type(type_name: str) -> bool:
-    """Is this type a valid data type identifier"""
+    """Is this type a valid data type identifier in fides?"""
     return type_name is None or type_name in data_type_names
 
 

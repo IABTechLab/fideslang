@@ -17,6 +17,7 @@ from fideslang.models import (
     DatasetCollection,
     CollectionMeta,
     DatasetField,
+    FidesCollectionKey,
 )
 from fideslang.validation import FidesKey, FidesValidationError, valid_data_type
 
@@ -364,16 +365,7 @@ class TestValidateDataType:
         assert valid_data_type("string")
 
 
-class TestValidateFidesMeta:
-    def test_invalid_length(self):
-        with pytest.raises(ValueError):
-            FidesMeta(length=0)
-
-    def test_valid_length(self):
-        assert FidesMeta(length=1)
-
-
-class TestFidesopsMetaConversion:
+class TestValidateFidesopsMeta:
     """For backwards compatibility, allowing fidesops_meta to be passed in on various models"""
 
     def test_fidesops_meta_on_dataset(self):
@@ -455,3 +447,89 @@ class TestFidesopsMetaConversion:
                 },
                 fields=[],
             )
+
+
+class TestValidateFidesMeta:
+    def test_invalid_length(self):
+        with pytest.raises(ValueError):
+            FidesMeta(length=0)
+
+    def test_valid_length(self):
+        assert FidesMeta(length=1)
+
+
+class TestValidateDatasetField:
+    def test_return_all_elements_not_string_field(self):
+        with pytest.raises(ValidationError):
+            DatasetField(
+                name="test_field",
+                fides_meta=FidesMeta(
+                    references=None,
+                    identity="identifiable_field_name",
+                    primary_key=False,
+                    data_type="string",
+                    length=None,
+                    return_all_elements=True,
+                    read_only=None,
+                ),
+            )
+
+    def test_return_all_elements_on_array_field(self):
+        assert DatasetField(
+            name="test_field",
+            fides_meta=FidesMeta(
+                references=None,
+                identity="identifiable_field_name",
+                primary_key=False,
+                data_type="string[]",
+                length=None,
+                return_all_elements=True,
+                read_only=None,
+            ),
+        )
+
+    def test_data_categories_at_object_level(self):
+        with pytest.raises(ValidationError):
+            DatasetField(
+                name="test_field",
+                data_categories=["user"],
+                fides_meta=FidesMeta(
+                    references=None,
+                    identify=None,
+                    primary_key=False,
+                    data_type="object",
+                    length=None,
+                    return_all_elements=None,
+                    read_only=None,
+                ),
+                fields=[DatasetField(name="nested_field")],
+            )
+
+    def test_data_categories_on_nested_fields(self):
+        DatasetField(
+            name="test_field",
+            fides_meta=FidesMeta(
+                references=None,
+                identify=None,
+                primary_key=False,
+                data_type="object",
+                length=None,
+                read_only=None,
+            ),
+            fields=[DatasetField(name="nested_field", data_categories=["user"])],
+        )
+
+
+class TestCollectionMeta:
+    def test_invalid_collection_key(self):
+        with pytest.raises(ValidationError):
+            CollectionMeta(after=[FidesCollectionKey("test_key")])
+
+    def test_collection_key_has_too_many_components(self):
+        with pytest.raises(ValidationError):
+            CollectionMeta(
+                after=[FidesCollectionKey("test_dataset.test_collection.test_field")]
+            )
+
+    def test_valid_collection_key(self):
+        CollectionMeta(after=[FidesCollectionKey("test_dataset.test_collection")])
