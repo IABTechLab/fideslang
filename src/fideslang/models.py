@@ -454,7 +454,7 @@ class DatasetCollection(FidesopsMetaBackwardsCompat):
     retention: Optional[str] = Field(
         description="An optional string to describe the retention policy for a Dataset collection. This field can also be applied more granularly at the field level of a Dataset.",
     )
-    fields: List["DatasetField"] = Field(
+    fields: List[DatasetField] = Field(
         description="An array of objects that describe the collection's fields.",
     )
 
