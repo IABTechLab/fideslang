@@ -323,7 +323,7 @@ class FidesMeta(BaseModel):
 
 
 class FidesopsMetaBackwardsCompat(BaseModel):
-    @root_validator(allow_reuse=True)
+    @root_validator(allow_reuse=True, pre=True)
     @classmethod
     def fidesops_meta_conversion(cls, values: Dict) -> Dict:
         """
