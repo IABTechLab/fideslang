@@ -2,10 +2,9 @@
 Utils for use within various fideslang modules.
 """
 
-from typing import Dict, Optional, Type
-from enum import Enum
+from typing import Dict, Optional
+
 from fideslang import models
-import fideslang.default_taxonomy as default_taxonomy
 
 
 def get_resource_by_fides_key(
@@ -21,4 +20,3 @@ def get_resource_by_fides_key(
         for resource in getattr(taxonomy, resource_type)
         if resource.fides_key == fides_key
     } or None
-

@@ -3,14 +3,13 @@ Contains all of the Fides resources modeled as Pydantic models.
 """
 from __future__ import annotations
 
-from pydantic import ConstrainedStr
+from pydantic import ConstrainedStr, PositiveInt
 
 from enum import Enum
-from typing import Dict, List, Optional, Literal, Type, Any, Tuple
+from typing import Dict, List, Optional, Literal, Any
 from warnings import warn
 
 from pydantic import AnyUrl, BaseModel, Field, HttpUrl, root_validator, validator
-# from fideslang.utils import valid_data_categories
 
 from fideslang.validation import (
     FidesKey,
@@ -18,21 +17,9 @@ from fideslang.validation import (
     matching_parent_key,
     no_self_reference,
     sort_list_objects_by_name,
+    parse_data_type_string,
+    valid_data_type,
 )
-
-
-import fideslang.default_taxonomy as taxonomy
-
-# def generate_fides_data_categories() -> Type[Enum]:
-#     """Programmatically generated the DataCategory enum based on the imported Fides data."""
-#     FidesDataCategory = Enum(  # type: ignore
-#         "FidesDataCategory",
-#         {cat.fides_key: cat.fides_key for cat in taxonomy.DEFAULT_TAXONOMY.data_category},
-#     )
-#     return FidesDataCategory
-#
-#
-# valid_data_categories = generate_fides_data_categories()
 
 
 # Reusable components
@@ -302,15 +289,27 @@ class DatasetFieldBase(BaseModel):
         description="An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
     )
 
+
+EdgeDirection = Literal["from", "to"]
+
+
+class FidesDatasetReference(BaseModel):
+    """Reference to a field from another Collection"""
+
+    dataset: FidesKey
+    field: str
+    direction: Optional[EdgeDirection]
+
+
 class FidesMeta(BaseModel):
     """Annotations used for query traversal"""
 
-    references: Optional[List[FidesDatasetReference]]
+    references: Optional[List[FidesDatasetReference]] = None
     identity: Optional[str]
     primary_key: Optional[bool]
     data_type: Optional[str]
     """Optionally specify the data type. Fides will attempt to cast values to this type when querying."""
-    length: Optional[int]
+    length: Optional[PositiveInt]
     """Optionally specify the allowable field length. Fides will not generate values that exceed this size."""
     return_all_elements: Optional[bool]
     """Optionally specify to query for the entire array if the array is an entrypoint into the node. Default is False."""
@@ -319,35 +318,49 @@ class FidesMeta(BaseModel):
 
     @validator("data_type")
     def valid_data_type(cls, v: Optional[str]) -> Optional[str]:
-        """Validate that all annotated data categories exist in the taxonomy"""
-        return _valid_data_type(v)
+        """Validate that all annotated data types exist in the taxonomy"""
+        return valid_data_type(v)
 
-    @validator("length")
-    def valid_length(cls, v: Optional[int]) -> Optional[int]:
-        """Validate that the provided length is valid"""
-        return _valid_data_length(v)
 
-class DatasetField(DatasetFieldBase):
+class FidesopsMetaBackwardsCompat(BaseModel):
+    @root_validator(allow_reuse=True)
+    @classmethod
+    def fidesops_meta_conversion(cls, values: Dict) -> Dict:
+        """
+        If fidesops_meta specified, move this to fides_meta instead.
+        """
+        fidesops_meta = values.get("fidesops_meta")
+        fides_meta = values.get("fides_meta")
+
+        if fidesops_meta and fides_meta:
+            raise ValueError(
+                "You cannot specify both fidesops_meta and fides_meta. Please use fides_meta."
+            )
+
+        if fidesops_meta:
+            values["fides_meta"] = fidesops_meta
+            values["fidesops_meta"] = None
+
+        return values
+
+
+class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
     """
     The DatasetField resource model.
 
     This resource is nested within a DatasetCollection.
     """
 
-    fides_meta: Optional["FidesMeta"]
-    fields: Optional[List[DatasetField]] = Field(
+    fides_meta: Optional[FidesMeta] = None
+    fidesops_meta: Optional[
+        FidesMeta
+    ] = None  # Will be deprecated eventually in favor of fides_meta
+    fields: Optional[List["DatasetField"]] = Field(
         description="An optional array of objects that describe hierarchical/nested fields (typically found in NoSQL databases).",
     )
 
-    @validator("data_categories")
-    def valid_data_categories(
-        cls, v: Optional[List[FidesKey]]
-    ) -> Optional[List[FidesKey]]:
-        """Validate that all annotated data categories exist in the taxonomy"""
-        return _valid_data_categories(v)
-
     @validator("fides_meta")
-    def valid_meta(cls, meta_values: Optional["FidesMeta"]) -> Optional["FidesMeta"]:
+    def valid_meta(cls, meta_values: Optional[FidesMeta]) -> Optional[FidesMeta]:
         """Validate upfront that the return_all_elements flag can only be specified on array fields"""
         if not meta_values:
             return meta_values
@@ -379,8 +392,7 @@ class DatasetField(DatasetFieldBase):
         if fields and declared_data_type:
             data_type, _ = parse_data_type_string(declared_data_type)
             if data_type != "object":
-                # TODO Put proper exception here
-                raise Exception(
+                raise ValueError(
                     f"The data type {data_type} is not compatible with specified sub-fields."
                 )
 
@@ -392,14 +404,42 @@ class DatasetField(DatasetFieldBase):
         return fields
 
 
+# this is required for the recursive reference in the pydantic model:
 DatasetField.update_forward_refs()
 
 
-class DatasetCollection(BaseModel):
+class FidesCollectionKey(ConstrainedStr):
+    """
+    Dataset:Collection name where both dataset and collection names are valid FidesKeys
+    """
+
+    @classmethod
+    def validate(cls, value: str) -> str:
+        """
+        Overrides validation to check FidesCollectionKey format, and that both the dataset
+        and collection names have the FidesKey format.
+        """
+        values = value.split(".")
+        if len(values) == 2:
+            FidesKey.validate(values[0])
+            FidesKey.validate(values[1])
+            return value
+        raise ValueError(
+            "FidesCollection must be specified in the form 'FidesKey.FidesKey'"
+        )
+
+
+class CollectionMeta(BaseModel):
+    """Collection-level specific annotations used for query traversal"""
+
+    after: Optional[List[FidesCollectionKey]]
+
+
+class DatasetCollection(FidesopsMetaBackwardsCompat):
     """
     The DatasetCollection resource model.
 
-    This resource is nested witin a Dataset.
+    This resource is nested within a Dataset.
     """
 
     name: str = name_field
@@ -414,23 +454,18 @@ class DatasetCollection(BaseModel):
     retention: Optional[str] = Field(
         description="An optional string to describe the retention policy for a Dataset collection. This field can also be applied more granularly at the field level of a Dataset.",
     )
-    fields: List[DatasetField] = Field(
+    fields: List["DatasetField"] = Field(
         description="An array of objects that describe the collection's fields.",
     )
 
-    fidesops_meta: Optional[FidesCollectionMeta]
-    fields: List[DatasetField]
+    fides_meta: Optional[CollectionMeta] = None
+    fidesops_meta: Optional[
+        CollectionMeta
+    ] = None  # Will be deprecated eventually in favor of fides_meta
 
     _sort_fields: classmethod = validator("fields", allow_reuse=True)(
         sort_list_objects_by_name
     )
-
-    @validator("data_categories")
-    def valid_data_categories(
-        cls, v: Optional[List[FidesKey]]
-    ) -> Optional[List[FidesKey]]:
-        """Validate that all annotated data categories exist in the taxonomy"""
-        return _valid_data_categories(v)
 
 
 class ContactDetails(BaseModel):
@@ -466,14 +501,16 @@ class DatasetMetadata(BaseModel):
     """
     The DatasetMetadata resource model.
 
-    Object used to hold application specific metadata for a dataset
+    Object used to hold application specific metadata for a dataset,
+    including annotations to help with query traversal.
     """
 
     resource_id: Optional[str]
+    after: Optional[List[FidesKey]]
 
 
-class Dataset(FidesModel):
-    "The Dataset resource model."
+class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
+    """The Dataset resource model."""
 
     meta: Optional[Dict[str, str]] = Field(
         description="An optional object that provides additional information about the Dataset. You can structure the object however you like. It can be a simple set of `key: value` properties or a deeply nested hierarchy of objects. How you use the object is up to you: Fides ignores it."
@@ -485,9 +522,12 @@ class Dataset(FidesModel):
         default="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
         description="Array of Data Qualifier resources identified by `fides_key`, that apply to all collections in the Dataset.",
     )
-    fidesctl_meta: Optional[DatasetMetadata] = Field(
-        description=DatasetMetadata.__doc__,
+    fides_meta: Optional[DatasetMetadata] = Field(
+        description=DatasetMetadata.__doc__, default=None
     )
+    fidesops_meta: Optional[DatasetMetadata] = Field(
+        description=DatasetMetadata.__doc__, default=None
+    )  # Will be deprecated eventually in favor of fides_meta
     joint_controller: Optional[ContactDetails] = Field(
         description=ContactDetails.__doc__,
     )
@@ -498,22 +538,14 @@ class Dataset(FidesModel):
     third_country_transfers: Optional[List[str]] = Field(
         description="An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).",
     )
-    # collections: List[DatasetCollection] = Field(
-    #     description="An array of objects that describe the Dataset's collections.",
-    # )
-    fides_meta: Optional[FidesDatasetMeta]
+    collections: List[DatasetCollection] = Field(
+        description="An array of objects that describe the Dataset's collections.",
+    )
 
-    # _sort_collections: classmethod = validator("collections", allow_reuse=True)(
-    #     sort_list_objects_by_name
-    # )
+    _sort_collections: classmethod = validator("collections", allow_reuse=True)(
+        sort_list_objects_by_name
+    )
     _check_valid_country_code: classmethod = country_code_validator
-
-    # @validator("data_categories")
-    # def valid_data_categories(
-    #     cls, v: Optional[List[FidesKey]]
-    # ) -> Optional[List[FidesKey]]:
-    #     """Validate that all annotated data categories exist in the taxonomy"""
-    #     return _valid_data_categories(v)
 
 
 # Evaluation
@@ -965,136 +997,9 @@ class System(FidesModel):
         return value
 
     class Config:
-        "Class for the System config"
+        """Class for the System config"""
+
         use_enum_values = True
-
-
-
-class FidesCollectionKey(ConstrainedStr):
-    """
-    Dataset:Collection name where both dataset and collection names are valid FidesKeys
-    """
-
-    @classmethod
-    def validate(cls, value: str) -> str:
-        """
-        Overrides validation to check FidesCollectionKey format, and that both the dataset
-        and collection names have the FidesKey format.
-        """
-        values = value.split(".")
-        if len(values) == 2:
-            FidesKey.validate(values[0])
-            FidesKey.validate(values[1])
-            return value
-        raise ValueError(
-            "FidesCollection must be specified in the form 'FidesKey.FidesKey'"
-        )
-
-
-EdgeDirection = Literal["from", "to"]
-
-# NOTE: this extends pydantic.BaseModel instead of our BaseSchema, for
-# consistency with other fideslang models
-class FidesDatasetReference(BaseModel):
-    """Reference to a field from another Collection"""
-
-    dataset: FidesKey
-    field: str
-    direction: Optional[EdgeDirection]
-
-
-class FidesDatasetMeta(BaseModel):
-    """ "Dataset-level specific annotations used for query traversal"""
-
-    after: Optional[List[FidesKey]]
-
-
-class FidesCollectionMeta(BaseModel):
-    """Collection-level specific annotations used for query traversal"""
-
-    after: Optional[List[FidesCollectionKey]]
-
-
-
-
-
-
-
-def _validate_data_category(data_category: str) -> str:
-    """Checks that the data category passed in is currently supported."""
-    # valid_categories = valid_data_categories.__members__.keys()
-    valid_categories = []
-    if data_category not in valid_categories:
-        # TODO: Updated to use proper exception type
-        raise Exception(f"The data category {data_category} is not supported.")
-    return data_category
-
-
-def _valid_data_categories(
-    data_categories: Optional[List[FidesKey]],
-) -> Optional[List[FidesKey]]:
-    """
-    Ensure that every data category provided matches a valid category defined in
-    the current taxonomy. Throws an error if any of the categories are invalid,
-    or otherwise returns the list of categories unchanged.
-    """
-
-    if data_categories:
-        return [dc for dc in data_categories if _validate_data_category(dc)]
-    return data_categories
-
-
-def parse_data_type_string(type_string: Optional[str]) -> Tuple[Optional[str], bool]:
-    """Parse the data type string. Arrays are expressed in the form 'type[]'.
-
-    e.g.
-    - 'string' -> ('string', false)
-    - 'string[]' -> ('string', true)
-    """
-    if not type_string:
-        return None, False
-    idx = type_string.find("[]")
-    if idx == -1:
-        return type_string, False
-    return type_string[:idx], True
-
-
-def _valid_data_type(data_type_str: Optional[str]) -> Optional[str]:
-    """If the data_type is provided ensure that it is a member of DataType."""
-
-    dt, _ = parse_data_type_string(data_type_str)
-    if not is_valid_data_type(dt):  # type: ignore
-        # TODO: Updated to use proper exception type
-        raise Exception(f"The data type {data_type_str} is not supported.")
-
-    return data_type_str
-
-
-def _valid_data_length(data_length: Optional[int]) -> Optional[int]:
-    """If the data_length is provided ensure that it is a positive non-zero value."""
-
-    if data_length is not None and data_length <= 0:
-        # TODO: Updated to use proper exception type
-        raise Exception(
-            f"Illegal length ({data_length}). Only positive non-zero values are allowed."
-        )
-
-    return data_length
-
-
-
-# anothaone
-
-
-
-class TestingImporting():
-    pass
-
-
-
-
-
-
 
 
 # Taxonomy

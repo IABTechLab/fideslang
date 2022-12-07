@@ -88,7 +88,7 @@ mypy:
 pylint:
 	@$(RUN) pylint src/
 
-pytest:
+pytest: build-local
 	@$(RUN) pytest -x
 
 xenon:

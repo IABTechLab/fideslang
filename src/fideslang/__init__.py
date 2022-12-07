@@ -9,7 +9,6 @@ from .default_taxonomy import DEFAULT_TAXONOMY
 
 # Export the Models
 from .models import (
-
     DataCategory,
     DataFlow,
     DataQualifier,

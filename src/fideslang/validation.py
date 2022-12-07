@@ -3,17 +3,17 @@ Contains all of the additional validation for the resource models.
 """
 
 import re
-from typing import List, Dict, Pattern
+from enum import Enum
+from typing import Dict, List, Optional, Pattern, Set, Tuple, Type
 
 from pydantic import ConstrainedStr
 
 from fideslang.default_fixtures import COUNTRY_CODES
 
-
 VALID_COUNTRY_CODES = [country["alpha3Code"] for country in COUNTRY_CODES]
 
 
-class FidesValidationError(Exception):
+class FidesValidationError(ValueError):
     """Custom exception for when the pydantic ValidationError can't be used."""
 
 
@@ -22,19 +22,15 @@ class FidesKey(ConstrainedStr):
     A FidesKey type that creates a custom constrained string.
     """
 
-    regex: Pattern[str] = re.compile(r"^[a-zA-Z0-9_.-]+$")
+    regex: Pattern[str] = re.compile(r"^[a-zA-Z0-9_.<>-]+$")
 
     @classmethod  # This overrides the default method to throw the custom FidesValidationError
     def validate(cls, value: str) -> str:
         """Throws ValueError if val is not a valid FidesKey"""
-        if value == "<instance_fides_key>":
-            # Ignore <instance_fides_key> in saas templates.  This value will be replaced with a
-            # user-specified value.
-            return value
 
         if not cls.regex.match(value):
             raise FidesValidationError(
-                f"FidesKeys must only contain alphanumeric characters, '.', '_' or '-'. Value provided: {value}"
+                f"FidesKeys must only contain alphanumeric characters, '.', '_', '<', '>' or '-'. Value provided: {value}"
             )
 
         return value
@@ -99,3 +95,43 @@ def check_valid_country_code(country_code_list: List) -> List:
                     )
                 )
     return country_code_list
+
+
+def parse_data_type_string(type_string: Optional[str]) -> Tuple[Optional[str], bool]:
+    """Parse the data type string. Arrays are expressed in the form 'type[]'.
+
+    e.g.
+    - 'string' -> ('string', false)
+    - 'string[]' -> ('string', true)
+    """
+    if not type_string:
+        return None, False
+    idx = type_string.find("[]")
+    if idx == -1:
+        return type_string, False
+    return type_string[:idx], True
+
+
+data_type_names: Set[str] = {
+    "string",
+    "integer",
+    "float",
+    "boolean",
+    "object_id",
+    "object",
+}
+
+
+def is_valid_data_type(type_name: str) -> bool:
+    """Is this type a valid data type identifier"""
+    return type_name is None or type_name in data_type_names
+
+
+def valid_data_type(data_type_str: Optional[str]) -> Optional[str]:
+    """If the data_type is provided ensure that it is a member of DataType."""
+
+    dt, _ = parse_data_type_string(data_type_str)
+    if not is_valid_data_type(dt):  # type: ignore
+        raise ValueError(f"The data type {data_type_str} is not supported.")
+
+    return data_type_str
