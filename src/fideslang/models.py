@@ -335,25 +335,11 @@ class FidesopsMetaBackwardsCompat(BaseModel):
     """Mixin to convert fidesops_meta to fides_meta for backwards compatibility
     as we add DSR concepts to fideslang"""
 
-    @root_validator(allow_reuse=True, pre=True)
-    @classmethod
-    def fidesops_meta_conversion(cls, values: Dict) -> Dict:
-        """
-        If fidesops_meta specified, move this to fides_meta instead.
-        """
-        fidesops_meta = values.get("fidesops_meta")
-        fides_meta = values.get("fides_meta")
-
-        if fidesops_meta and fides_meta:
-            raise ValueError(
-                "You cannot specify both fidesops_meta and fides_meta. Please use fides_meta."
-            )
-
-        if fidesops_meta:
-            values["fides_meta"] = fidesops_meta
-            values["fidesops_meta"] = None
-
-        return values
+    def __init__(self, **data):
+        super().__init__(
+            fides_meta=data.pop("fidesops_meta", None) or data.pop("fides_meta", None),
+            **data,
+        )
 
 
 class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
@@ -364,9 +350,7 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
     """
 
     fides_meta: Optional[FidesMeta] = None
-    fidesops_meta: Optional[
-        FidesMeta
-    ] = None  # Will be deprecated eventually in favor of fides_meta
+
     fields: Optional[List[DatasetField]] = Field(
         description="An optional array of objects that describe hierarchical/nested fields (typically found in NoSQL databases).",
     )
@@ -473,9 +457,6 @@ class DatasetCollection(FidesopsMetaBackwardsCompat):
     )
 
     fides_meta: Optional[CollectionMeta] = None
-    fidesops_meta: Optional[
-        CollectionMeta
-    ] = None  # Will be deprecated eventually in favor of fides_meta
 
     _sort_fields: classmethod = validator("fields", allow_reuse=True)(
         sort_list_objects_by_name
@@ -539,9 +520,6 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
     fides_meta: Optional[DatasetMetadata] = Field(
         description=DatasetMetadata.__doc__, default=None
     )
-    fidesops_meta: Optional[DatasetMetadata] = Field(
-        description=DatasetMetadata.__doc__, default=None
-    )  # Will be deprecated eventually in favor of fides_meta
     joint_controller: Optional[ContactDetails] = Field(
         description=ContactDetails.__doc__,
     )
