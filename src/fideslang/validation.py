@@ -3,8 +3,7 @@ Contains all of the additional validation for the resource models.
 """
 
 import re
-from enum import Enum
-from typing import Dict, List, Optional, Pattern, Set, Tuple, Type
+from typing import Dict, List, Optional, Pattern, Set, Tuple
 
 from pydantic import ConstrainedStr
 
@@ -75,7 +74,7 @@ def matching_parent_key(value: FidesKey, values: Dict) -> FidesKey:
     parent_key_from_fides_key = ".".join(split_fides_key[:-1])
     if parent_key_from_fides_key != value:
         raise FidesValidationError(
-            "The parent_key ({0}) does not match the parent parsed ({1}) from the fides_key ({2})!".format(
+            "The parent_key ({0}) does not match th`    ble parent parsed ({1}) from the fides_key ({2})!".format(
                 value, parent_key_from_fides_key, fides_key
             )
         )
@@ -133,8 +132,8 @@ def is_valid_data_type(type_name: str) -> bool:
 def valid_data_type(data_type_str: Optional[str]) -> Optional[str]:
     """If the data_type is provided ensure that it is a member of DataType."""
 
-    dt, _ = parse_data_type_string(data_type_str)
-    if not is_valid_data_type(dt):  # type: ignore
+    parsed_date_type, _ = parse_data_type_string(data_type_str)
+    if not is_valid_data_type(parsed_date_type):  # type: ignore
         raise ValueError(f"The data type {data_type_str} is not supported.")
 
     return data_type_str

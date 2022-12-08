@@ -1,26 +1,34 @@
+# pylint: disable=too-many-lines
+
 """
 Contains all of the Fides resources modeled as Pydantic models.
 """
 from __future__ import annotations
 
-from pydantic import ConstrainedStr, PositiveInt
-
 from enum import Enum
-from typing import Dict, List, Optional, Literal, Any
+from typing import Any, Dict, List, Literal, Optional
 from warnings import warn
 
-from pydantic import AnyUrl, BaseModel, Field, HttpUrl, root_validator, validator
+from pydantic import (
+    AnyUrl,
+    BaseModel,
+    ConstrainedStr,
+    Field,
+    HttpUrl,
+    PositiveInt,
+    root_validator,
+    validator,
+)
 
 from fideslang.validation import (
     FidesKey,
     check_valid_country_code,
     matching_parent_key,
     no_self_reference,
-    sort_list_objects_by_name,
     parse_data_type_string,
+    sort_list_objects_by_name,
     valid_data_type,
 )
-
 
 # Reusable components
 country_code_validator = validator("third_country_transfers", allow_reuse=True)(
@@ -317,12 +325,16 @@ class FidesMeta(BaseModel):
     """Optionally specify if a field is read-only, meaning it can't be updated or deleted."""
 
     @validator("data_type")
-    def valid_data_type(cls, v: Optional[str]) -> Optional[str]:
+    @classmethod
+    def valid_data_type(cls, value: Optional[str]) -> Optional[str]:
         """Validate that all annotated data types exist in the taxonomy"""
-        return valid_data_type(v)
+        return valid_data_type(value)
 
 
 class FidesopsMetaBackwardsCompat(BaseModel):
+    """Mixin to convert fidesops_meta to fides_meta for backwards compatibility
+    as we add DSR concepts to fideslang"""
+
     @root_validator(allow_reuse=True, pre=True)
     @classmethod
     def fidesops_meta_conversion(cls, values: Dict) -> Dict:
@@ -355,11 +367,12 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
     fidesops_meta: Optional[
         FidesMeta
     ] = None  # Will be deprecated eventually in favor of fides_meta
-    fields: Optional[List["DatasetField"]] = Field(
+    fields: Optional[List[DatasetField]] = Field(
         description="An optional array of objects that describe hierarchical/nested fields (typically found in NoSQL databases).",
     )
 
     @validator("fides_meta")
+    @classmethod
     def valid_meta(cls, meta_values: Optional[FidesMeta]) -> Optional[FidesMeta]:
         """Validate upfront that the return_all_elements flag can only be specified on array fields"""
         if not meta_values:
@@ -375,6 +388,7 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
         return meta_values
 
     @validator("fields")
+    @classmethod
     def validate_object_fields(
         cls,
         fields: Optional[List["DatasetField"]],
