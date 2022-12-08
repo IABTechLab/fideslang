@@ -376,7 +376,7 @@ class TestValidateFidesopsMeta:
             collections=[],
         )
 
-        assert dataset.fidesops_meta is None
+        assert not hasattr(dataset, "fidesops_meta")
         assert dataset.fides_meta == DatasetMetadata(
             after=["other_dataset"], resource_id=None
         )
@@ -389,7 +389,7 @@ class TestValidateFidesopsMeta:
             fields=[],
         )
 
-        assert collection.fidesops_meta is None
+        assert not hasattr(collection, "fidesops_meta")
         assert collection.fides_meta == CollectionMeta(
             after=["other_dataset.other_collection"]
         )
@@ -402,7 +402,8 @@ class TestValidateFidesopsMeta:
             fields=[],
         )
 
-        assert field.fidesops_meta is None
+        assert not hasattr(field, "fidesops_meta")
+
         assert field.fides_meta == FidesMeta(
             references=None,
             identity="identifiable_field_name",
@@ -421,7 +422,7 @@ class TestValidateFidesopsMeta:
             fields=[],
         )
 
-        assert field.fidesops_meta is None
+        assert not hasattr(field, "fidesops_meta")
         assert field.fides_meta == FidesMeta(
             references=None,
             identity="identifiable_field_name",
@@ -433,20 +434,30 @@ class TestValidateFidesopsMeta:
         )
 
     def test_specify_both_fidesops_meta_and_fides_meta(self):
-        """fidesops_meta copied to fides_meta"""
-        with pytest.raises(ValidationError):
-            DatasetField(
-                name="test_field",
-                fides_meta={
-                    "identity": "identifiable_field_name",
-                    "primary_key": False,
-                },
-                fidesops_meta={
-                    "identity": "identifiable_field_name",
-                    "primary_key": False,
-                },
-                fields=[],
-            )
+        """fidesops_meta copied to fides_meta - fides_meta field takes priority"""
+        field = DatasetField(
+            name="test_field",
+            fides_meta={
+                "identity": "identifiable_field_name",
+                "primary_key": False,
+            },
+            fidesops_meta={
+                "identity": "other_identifiable_field_name",
+                "primary_key": False,
+            },
+            fields=[],
+        )
+        assert not hasattr(field, "fidesops_meta")
+        assert field.fides_meta == FidesMeta(
+            references=None,
+            identity="identifiable_field_name",
+            primary_key=False,
+            data_type=None,
+            length=None,
+            return_all_elements=None,
+            read_only=None,
+        )
+
 
 
 class TestValidateFidesMeta:

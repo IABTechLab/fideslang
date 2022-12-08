@@ -74,7 +74,7 @@ def matching_parent_key(value: FidesKey, values: Dict) -> FidesKey:
     parent_key_from_fides_key = ".".join(split_fides_key[:-1])
     if parent_key_from_fides_key != value:
         raise FidesValidationError(
-            "The parent_key ({0}) does not match th`    ble parent parsed ({1}) from the fides_key ({2})!".format(
+            "The parent_key ({0}) does match the parent parsed ({1}) from the fides_key ({2})!".format(
                 value, parent_key_from_fides_key, fides_key
             )
         )

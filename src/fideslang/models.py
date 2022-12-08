@@ -335,9 +335,13 @@ class FidesopsMetaBackwardsCompat(BaseModel):
     """Mixin to convert fidesops_meta to fides_meta for backwards compatibility
     as we add DSR concepts to fideslang"""
 
-    def __init__(self, **data):
+    def __init__(self, **data: Any) -> None:
+        """For Datasets, DatasetCollections, and DatasetFields, if old fidesops_meta field is specified,
+        convert this to a fides_meta field instead."""
+        fidesops_meta = data.pop("fidesops_meta", None)
+        fides_meta = data.pop("fides_meta", None)
         super().__init__(
-            fides_meta=data.pop("fidesops_meta", None) or data.pop("fides_meta", None),
+            fides_meta=fides_meta or fidesops_meta,
             **data,
         )
 
