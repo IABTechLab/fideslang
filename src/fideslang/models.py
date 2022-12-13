@@ -6,7 +6,7 @@ Contains all of the Fides resources modeled as Pydantic models.
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Literal, Optional
+from typing import Any, Dict, List, Literal, Optional, Union
 from warnings import warn
 
 from pydantic import (
@@ -310,19 +310,30 @@ class FidesDatasetReference(BaseModel):
 
 
 class FidesMeta(BaseModel):
-    """Annotations used for query traversal"""
+    """Supplementary metadata used by the Fides application for additional features."""
 
-    references: Optional[List[FidesDatasetReference]] = None
-    identity: Optional[str]
-    primary_key: Optional[bool]
-    data_type: Optional[str]
-    """Optionally specify the data type. Fides will attempt to cast values to this type when querying."""
-    length: Optional[PositiveInt]
-    """Optionally specify the allowable field length. Fides will not generate values that exceed this size."""
-    return_all_elements: Optional[bool]
-    """Optionally specify to query for the entire array if the array is an entrypoint into the node. Default is False."""
-    read_only: Optional[bool]
-    """Optionally specify if a field is read-only, meaning it can't be updated or deleted."""
+    references: Optional[List[FidesDatasetReference]] = Field(
+        description="Fields that current field references or is referenced by. Used for drawing the edges of a DSR graph.",
+        default=None,
+    )
+    identity: Optional[str] = Field(
+        description="The type of the identity data that should be used to query this collection for a DSR."
+    )
+    primary_key: Optional[bool] = Field(
+        description="Whether the current field can be considered a primary key of the current collection"
+    )
+    data_type: Optional[str] = Field(
+        description="Optionally specify the data type. Fides will attempt to cast values to this type when querying."
+    )
+    length: Optional[PositiveInt] = Field(
+        description="Optionally specify the allowable field length. Fides will not generate values that exceed this size."
+    )
+    return_all_elements: Optional[bool] = Field(
+        description="Optionally specify to query for the entire array if the array is an entrypoint into the node. Default is False."
+    )
+    read_only: Optional[bool] = Field(
+        description="Optionally specify if a field is read-only, meaning it can't be updated or deleted."
+    )
 
     @validator("data_type")
     @classmethod
@@ -335,7 +346,7 @@ class FidesopsMetaBackwardsCompat(BaseModel):
     """Mixin to convert fidesops_meta to fides_meta for backwards compatibility
     as we add DSR concepts to fideslang"""
 
-    def __init__(self, **data: Any) -> None:
+    def __init__(self, **data: Union[Dataset, DatasetCollection, DatasetField]) -> None:
         """For Datasets, DatasetCollections, and DatasetFields, if old fidesops_meta field is specified,
         convert this to a fides_meta field instead."""
         fidesops_meta = data.pop("fidesops_meta", None)
@@ -377,7 +388,7 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
 
     @validator("fields")
     @classmethod
-    def validate_object_fields(
+    def validate_object_fields(  # type: ignore
         cls,
         fields: Optional[List["DatasetField"]],
         values: Dict[str, Any],
@@ -387,6 +398,7 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
         - Additionally object fields cannot have data_categories.
         """
         declared_data_type = None
+        field_name: str = values.get("name")  # type: ignore
 
         if values.get("fides_meta"):
             declared_data_type = values["fides_meta"].data_type
@@ -395,12 +407,12 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
             data_type, _ = parse_data_type_string(declared_data_type)
             if data_type != "object":
                 raise ValueError(
-                    f"The data type {data_type} is not compatible with specified sub-fields."
+                    f"The data type '{data_type}' on field '{field_name}' is not compatible with specified sub-fields. Convert to an 'object' field."
                 )
 
         if (fields or declared_data_type == "object") and values.get("data_categories"):
             raise ValueError(
-                "Object fields cannot have specified data_categories. Specify category on sub-field instead"
+                f"Object field '{field_name}' cannot have specified data_categories. Specify category on sub-field instead"
             )
 
         return fields
@@ -500,8 +512,7 @@ class DatasetMetadata(BaseModel):
     """
     The DatasetMetadata resource model.
 
-    Object used to hold application specific metadata for a dataset,
-    including annotations to help with query traversal.
+    Object used to hold application specific metadata for a dataset
     """
 
     resource_id: Optional[str]

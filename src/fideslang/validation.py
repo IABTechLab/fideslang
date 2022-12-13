@@ -114,7 +114,7 @@ def parse_data_type_string(type_string: Optional[str]) -> Tuple[Optional[str], b
 
 
 # Data types that Fides is currently configured to handle
-data_type_names: Set[str] = {
+DATA_TYPE_NAMES: Set[str] = {
     "string",
     "integer",
     "float",
@@ -126,7 +126,7 @@ data_type_names: Set[str] = {
 
 def is_valid_data_type(type_name: str) -> bool:
     """Is this type a valid data type identifier in fides?"""
-    return type_name is None or type_name in data_type_names
+    return type_name is None or type_name in DATA_TYPE_NAMES
 
 
 def valid_data_type(data_type_str: Optional[str]) -> Optional[str]:

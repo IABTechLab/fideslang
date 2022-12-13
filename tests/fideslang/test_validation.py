@@ -459,7 +459,6 @@ class TestValidateFidesopsMeta:
         )
 
 
-
 class TestValidateFidesMeta:
     def test_invalid_length(self):
         with pytest.raises(ValueError):
@@ -500,7 +499,7 @@ class TestValidateDatasetField:
         )
 
     def test_data_categories_at_object_level(self):
-        with pytest.raises(ValidationError):
+        with pytest.raises(ValidationError) as exc:
             DatasetField(
                 name="test_field",
                 data_categories=["user"],
@@ -515,6 +514,30 @@ class TestValidateDatasetField:
                 ),
                 fields=[DatasetField(name="nested_field")],
             )
+        assert "Object field 'test_field' cannot have specified data_categories" in str(
+            exc
+        )
+
+    def test_object_field_conflicting_types(self):
+        with pytest.raises(ValidationError) as exc:
+            DatasetField(
+                name="test_field",
+                data_categories=["user"],
+                fides_meta=FidesMeta(
+                    references=None,
+                    identify=None,
+                    primary_key=False,
+                    data_type="string",
+                    length=None,
+                    return_all_elements=None,
+                    read_only=None,
+                ),
+                fields=[DatasetField(name="nested_field")],
+            )
+        assert (
+            "The data type 'string' on field 'test_field' is not compatible with specified sub-fields."
+            in str(exc)
+        )
 
     def test_data_categories_on_nested_fields(self):
         DatasetField(
