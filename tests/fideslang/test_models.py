@@ -1,6 +1,7 @@
 from pytest import deprecated_call, mark, raises
 
-from fideslang import DataFlow, PrivacyDeclaration, System
+from fideslang import DataFlow, PrivacyDeclaration, System, Dataset
+from fideslang.models import DatasetCollection, DatasetField
 
 pytestmark = mark.unit
 
@@ -239,4 +240,58 @@ class TestSystem:
             registry_id=1,
             system_type="SYSTEM",
             tags=["some", "tags"],
+        )
+
+
+class TestDataset:
+    def test_valid_dataset(self):
+        Dataset(
+            fides_key="dataset_1",
+            data_qualifier="dataset_qualifier_1",
+            data_categories=["dataset_data_category_1"],
+            fides_meta={"after": ["other_dataset"]},
+            collections=[
+                DatasetCollection(
+                    name="dataset_collection_1",
+                    data_qualifier="data_collection_data_qualifier_1",
+                    data_categories=["dataset_collection_data_category_1"],
+                    fides_meta={"after": ["third_dataset.blue_collection"]},
+                    fields=[
+                        DatasetField(
+                            name="dataset_field_1",
+                            data_categories=["dataset_field_data_category_1"],
+                            data_qualifier="dataset_field_data_qualifier_1",
+                            fides_meta={
+                                "references": [
+                                    {
+                                        "dataset": "second_dataset",
+                                        "field": "red_collection.id",
+                                        "direction": "from",
+                                    }
+                                ],
+                                "primary_key": True,
+                                "data_type": "integer",
+                            },
+                        )
+                    ],
+                ),
+                DatasetCollection(
+                    name="dataset_collection_2",
+                    data_qualifier="data_collection_data_qualifier_2",
+                    data_categories=["dataset_collection_data_category_2"],
+                    fides_meta={"after": ["orange_dataset.dataset_collection_1"]},
+                    fields=[
+                        DatasetField(
+                            name="dataset_field_2",
+                            data_categories=["dataset_field_data_category_2"],
+                            data_qualifier="dataset_field_data_qualifier_2",
+                            fides_meta={
+                                "identity": "email",
+                                "primary_key": False,
+                                "data_type": "string",
+                            },
+                        )
+                    ],
+                ),
+            ],
         )

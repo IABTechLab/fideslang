@@ -16,6 +16,11 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/1.3.1...main)
 
+### Changed
+
+* Moved over DSR concepts into Fideslang. Expanded allowable characters for FideKey and added additional Dataset validation. [#95](https://github.com/ethyca/fideslang/pull/95)
+
+
 ## [1.3.1](https://github.com/ethyca/fideslang/compare/1.3.0...1.3.1)
 
 ### Fixed

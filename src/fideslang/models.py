@@ -1,20 +1,33 @@
+# pylint: disable=too-many-lines
+
 """
 Contains all of the Fides resources modeled as Pydantic models.
 """
 from __future__ import annotations
 
 from enum import Enum
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional, Union
 from warnings import warn
 
-from pydantic import AnyUrl, BaseModel, Field, HttpUrl, root_validator, validator
+from pydantic import (
+    AnyUrl,
+    BaseModel,
+    ConstrainedStr,
+    Field,
+    HttpUrl,
+    PositiveInt,
+    root_validator,
+    validator,
+)
 
 from fideslang.validation import (
     FidesKey,
     check_valid_country_code,
     matching_parent_key,
     no_self_reference,
+    parse_data_type_string,
     sort_list_objects_by_name,
+    valid_data_type,
 )
 
 # Reusable components
@@ -285,23 +298,162 @@ class DatasetFieldBase(BaseModel):
     )
 
 
-class DatasetField(DatasetFieldBase):
+EdgeDirection = Literal["from", "to"]
+
+
+class FidesDatasetReference(BaseModel):
+    """Reference to a field from another Collection"""
+
+    dataset: FidesKey
+    field: str
+    direction: Optional[EdgeDirection]
+
+
+class FidesMeta(BaseModel):
+    """Supplementary metadata used by the Fides application for additional features."""
+
+    references: Optional[List[FidesDatasetReference]] = Field(
+        description="Fields that current field references or is referenced by. Used for drawing the edges of a DSR graph.",
+        default=None,
+    )
+    identity: Optional[str] = Field(
+        description="The type of the identity data that should be used to query this collection for a DSR."
+    )
+    primary_key: Optional[bool] = Field(
+        description="Whether the current field can be considered a primary key of the current collection"
+    )
+    data_type: Optional[str] = Field(
+        description="Optionally specify the data type. Fides will attempt to cast values to this type when querying."
+    )
+    length: Optional[PositiveInt] = Field(
+        description="Optionally specify the allowable field length. Fides will not generate values that exceed this size."
+    )
+    return_all_elements: Optional[bool] = Field(
+        description="Optionally specify to query for the entire array if the array is an entrypoint into the node. Default is False."
+    )
+    read_only: Optional[bool] = Field(
+        description="Optionally specify if a field is read-only, meaning it can't be updated or deleted."
+    )
+
+    @validator("data_type")
+    @classmethod
+    def valid_data_type(cls, value: Optional[str]) -> Optional[str]:
+        """Validate that all annotated data types exist in the taxonomy"""
+        return valid_data_type(value)
+
+
+class FidesopsMetaBackwardsCompat(BaseModel):
+    """Mixin to convert fidesops_meta to fides_meta for backwards compatibility
+    as we add DSR concepts to fideslang"""
+
+    def __init__(self, **data: Union[Dataset, DatasetCollection, DatasetField]) -> None:
+        """For Datasets, DatasetCollections, and DatasetFields, if old fidesops_meta field is specified,
+        convert this to a fides_meta field instead."""
+        fidesops_meta = data.pop("fidesops_meta", None)
+        fides_meta = data.pop("fides_meta", None)
+        super().__init__(
+            fides_meta=fides_meta or fidesops_meta,
+            **data,
+        )
+
+
+class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
     """
     The DatasetField resource model.
 
     This resource is nested within a DatasetCollection.
     """
 
+    fides_meta: Optional[FidesMeta] = None
+
     fields: Optional[List[DatasetField]] = Field(
         description="An optional array of objects that describe hierarchical/nested fields (typically found in NoSQL databases).",
     )
 
+    @validator("fides_meta")
+    @classmethod
+    def valid_meta(cls, meta_values: Optional[FidesMeta]) -> Optional[FidesMeta]:
+        """Validate upfront that the return_all_elements flag can only be specified on array fields"""
+        if not meta_values:
+            return meta_values
 
-class DatasetCollection(BaseModel):
+        is_array: bool = bool(
+            meta_values.data_type and meta_values.data_type.endswith("[]")
+        )
+        if not is_array and meta_values.return_all_elements is not None:
+            raise ValueError(
+                "The 'return_all_elements' attribute can only be specified on array fields."
+            )
+        return meta_values
+
+    @validator("fields")
+    @classmethod
+    def validate_object_fields(  # type: ignore
+        cls,
+        fields: Optional[List["DatasetField"]],
+        values: Dict[str, Any],
+    ) -> Optional[List["DatasetField"]]:
+        """Two validation checks for object fields:
+        - If there are sub-fields specified, type should be either empty or 'object'
+        - Additionally object fields cannot have data_categories.
+        """
+        declared_data_type = None
+        field_name: str = values.get("name")  # type: ignore
+
+        if values.get("fides_meta"):
+            declared_data_type = values["fides_meta"].data_type
+
+        if fields and declared_data_type:
+            data_type, _ = parse_data_type_string(declared_data_type)
+            if data_type != "object":
+                raise ValueError(
+                    f"The data type '{data_type}' on field '{field_name}' is not compatible with specified sub-fields. Convert to an 'object' field."
+                )
+
+        if (fields or declared_data_type == "object") and values.get("data_categories"):
+            raise ValueError(
+                f"Object field '{field_name}' cannot have specified data_categories. Specify category on sub-field instead"
+            )
+
+        return fields
+
+
+# this is required for the recursive reference in the pydantic model:
+DatasetField.update_forward_refs()
+
+
+class FidesCollectionKey(ConstrainedStr):
+    """
+    Dataset.Collection name where both dataset and collection names are valid FidesKeys
+    """
+
+    @classmethod
+    def validate(cls, value: str) -> str:
+        """
+        Overrides validation to check FidesCollectionKey format, and that both the dataset
+        and collection names have the FidesKey format.
+        """
+        values = value.split(".")
+        if len(values) == 2:
+            FidesKey.validate(values[0])
+            FidesKey.validate(values[1])
+            return value
+        raise ValueError(
+            "FidesCollection must be specified in the form 'FidesKey.FidesKey'"
+        )
+
+
+class CollectionMeta(BaseModel):
+    """Collection-level specific annotations used for query traversal"""
+
+    after: Optional[List[FidesCollectionKey]]
+
+
+class DatasetCollection(FidesopsMetaBackwardsCompat):
     """
     The DatasetCollection resource model.
 
-    This resource is nested witin a Dataset.
+    This resource is nested within a Dataset.
     """
 
     name: str = name_field
@@ -319,6 +471,8 @@ class DatasetCollection(BaseModel):
     fields: List[DatasetField] = Field(
         description="An array of objects that describe the collection's fields.",
     )
+
+    fides_meta: Optional[CollectionMeta] = None
 
     _sort_fields: classmethod = validator("fields", allow_reuse=True)(
         sort_list_objects_by_name
@@ -362,10 +516,11 @@ class DatasetMetadata(BaseModel):
     """
 
     resource_id: Optional[str]
+    after: Optional[List[FidesKey]]
 
 
-class Dataset(FidesModel):
-    "The Dataset resource model."
+class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
+    """The Dataset resource model."""
 
     meta: Optional[Dict[str, str]] = Field(
         description="An optional object that provides additional information about the Dataset. You can structure the object however you like. It can be a simple set of `key: value` properties or a deeply nested hierarchy of objects. How you use the object is up to you: Fides ignores it."
@@ -377,8 +532,8 @@ class Dataset(FidesModel):
         default="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
         description="Array of Data Qualifier resources identified by `fides_key`, that apply to all collections in the Dataset.",
     )
-    fidesctl_meta: Optional[DatasetMetadata] = Field(
-        description=DatasetMetadata.__doc__,
+    fides_meta: Optional[DatasetMetadata] = Field(
+        description=DatasetMetadata.__doc__, default=None
     )
     joint_controller: Optional[ContactDetails] = Field(
         description=ContactDetails.__doc__,
@@ -393,6 +548,7 @@ class Dataset(FidesModel):
     collections: List[DatasetCollection] = Field(
         description="An array of objects that describe the Dataset's collections.",
     )
+
     _sort_collections: classmethod = validator("collections", allow_reuse=True)(
         sort_list_objects_by_name
     )
@@ -848,7 +1004,8 @@ class System(FidesModel):
         return value
 
     class Config:
-        "Class for the System config"
+        """Class for the System config"""
+
         use_enum_values = True
 
 

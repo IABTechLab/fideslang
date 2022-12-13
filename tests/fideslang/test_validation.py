@@ -10,9 +10,16 @@ from fideslang.models import (
     PrivacyDeclaration,
     PrivacyRule,
     System,
+    FidesDatasetReference,
+    FidesMeta,
+    Dataset,
+    DatasetMetadata,
+    DatasetCollection,
+    CollectionMeta,
+    DatasetField,
+    FidesCollectionKey,
 )
-
-from fideslang.validation import FidesValidationError
+from fideslang.validation import FidesKey, FidesValidationError, valid_data_type
 
 
 @pytest.mark.unit
@@ -28,7 +35,7 @@ def test_top_level_resource():
 
 @pytest.mark.unit
 def test_fides_key_doesnt_match_stated_parent_key():
-    with pytest.raises(FidesValidationError):
+    with pytest.raises(ValidationError):
         DataCategory(
             organization_fides_key=1,
             fides_key="user.custom_test_data",
@@ -53,7 +60,7 @@ def test_fides_key_matches_stated_parent_key():
 
 @pytest.mark.unit
 def test_no_parent_key_but_fides_key_contains_parent_key():
-    with pytest.raises(FidesValidationError):
+    with pytest.raises(ValidationError):
         DataCategory(
             organization_fides_key=1,
             fides_key="user.custom_test_data",
@@ -64,8 +71,19 @@ def test_no_parent_key_but_fides_key_contains_parent_key():
 
 
 @pytest.mark.unit
+def test_fides_key_with_carets():
+    DataCategory(
+        organization_fides_key=1,
+        fides_key="<replacement_text>",
+        name="Example valid key with brackets",
+        description="This key contains a <> which is valid",
+    )
+    assert DataCategory
+
+
+@pytest.mark.unit
 def test_invalid_chars_in_fides_key():
-    with pytest.raises(FidesValidationError):
+    with pytest.raises(ValidationError):
         DataCategory(
             organization_fides_key=1,
             fides_key="!",
@@ -89,7 +107,7 @@ def test_create_valid_data_category():
 
 @pytest.mark.unit
 def test_circular_dependency_data_category():
-    with pytest.raises(FidesValidationError):
+    with pytest.raises(ValidationError):
         DataCategory(
             organization_fides_key=1,
             fides_key="user",
@@ -114,7 +132,7 @@ def test_create_valid_data_use():
 
 @pytest.mark.unit
 def test_circular_dependency_data_use():
-    with pytest.raises(FidesValidationError):
+    with pytest.raises(ValidationError):
         DataUse(
             organization_fides_key=1,
             fides_key="provide.service",
@@ -135,8 +153,8 @@ def test_fides_model_valid(fides_key: str):
 @pytest.mark.unit
 @pytest.mark.parametrize("fides_key", ["foo/bar", "foo%bar", "foo^bar"])
 def test_fides_model_fides_key_invalid(fides_key):
-    "Check for a bunch of different possible bad characters here."
-    with pytest.raises(FidesValidationError):
+    """Check for a bunch of different possible bad characters here."""
+    with pytest.raises(ValidationError):
         FidesModel(fides_key=fides_key)
 
 
@@ -148,7 +166,7 @@ def test_valid_privacy_rule():
 
 @pytest.mark.unit
 def test_invalid_fides_key_privacy_rule():
-    with pytest.raises(FidesValidationError):
+    with pytest.raises(ValidationError):
         PrivacyRule(matches="ANY", values=["foo^bar"])
     assert True
 
@@ -214,7 +232,7 @@ def test_create_valid_system():
 
 @pytest.mark.unit
 def test_circular_dependency_system():
-    with pytest.raises(FidesValidationError):
+    with pytest.raises(ValidationError):
         System(
             organization_fides_key=1,
             registryId=1,
@@ -240,8 +258,8 @@ def test_circular_dependency_system():
 @pytest.mark.unit
 @pytest.mark.parametrize("country_code", ["United States", "US", "usa"])
 def test_invalid_country_identifier(country_code: str):
-    "Validate some invalid country identifiers raise an error"
-    with pytest.raises(FidesValidationError):
+    """Validate some invalid country identifiers raise an error"""
+    with pytest.raises(ValidationError):
         System(
             organization_fides_key=1,
             registryId=1,
@@ -267,7 +285,7 @@ def test_invalid_country_identifier(country_code: str):
 @pytest.mark.unit
 @pytest.mark.parametrize("country_code", ["CAN", "USA", "GBR"])
 def test_valid_country_identifier(country_code: str):
-    "Validates usage of alpha-3 codes per ISO 3166"
+    """Validates usage of alpha-3 codes per ISO 3166"""
     System(
         organization_fides_key=1,
         registryId=1,
@@ -288,3 +306,264 @@ def test_valid_country_identifier(country_code: str):
         ],
     )
     assert True
+
+
+@pytest.mark.unit
+def test_fides_key_validate_bad_key():
+    with pytest.raises(FidesValidationError):
+        FidesKey.validate("hi!")
+
+
+@pytest.mark.unit
+def test_fides_key_validate_good_key():
+    FidesKey.validate("hello_test_file<backup>.txt")
+
+
+@pytest.mark.unit
+class TestFidesDatasetReference:
+    def test_dataset_invalid(self):
+        with pytest.raises(ValidationError):
+            FidesDatasetReference(dataset="bad fides key!", field="test_field")
+
+    def test_invalid_direction(self):
+        with pytest.raises(ValidationError):
+            FidesDatasetReference(
+                dataset="test_dataset", field="test_field", direction="backwards"
+            )
+
+    def valid_dataset_reference_to(self):
+        ref = FidesDatasetReference(
+            dataset="test_dataset", field="test_field", direction="to"
+        )
+
+        assert ref
+
+    def valid_dataset_reference_from(self):
+        ref = FidesDatasetReference(
+            dataset="test_dataset", field="test_field", direction="from"
+        )
+
+        assert ref
+
+    def valid_dataset_reference_no_direction(self):
+        ref = FidesDatasetReference(
+            dataset="test_dataset",
+            field="test_field",
+        )
+
+        assert ref
+
+
+class TestValidateDataType:
+    """Data types supported by fides"""
+
+    def test_invalid_data_type(self):
+        with pytest.raises(ValueError):
+            valid_data_type("str")
+
+    def test_valid_data_type(self):
+        assert valid_data_type("string")
+
+
+class TestValidateFidesopsMeta:
+    """For backwards compatibility, allowing fidesops_meta to be passed in on various models"""
+
+    def test_fidesops_meta_on_dataset(self):
+        """fidesops_meta copied to fides_meta"""
+        dataset = Dataset(
+            fides_key="test_dataset",
+            fidesops_meta={"after": ["other_dataset"]},
+            collections=[],
+        )
+
+        assert not hasattr(dataset, "fidesops_meta")
+        assert dataset.fides_meta == DatasetMetadata(
+            after=["other_dataset"], resource_id=None
+        )
+
+    def test_fidesops_meta_on_collection(self):
+        """fidesops_meta copied to fides_meta"""
+        collection = DatasetCollection(
+            name="orange_collection",
+            fidesops_meta={"after": ["other_dataset.other_collection"]},
+            fields=[],
+        )
+
+        assert not hasattr(collection, "fidesops_meta")
+        assert collection.fides_meta == CollectionMeta(
+            after=["other_dataset.other_collection"]
+        )
+
+    def test_fidesops_meta_on_field(self):
+        """fidesops_meta copied to fides_meta"""
+        field = DatasetField(
+            name="test_field",
+            fidesops_meta={"identity": "identifiable_field_name", "primary_key": False},
+            fields=[],
+        )
+
+        assert not hasattr(field, "fidesops_meta")
+
+        assert field.fides_meta == FidesMeta(
+            references=None,
+            identity="identifiable_field_name",
+            primary_key=False,
+            data_type=None,
+            length=None,
+            return_all_elements=None,
+            read_only=None,
+        )
+
+    def test_specify_fides_meta_directly(self):
+        """fidesops_meta copied to fides_meta"""
+        field = DatasetField(
+            name="test_field",
+            fides_meta={"identity": "identifiable_field_name", "primary_key": False},
+            fields=[],
+        )
+
+        assert not hasattr(field, "fidesops_meta")
+        assert field.fides_meta == FidesMeta(
+            references=None,
+            identity="identifiable_field_name",
+            primary_key=False,
+            data_type=None,
+            length=None,
+            return_all_elements=None,
+            read_only=None,
+        )
+
+    def test_specify_both_fidesops_meta_and_fides_meta(self):
+        """fidesops_meta copied to fides_meta - fides_meta field takes priority"""
+        field = DatasetField(
+            name="test_field",
+            fides_meta={
+                "identity": "identifiable_field_name",
+                "primary_key": False,
+            },
+            fidesops_meta={
+                "identity": "other_identifiable_field_name",
+                "primary_key": False,
+            },
+            fields=[],
+        )
+        assert not hasattr(field, "fidesops_meta")
+        assert field.fides_meta == FidesMeta(
+            references=None,
+            identity="identifiable_field_name",
+            primary_key=False,
+            data_type=None,
+            length=None,
+            return_all_elements=None,
+            read_only=None,
+        )
+
+
+class TestValidateFidesMeta:
+    def test_invalid_length(self):
+        with pytest.raises(ValueError):
+            FidesMeta(length=0)
+
+    def test_valid_length(self):
+        assert FidesMeta(length=1)
+
+
+class TestValidateDatasetField:
+    def test_return_all_elements_not_string_field(self):
+        with pytest.raises(ValidationError):
+            DatasetField(
+                name="test_field",
+                fides_meta=FidesMeta(
+                    references=None,
+                    identity="identifiable_field_name",
+                    primary_key=False,
+                    data_type="string",
+                    length=None,
+                    return_all_elements=True,
+                    read_only=None,
+                ),
+            )
+
+    def test_return_all_elements_on_array_field(self):
+        assert DatasetField(
+            name="test_field",
+            fides_meta=FidesMeta(
+                references=None,
+                identity="identifiable_field_name",
+                primary_key=False,
+                data_type="string[]",
+                length=None,
+                return_all_elements=True,
+                read_only=None,
+            ),
+        )
+
+    def test_data_categories_at_object_level(self):
+        with pytest.raises(ValidationError) as exc:
+            DatasetField(
+                name="test_field",
+                data_categories=["user"],
+                fides_meta=FidesMeta(
+                    references=None,
+                    identify=None,
+                    primary_key=False,
+                    data_type="object",
+                    length=None,
+                    return_all_elements=None,
+                    read_only=None,
+                ),
+                fields=[DatasetField(name="nested_field")],
+            )
+        assert "Object field 'test_field' cannot have specified data_categories" in str(
+            exc
+        )
+
+    def test_object_field_conflicting_types(self):
+        with pytest.raises(ValidationError) as exc:
+            DatasetField(
+                name="test_field",
+                data_categories=["user"],
+                fides_meta=FidesMeta(
+                    references=None,
+                    identify=None,
+                    primary_key=False,
+                    data_type="string",
+                    length=None,
+                    return_all_elements=None,
+                    read_only=None,
+                ),
+                fields=[DatasetField(name="nested_field")],
+            )
+        assert (
+            "The data type 'string' on field 'test_field' is not compatible with specified sub-fields."
+            in str(exc)
+        )
+
+    def test_data_categories_on_nested_fields(self):
+        DatasetField(
+            name="test_field",
+            fides_meta=FidesMeta(
+                references=None,
+                identify=None,
+                primary_key=False,
+                data_type="object",
+                length=None,
+                read_only=None,
+            ),
+            fields=[DatasetField(name="nested_field", data_categories=["user"])],
+        )
+
+
+class TestCollectionMeta:
+    def test_invalid_collection_key(self):
+        with pytest.raises(ValidationError):
+            CollectionMeta(after=[FidesCollectionKey("test_key")])
+
+    def test_collection_key_has_too_many_components(self):
+        with pytest.raises(ValidationError):
+            CollectionMeta(
+                after=[FidesCollectionKey("test_dataset.test_collection.test_field")]
+            )
+
+    def test_valid_collection_key(self):
+        CollectionMeta(after=[FidesCollectionKey("test_dataset.test_collection")])

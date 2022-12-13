@@ -53,9 +53,7 @@ def resources_dict():
                             name="Email",
                             description="User's Email",
                             path="another.another.path",
-                            data_categories=[
-                                "user.contact.email"
-                            ],
+                            data_categories=["user.contact.email"],
                             data_qualifier="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
                         ),
                     ],
