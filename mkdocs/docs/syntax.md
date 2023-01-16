@@ -3,7 +3,7 @@
 
 Other pages in this language section describe various concepts and resources that appear in the Fides language. This page describes the syntax of the language in more detail to help better interpret Fides whether you're authoring or reading.
 
-The Fides language is an intentionally simple language designed to be relatively easy for anyone to read and write. The primary objective is to translate complex privacy compliance concepts into a simple syntax, it's for this reason Fides is entirely written as YAML configurations.
+The Fides language is designed to be relatively easy for anyone to read and write. The primary objective is to translate complex privacy compliance concepts into an approachable syntax, it's for this reason Fides is entirely written as YAML configurations.
 
 ## YAML - Building Block of Fides
 

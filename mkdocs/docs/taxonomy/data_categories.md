@@ -68,8 +68,8 @@ Below is a reference for all subcategories of `system` and `user` to assist with
 | `browsing_history`                | `user`                                    |Content browsing history of a user.                                                            |
 | `contact`                         | `user`                                    |User contact data.                                                                             |
 | `address`                         | `user.contact`                            |User contact data related to an address.                                                       |
-| `email`                           | `user.contact`                    |User's email address.                                                                          |
-| `phone_number`                    | `user.contact`                    |User's phone number.                                                                           |
+| `email`                           | `user.contact`                            |User's email address.                                                                          |
+| `phone_number`                    | `user.contact`                            |User's phone number.                                                                           |
 | `city`                            | `user.contact.address`                    |User's city level address data.                                                                |
 | `country`                         | `user.contact.address`                    |User's country level address data.                                                             |
 | `postal_code`                     | `user.contact.address`                    |User's postal code.                                                                            |
