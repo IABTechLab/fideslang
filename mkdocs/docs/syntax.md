@@ -3,13 +3,13 @@
 
 Other pages in this language section describe various concepts and resources that appear in the Fides language. This page describes the syntax of the language in more detail to help better interpret Fides whether you're authoring or reading.
 
-The Fides language is an intentionally simple language designed to be relatively easy for anyone to read and write. The primary objective is to translate complex privacy compliance concepts into a simple syntax, it's for this reason Fides is entirely written as YAML configurations.
+The Fides language is designed to be relatively easy for anyone to read and write. The primary objective is to translate complex privacy compliance concepts into an approachable syntax, it's for this reason Fides is entirely written as YAML configurations.
 
 ## YAML - Building Block of Fides
 
 ### Fides Taxonomy
 
-The Fides language is intentionally simple. To assure this, Fides declarations use predefined primitives (e.g. data categories) that are used when describing your datasets, systems, policies, etc. These predefined primitives exist as part of the Fides taxonomy which is maintained in your `fidesctl` server so they can be consistently used across your organization's development team. 
+The Fides language is intentionally simple. To assure this, Fides declarations use predefined primitives (e.g. data categories) that are used when describing your datasets, systems, policies, etc. These predefined primitives exist as part of the Fides taxonomy which is maintained in your Fides server so they can be consistently used across your organization's development team. 
 
 You can learn more about the taxonomy structure and how to extend it in the [taxonomy guide](./taxonomy/overview.md).
 

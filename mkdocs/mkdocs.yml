@@ -1,24 +1,27 @@
 site_name: Fides Language
 site_url: https://ethyca.github.io/fideslang
+
 nav:
-  - What is Fideslang?: index.md
-  - Overview: overview.md
-  - Fideslang Visual Explorer: explorer.md
-  - Syntax: syntax.md
-  - Taxonomy:
-      - Overview: taxonomy/overview.md
-      - Data Categories: taxonomy/data_categories.md
-      - Data Uses: taxonomy/data_uses.md
-      - Data Subjects: taxonomy/data_subjects.md
-      - Data Qualifiers: taxonomy/data_qualifiers.md
-  - Resources:
-      - Organization: resources/organization.md
-      - Policy: resources/policy.md
-      - Registry: resources/registry.md
-      - System: resources/system.md
-      - Dataset: resources/dataset.md
-  - Github Repo: https://github.com/ethyca/fideslang
-  - License: license.md
+  - Fides: https://ethyca.github.io/fides/
+  - Fides UI: https://ethyca.github.io/fides/ui/overview/
+  - Fides Lang: 
+      - What is Fideslang?: index.md
+      - Overview: overview.md
+      - Fideslang Visual Explorer: explorer.md
+      - Syntax: syntax.md
+      - Taxonomy:
+          - Overview: taxonomy/overview.md
+          - Data Categories: taxonomy/data_categories.md
+          - Data Uses: taxonomy/data_uses.md
+          - Data Subjects: taxonomy/data_subjects.md
+          - Data Qualifiers: taxonomy/data_qualifiers.md
+      - Resources:
+          - Organization: resources/organization.md
+          - Policy: resources/policy.md
+          - Registry: resources/registry.md
+          - System: resources/system.md
+          - Dataset: resources/dataset.md
+  - About Ethyca: https://ethyca.github.io/fides/ethyca/
 
 theme:
   palette:
@@ -40,6 +43,7 @@ theme:
   features:
     - navigation.top
     - navigation.instant
+    - navigation.tabs
   custom_dir: overrides
 
 markdown_extensions:

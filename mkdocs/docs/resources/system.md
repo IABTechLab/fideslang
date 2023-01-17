@@ -121,7 +121,7 @@ system:
           - yet_another_demo_system
 ```
 
-**Demo manifest file:** `/fides/fidesctl/demo_resources/demo_system.yml`
+**Demo manifest file:** `/fides/demo_resources/demo_system.yml`
 
 ### **API**
 
