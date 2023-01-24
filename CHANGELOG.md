@@ -14,12 +14,17 @@ The types of changes are:
 * `Fixed` for any bug fixes.
 * `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/1.3.1...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/1.3.2...main)
 
 ### Changed
+* Make `PrivacyDeclation.name` optional [#97](https://github.com/ethyca/fideslang/pull/97)
 
+## [1.3.2](https://github.com/ethyca/fideslang/compare/1.3.1...1.3.2)
+
+### Changed
+* Update css to brand colors, edit footer [#87](https://github.com/ethyca/fideslang/pull/87)
 * Moved over DSR concepts into Fideslang. Expanded allowable characters for FideKey and added additional Dataset validation. [#95](https://github.com/ethyca/fideslang/pull/95)
-
+* Docs css and link updates [#93](https://github.com/ethyca/fideslang/pull/93)
 
 ## [1.3.1](https://github.com/ethyca/fideslang/compare/1.3.0...1.3.1)
 

@@ -783,7 +783,7 @@ class PrivacyDeclaration(BaseModel):
     to the privacy data types.
     """
 
-    name: str = Field(
+    name: Optional[str] = Field(
         description="The name of the privacy declaration on the system.",
     )
     data_categories: List[FidesKey] = Field(
