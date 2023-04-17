@@ -824,6 +824,11 @@ class PrivacyDeclaration(BaseModel):
 
         return value
 
+    class Config:
+        """Config for the Privacy Declaration"""
+
+        orm_mode = True
+
 
 class SystemMetadata(BaseModel):
     """
