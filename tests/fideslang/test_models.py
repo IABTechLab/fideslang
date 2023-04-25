@@ -1,6 +1,6 @@
 from pytest import deprecated_call, mark, raises
 
-from fideslang import DataFlow, PrivacyDeclaration, System, Dataset
+from fideslang import DataFlow, Dataset, PrivacyDeclaration, System
 from fideslang.models import DatasetCollection, DatasetField
 
 pytestmark = mark.unit
@@ -30,6 +30,18 @@ class TestDataFlow:
 class TestPrivacyDeclaration:
     def test_privacydeclaration_valid(self) -> None:
         assert PrivacyDeclaration(
+            data_categories=[],
+            data_qualifier="aggregated_data",
+            data_subjects=[],
+            data_use="provide",
+            egress=[],
+            ingress=[],
+            name="declaration-name",
+        )
+
+    def test_privacydeclaration_valid_with_id(self) -> None:
+        assert PrivacyDeclaration(
+            id="pri_12345",
             data_categories=[],
             data_qualifier="aggregated_data",
             data_subjects=[],
