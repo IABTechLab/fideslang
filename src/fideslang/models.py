@@ -783,6 +783,9 @@ class PrivacyDeclaration(BaseModel):
     to the privacy data types.
     """
 
+    id: Optional[str] = Field(
+        description="The database-assigned ID of the privacy declaration on the system. This is meant to be a read-only field."
+    )
     name: Optional[str] = Field(
         description="The name of the privacy declaration on the system.",
     )
