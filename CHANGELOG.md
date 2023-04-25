@@ -17,6 +17,11 @@ The types of changes are:
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/1.3.2...main)
 
 ### Changed
+* Include an optional `id` field on `PrivacyDeclaration` model [#103](https://github.com/ethyca/fideslang/pull/103)
+
+## [1.3.4](https://github.com/ethyca/fideslang/compare/1.3.3...1.3.4)
+
+### Changed
 * Make `PrivacyDeclaration` use pydantic `orm_mode` [#101](https://github.com/ethyca/fideslang/pull/101)
 
 ## [1.3.3](https://github.com/ethyca/fideslang/compare/1.3.2...1.3.3)
