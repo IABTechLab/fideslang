@@ -232,31 +232,6 @@ def test_create_valid_system():
 
 
 @pytest.mark.unit
-def test_circular_dependency_system():
-    with pytest.raises(ValidationError):
-        System(
-            organization_fides_key=1,
-            registryId=1,
-            fides_key="test_system",
-            system_type="SYSTEM",
-            name="Test System",
-            description="Test Policy",
-            privacy_declarations=[
-                PrivacyDeclaration(
-                    name="declaration-name",
-                    data_categories=[],
-                    data_use="provide.service",
-                    data_subjects=[],
-                    data_qualifier="aggregated_data",
-                    dataset_references=["test_system"],
-                )
-            ],
-            egress=[DataFlow(fides_key="test_system", type="system", data_categories=None),],
-        )
-    assert True
-
-
-@pytest.mark.unit
 @pytest.mark.parametrize("country_code", ["United States", "US", "usa"])
 def test_invalid_country_identifier(country_code: str):
     """Validate some invalid country identifiers raise an error"""

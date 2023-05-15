@@ -8,7 +8,6 @@ from typing import Dict, List, Optional, Pattern, Set, Tuple
 from pydantic import ConstrainedStr
 
 from fideslang.default_fixtures import COUNTRY_CODES
-from fideslang.models import DataFlow
 
 VALID_COUNTRY_CODES = [country["alpha3Code"] for country in COUNTRY_CODES]
 
@@ -54,20 +53,6 @@ def no_self_reference(value: FidesKey, values: Dict) -> FidesKey:
     """
     fides_key = FidesKey.validate(values.get("fides_key", ""))
     if value == fides_key:
-        raise FidesValidationError("FidesKey can not self-reference!")
-    return value
-
-
-def no_self_reference_in_data_flow(value: DataFlow, values: Dict) -> FidesKey:
-    """
-    Checks to make sure that the resource.fides_key doesn't match other fides_key
-    references within an object.
-
-    i.e. System.egress.fides_key != System.fides_key
-    """
-
-    fides_key = FidesKey.validate(values.get("fides_key", ""))
-    if value.fides_key == fides_key:
         raise FidesValidationError("FidesKey can not self-reference!")
     return value
 
