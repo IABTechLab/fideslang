@@ -2,22 +2,23 @@ import pytest
 from pydantic import ValidationError
 
 from fideslang.models import (
+    CollectionMeta,
     DataCategory,
+    DataFlow,
+    Dataset,
+    DatasetCollection,
+    DatasetField,
+    DatasetMetadata,
     DataUse,
+    FidesCollectionKey,
+    FidesDatasetReference,
+    FidesMeta,
     FidesModel,
     Policy,
     PolicyRule,
     PrivacyDeclaration,
     PrivacyRule,
     System,
-    FidesDatasetReference,
-    FidesMeta,
-    Dataset,
-    DatasetMetadata,
-    DatasetCollection,
-    CollectionMeta,
-    DatasetField,
-    FidesCollectionKey,
 )
 from fideslang.validation import FidesKey, FidesValidationError, valid_data_type
 
@@ -225,7 +226,7 @@ def test_create_valid_system():
                 dataset_references=[],
             )
         ],
-        system_dependencies=["another_system", "yet_another_system"],
+        egress=[DataFlow(fides_key="another_system", type="system", data_categories=None), DataFlow(fides_key="yet_another_system", type="system", data_categories=None)],
     )
     assert True
 
@@ -250,7 +251,7 @@ def test_circular_dependency_system():
                     dataset_references=["test_system"],
                 )
             ],
-            system_dependencies=["test_system"],
+            egress=[DataFlow(fides_key="test_system", type="system", data_categories=None),],
         )
     assert True
 

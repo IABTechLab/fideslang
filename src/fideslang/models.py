@@ -25,6 +25,7 @@ from fideslang.validation import (
     check_valid_country_code,
     matching_parent_key,
     no_self_reference,
+    no_self_reference_in_data_flow,
     parse_data_type_string,
     sort_list_objects_by_name,
     valid_data_type,
@@ -956,9 +957,13 @@ class System(FidesModel):
         "privacy_declarations", allow_reuse=True
     )(sort_list_objects_by_name)
 
-    _no_self_reference: classmethod = validator(
-        "system_dependencies", allow_reuse=True, each_item=True
-    )(no_self_reference)
+    _no_self_reference_in_data_flow_egress: classmethod = validator(
+        "egress", allow_reuse=True, each_item=True
+    )(no_self_reference_in_data_flow)
+
+    _no_self_reference_in_data_flow_ingress: classmethod = validator(
+        "ingress", allow_reuse=True, each_item=True
+    )(no_self_reference_in_data_flow)
 
     _check_valid_country_code: classmethod = country_code_validator
 
