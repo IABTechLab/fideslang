@@ -9,6 +9,7 @@ from .models import (
     Taxonomy,
 )
 
+# Update for v1.4
 DEFAULT_TAXONOMY = Taxonomy(
     data_category=[
         DataCategory(
