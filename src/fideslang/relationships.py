@@ -7,12 +7,7 @@ import inspect
 from functools import reduce
 from typing import List, Set
 
-
-from fideslang.models import (
-    FidesKey,
-    Taxonomy,
-    BaseModel,
-)
+from fideslang.models import BaseModel, FidesKey, Taxonomy
 from fideslang.utils import get_resource_by_fides_key
 
 
