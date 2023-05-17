@@ -1,5 +1,6 @@
 from fideslang.models import DataUse
 
+# Update for 1.4
 DEFAULT_DATA_USES = [
     DataUse(
         fides_key="provide",
