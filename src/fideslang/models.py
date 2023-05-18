@@ -20,7 +20,7 @@ from pydantic import (
     validator,
 )
 
-from fideslang.validation import (  # no_self_reference_in_data_flow,
+from fideslang.validation import (
     FidesKey,
     check_valid_country_code,
     matching_parent_key,
