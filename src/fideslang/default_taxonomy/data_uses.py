@@ -1,6 +1,7 @@
 from fideslang.models import DataUse
 
 DEFAULT_DATA_USES = [
+    # Provide
     DataUse(
         fides_key="provide",
         organization_fides_key="default_organization",
@@ -49,6 +50,7 @@ DEFAULT_DATA_USES = [
         parent_key="provide.service",
         is_default=True,
     ),
+    # Improve
     DataUse(
         fides_key="improve",
         organization_fides_key="default_organization",
