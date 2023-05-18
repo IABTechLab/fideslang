@@ -118,14 +118,6 @@ DEFAULT_DATA_USES = [
         is_default=True,
     ),
     DataUse(
-        fides_key="marketing.advertising.third_party",
-        organization_fides_key="default_organization",
-        name="Third Party Advertising",
-        description="The promotion of products or services targeting users based on processing of specific categories of data acquired from third party sources.",
-        parent_key="marketing.advertising",
-        is_default=True,
-    ),
-    DataUse(
         fides_key="marketing.advertising.first_party.contextual",
         organization_fides_key="default_organization",
         name="First Party Contextual Advertising",
@@ -134,7 +126,7 @@ DEFAULT_DATA_USES = [
         is_default=True,
     ),
     DataUse(
-        fides_key="marketing.advertising.first_party.personalized",
+        fides_key="marketing.advertising.first_party.targeted",
         organization_fides_key="default_organization",
         name="First Party Personalized Advertising",
         description="The targeting and changing of promotional content based on processing of specific data categories from the user.",
@@ -142,7 +134,7 @@ DEFAULT_DATA_USES = [
         is_default=True,
     ),
     DataUse(
-        fides_key="marketing.advertising.third_party.personalized",
+        fides_key="marketing.advertising.third_party.targeted",
         organization_fides_key="default_organization",
         name="Third Party Personalized Advertising",
         description="The targeting and changing of promotional content based on processing of specific categories of user data acquired from third party sources.",
@@ -163,14 +155,6 @@ DEFAULT_DATA_USES = [
         organization_fides_key="default_organization",
         name="Sharing for Processing Payments",
         description="Sharing of specified data categories with a third party for payment processing.",
-        parent_key="third_party_sharing",
-        is_default=True,
-    ),
-    DataUse(
-        fides_key="third_party_sharing.personalized_advertising",
-        organization_fides_key="default_organization",
-        name="Sharing for Personalized Advertising",
-        description="Sharing of specified data categories for the purpose of marketing/advertising/promotion.",
         parent_key="third_party_sharing",
         is_default=True,
     ),
