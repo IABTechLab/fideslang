@@ -4,8 +4,8 @@ Exports various fideslang objects for easier use elsewhere.
 
 from typing import Dict, Type, Union
 
-from .default_fixtures import COUNTRY_CODES
-from .default_taxonomy import DEFAULT_TAXONOMY
+from fideslang.default_fixtures import COUNTRY_CODES
+from fideslang.default_taxonomy import DEFAULT_TAXONOMY
 
 # Export the Models
 from .models import (
@@ -18,10 +18,10 @@ from .models import (
     DataSubject,
     DataUse,
     Evaluation,
+    FidesCollectionKey,
+    FidesDatasetReference,
     FidesMeta,
     FidesModel,
-    FidesDatasetReference,
-    FidesCollectionKey,
     Organization,
     Policy,
     PolicyRule,
