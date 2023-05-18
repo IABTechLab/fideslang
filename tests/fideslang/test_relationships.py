@@ -3,6 +3,7 @@ import pytest
 from fideslang import relationships
 from fideslang.models import (
     DataCategory,
+    DataFlow,
     Dataset,
     DatasetCollection,
     DatasetField,
@@ -34,7 +35,7 @@ def test_find_referenced_fides_keys_2():
         name="test_dc",
         fides_key="test_dc",
         description="test description",
-        system_dependencies=["key_1", "key_2"],
+        egress=[DataFlow(fides_key="key_1", type="system", data_categories=None), DataFlow(fides_key="key_2", type="system", data_categories=None)],
         system_type="test",
         privacy_declarations=None,
     )
@@ -65,7 +66,7 @@ def test_get_referenced_missing_keys():
                 name="test_system",
                 fides_key="test_system",
                 description="test description",
-                system_dependencies=["key_3", "key_4"],
+                egress=[DataFlow(fides_key="key_3", type="system", data_categories=None), DataFlow(fides_key="key_4", type="system", data_categories=None)],
                 system_type="test",
                 privacy_declarations=None,
             )
