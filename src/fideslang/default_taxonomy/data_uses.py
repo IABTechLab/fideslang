@@ -106,7 +106,7 @@ DEFAULT_DATA_USES = [
         organization_fides_key="default_organization",
         name="Advertising, Marketing or Promotion",
         description="The promotion of products or services targeted to users based on the the processing of user provided data in the system.",
-        parent_key=None,
+        parent_key="marketing",
         is_default=True,
     ),
     DataUse(
