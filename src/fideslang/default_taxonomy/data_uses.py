@@ -212,7 +212,7 @@ DEFAULT_DATA_USES = [
     ),
     # Finance
     DataUse(
-        fides_key="Finance",
+        fides_key="finance",
         name="Finance",
         organization_fides_key="default_organization",
         description="TODO",
