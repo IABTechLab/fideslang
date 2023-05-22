@@ -51,7 +51,6 @@ def no_self_reference(value: FidesKey, values: Dict) -> FidesKey:
 
     i.e. DataCategory.parent_key != DataCategory.fides_key
     """
-
     fides_key = FidesKey.validate(values.get("fides_key", ""))
     if value == fides_key:
         raise FidesValidationError("FidesKey can not self-reference!")

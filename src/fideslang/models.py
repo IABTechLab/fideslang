@@ -941,9 +941,6 @@ class System(FidesModel):
     privacy_declarations: List[PrivacyDeclaration] = Field(
         description=PrivacyDeclaration.__doc__,
     )
-    system_dependencies: Optional[List[FidesKey]] = Field(
-        description="A list of fides keys to model dependencies."
-    )
     joint_controller: Optional[ContactDetails] = Field(
         description=ContactDetails.__doc__,
     )
@@ -962,10 +959,6 @@ class System(FidesModel):
     _sort_privacy_declarations: classmethod = validator(
         "privacy_declarations", allow_reuse=True
     )(sort_list_objects_by_name)
-
-    _no_self_reference: classmethod = validator(
-        "system_dependencies", allow_reuse=True, each_item=True
-    )(no_self_reference)
 
     _check_valid_country_code: classmethod = country_code_validator
 
@@ -994,21 +987,6 @@ class System(FidesModel):
                     assert fides_key in [
                         data_flow.fides_key for data_flow in data_flows
                     ], f"PrivacyDeclaration '{value.name}' defines {direction} with '{fides_key}' and is applied to the System '{system}', which does not itself define {direction} with that resource."
-
-        return value
-
-    @validator("system_dependencies")
-    @classmethod
-    def deprecate_system_dependencies(cls, value: List[FidesKey]) -> List[FidesKey]:
-        """
-        Warn that the `system_dependencies` field is deprecated, if set.
-        """
-
-        if value is not None:
-            warn(
-                "The system_dependencies field is deprecated, and will be removed in a future version of fideslang. Use the 'egress' and 'ingress` fields instead.",
-                DeprecationWarning,
-            )
 
         return value
 
