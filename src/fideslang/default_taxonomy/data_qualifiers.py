@@ -1,4 +1,4 @@
-from fideslang.models import DataQualifier, FidesKey
+from fideslang.models import DataQualifier
 
 DEFAULT_DATA_QUALIFIERS = [
     DataQualifier(
