@@ -60,7 +60,7 @@ def export_csv() -> None:
             yaml_dict = yaml.safe_load(input_file)
 
         with open(csv_filename, "w") as csv_file:
-            print(f"Writing csv to {csv_filename}...")
+            print(f"> Writing csv to {csv_filename}...")
             assert len(yaml_dict.keys()) == 1  # should only have a single top-level key
             toplevel_key = next(iter(yaml_dict))
 
@@ -78,17 +78,19 @@ def export_csv() -> None:
                 unique_keys.remove("description")
                 unique_keys.append("description")
 
-            print(f"headers: {unique_keys}")
+            print(f"Headers: {unique_keys}")
             csv_writer = csv.DictWriter(csv_file, fieldnames=unique_keys)
             csv_writer.writeheader()
 
             # For convenience, generate a single "root" node
-            assert {"privacy_key", "name", "parent_key"}.issubset(unique_keys)
-            root_key = toplevel_key.replace("-", "_")
-            root_name = " ".join([word.capitalize() for word in root_key.split("_")])
-            root_node = {"privacy_key": root_key, "name": root_name}
-            print(f"Generating root node: {root_node}...")
-            csv_writer.writerow(root_node)
+            # assert {"privacy_key", "name", "parent_key"}.issubset(
+            #     unique_keys
+            # ), "Found more than one root node!"
+            # root_key = toplevel_key.replace("-", "_")
+            # root_name = " ".join([word.capitalize() for word in root_key.split("_")])
+            # root_node = {"privacy_key": root_key, "name": root_name}
+            # print(f"Generating root node: {root_node}...")
+            # csv_writer.writerow(root_node)
 
             for item in yaml_dict[toplevel_key]:
                 if item.get("parent_key", None) is not None:
@@ -96,9 +98,10 @@ def export_csv() -> None:
                     csv_writer.writerow(item)
                 else:
                     # Insert the new "root" node for items that have no parent
-                    new_item = {"parent_key": root_key}
-                    new_item.update(item)
-                    csv_writer.writerow(new_item)
+                    # new_item = {"parent_key": root_key}
+                    # new_item.update(item)
+                    # csv_writer.writerow(new_item)
+                    csv_writer.writerow(item)
 
 
 if __name__ == "__main__":

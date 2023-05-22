@@ -1,4 +1,53 @@
 data_use:
+- fides_key: Finance
+  organization_fides_key: default_organization
+  tags: null
+  name: Finance
+  description: TODO
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: analytics
+  organization_fides_key: default_organization
+  tags: null
+  name: Analytics
+  description: TODO
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: collect
+  organization_fides_key: default_organization
+  tags: null
+  name: Collect
+  description: Collecting and storing data in order to use it for another purpose
+    such as data training for ML.
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: employment
+  organization_fides_key: default_organization
+  tags: null
+  name: Employment
+  description: TODO
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
 - fides_key: essential
   organization_fides_key: default_organization
   tags: null
@@ -49,6 +98,19 @@ data_use:
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
   is_default: true
+- fides_key: essential.service.upgrades
+  organization_fides_key: default_organization
+  tags: null
+  name: Offer Upgrades
+  description: Offer upgrades or upsales such as increased capacity for the service
+    based on monitoring of service usage.
+  parent_key: essential.service
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
 - fides_key: essential.service.operations.support
   organization_fides_key: default_organization
   tags: null
@@ -75,19 +137,6 @@ data_use:
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
   is_default: true
-- fides_key: essential.service.upgrades
-  organization_fides_key: default_organization
-  tags: null
-  name: Offer Upgrades
-  description: Offer upgrades or upsales such as increased capacity for the service
-    based on monitoring of service usage.
-  parent_key: essential.service
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: false
-  legitimate_interest_impact_assessment: null
-  is_default: true
 - fides_key: improve
   organization_fides_key: default_organization
   tags: null
@@ -106,30 +155,6 @@ data_use:
   name: System
   description: The source system, product, service or application being improved.
   parent_key: improve
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: false
-  legitimate_interest_impact_assessment: null
-  is_default: true
-- fides_key: personalize
-  organization_fides_key: default_organization
-  tags: null
-  name: Personalize the capability
-  description: Personalize the product, service, application or system.
-  parent_key: null
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: false
-  legitimate_interest_impact_assessment: null
-  is_default: true
-- fides_key: personalize.system
-  organization_fides_key: default_organization
-  tags: null
-  name: System
-  description: The source system, product, service or application being personalized.
-  parent_key: personalize
   legal_basis: null
   special_category: null
   recipients: null
@@ -213,6 +238,54 @@ data_use:
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
   is_default: true
+- fides_key: operations
+  organization_fides_key: default_organization
+  tags: null
+  name: Operations
+  description: TODO
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: personalize
+  organization_fides_key: default_organization
+  tags: null
+  name: Personalize the capability
+  description: Personalize the product, service, application or system.
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: personalize.system
+  organization_fides_key: default_organization
+  tags: null
+  name: System
+  description: The source system, product, service or application being personalized.
+  parent_key: personalize
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: sales
+  organization_fides_key: default_organization
+  tags: null
+  name: Sales
+  description: TODO
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
 - fides_key: third_party_sharing
   organization_fides_key: default_organization
   tags: null
@@ -264,19 +337,6 @@ data_use:
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
   is_default: true
-- fides_key: collect
-  organization_fides_key: default_organization
-  tags: null
-  name: Collect
-  description: Collecting and storing data in order to use it for another purpose
-    such as data training for ML.
-  parent_key: null
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: false
-  legitimate_interest_impact_assessment: null
-  is_default: true
 - fides_key: train_ai_system
   organization_fides_key: default_organization
   tags: null
@@ -284,66 +344,6 @@ data_use:
   description: Training an AI system. Please note when this data use is specified,
     the method and degree to which a user may be directly identified in the resulting
     AI system should be appended.
-  parent_key: null
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: false
-  legitimate_interest_impact_assessment: null
-  is_default: true
-- fides_key: analytics
-  organization_fides_key: default_organization
-  tags: null
-  name: Analytics
-  description: TODO
-  parent_key: null
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: false
-  legitimate_interest_impact_assessment: null
-  is_default: true
-- fides_key: operations
-  organization_fides_key: default_organization
-  tags: null
-  name: Operations
-  description: TODO
-  parent_key: null
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: false
-  legitimate_interest_impact_assessment: null
-  is_default: true
-- fides_key: Finance
-  organization_fides_key: default_organization
-  tags: null
-  name: Finance
-  description: TODO
-  parent_key: null
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: false
-  legitimate_interest_impact_assessment: null
-  is_default: true
-- fides_key: employment
-  organization_fides_key: default_organization
-  tags: null
-  name: Employment
-  description: TODO
-  parent_key: null
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: false
-  legitimate_interest_impact_assessment: null
-  is_default: true
-- fides_key: sales
-  organization_fides_key: default_organization
-  tags: null
-  name: Sales
-  description: TODO
   parent_key: null
   legal_basis: null
   special_category: null
