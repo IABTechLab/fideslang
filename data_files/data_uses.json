@@ -1,20 +1,6 @@
 {
     "data_use": [
         {
-            "fides_key": "Finance",
-            "organization_fides_key": "default_organization",
-            "tags": null,
-            "name": "Finance",
-            "description": "TODO",
-            "parent_key": null,
-            "legal_basis": null,
-            "special_category": null,
-            "recipients": null,
-            "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
-        },
-        {
             "fides_key": "analytics",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -147,6 +133,20 @@
             "name": "Support Optimization",
             "description": "Use of specified data categories to optimize and improve support operations in order to provide the service.",
             "parent_key": "essential.service.operations.support",
+            "legal_basis": null,
+            "special_category": null,
+            "recipients": null,
+            "legitimate_interest": false,
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
+        },
+        {
+            "fides_key": "finance",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Finance",
+            "description": "TODO",
+            "parent_key": null,
             "legal_basis": null,
             "special_category": null,
             "recipients": null,
