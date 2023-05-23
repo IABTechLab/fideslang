@@ -225,6 +225,20 @@
             "is_default": true
         },
         {
+            "fides_key": "marketing.advertising.third_party",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Third Party Advertising",
+            "description": "The targeting and changing of promotional content based on processing of specific categories of user data acquired from third party sources.",
+            "parent_key": "marketing.advertising",
+            "legal_basis": null,
+            "special_category": null,
+            "recipients": null,
+            "legitimate_interest": false,
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
+        },
+        {
             "fides_key": "marketing.advertising.first_party.contextual",
             "organization_fides_key": "default_organization",
             "tags": null,
