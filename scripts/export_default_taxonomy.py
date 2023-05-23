@@ -1,9 +1,10 @@
 """
 Export the Default Fideslang Taxonomy as YAML, JSON and CSV files.
 """
-import yaml
-import json
 import csv
+import json
+import shutil
+import yaml
 from fideslang import DEFAULT_TAXONOMY
 from fideslang.manifests import write_manifest
 from typing import Tuple
@@ -15,6 +16,7 @@ FILE_RESOURCE_PAIRS: Tuple[Tuple[str, str], ...] = (
     ("data_uses", "data_use"),
 )
 DATA_DIR = "data_files"
+DOCS_CSV_DIR = "mkdocs/docs/csv"
 
 
 def export_yaml() -> None:
@@ -53,6 +55,7 @@ def export_csv() -> None:
     for filename, _ in FILE_RESOURCE_PAIRS:
         input_filename = f"{DATA_DIR}/{filename}.yml"
         csv_filename = input_filename.replace("yml", "csv")
+        docs_filename = f"{DOCS_CSV_DIR}/{filename}.csv"
 
         # Load the Taxonomy from the YAML file
         with open(input_filename, "r") as input_file:
@@ -82,26 +85,29 @@ def export_csv() -> None:
             csv_writer = csv.DictWriter(csv_file, fieldnames=unique_keys)
             csv_writer.writeheader()
 
-            # For convenience, generate a single "root" node
-            # assert {"privacy_key", "name", "parent_key"}.issubset(
-            #     unique_keys
-            # ), "Found more than one root node!"
-            # root_key = toplevel_key.replace("-", "_")
-            # root_name = " ".join([word.capitalize() for word in root_key.split("_")])
-            # root_node = {"privacy_key": root_key, "name": root_name}
-            # print(f"Generating root node: {root_node}...")
-            # csv_writer.writerow(root_node)
+            # For visualizing as a hierarchy, generate a virtual "root" node to be a single parent
+            assert {"fides_key", "name", "parent_key"}.issubset(
+                unique_keys
+            ), "Missing required keys for CSV!"
+            root_key = toplevel_key.replace("-", "_")
+            root_name = " ".join([word.capitalize() for word in root_key.split("_")])
+            root_node = {"fides_key": root_key, "name": root_name}
+            print(f"Generating root node: {root_node}...")
+            csv_writer.writerow(root_node)
 
             for item in yaml_dict[toplevel_key]:
                 if item.get("parent_key", None) is not None:
                     # Write out the item normally if it has a parent
                     csv_writer.writerow(item)
                 else:
-                    # Insert the new "root" node for items that have no parent
-                    # new_item = {"parent_key": root_key}
-                    # new_item.update(item)
-                    # csv_writer.writerow(new_item)
+                    # Insert the new "root" node for items that are top-level nodes
+                    new_item = {"parent_key": root_key}
+                    item.update(new_item)
+                    print(f"Edited parent for {item['fides_key']}")
                     csv_writer.writerow(item)
+
+        print(f"> Copying csv to docs site at {docs_filename}...")
+        shutil.copy(csv_filename, docs_filename)
 
 
 if __name__ == "__main__":
