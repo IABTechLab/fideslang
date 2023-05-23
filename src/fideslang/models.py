@@ -6,7 +6,7 @@ Contains all of the Fides resources modeled as Pydantic models.
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Literal, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 from warnings import warn
 
 from pydantic import (
@@ -19,6 +19,9 @@ from pydantic import (
     root_validator,
     validator,
 )
+
+# import `Literal` from typing_extensions to work around https://github.com/pydantic/pydantic/issues/5821
+from typing_extensions import Literal
 
 from fideslang.validation import (
     FidesKey,
