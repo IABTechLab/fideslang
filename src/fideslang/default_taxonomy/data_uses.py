@@ -134,6 +134,14 @@ DEFAULT_DATA_USES = [
         is_default=True,
     ),
     DataUse(
+        fides_key="marketing.advertising.third_party",
+        organization_fides_key="default_organization",
+        name="Third Party Advertising",
+        description="The targeting and changing of promotional content based on processing of specific categories of user data acquired from third party sources.",
+        parent_key="marketing.advertising",
+        is_default=True,
+    ),
+    DataUse(
         fides_key="marketing.advertising.third_party.targeted",
         organization_fides_key="default_organization",
         name="Third Party Personalized Advertising",
