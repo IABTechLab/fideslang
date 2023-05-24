@@ -19,6 +19,7 @@ The types of changes are:
 ### Changed
 
 - Make `PrivacyDeclaration` use pydantic `orm_mode` [#101](https://github.com/ethyca/fideslang/pull/101)
+- Updated the default data uses [#107](https://github.com/ethyca/fideslang/pull/107)
 
 ### Remove
 
