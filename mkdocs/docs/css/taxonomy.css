@@ -157,6 +157,11 @@
     margin-top: 1em;
 }
 
+.vis-tooltip code {
+    font-size: 10px;
+    color: rgb(79, 86, 107);
+}
+
 
 /* Sunburst */
 

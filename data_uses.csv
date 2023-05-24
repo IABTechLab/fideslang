@@ -1,0 +1,47 @@
+fides_key,is_default,legal_basis,legitimate_interest,legitimate_interest_impact_assessment,name,organization_fides_key,parent_key,recipients,special_category,tags,description
+analytics,TRUE,,FALSE,,Analytics,default_organization,,,,,"Analytics for activities such as system and advertising performance reporting, insights and fraud detection."
+analytics.reporting,TRUE,,FALSE,,Analytics for Reporting,default_organization,analytics.reporting,,,,Analytics for general reporting such as system and advertising performance.
+analytics.reporting.ad_performance,TRUE,,FALSE,,Analytics for Advertising Performance,default_organization,analytics.reporting,,,,Analytics for reporting of advertising performance.
+analytics.reporting.campaign_insights,TRUE,,FALSE,,Analytics for Insights,default_organization,analytics.reporting,,,,Analytics for reporting of campaign insights related to advertising and promotion activities.
+analytics.reporting.system,TRUE,,FALSE,,Analytics for System Activity,default_organization,analytics.reporting,,,,Analytics for reporting on system activity.
+analytics.reporting.system.performance,TRUE,,FALSE,,Analytics for System Performance,default_organization,analytics.reporting,,,,Analytics for reporting on system performance.
+collect,TRUE,,FALSE,,Collect,default_organization,,,,,Collecting or storing data in order to use it for another purpose which has not yet been expressly defined.
+employment,TRUE,,FALSE,,Employment,default_organization,,,,,Processing of data for the purpose of recruitment or employment and human resources (HR) related activities.
+employment.recruitment,TRUE,,FALSE,,Employment Recruitment,default_organization,employment,,,,Processing of prospective employees for the purpose of recruitment.
+essential,TRUE,,FALSE,,Essential,default_organization,,,,,"Essential to operating the service or product, including legal obligations, support and basic system operations."
+essential.fraud_detection,TRUE,,FALSE,,Essential Fraud Detection,default_organization,essential,,,,"Essential to detect possible fraud or misuse of the product, service, application or system."
+essential.legal_obligation,TRUE,,FALSE,,Essential Legal Obligation,default_organization,essential,,,,Essential to meeting a legal or compliance obligations such as consent management.
+essential.service,TRUE,,FALSE,,Essential for Service,default_organization,essential,,,,"Essential to providing the product, service, application or system, without which the product/service would not be possible."
+essential.service.notifications,TRUE,,FALSE,,Essential Service Notifications,default_organization,essential.service,,,,"Essential to send notifications about the product, service, application or system."
+essential.service.notifications.email,TRUE,,FALSE,,Essential Email Service Notifications,default_organization,essential.service.notifications,,,,"Essential to send email notifications about the product, service, application or system."
+essential.service.notifications.sms,TRUE,,FALSE,,Essential SMS Service Notifications,default_organization,essential.service.notifications,,,,"Essential to send SMS notifications about the product, service, application or system."
+essential.service.operations,TRUE,,FALSE,,Essential for Service Operations,default_organization,essential.service,,,,"Essential to ensure the operation of the product, service, application or system."
+essential.service.operations.support,TRUE,,FALSE,,Essential for Service Operations Support,default_organization,essential.service.operations,,,,"Essential to provide support for the product, service, application or system."
+essential.service.operations.support.optimization,TRUE,,FALSE,,Essential for Service Support Optimization,default_organization,essential.service.operations.support,,,,"Essential to optimize and improve support for for the product, service, application or system."
+essential.service.payment_processing,TRUE,,FALSE,,Essential for Service Payment Processing,default_organization,essential.service,,,,"Essential to process payments for the product, service, application or system."
+essential.service.upgrades,TRUE,,FALSE,,Essential for Service Upgrades,default_organization,essential.service,,,,Essential to provide timely system upgrade information options.
+finance,TRUE,,FALSE,,Finance,default_organization,,,,,Finance and accounting activities such as audits and tax reporting.
+improve,TRUE,,FALSE,,Improve,default_organization,,,,,"Improve the product, service, application or system."
+improve.system,TRUE,,FALSE,,System,default_organization,improve,,,,"Improve the specific product, service, application or system."
+marketing,TRUE,,FALSE,,Marketing,default_organization,,,,,"Marketing, promotion, advertising and sales activities for the product, service, application or system."
+marketing.advertising,TRUE,,FALSE,,"Advertising, Marketing or Promotion",default_organization,marketing,,,,"Advertising and promotion for the product, service, application or system and associated services."
+marketing.advertising.first_party,TRUE,,FALSE,,First Party Advertising,default_organization,marketing.advertising,,,,Advertising and promotion based on first party data collected or derived about the user.
+marketing.advertising.first_party.contextual,TRUE,,FALSE,,First Party Contextual Advertising,default_organization,marketing.advertising.first_party,,,,Contextual advertising based on current content being viewed by the user of the system or service.
+marketing.advertising.first_party.targeted,TRUE,,FALSE,,First Party Personalized Advertising,default_organization,marketing.advertising.first_party,,,,"Targeted advertising and promotion of services to users based on data collected, or derived about the user from use of the system."
+marketing.advertising.frequency_capping,TRUE,,FALSE,,Frequency Capping,default_organization,marketing.advertising,,,,Restricting the number of times a specific advertisement is shown to an individual.
+marketing.advertising.negative_targeting,TRUE,,FALSE,,Negative Targeting,default_organization,marketing.advertising,,,,Rules used to ensure a certain audience or group is not targeted by advertising.
+marketing.advertising.third_party,TRUE,,FALSE,,Third Party Advertising,default_organization,marketing.advertising,,,,Advertising and promotion of services to users from data joined with or provided by 3rd parties.
+marketing.advertising.third_party.targeted,TRUE,,FALSE,,Third Party Targeted Advertising,default_organization,marketing.advertising.third_party,,,,Targeted advertising and promotion of services to users from data joined with or provided by 3rd parties.
+marketing.communications,TRUE,,FALSE,,Marketing Communications,default_organization,,,,,"Combined use of channels to message and market to a customer, user or prospect."
+marketing.communications.email,TRUE,,FALSE,,Marketing Email Communications,default_organization,marketing.communications,,,,E-mail marketing communications.
+marketing.communications.sms,TRUE,,FALSE,,Marketing SMS Communications,default_organization,marketing.communications,,,,SMS marketing communications.
+operations,TRUE,,FALSE,,Operations,default_organization,,,,,Business processes necessary to the organization's operation.
+personalize,TRUE,,FALSE,,Personalize,default_organization,,,,,"The use of specified data categories to personalize the product, service, application or system."
+personalize.content,TRUE,,FALSE,,Content Personalization,default_organization,personalize,,,,"Personalization of the content of the product, service, application or system."
+personalize.system,TRUE,,FALSE,,System Personalization,default_organization,personalize,,,,"Personalization of the product, service, application or system."
+sales,TRUE,,FALSE,,Sales,default_organization,,,,,Sales activities such as communications and outreach.
+third_party_sharing,TRUE,,FALSE,,Third Party Sharing,default_organization,,,,,The transfer of data to third parties outside of the system or service's scope.
+third_party_sharing.payment_processing,TRUE,,FALSE,,Sharing for Processing Payments,default_organization,third_party_sharing,,,,[relocated to essential.service]
+third_party_sharing.fraud_detection,TRUE,,FALSE,,Sharing for Fraud Detection,default_organization,third_party_sharing,,,,[relocated to essential.service]
+third_party_sharing.legal_obligation,TRUE,,FALSE,,Sharing for Legal Obligation,default_organization,third_party_sharing,,,,"Sharing of data for legal obligations, including contracts, applicable laws or regulations."
+train_ai_system,TRUE,,FALSE,,Train AI System,default_organization,,,,,Training an AI system or data model for machine learning.

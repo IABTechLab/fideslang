@@ -45,6 +45,10 @@ var VisTooltip = class VisTooltip {
     <div class="card">
       <div class="card-title">${accessor.name(d.data)}</div>
       <div>
+        <div class="card-subtitle">Fides Key:</div>
+        <code>${accessor.id(d.data)}</code>
+      </div>
+      <div>
         <div class="card-subtitle">Hierarchy:</div>
         <div style="text-transform: capitalize">${accessor
           .id(d.data)
@@ -737,28 +741,34 @@ Promise.all([
     categories: d3
       .scaleOrdinal()
       .domain([
-        "Data Category",
-        "System Data",
-        "User Data",
+        "data_category",
+        "system",
+        "user",
       ])
       .range([
+        "#2a3045",
         "#0861ce",
         "#8459cc",
-        "#c14cbb",
       ]),
     uses: d3
       .scaleOrdinal()
       .domain([
-        "Data Use",
-        "Provide the capability",
-        "Improve the capability",
-        "Personalize the capability",
-        "Advertising, Marketing or Promotion",
-        "Third Party Sharing",
-        "Collect",
-        "Train AI System",
+        "data_use",
+        "analytics",
+        "collect",
+        "employment",
+        "essential",
+        "finance",
+        "improve",
+        "marketing",
+        "operations",
+        "personalize",
+        "sales",
+        "third_party_sharing",
+        "train_ai_system",
       ])
       .range([
+        "#2a3045",
         "#0861ce",
         "#8459cc",
         "#c14cbb",
@@ -767,28 +777,33 @@ Promise.all([
         "#ff635b",
         "#ff8436",
         "#ffa600",
+        "#ffcf40",
+        "#acff40",
+        "#58ff40",
+        "#52cf70",
       ]),
     subjects: d3
       .scaleOrdinal()
       .domain([
-        "Data Subject",
-        "Anonymous User",
-        "Citizen Voter",
-        "Commuter",
-        "Consultant",
-        "Custom",
-        "Employee",
-        "Job Applicant",
-        "Next of Kin",
-        "Passenger",
-        "Patient",
-        "Prospect",
-        "Shareholder",
-        "Supplier/Vendor",
-        "Trainee",
-        "Visitor",
+        "data_subject",
+        "anonymous_user",
+        "citizen_voter",
+        "commuter",
+        "consultant",
+        "customer",
+        "employee",
+        "job_applicant",
+        "next_of_kin",
+        "passenger",
+        "patient",
+        "prospect",
+        "shareholder",
+        "supplier_vendor",
+        "trainee",
+        "visitor",
       ])
       .range([
+        "#2a3045",
         "#0861ce",
         "#ff7040",
         "#ffa040",
@@ -804,44 +819,37 @@ Promise.all([
         "#c93ffd",
         "#f73ffc",
         "#fb409e",
-        "#fd406f",
       ]),
     qualifiers: d3
       .scaleOrdinal()
       .domain([
-        "Data Qualifier",
-        "Identified Data",
-        "Pseudonymized Data",
-        "Unlinked Pseudonymized Data",
-        "Anonymized Data",
-        "Aggregated Data",
+        "data_qualifier",
+        "aggregated",
+        "aggregated.anonymized",
+        "aggregated.anonymized.unlinked_pseudonymized",
+        "aggregated.anonymized.unlinked_pseudonymized.pseudonymized",
+        "aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
       ])
       .range([
+        "#2a3045",
         "#0861ce",
         "#8459cc",
         "#c14cbb",
         "#ed43a0",
         "#ff4a7f",
-        "#ffa600",
       ]),
   };
 
-  const elColorLegend = document.querySelector("#vis-color-legend");
-
-  const colorLegend = new VisColorLegend({
-    el: elColorLegend,
-  });
-
   const accessor = {
-    id: (d) => d.privacy_key,
+    id: (d) => d.fides_key,
     parentId: (d) => d.parent_key,
     name: (d) =>
-      d.privacy_key
-        .slice(d.privacy_key.lastIndexOf(".") + 1)
+      d.fides_key
+        .slice(d.fides_key.lastIndexOf(".") + 1)
         .split("_")
         .map((d) => d[0].toUpperCase() + d.slice(1))
         .join(" "),
-    colorKey: (d) => d.name,
+    colorKey: (d) => d.fides_key,
     description: (d) => d.description,
   };
 
@@ -869,7 +877,6 @@ Promise.all([
       selected.chartData = event.currentTarget.dataset.chartData;
       const data = chartData[selected.chartData].copy();
       const color = colors[selected.chartData].copy();
-      colorLegend.updateScale(color);
       chart[selected.chartType].updateData({
         data,
         color,
@@ -916,7 +923,6 @@ Promise.all([
       }
       const data = chartData[selected.chartData].copy();
       const color = colors[selected.chartData].copy();
-      colorLegend.updateScale(color);
       chart[selected.chartType].updateData({
         data,
         color,
