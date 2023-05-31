@@ -110,6 +110,14 @@ DEFAULT_DATA_USES = [
         is_default=True,
     ),
     DataUse(
+        fides_key="essential.service.authentication",
+        organization_fides_key="default_organization",
+        name="Essential Service Authentication",
+        description="Authenticate users to the product, service, application or system.",
+        parent_key="essential.service",
+        is_default=True,
+    ),
+    DataUse(
         fides_key="essential.service.notifications",
         organization_fides_key="default_organization",
         name="Essential Service Notifications",

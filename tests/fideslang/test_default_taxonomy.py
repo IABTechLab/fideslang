@@ -6,7 +6,7 @@ class TestDefaultTaxonomy:
         assert len(DEFAULT_TAXONOMY.data_category) == 56
 
     def test_use_count(self):
-        assert len(DEFAULT_TAXONOMY.data_use) == 44
+        assert len(DEFAULT_TAXONOMY.data_use) == 45
 
     def test_subject_count(self):
         assert len(DEFAULT_TAXONOMY.data_subject) == 15

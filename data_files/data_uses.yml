@@ -3,7 +3,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Analytics
-  description: Analytics for activities such as system and advertising performance
+  description: Provides analytics for activities such as system and advertising performance
     reporting, insights and fraud detection.
   parent_key: null
   legal_basis: null
@@ -16,7 +16,8 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Analytics for Reporting
-  description: Analytics for general reporting such as system and advertising performance.
+  description: Provides analytics for general reporting such as system and advertising
+    performance.
   parent_key: analytics
   legal_basis: null
   special_category: null
@@ -28,7 +29,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Analytics for Advertising Performance
-  description: Analytics for reporting of advertising performance.
+  description: Provides analytics for reporting of advertising performance.
   parent_key: analytics.reporting
   legal_basis: null
   special_category: null
@@ -40,7 +41,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Analytics for Insights
-  description: Analytics for reporting of campaign insights related to advertising
+  description: Provides analytics for reporting of campaign insights related to advertising
     and promotion activities.
   parent_key: analytics.reporting
   legal_basis: null
@@ -53,7 +54,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Analytics for System Activity
-  description: Analytics for reporting on system activity.
+  description: Provides analytics for reporting on system activity.
   parent_key: analytics.reporting
   legal_basis: null
   special_category: null
@@ -65,7 +66,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Analytics for System Performance
-  description: Analytics for reporting on system performance.
+  description: Provides analytics for reporting on system performance.
   parent_key: analytics.reporting.system
   legal_basis: null
   special_category: null
@@ -77,7 +78,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Collect
-  description: Collecting or storing data in order to use it for another purpose which
+  description: Collects or stores data in order to use it for another purpose which
     has not yet been expressly defined.
   parent_key: null
   legal_basis: null
@@ -90,8 +91,8 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Employment
-  description: Processing of data for the purpose of recruitment or employment and
-    human resources (HR) related activities.
+  description: Processes data for the purpose of recruitment or employment and human
+    resources (HR) related activities.
   parent_key: null
   legal_basis: null
   special_category: null
@@ -103,7 +104,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Employment Recruitment
-  description: Processing of prospective employees for the purpose of recruitment.
+  description: Processes data of prospective employees for the purpose of recruitment.
   parent_key: employment
   legal_basis: null
   special_category: null
@@ -115,8 +116,8 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Essential
-  description: Essential to operating the service or product, including legal obligations,
-    support and basic system operations.
+  description: Operates the service or product, including legal obligations, support
+    and basic system operations.
   parent_key: null
   legal_basis: null
   special_category: null
@@ -128,8 +129,8 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Essential Fraud Detection
-  description: Essential to detect possible fraud or misuse of the product, service,
-    application or system.
+  description: Detects possible fraud or misuse of the product, service, application
+    or system.
   parent_key: essential
   legal_basis: null
   special_category: null
@@ -141,7 +142,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Essential Legal Obligation
-  description: Essential to meeting a legal or compliance obligation such as consent
+  description: Provides service to meet a legal or compliance obligation such as consent
     management.
   parent_key: essential
   legal_basis: null
@@ -154,9 +155,21 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Essential for Service
-  description: Essential to providing the product, service, application or system,
-    without which the product/service would not be possible.
+  description: Provides the essential product, service, application or system, without
+    which the product/service would not be possible.
   parent_key: essential
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: essential.service.authentication
+  organization_fides_key: default_organization
+  tags: null
+  name: Essential Service Authentication
+  description: Authenticate users to the product, service, application or system.
+  parent_key: essential.service
   legal_basis: null
   special_category: null
   recipients: null
@@ -167,8 +180,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Essential Service Notifications
-  description: Essential to send notifications about the product, service, application
-    or system.
+  description: Sends notifications about the product, service, application or system.
   parent_key: essential.service
   legal_basis: null
   special_category: null
@@ -180,8 +192,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Essential for Service Operations
-  description: Essential to ensure the operation of the product, service, application
-    or system.
+  description: Ensures the operation of the product, service, application or system.
   parent_key: essential.service
   legal_basis: null
   special_category: null
@@ -193,8 +204,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Essential for Service Payment Processing
-  description: Essential to process payments for the product, service, application
-    or system.
+  description: Processes payments for the product, service, application or system.
   parent_key: essential.service
   legal_basis: null
   special_category: null
@@ -206,7 +216,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Essential for Service Upgrades
-  description: Essential to provide timely system upgrade information options.
+  description: Provides timely system upgrade information options.
   parent_key: essential.service
   legal_basis: null
   special_category: null
@@ -218,8 +228,8 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Essential Email Service Notifications
-  description: Essential to send email notifications about the product, service, application
-    or system.
+  description: Sends email notifications about the product, service, application or
+    system.
   parent_key: essential.service.notifications
   legal_basis: null
   special_category: null
@@ -231,8 +241,8 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Essential SMS Service Notifications
-  description: Essential to send SMS notifications about the product, service, application
-    or system.
+  description: Sends SMS notifications about the product, service, application or
+    system.
   parent_key: essential.service.notifications
   legal_basis: null
   special_category: null
@@ -244,8 +254,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Essential for Serivce Operations Support
-  description: Essential to provide support for the product, service, application
-    or system.
+  description: Provides support for the product, service, application or system.
   parent_key: essential.service.operations
   legal_basis: null
   special_category: null
@@ -257,8 +266,8 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Essential for Serivce Support Optimization
-  description: Essential to optimize and improve support for for the product, service,
-    application or system.
+  description: Optimizes and improves support for the product, service, application
+    or system.
   parent_key: essential.service.operations.support
   legal_basis: null
   special_category: null
@@ -270,7 +279,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Finance
-  description: Finance and accounting activities such as audits and tax reporting.
+  description: Enables finance and accounting activities such as audits and tax reporting.
   parent_key: null
   legal_basis: null
   special_category: null
@@ -281,7 +290,7 @@ data_use:
 - fides_key: improve
   organization_fides_key: default_organization
   tags: null
-  name: Improve the product, service, application or system.
+  name: Improves the product, service, application or system.
   description: Improve the product, service, application or system.
   parent_key: null
   legal_basis: null
@@ -294,7 +303,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: System
-  description: Improve the specific product, service, application or system.
+  description: Improves the specific product, service, application or system.
   parent_key: improve
   legal_basis: null
   special_category: null
@@ -306,8 +315,8 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Marketing
-  description: Marketing, promotion, advertising and sales activities for the product,
-    service, application or system.
+  description: Enables marketing, promotion, advertising and sales activities for
+    the product, service, application or system.
   parent_key: null
   legal_basis: null
   special_category: null
@@ -319,8 +328,8 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Advertising, Marketing or Promotion
-  description: Advertising and promotion for the product, service, application or
-    system and associated services.
+  description: Advertises or promotes the product, service, application or system
+    and associated services.
   parent_key: marketing
   legal_basis: null
   special_category: null
@@ -332,8 +341,8 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Marketing Communications
-  description: Combined use of channels to message and market to a customer, user
-    or prospect.
+  description: Uses combined channels to message and market to a customer, user or
+    prospect.
   parent_key: marketing
   legal_basis: null
   special_category: null
@@ -345,7 +354,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: First Party Advertising
-  description: Advertising and promotion based on first party data collected or derived
+  description: Serves advertisements based on first party data collected or derived
     about the user.
   parent_key: marketing.advertising
   legal_basis: null
@@ -358,7 +367,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Frequency Capping
-  description: Restricting the number of times a specific advertisement is shown to
+  description: Restricts the number of times a specific advertisement is shown to
     an individual.
   parent_key: marketing.advertising
   legal_basis: null
@@ -371,8 +380,8 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Negative Targeting
-  description: Rules used to ensure a certain audience or group is not targeted by
-    advertising.
+  description: Enforces rules used to ensure a certain audience or group is not targeted
+    by advertising.
   parent_key: marketing.advertising
   legal_basis: null
   special_category: null
@@ -384,8 +393,8 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Third Party Advertising
-  description: Advertising and promotion of services to users from data joined with
-    or provided by 3rd parties.
+  description: Serves advertisements based on data within the system or joined with
+    data provided by 3rd parties.
   parent_key: marketing.advertising
   legal_basis: null
   special_category: null
@@ -397,7 +406,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: First Party Contextual Advertising
-  description: Contextual advertising based on current content being viewed by the
+  description: Serves advertisements based on current content being viewed by the
     user of the system or service.
   parent_key: marketing.advertising.first_party
   legal_basis: null
@@ -410,8 +419,8 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: First Party Personalized Advertising
-  description: Targeted advertising and promotion of services to users based on data
-    collected, or derived about the user from use of the system.
+  description: Targets advertisements based on data collected or derived about the
+    user from use of the system.
   parent_key: marketing.advertising.first_party
   legal_basis: null
   special_category: null
@@ -423,8 +432,8 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Third Party Targeted Advertising
-  description: Targeted advertising and promotion of services to users from data joined
-    with or provided by 3rd parties.
+  description: Targets advertisements based on data within the system or joined with
+    data provided by 3rd parties.
   parent_key: marketing.advertising.third_party
   legal_basis: null
   special_category: null
@@ -436,7 +445,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Marketing Email Communications
-  description: E-mail marketing communications.
+  description: Sends email marketing communications.
   parent_key: marketing.communications
   legal_basis: null
   special_category: null
@@ -448,7 +457,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Marketing SMS Communications
-  description: SMS marketing communications.
+  description: Sends SMS marketing communications.
   parent_key: marketing.communications
   legal_basis: null
   special_category: null
@@ -460,7 +469,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Operations
-  description: Business processes necessary to the organization's operation.
+  description: Supports business processes necessary to the organization's operation.
   parent_key: null
   legal_basis: null
   special_category: null
@@ -472,8 +481,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Personalize
-  description: The use of specified data categories to personalize the product, service,
-    application or system.
+  description: Personalizes the product, service, application or system.
   parent_key: null
   legal_basis: null
   special_category: null
@@ -485,8 +493,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Content Personalization
-  description: Personalization of the content of the product, service, application
-    or system.
+  description: Personalizes the content of the product, service, application or system.
   parent_key: personalize
   legal_basis: null
   special_category: null
@@ -498,7 +505,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: System Personalization
-  description: Personalization of the product, service, application or system.
+  description: Personalizes the product, service, application or system.
   parent_key: personalize
   legal_basis: null
   special_category: null
@@ -510,7 +517,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Sales
-  description: Sales activities such as communications and outreach.
+  description: Supports sales activities such as communications and outreach.
   parent_key: null
   legal_basis: null
   special_category: null
@@ -522,7 +529,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Third Party Sharing
-  description: The transfer of data to third parties outside of the system or service's
+  description: Transfers data to third parties outside of the system or service's
     scope.
   parent_key: null
   legal_basis: null
@@ -535,7 +542,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Sharing for Legal Obligation
-  description: Sharing of data for legal obligations, including contracts, applicable
+  description: Shares data for legal obligations, including contracts, applicable
     laws or regulations.
   parent_key: third_party_sharing
   legal_basis: null
@@ -548,7 +555,7 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Train AI System
-  description: Training an AI system or data model for machine learning.
+  description: Trains an AI system or data model for machine learning.
   parent_key: null
   legal_basis: null
   special_category: null
