@@ -6,16 +6,32 @@ Contains all of the Fides resources modeled as Pydantic models.
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Literal, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 from warnings import warn
 
-from pydantic import (AnyUrl, BaseModel, ConstrainedStr, Field, HttpUrl,
-                      PositiveInt, root_validator, validator)
+from pydantic import (
+    AnyUrl,
+    BaseModel,
+    ConstrainedStr,
+    Field,
+    HttpUrl,
+    PositiveInt,
+    root_validator,
+    validator,
+)
 
-from fideslang.validation import (FidesKey, check_valid_country_code,
-                                  matching_parent_key, no_self_reference,
-                                  parse_data_type_string,
-                                  sort_list_objects_by_name, valid_data_type)
+# import `Literal` from typing_extensions to work around https://github.com/pydantic/pydantic/issues/5821
+from typing_extensions import Literal
+
+from fideslang.validation import (
+    FidesKey,
+    check_valid_country_code,
+    matching_parent_key,
+    no_self_reference,
+    parse_data_type_string,
+    sort_list_objects_by_name,
+    valid_data_type,
+)
 
 # Reusable components
 country_code_validator = validator("third_country_transfers", allow_reuse=True)(

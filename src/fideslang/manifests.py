@@ -17,7 +17,7 @@ def write_manifest(
     else:
         manifest = {resource_type: manifest}
 
-    with open(file_name, "w") as manifest_file:
+    with open(file_name, "w", encoding="utf-8") as manifest_file:
         yaml.dump(manifest, manifest_file, sort_keys=False, indent=2)
 
 
@@ -25,7 +25,7 @@ def load_yaml_into_dict(file_path: str) -> Dict:
     """
     This loads yaml files into a dictionary to be used in API calls.
     """
-    with open(file_path, "r") as yaml_file:
+    with open(file_path, "r", encoding="utf-8") as yaml_file:
         loaded = yaml.safe_load(yaml_file)
         if isinstance(loaded, dict):
             return loaded
