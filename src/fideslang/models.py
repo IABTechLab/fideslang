@@ -220,14 +220,17 @@ class DataSubject(FidesModel):
 class DataUse(FidesModel):
     """The DataUse resource model."""
 
-    parent_key: Optional[FidesKey]
+    parent_key: Optional[FidesKey] = None
     legal_basis: Optional[LegalBasisEnum] = Field(
+        default=None,
         description="The legal basis category of which the data use falls under. This field is used as part of the creation of an exportable data map.",
     )
     special_category: Optional[SpecialCategoriesEnum] = Field(
+        default=None,
         description="The special category for processing of which the data use falls under. This field is used as part of the creation of an exportable data map.",
     )
     recipients: Optional[List[str]] = Field(
+        default=None,
         description="An array of recipients when sharing personal data outside of your organization.",
     )
     legitimate_interest: bool = Field(
@@ -235,6 +238,7 @@ class DataUse(FidesModel):
         description="A boolean representation of if the legal basis used is `Legitimate Interest`. Validated at run time and looks for a `legitimate_interest_impact_assessment` to exist if true.",
     )
     legitimate_interest_impact_assessment: Optional[AnyUrl] = Field(
+        default=None,
         description="A url pointing to the legitimate interest impact assessment. Required if the legal bases used is legitimate interest.",
     )
     is_default: bool = is_default_field

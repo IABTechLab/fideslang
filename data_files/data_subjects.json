@@ -1,79 +1,154 @@
 {
     "data_subject": [
         {
-            "privacy_key": "anonymous_user",
+            "fides_key": "anonymous_user",
+            "organization_fides_key": "default_organization",
+            "tags": null,
             "name": "Anonymous User",
-            "description": "An individual that is unidentifiable to the systems. Note - This should only be applied to truly anonymous users where there is no risk of re-identification"
+            "description": "An individual that is unidentifiable to the systems. Note - This should only be applied to truly anonymous users where there is no risk of re-identification",
+            "rights": null,
+            "automated_decisions_or_profiling": null,
+            "is_default": true
         },
         {
-            "privacy_key": "citizen_voter",
+            "fides_key": "citizen_voter",
+            "organization_fides_key": "default_organization",
+            "tags": null,
             "name": "Citizen Voter",
-            "description": "An individual registered to voter with a state or authority."
+            "description": "An individual registered to voter with a state or authority.",
+            "rights": null,
+            "automated_decisions_or_profiling": null,
+            "is_default": true
         },
         {
-            "privacy_key": "commuter",
+            "fides_key": "commuter",
+            "organization_fides_key": "default_organization",
+            "tags": null,
             "name": "Commuter",
-            "description": "An individual that is traveling or transiting in the context of location tracking."
+            "description": "An individual that is traveling or transiting in the context of location tracking.",
+            "rights": null,
+            "automated_decisions_or_profiling": null,
+            "is_default": true
         },
         {
-            "privacy_key": "consultant",
+            "fides_key": "consultant",
+            "organization_fides_key": "default_organization",
+            "tags": null,
             "name": "Consultant",
-            "description": "An individual employed in a consultative/temporary capacity by the organization."
+            "description": "An individual employed in a consultative/temporary capacity by the organization.",
+            "rights": null,
+            "automated_decisions_or_profiling": null,
+            "is_default": true
         },
         {
-            "privacy_key": "customer",
-            "name": "Custom",
-            "description": "An individual or other organization that purchases goods or services from the organization."
+            "fides_key": "customer",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Customer",
+            "description": "An individual or other organization that purchases goods or services from the organization.",
+            "rights": null,
+            "automated_decisions_or_profiling": null,
+            "is_default": true
         },
         {
-            "privacy_key": "employee",
+            "fides_key": "employee",
+            "organization_fides_key": "default_organization",
+            "tags": null,
             "name": "Employee",
-            "description": "An individual employed by the organization."
+            "description": "An individual employed by the organization.",
+            "rights": null,
+            "automated_decisions_or_profiling": null,
+            "is_default": true
         },
         {
-            "privacy_key": "job_applicant",
+            "fides_key": "job_applicant",
+            "organization_fides_key": "default_organization",
+            "tags": null,
             "name": "Job Applicant",
-            "description": "An individual applying for employment to the organization."
+            "description": "An individual applying for employment to the organization.",
+            "rights": null,
+            "automated_decisions_or_profiling": null,
+            "is_default": true
         },
         {
-            "privacy_key": "next_of_kin",
+            "fides_key": "next_of_kin",
+            "organization_fides_key": "default_organization",
+            "tags": null,
             "name": "Next of Kin",
-            "description": "A relative of any other individual subject where such a relationship is known."
+            "description": "A relative of any other individual subject where such a relationship is known.",
+            "rights": null,
+            "automated_decisions_or_profiling": null,
+            "is_default": true
         },
         {
-            "privacy_key": "passenger",
+            "fides_key": "passenger",
+            "organization_fides_key": "default_organization",
+            "tags": null,
             "name": "Passenger",
-            "description": "An individual traveling on some means of provided transport."
+            "description": "An individual traveling on some means of provided transport.",
+            "rights": null,
+            "automated_decisions_or_profiling": null,
+            "is_default": true
         },
         {
-            "privacy_key": "patient",
+            "fides_key": "patient",
+            "organization_fides_key": "default_organization",
+            "tags": null,
             "name": "Patient",
-            "description": "An individual identified for the purposes of any medical care."
+            "description": "An individual identified for the purposes of any medical care.",
+            "rights": null,
+            "automated_decisions_or_profiling": null,
+            "is_default": true
         },
         {
-            "privacy_key": "prospect",
+            "fides_key": "prospect",
+            "organization_fides_key": "default_organization",
+            "tags": null,
             "name": "Prospect",
-            "description": "An individual or organization to whom an organization is selling goods or services."
+            "description": "An individual or organization to whom an organization is selling goods or services.",
+            "rights": null,
+            "automated_decisions_or_profiling": null,
+            "is_default": true
         },
         {
-            "privacy_key": "shareholder",
+            "fides_key": "shareholder",
+            "organization_fides_key": "default_organization",
+            "tags": null,
             "name": "Shareholder",
-            "description": "An individual or organization that holds equity in the organization."
+            "description": "An individual or organization that holds equity in the organization.",
+            "rights": null,
+            "automated_decisions_or_profiling": null,
+            "is_default": true
         },
         {
-            "privacy_key": "supplier_vendor",
+            "fides_key": "supplier_vendor",
+            "organization_fides_key": "default_organization",
+            "tags": null,
             "name": "Supplier/Vendor",
-            "description": "An individual or organization that provides services or goods to the organization."
+            "description": "An individual or organization that provides services or goods to the organization.",
+            "rights": null,
+            "automated_decisions_or_profiling": null,
+            "is_default": true
         },
         {
-            "privacy_key": "trainee",
+            "fides_key": "trainee",
+            "organization_fides_key": "default_organization",
+            "tags": null,
             "name": "Trainee",
-            "description": "An individual undergoing training by the organization."
+            "description": "An individual undergoing training by the organization.",
+            "rights": null,
+            "automated_decisions_or_profiling": null,
+            "is_default": true
         },
         {
-            "privacy_key": "visitor",
+            "fides_key": "visitor",
+            "organization_fides_key": "default_organization",
+            "tags": null,
             "name": "Visitor",
-            "description": "An individual visiting a location."
+            "description": "An individual visiting a location.",
+            "rights": null,
+            "automated_decisions_or_profiling": null,
+            "is_default": true
         }
     ]
 }
