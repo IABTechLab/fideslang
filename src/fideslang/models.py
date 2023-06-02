@@ -526,10 +526,10 @@ class DatasetMetadata(BaseModel):
     after: Optional[List[FidesKey]]
 
 
-class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
+class Dataset(FidesModel, FidesopsMetaBackwardsCompat):  # type: ignore[misc]
     """The Dataset resource model."""
 
-    meta: Optional[Dict[str, str]] = Field(
+    meta: Optional[Dict[str, Any]] = Field(  # type: ignore[misc]
         description="An optional object that provides additional information about the Dataset. You can structure the object however you like. It can be a simple set of `key: value` properties or a deeply nested hierarchy of objects. How you use the object is up to you: Fides ignores it."
     )
     data_categories: Optional[List[FidesKey]] = Field(
@@ -912,7 +912,7 @@ class DataFlow(BaseModel):
         return value
 
 
-class System(FidesModel):
+class System(FidesModel):  # type: ignore[misc]
     """
     The System resource model.
 
@@ -922,8 +922,8 @@ class System(FidesModel):
     registry_id: Optional[int] = Field(
         description="The id of the system registry, if used.",
     )
-    meta: Optional[Dict[str, str]] = Field(
-        description="An optional property to store any extra information for a system. Not used by fidesctl.",
+    meta: Optional[Dict[str, Any]] = Field(  # type: ignore[misc]
+        description="An optional property to store any extra information for a system.",
     )
     fidesctl_meta: Optional[SystemMetadata] = Field(
         description=SystemMetadata.__doc__,
