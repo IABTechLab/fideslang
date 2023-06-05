@@ -14,16 +14,27 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/1.3.2...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/1.3.4...main)
+
+### Changed
+
+- Make `meta` property of `System` and `Dataset` models more permissive [#113](https://github.com/ethyca/fideslang/pull/113)
+
+## [1.4.0](https://github.com/ethyca/fideslang/compare/1.3.4...1.4.0)
+
+### Changed
+
+- Updated the default data uses [#107](https://github.com/ethyca/fideslang/pull/107)
+
+### Removed
+
+- The `system_dependencies` field of `System` resources [#105](https://github.com/ethyca/fideslang/pull/105)
+
+## [1.3.4](https://github.com/ethyca/fideslang/compare/1.3.3...1.3.4)
 
 ### Changed
 
 - Make `PrivacyDeclaration` use pydantic `orm_mode` [#101](https://github.com/ethyca/fideslang/pull/101)
-- Updated the default data uses [#107](https://github.com/ethyca/fideslang/pull/107)
-
-### Remove
-
-- The `system_dependencies` field of `System` resources [#105](https://github.com/ethyca/fideslang/pull/105)
 
 ## [1.3.3](https://github.com/ethyca/fideslang/compare/1.3.2...1.3.3)
 
