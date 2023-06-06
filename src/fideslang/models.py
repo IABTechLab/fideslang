@@ -33,7 +33,7 @@ from fideslang.validation import (
     valid_data_type,
 )
 
-# Reusable components
+# Reusable Validators
 country_code_validator = validator("third_country_transfers", allow_reuse=True)(
     check_valid_country_code
 )
@@ -45,6 +45,7 @@ no_self_reference_validator = validator("parent_key", allow_reuse=True)(
     no_self_reference
 )
 
+# Reusable Fields
 name_field = Field(description="Human-Readable name for this resource.")
 description_field = Field(
     description="A detailed description of what this resource is."
@@ -53,8 +54,8 @@ is_default_field = Field(
     default=False,
     description="Denotes whether the resource is part of the default taxonomy or not.",
 )
-
 meta_field = Field(
+    default_factory=dict,
     description="An optional property to store any extra information for a resource. Data can be structured in any way: simple set of `key: value` pairs or deeply nested objects.",
 )
 
@@ -530,10 +531,10 @@ class DatasetMetadata(BaseModel):
     after: Optional[List[FidesKey]]
 
 
-class Dataset(FidesModel, FidesopsMetaBackwardsCompat):  # type: ignore[misc]
+class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
     """The Dataset resource model."""
 
-    meta: Optional[Dict[str, Any]] = meta_field  # type: ignore[misc]
+    meta: Dict = meta_field
     data_categories: Optional[List[FidesKey]] = Field(
         description="Array of Data Category resources identified by `fides_key`, that apply to all collections in the Dataset.",
     )
@@ -914,7 +915,7 @@ class DataFlow(BaseModel):
         return value
 
 
-class System(FidesModel):  # type: ignore[misc]
+class System(FidesModel):
     """
     The System resource model.
 
@@ -924,7 +925,7 @@ class System(FidesModel):  # type: ignore[misc]
     registry_id: Optional[int] = Field(
         description="The id of the system registry, if used.",
     )
-    meta: Optional[Dict[str, Any]] = meta_field  # type: ignore[misc]
+    meta: Dict = meta_field
     fidesctl_meta: Optional[SystemMetadata] = Field(
         description=SystemMetadata.__doc__,
     )
