@@ -1,6 +1,6 @@
 from pytest import deprecated_call, mark, raises
 
-from fideslang import DataFlow, PrivacyDeclaration, System, Dataset
+from fideslang import DataFlow, Dataset, PrivacyDeclaration, System
 from fideslang.models import DatasetCollection, DatasetField
 
 pytestmark = mark.unit
@@ -90,6 +90,92 @@ class TestSystem:
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
+
+    def test_system_valid_nested_meta(self) -> None:
+        assert System(
+            description="Test Policy",
+            egress=[
+                DataFlow(
+                    fides_key="test_system_2",
+                    type="system",
+                    data_categories=[],
+                )
+            ],
+            fides_key="test_system",
+            ingress=[
+                DataFlow(
+                    fides_key="test_system_3",
+                    type="system",
+                    data_categories=[],
+                )
+            ],
+            meta={
+                "some": "meta stuff",
+                "some": {
+                    "nested": "meta stuff",
+                    "more nested": "meta stuff",
+                },
+                "some more": {
+                    "doubly": {
+                        "nested": "meta stuff",
+                    }
+                },
+            },
+            name="Test System",
+            organization_fides_key=1,
+            privacy_declarations=[
+                PrivacyDeclaration(
+                    data_categories=[],
+                    data_qualifier="aggregated_data",
+                    data_subjects=[],
+                    data_use="provide",
+                    egress=["test_system_2"],
+                    ingress=["test_system_3"],
+                    name="declaration-name",
+                )
+            ],
+            registry_id=1,
+            system_type="SYSTEM",
+            tags=["some", "tags"],
+        )
+
+    def test_system_valid_no_meta(self) -> None:
+        system = System(
+            description="Test Policy",
+            egress=[
+                DataFlow(
+                    fides_key="test_system_2",
+                    type="system",
+                    data_categories=[],
+                )
+            ],
+            fides_key="test_system",
+            ingress=[
+                DataFlow(
+                    fides_key="test_system_3",
+                    type="system",
+                    data_categories=[],
+                )
+            ],
+            # purposefully omitting the `meta` property to ensure it's effectively optional
+            name="Test System",
+            organization_fides_key=1,
+            privacy_declarations=[
+                PrivacyDeclaration(
+                    data_categories=[],
+                    data_qualifier="aggregated_data",
+                    data_subjects=[],
+                    data_use="provide",
+                    egress=["test_system_2"],
+                    ingress=["test_system_3"],
+                    name="declaration-name",
+                )
+            ],
+            registry_id=1,
+            system_type="SYSTEM",
+            tags=["some", "tags"],
+        )
+        assert system.meta == {}
 
     def test_system_valid_no_egress_or_ingress(self) -> None:
         assert System(
@@ -208,6 +294,18 @@ class TestDataset:
     def test_valid_dataset(self):
         Dataset(
             fides_key="dataset_1",
+            meta={
+                "some": "meta stuff",
+                "some": {
+                    "nested": "meta stuff",
+                    "more nested": "meta stuff",
+                },
+                "some more": {
+                    "doubly": {
+                        "nested": "meta stuff",
+                    }
+                },
+            },
             data_qualifier="dataset_qualifier_1",
             data_categories=["dataset_data_category_1"],
             fides_meta={"after": ["other_dataset"]},
