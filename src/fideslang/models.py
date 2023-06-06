@@ -54,6 +54,10 @@ is_default_field = Field(
     description="Denotes whether the resource is part of the default taxonomy or not.",
 )
 
+meta_field = Field(
+    description="An optional property to store any extra information for a resource. Data can be structured in any way: simple set of `key: value` pairs or deeply nested objects.",
+)
+
 
 # Fides Base Model
 class FidesModel(BaseModel):
@@ -529,9 +533,7 @@ class DatasetMetadata(BaseModel):
 class Dataset(FidesModel, FidesopsMetaBackwardsCompat):  # type: ignore[misc]
     """The Dataset resource model."""
 
-    meta: Optional[Dict[str, Any]] = Field(  # type: ignore[misc]
-        description="An optional object that provides additional information about the Dataset. You can structure the object however you like. It can be a simple set of `key: value` properties or a deeply nested hierarchy of objects. How you use the object is up to you: Fides ignores it."
-    )
+    meta: Optional[Dict[str, Any]] = meta_field  # type: ignore[misc]
     data_categories: Optional[List[FidesKey]] = Field(
         description="Array of Data Category resources identified by `fides_key`, that apply to all collections in the Dataset.",
     )
@@ -922,9 +924,7 @@ class System(FidesModel):  # type: ignore[misc]
     registry_id: Optional[int] = Field(
         description="The id of the system registry, if used.",
     )
-    meta: Optional[Dict[str, Any]] = Field(  # type: ignore[misc]
-        description="An optional property to store any extra information for a system.",
-    )
+    meta: Optional[Dict[str, Any]] = meta_field  # type: ignore[misc]
     fidesctl_meta: Optional[SystemMetadata] = Field(
         description=SystemMetadata.__doc__,
     )
