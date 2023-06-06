@@ -19,6 +19,7 @@ The types of changes are:
 ### Changed
 
 - Make `meta` property of `System` and `Dataset` models more permissive [#113](https://github.com/ethyca/fideslang/pull/113)
+- Add `cookies` property to `PrivacyDeclaration` [#115](https://github.com/ethyca/fideslang/pull/115)
 
 ## [1.4.0](https://github.com/ethyca/fideslang/compare/1.3.4...1.4.0)
 
