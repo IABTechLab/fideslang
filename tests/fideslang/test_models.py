@@ -175,7 +175,7 @@ class TestSystem:
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
-        assert system.meta == {}
+        assert system.meta == None
 
     def test_system_valid_no_egress_or_ingress(self) -> None:
         assert System(
