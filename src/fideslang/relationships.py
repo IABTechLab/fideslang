@@ -4,8 +4,9 @@ by each other and building a dependency graph of relationships.
 """
 
 import inspect
+from enum import Enum
 from functools import reduce
-from typing import List, Set
+from typing import Optional, List, Set
 
 from fideslang.models import BaseModel, FidesKey, Taxonomy
 from fideslang.utils import get_resource_by_fides_key
@@ -31,6 +32,9 @@ def find_referenced_fides_keys(resource: object) -> Set[FidesKey]:
     Note that this finds _all_ fides_keys, including the resource's own fides_key
     """
     referenced_fides_keys: Set[FidesKey] = set()
+    if isinstance(resource, str) and not isinstance(resource, Enum):
+        referenced_fides_keys.add(resource)
+        return referenced_fides_keys
     signature = inspect.signature(type(resource), follow_wrapped=True)
     parameter_values = filter(
         lambda parameter: hasattr(resource, parameter.name),
@@ -40,6 +44,8 @@ def find_referenced_fides_keys(resource: object) -> Set[FidesKey]:
         parameter_value = resource.__getattribute__(parameter.name)
         if parameter_value:
             if parameter.annotation == FidesKey:
+                referenced_fides_keys.add(parameter_value)
+            elif parameter.annotation == Optional[FidesKey]:
                 referenced_fides_keys.add(parameter_value)
             elif parameter.annotation == List[FidesKey]:
                 referenced_fides_keys.update(resource.__getattribute__(parameter.name))

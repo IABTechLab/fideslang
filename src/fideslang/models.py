@@ -20,9 +20,6 @@ from pydantic import (
     validator,
 )
 
-# import `Literal` from typing_extensions to work around https://github.com/pydantic/pydantic/issues/5821
-from typing_extensions import Literal
-
 from fideslang.validation import (
     FidesKey,
     check_valid_country_code,
@@ -310,7 +307,11 @@ class DatasetFieldBase(BaseModel):
     )
 
 
-EdgeDirection = Literal["from", "to"]
+class EdgeDirection(str, Enum):
+    """Direction of a FidesDataSetReference"""
+
+    FROM = "from"
+    TO = "to"
 
 
 class FidesDatasetReference(BaseModel):
