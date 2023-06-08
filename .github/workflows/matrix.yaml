@@ -1,0 +1,28 @@
+on:
+  pull_request:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  Test-Matrix:
+    strategy:
+      matrix:
+        python_version: ["3.8", "3.9", "3.10", "3.11"]
+        pydantic_version: ["1.8.2", "1.9.2", "1.10.9"]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set Up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python_version }}
+          cache: "pip"
+
+      - name: Install Nox
+        run: pip install nox
+
+      - name: Run Tests
+        run: nox -s "tests-${{ matrix.python_version }}(pydantic_version='${{ matrix.pydantic_version }}')"

@@ -9,3 +9,4 @@ mkdocs/
 # Ignore dev files
 .github/
 .devcontainer/
+.nox/
