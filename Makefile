@@ -28,11 +28,11 @@ help:
 	@echo ----
 	@echo build - Builds the fideslang Docker image.
 	@echo ----
-	@echo check-all - Run all CI checks except for externally dependent ones.
+	@echo check-all - Run all CI checks
 	@echo ----
 	@echo clean - Runs Docker commands to clean up the docker local environment.
 	@echo ----
-	@echo shell - Spins up the database, API, and starts a shell within the API container to run CLI commands.
+	@echo shell - Starts a shell within the container to run CLI commands.
 	@echo ----
 	@echo docs-serve - Spins up the docs server on localhost:8000
 	@echo --------------------
@@ -71,33 +71,30 @@ push: build
 ####################
 
 black:
-	@$(RUN) black --check src/
+	@$(RUN) nox -s black
 
 # The order of dependent targets here is intentional
-check-all: teardown build-local-prod check-install black \
-			pylint mypy xenon pytest
+check-all: teardown build-local-prod check-install check-static pytest
 	@echo "Running formatter, linter, typechecker and tests..."
+
+check-static:
+	@$(RUN) nox -s check_static
 
 check-install:
 	@echo "Checking that fideslang is installed..."
 	@$(RUN) python -c "import fideslang"
 
 mypy:
-	@$(RUN) mypy
+	@$(RUN) nox -x mypy
 
 pylint:
-	@$(RUN) pylint src/
+	@$(RUN) nox -s pylint
 
 pytest: build-local
-	@$(RUN) pytest -x
+	@$(RUN) nox -s tests
 
 xenon:
-	@$(RUN) xenon src \
-	--max-absolute B \
-	--max-modules B \
-	--max-average A \
-	--ignore "data, tests, docs" \
-	--exclude "src/fideslang/_version.py"
+	@$(RUN) nox -s xenon
 
 ####################
 # Utils
