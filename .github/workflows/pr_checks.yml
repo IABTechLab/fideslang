@@ -1,4 +1,4 @@
-name: PR Checks
+name: Static Checks
 
 on:
   pull_request:
@@ -130,22 +130,3 @@ jobs:
 
       - name: Run cyclomatic complexity check
         run: make xenon
-
-  Pytest:
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download fideslang container
-        uses: actions/download-artifact@v2
-        with:
-          name: ${{ env.CONTAINER }}
-          path: /tmp/
-
-      - name: Load fideslang image
-        run: docker load --input /tmp/${{ env.CONTAINER }}.tar
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Run unit test suite
-        run: make pytest
