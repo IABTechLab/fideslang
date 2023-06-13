@@ -85,7 +85,7 @@ check-install:
 	@$(RUN) python -c "import fideslang"
 
 mypy:
-	@$(RUN) nox -x mypy
+	@$(RUN) nox -s mypy
 
 pylint:
 	@$(RUN) nox -s pylint
