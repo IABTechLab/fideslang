@@ -819,7 +819,7 @@ class PrivacyDeclaration(BaseModel):
         description="The resources from which data is received. Any `fides_key`s included in this list reference `DataFlow` entries in the `ingress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
     )
     cookies: Optional[List[str]] = Field(
-        description="Cookies utilized by the system to deliver services and functionality"
+        description="Cookies associated with this data use to deliver services and functionality"
     )
 
     @validator("dataset_references")
@@ -961,6 +961,9 @@ class System(FidesModel):
     data_protection_impact_assessment: DataProtectionImpactAssessment = Field(
         default=DataProtectionImpactAssessment(),
         description=DataProtectionImpactAssessment.__doc__,
+    )
+    cookies: Optional[List[str]] = Field(
+        description="Cookies utilized by the system to deliver services and functionality"
     )
 
     _sort_privacy_declarations: classmethod = validator(
