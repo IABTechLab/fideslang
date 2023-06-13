@@ -963,9 +963,6 @@ class System(FidesModel):
         default=DataProtectionImpactAssessment(),
         description=DataProtectionImpactAssessment.__doc__,
     )
-    cookies: Optional[List[str]] = Field(
-        description="Cookies utilized by the system to deliver services and functionality"
-    )
 
     _sort_privacy_declarations: classmethod = validator(
         "privacy_declarations", allow_reuse=True

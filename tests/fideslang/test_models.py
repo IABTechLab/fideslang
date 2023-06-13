@@ -74,7 +74,6 @@ class TestSystem:
             ],
             meta={"some": "meta stuff"},
             name="Test System",
-            cookies=["test_cookie"],
             organization_fides_key=1,
             privacy_declarations=[
                 PrivacyDeclaration(
