@@ -26,7 +26,7 @@ help:
 	@echo --------------------
 	@echo Development Targets:
 	@echo ----
-	@echo build - Builds the fidesctl Docker image.
+	@echo build - Builds the fideslang Docker image.
 	@echo ----
 	@echo check-all - Run all CI checks except for externally dependent ones.
 	@echo ----
@@ -79,7 +79,7 @@ check-all: teardown build-local-prod check-install black \
 	@echo "Running formatter, linter, typechecker and tests..."
 
 check-install:
-	@echo "Checking that fidesctl is installed..."
+	@echo "Checking that fideslang is installed..."
 	@$(RUN) python -c "import fideslang"
 
 mypy:

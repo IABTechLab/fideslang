@@ -20,9 +20,6 @@ from pydantic import (
     validator,
 )
 
-# import `Literal` from typing_extensions to work around https://github.com/pydantic/pydantic/issues/5821
-from typing_extensions import Literal
-
 from fideslang.validation import (
     FidesKey,
     check_valid_country_code,
@@ -55,7 +52,7 @@ is_default_field = Field(
     description="Denotes whether the resource is part of the default taxonomy or not.",
 )
 meta_field = Field(
-    default_factory=dict,
+    default=None,
     description="An optional property to store any extra information for a resource. Data can be structured in any way: simple set of `key: value` pairs or deeply nested objects.",
 )
 
@@ -310,7 +307,11 @@ class DatasetFieldBase(BaseModel):
     )
 
 
-EdgeDirection = Literal["from", "to"]
+class EdgeDirection(str, Enum):
+    """Direction of a FidesDataSetReference"""
+
+    FROM = "from"
+    TO = "to"
 
 
 class FidesDatasetReference(BaseModel):
@@ -534,7 +535,7 @@ class DatasetMetadata(BaseModel):
 class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
     """The Dataset resource model."""
 
-    meta: Dict = meta_field
+    meta: Optional[Dict] = meta_field
     data_categories: Optional[List[FidesKey]] = Field(
         description="Array of Data Category resources identified by `fides_key`, that apply to all collections in the Dataset.",
     )
@@ -928,7 +929,7 @@ class System(FidesModel):
     registry_id: Optional[int] = Field(
         description="The id of the system registry, if used.",
     )
-    meta: Dict = meta_field
+    meta: Optional[Dict] = meta_field
     fidesctl_meta: Optional[SystemMetadata] = Field(
         description=SystemMetadata.__doc__,
     )

@@ -14,10 +14,13 @@ jobs:
       - name: Install Twine
         run: pip install twine
 
-      - name: Twine Upload
+      - name: Build Distributions
         run: |
-          python setup.py sdist
-          twine upload dist/*
+          python -m pip install build
+          python -m build
+
+      - name: Twine Upload
+        run: twine upload dist/*
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}

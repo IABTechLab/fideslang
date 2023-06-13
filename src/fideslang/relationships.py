@@ -4,8 +4,9 @@ by each other and building a dependency graph of relationships.
 """
 
 import inspect
+from enum import Enum
 from functools import reduce
-from typing import List, Set
+from typing import Optional, List, Set
 
 from fideslang.models import BaseModel, FidesKey, Taxonomy
 from fideslang.utils import get_resource_by_fides_key
@@ -29,28 +30,39 @@ def find_referenced_fides_keys(resource: object) -> Set[FidesKey]:
     include the FidesKey type and return all of those values.
 
     Note that this finds _all_ fides_keys, including the resource's own fides_key
+
+    This function is used recursively for arbitrary-depth objects.
     """
     referenced_fides_keys: Set[FidesKey] = set()
+
+    if isinstance(resource, str) and not isinstance(resource, Enum):
+        return {resource}
+
     signature = inspect.signature(type(resource), follow_wrapped=True)
-    parameter_values = filter(
+    attributes = filter(
         lambda parameter: hasattr(resource, parameter.name),
         signature.parameters.values(),
     )
-    for parameter in parameter_values:
-        parameter_value = resource.__getattribute__(parameter.name)
-        if parameter_value:
-            if parameter.annotation == FidesKey:
-                referenced_fides_keys.add(parameter_value)
-            elif parameter.annotation == List[FidesKey]:
-                referenced_fides_keys.update(resource.__getattribute__(parameter.name))
+
+    for attribute in attributes:
+        attribute_value = resource.__getattribute__(attribute.name)
+        if attribute_value:
+            # If it is a single FidesKey, add it directly
+            if attribute.annotation in (FidesKey, Optional[FidesKey]):
+                referenced_fides_keys.add(attribute_value)
+            # Add the list of FidesKeys to the set
+            elif attribute.annotation == List[FidesKey]:
+                referenced_fides_keys.update(resource.__getattribute__(attribute.name))
+            # If it is a list, but not of strings, recurse into each one
             elif (
-                isinstance(parameter_value, list) and parameter.annotation != List[str]
+                isinstance(attribute_value, list) and attribute.annotation != List[str]
             ):
-                nested_keys = find_nested_keys_in_list(parameter_value)
+                nested_keys = find_nested_keys_in_list(attribute_value)
                 referenced_fides_keys.update(nested_keys)
-            elif hasattr(parameter_value, "__dict__"):
+            # If it is an object, recurse this function
+            elif hasattr(attribute_value, "__dict__"):
                 referenced_fides_keys.update(
-                    find_referenced_fides_keys(parameter_value)
+                    find_referenced_fides_keys(attribute_value)
                 )
     return referenced_fides_keys
 
