@@ -65,5 +65,6 @@ RUN pip install -e ".[all]"
 FROM builder as prod
 
 # Install without a symlink
-RUN python setup.py sdist
+RUN python -m pip install build
+RUN python -m build
 RUN pip install dist/fideslang-*.tar.gz

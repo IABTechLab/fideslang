@@ -16,6 +16,10 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/1.4.1...main)
 
+### Fixed
+
+- Fix Fideslang visual explorer on docs site [#123](https://github.com/ethyca/fideslang/pull/123)
+
 ## [1.4.1](https://github.com/ethyca/fideslang/compare/1.4.0...1.4.1)
 
 ### Changed
