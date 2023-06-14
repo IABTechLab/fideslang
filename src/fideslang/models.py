@@ -180,7 +180,10 @@ class DataQualifier(FidesModel):
 
 class Cookies(BaseModel):
     """The Cookies resource model"""
+
     name: str
+    path: Optional[str]
+    domain: Optional[str]
 
     class Config:
         """Config for the cookies"""

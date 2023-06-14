@@ -85,7 +85,9 @@ class TestSystem:
                     egress=["test_system_2"],
                     ingress=["test_system_3"],
                     name="declaration-name",
-                    cookies=[{"name": "test_cookie"}],
+                    cookies=[
+                        {"name": "test_cookie", "path": "/", "domain": "example.com"}
+                    ],
                 )
             ],
             registry_id=1,
