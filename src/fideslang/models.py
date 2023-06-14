@@ -179,7 +179,13 @@ class DataQualifier(FidesModel):
 
 
 class Cookies(BaseModel):
+    """The Cookies resource model"""
     name: str
+
+    class Config:
+        """Config for the cookies"""
+
+        orm_mode = True
 
 
 class DataSubjectRights(BaseModel):
