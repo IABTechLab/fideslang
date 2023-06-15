@@ -6,7 +6,7 @@ by each other and building a dependency graph of relationships.
 import inspect
 from enum import Enum
 from functools import reduce
-from typing import Optional, List, Set
+from typing import List, Optional, Set
 
 from fideslang.models import BaseModel, FidesKey, Taxonomy
 from fideslang.utils import get_resource_by_fides_key
