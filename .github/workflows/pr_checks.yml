@@ -8,6 +8,7 @@ on:
 env:
   CONTAINER: fideslang-local
   IMAGE: ethyca/fideslang:local
+  DEFAULT_PYTHON_VERSION: "3.10.11"
 
 jobs:
   Build:
@@ -37,25 +38,6 @@ jobs:
           path: /tmp/${{ env.CONTAINER }}.tar
           retention-days: 1
 
-  Black:
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download fideslang container
-        uses: actions/download-artifact@v2
-        with:
-          name: ${{ env.CONTAINER }}
-          path: /tmp/
-
-      - name: Load fideslang image
-        run: docker load --input /tmp/${{ env.CONTAINER }}.tar
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Run formatter
-        run: make black
-
   Export:
     runs-on: ubuntu-latest
     steps:
@@ -74,62 +56,27 @@ jobs:
       - name: Run Export
         run: python scripts/export_default_taxonomy.py
 
-  Pylint:
-    needs: Build
+  Static-Checks:
+    continue-on-error: true
+    strategy:
+      matrix:
+        session_name: ["black", "mypy", "pylint", "xenon"]
     runs-on: ubuntu-latest
     steps:
-      - name: Download fideslang container
-        uses: actions/download-artifact@v2
-        with:
-          name: ${{ env.CONTAINER }}
-          path: /tmp/
-
-      - name: Load fideslang image
-        run: docker load --input /tmp/${{ env.CONTAINER }}.tar
-
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Run linter
-        run: make pylint
-
-  Mypy:
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download fideslang container
-        uses: actions/download-artifact@v2
+      - name: Set Up Python
+        uses: actions/setup-python@v4
         with:
-          name: ${{ env.CONTAINER }}
-          path: /tmp/
+          python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
+          cache: "pip"
 
-      - name: Load fideslang image
-        run: docker load --input /tmp/${{ env.CONTAINER }}.tar
+      - name: Install Nox
+        run: pip install nox
 
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Run typechecker
-        run: make mypy
-
-  Xenon:
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download fideslang container
-        uses: actions/download-artifact@v2
-        with:
-          name: ${{ env.CONTAINER }}
-          path: /tmp/
-
-      - name: Load fideslang image
-        run: docker load --input /tmp/${{ env.CONTAINER }}.tar
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Run cyclomatic complexity check
-        run: make xenon
+      - name: Run Static Check
+        run: nox -s ${{ matrix.session_name }}
 
   Pytest-Matrix:
     strategy:
