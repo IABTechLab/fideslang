@@ -1,7 +1,9 @@
 import nox
 
-nox.options.sessions = ["check_all"]
-nox.options.stop_on_first_error = True
+nox.options.sessions = []
+
+TESTED_PYTHON_VERSIONS = ["3.8", "3.9", "3.10", "3.11"]
+TESTED_PYDANTIC_VERSIONS = ["1.8.2", "1.9.2", "1.10.9"]
 
 
 def install_requirements(session: nox.Session) -> None:
@@ -9,38 +11,46 @@ def install_requirements(session: nox.Session) -> None:
     session.install("-r", "dev-requirements.txt")
 
 
-@nox.session(python=["3.8", "3.9", "3.10", "3.11"])
-@nox.parametrize("pydantic_version", ["1.8.2", "1.9.2", "1.10.9"])
+@nox.session(python=TESTED_PYTHON_VERSIONS)
+@nox.parametrize("pydantic_version", TESTED_PYDANTIC_VERSIONS)
 def tests(session: nox.Session, pydantic_version: str) -> None:
     install_requirements(session)
-    session.install(f"pydantic=={pydantic_version}")
     session.install(".")
+    session.install(f"pydantic=={pydantic_version}")
     if session.posargs:
-        test_files = session.posargs
+        test_args = session.posargs
     else:
-        test_files = [""]
-    session.run("pytest", "-x", *test_files)
+        test_args = [""]
+    session.run("pytest", *test_args)
 
 
-@nox.session(python="3.8")
+@nox.session()
+def pytest(session: nox.Session) -> None:
+    """Runs the pytest suite with default versions."""
+    install_requirements(session)
+    session.install(".")
+    session.run("pytest")
+
+
+@nox.session()
 def black(session: nox.Session) -> None:
     install_requirements(session)
     session.run("black", "--check", "src/")
 
 
-@nox.session(python="3.8")
+@nox.session()
 def mypy(session: nox.Session) -> None:
     install_requirements(session)
     session.run("mypy")
 
 
-@nox.session(python="3.8")
+@nox.session()
 def pylint(session: nox.Session) -> None:
     install_requirements(session)
-    session.run("pylint", "src/")
+    session.run("pylint", "--jobs", "0", "src/")
 
 
-@nox.session(python="3.8")
+@nox.session()
 def xenon(session: nox.Session) -> None:
     install_requirements(session)
     session.run(
@@ -59,15 +69,17 @@ def xenon(session: nox.Session) -> None:
     )
 
 
-@nox.session(python="3.8")
-def check_static(session: nox.Session) -> None:
-    black(session)
-    pylint(session)
-    mypy(session)
-    xenon(session)
+@nox.session()
+def static_checks(session: nox.Session) -> None:
+    """Run the static checks."""
+    session.notify("black")
+    session.notify("xenon")
+    session.notify("pylint")
+    session.notify("mypy")
 
 
-@nox.session(python="3.8")
+@nox.session()
 def check_all(session: nox.Session) -> None:
-    check_static(session)
+    """Run static checks as well as tests."""
+    session.notify("static_checks")
     session.notify("tests")
