@@ -75,6 +75,7 @@ class TestSystem:
             meta={"some": "meta stuff"},
             name="Test System",
             organization_fides_key=1,
+            cookies=[{"name": "test_cookie"}],
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
@@ -84,6 +85,9 @@ class TestSystem:
                     egress=["test_system_2"],
                     ingress=["test_system_3"],
                     name="declaration-name",
+                    cookies=[
+                        {"name": "test_cookie", "path": "/", "domain": "example.com"}
+                    ],
                 )
             ],
             registry_id=1,

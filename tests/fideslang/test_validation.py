@@ -226,7 +226,12 @@ def test_create_valid_system():
                 dataset_references=[],
             )
         ],
-        egress=[DataFlow(fides_key="another_system", type="system", data_categories=None), DataFlow(fides_key="yet_another_system", type="system", data_categories=None)],
+        egress=[
+            DataFlow(fides_key="another_system", type="system", data_categories=None),
+            DataFlow(
+                fides_key="yet_another_system", type="system", data_categories=None
+            ),
+        ],
     )
     assert True
 

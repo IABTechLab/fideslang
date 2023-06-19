@@ -178,6 +178,19 @@ class DataQualifier(FidesModel):
     _no_self_reference: classmethod = no_self_reference_validator
 
 
+class Cookies(BaseModel):
+    """The Cookies resource model"""
+
+    name: str
+    path: Optional[str]
+    domain: Optional[str]
+
+    class Config:
+        """Config for the cookies"""
+
+        orm_mode = True
+
+
 class DataSubjectRights(BaseModel):
     """
     The DataSubjectRights resource model.
@@ -819,6 +832,9 @@ class PrivacyDeclaration(BaseModel):
     ingress: Optional[List[FidesKey]] = Field(
         description="The resources from which data is received. Any `fides_key`s included in this list reference `DataFlow` entries in the `ingress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
     )
+    cookies: Optional[List[Cookies]] = Field(
+        description="Cookies associated with this data use to deliver services and functionality",
+    )
 
     @validator("dataset_references")
     @classmethod
@@ -960,7 +976,6 @@ class System(FidesModel):
         default=DataProtectionImpactAssessment(),
         description=DataProtectionImpactAssessment.__doc__,
     )
-
     _sort_privacy_declarations: classmethod = validator(
         "privacy_declarations", allow_reuse=True
     )(sort_list_objects_by_name)

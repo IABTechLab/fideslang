@@ -16,6 +16,11 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/1.4.1...main)
 
+
+### Changed
+
+- Add `Cookies` schema and similar property to `PrivacyDeclaration` [#115](https://github.com/ethyca/fideslang/pull/115)
+
 ### Fixed
 
 - Fix Fideslang visual explorer on docs site [#123](https://github.com/ethyca/fideslang/pull/123)
