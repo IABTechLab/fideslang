@@ -19,7 +19,7 @@ The types of changes are:
 
 ### Changed
 
-- Add `cookies` property to `PrivacyDeclaration` and `System` [#115](https://github.com/ethyca/fideslang/pull/115)
+- Add `Cookies` schema and similar property to `PrivacyDeclaration` [#115](https://github.com/ethyca/fideslang/pull/115)
 
 ### Fixed
 
