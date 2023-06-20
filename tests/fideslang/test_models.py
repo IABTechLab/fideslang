@@ -1,9 +1,41 @@
 from pytest import deprecated_call, mark, raises
 
-from fideslang import DataFlow, Dataset, PrivacyDeclaration, System
-from fideslang.models import DatasetCollection, DatasetField
+from fideslang import DataFlow, Dataset, PrivacyDeclaration, System, Organization
+from fideslang.models import DatasetCollection, DatasetField, ContactDetails
 
 pytestmark = mark.unit
+
+
+class TestOrganization:
+    def test_valid_organization(self) -> None:
+        """Create a standard organization"""
+
+    organization = Organization(
+        fides_key="default_organization",
+        name="Demo Organization",
+        description="An e-commerce organization",
+        security_policy="https://ethyca.com/privacy-policy/",
+        controller=ContactDetails(
+            name="Con Troller",
+            address="123 demo street, New York, NY, USA",
+            email="controller@demo_company.com",
+            phone="+1 555 555 5555",
+        ),
+        data_protection_officer=ContactDetails(
+            name="DataPro Tection",
+            address="123 demo street, New York, NY, USA",
+            email="dpo@demo_company.com",
+            phone="+1 555 555 5555",
+        ),
+        representative=ContactDetails(
+            name="Rep Resentative",
+            address="123 demo street, New York, NY, USA",
+            email="representative@demo_company.com",
+            phone="+1 555 555 5555",
+        ),
+        fidesctl_meta=None,
+    )
+    assert organization
 
 
 class TestDataFlow:

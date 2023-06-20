@@ -13,9 +13,44 @@ from fideslang.models import (
     PrivacyDeclaration,
     System,
     Taxonomy,
+    Organization,
+    ContactDetails,
 )
 
-# Test organizations here as well
+
+def test_find_all_strings() -> None:
+    """
+    This test is to specifically check that it doesn't send back strings as
+    FidesKeys, due to a bug that occurred with the HTTPUrl type.
+    """
+    organization = Organization(
+        fides_key="default_organization",
+        name="Demo Organization",
+        description="An e-commerce organization",
+        security_policy="https://ethyca.com/privacy-policy/",
+        controller=ContactDetails(
+            name="Con Troller",
+            address="123 demo street, New York, NY, USA",
+            email="controller@demo_company.com",
+            phone="+1 555 555 5555",
+        ),
+        data_protection_officer=ContactDetails(
+            name="DataPro Tection",
+            address="123 demo street, New York, NY, USA",
+            email="dpo@demo_company.com",
+            phone="+1 555 555 5555",
+        ),
+        representative=ContactDetails(
+            name="Rep Resentative",
+            address="123 demo street, New York, NY, USA",
+            email="representative@demo_company.com",
+            phone="+1 555 555 5555",
+        ),
+        fidesctl_meta=None,
+    )
+    found_keys = relationships.find_referenced_fides_keys(organization)
+    assert found_keys == {"default_organization"}
+
 
 @pytest.mark.unit
 def test_find_referenced_fides_keys_1():

@@ -35,9 +35,6 @@ def find_referenced_fides_keys(resource: object) -> Set[FidesKey]:
     """
     referenced_fides_keys: Set[FidesKey] = set()
 
-    if isinstance(resource, str) and not isinstance(resource, Enum):
-        return {resource}
-
     signature = inspect.signature(type(resource), follow_wrapped=True)
     attributes = filter(
         lambda parameter: hasattr(resource, parameter.name),
