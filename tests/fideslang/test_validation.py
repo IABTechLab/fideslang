@@ -1,26 +1,14 @@
 import pytest
 from pydantic import ValidationError
 
-from fideslang.models import (
-    CollectionMeta,
-    DataCategory,
-    DataFlow,
-    Dataset,
-    DatasetCollection,
-    DatasetField,
-    DatasetMetadata,
-    DataUse,
-    FidesCollectionKey,
-    FidesDatasetReference,
-    FidesMeta,
-    FidesModel,
-    Policy,
-    PolicyRule,
-    PrivacyDeclaration,
-    PrivacyRule,
-    System,
-)
-from fideslang.validation import FidesKey, FidesValidationError, valid_data_type
+from fideslang.models import (CollectionMeta, DataCategory, DataFlow, Dataset,
+                              DatasetCollection, DatasetField, DatasetMetadata,
+                              DataUse, FidesCollectionKey,
+                              FidesDatasetReference, FidesMeta, FidesModel,
+                              Policy, PolicyRule, PrivacyDeclaration,
+                              PrivacyRule, System)
+from fideslang.validation import (FidesKey, FidesValidationError,
+                                  valid_data_type)
 
 
 @pytest.mark.unit

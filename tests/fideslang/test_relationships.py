@@ -1,21 +1,10 @@
 import pytest
 
 from fideslang import relationships
-from fideslang.models import (
-    DataCategory,
-    DataFlow,
-    Dataset,
-    DatasetCollection,
-    DatasetField,
-    MatchesEnum,
-    Policy,
-    PolicyRule,
-    PrivacyDeclaration,
-    System,
-    Taxonomy,
-    Organization,
-    ContactDetails,
-)
+from fideslang.models import (ContactDetails, DataCategory, DataFlow, Dataset,
+                              DatasetCollection, DatasetField, MatchesEnum,
+                              Organization, Policy, PolicyRule,
+                              PrivacyDeclaration, System, Taxonomy)
 
 
 def test_find_all_strings() -> None:
