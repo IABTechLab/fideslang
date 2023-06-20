@@ -4,7 +4,6 @@ by each other and building a dependency graph of relationships.
 """
 
 import inspect
-from enum import Enum
 from functools import reduce
 from typing import List, Optional, Set
 
