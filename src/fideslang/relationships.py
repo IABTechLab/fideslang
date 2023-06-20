@@ -7,7 +7,6 @@ import inspect
 from enum import Enum
 from functools import reduce
 from typing import List, Optional, Set
-from pydantic import BaseModel
 
 from fideslang.models import BaseModel, FidesKey, Taxonomy
 from fideslang.utils import get_resource_by_fides_key
