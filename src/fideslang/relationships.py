@@ -4,8 +4,10 @@ by each other and building a dependency graph of relationships.
 """
 
 import inspect
+from enum import Enum
 from functools import reduce
 from typing import List, Optional, Set
+from pydantic import BaseModel
 
 from fideslang.models import BaseModel, FidesKey, Taxonomy
 from fideslang.utils import get_resource_by_fides_key
@@ -34,6 +36,10 @@ def find_referenced_fides_keys(resource: object) -> Set[FidesKey]:
     """
     referenced_fides_keys: Set[FidesKey] = set()
 
+    # Str type doesn't have a signature, so we return early
+    if isinstance(resource, str) and not isinstance(resource, Enum):
+        return {resource}
+
     signature = inspect.signature(type(resource), follow_wrapped=True)
     attributes = filter(
         lambda parameter: hasattr(resource, parameter.name),
@@ -55,8 +61,8 @@ def find_referenced_fides_keys(resource: object) -> Set[FidesKey]:
             ):
                 nested_keys = find_nested_keys_in_list(attribute_value)
                 referenced_fides_keys.update(nested_keys)
-            # If it is an object, recurse this function
-            elif hasattr(attribute_value, "__dict__"):
+            # If it is a Pydantic Model then recurse
+            elif isinstance(attribute_value, BaseModel):
                 referenced_fides_keys.update(
                     find_referenced_fides_keys(attribute_value)
                 )
