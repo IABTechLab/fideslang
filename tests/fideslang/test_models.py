@@ -1,7 +1,6 @@
 from pytest import deprecated_call, mark, raises
 
-from fideslang import (DataFlow, Dataset, Organization, PrivacyDeclaration,
-                       System)
+from fideslang import DataFlow, Dataset, Organization, PrivacyDeclaration, System
 from fideslang.models import ContactDetails, DatasetCollection, DatasetField
 
 pytestmark = mark.unit

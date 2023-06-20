@@ -12,12 +12,29 @@ from . import _version
 __version__ = _version.get_versions()["version"]
 
 # Export the Models
-from .models import (DataCategory, DataFlow, DataQualifier, Dataset,
-                     DatasetField, DatasetFieldBase, DataSubject, DataUse,
-                     Evaluation, FidesCollectionKey, FidesDatasetReference,
-                     FidesMeta, FidesModel, Organization, Policy, PolicyRule,
-                     PrivacyDeclaration, PrivacyRule, Registry, System,
-                     Taxonomy)
+from .models import (
+    DataCategory,
+    DataFlow,
+    DataQualifier,
+    Dataset,
+    DatasetField,
+    DatasetFieldBase,
+    DataSubject,
+    DataUse,
+    Evaluation,
+    FidesCollectionKey,
+    FidesDatasetReference,
+    FidesMeta,
+    FidesModel,
+    Organization,
+    Policy,
+    PolicyRule,
+    PrivacyDeclaration,
+    PrivacyRule,
+    Registry,
+    System,
+    Taxonomy,
+)
 
 FidesModelType = Union[Type[FidesModel], Type[Evaluation]]
 model_map: Dict[str, FidesModelType] = {
