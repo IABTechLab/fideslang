@@ -68,7 +68,7 @@ def find_referenced_fides_keys(resource: object) -> Set[FidesKey]:
     return referenced_fides_keys
 
 
-def get_referenced_missing_keys(taxonomy: Taxonomy) -> List[FidesKey]:
+def get_referenced_missing_keys(taxonomy: Taxonomy) -> Set[FidesKey]:
     """
     Iterate through the Taxonomy and create a set of all of the FidesKeys
     that are contained within it.
@@ -81,9 +81,9 @@ def get_referenced_missing_keys(taxonomy: Taxonomy) -> List[FidesKey]:
     key_set: Set[FidesKey] = set(
         reduce(lambda x, y: set().union(x).union(y), referenced_keys)
     )
-    keys_not_in_taxonomy = [
+    keys_not_in_taxonomy = {
         fides_key
         for fides_key in key_set
         if get_resource_by_fides_key(taxonomy, fides_key) is None
-    ]
+    }
     return keys_not_in_taxonomy

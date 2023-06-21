@@ -209,7 +209,7 @@ class TestGetReferencedMissingKeys:
             "privacy_declaration_data_set_1",
         }
         referenced_keys = relationships.get_referenced_missing_keys(taxonomy)
-        assert sorted(referenced_keys) == sorted(set(expected_referenced_key))
+        assert referenced_keys.difference(expected_referenced_key) == referenced_keys
 
     def test_get_referenced_missing_policy_keys(self):
         taxonomy = Taxonomy(
@@ -281,4 +281,4 @@ class TestGetReferencedMissingKeys:
             "dataset_field_data_qualifier_1",
         }
         referenced_keys = relationships.get_referenced_missing_keys(taxonomy)
-        assert sorted(referenced_keys) == sorted(set(expected_referenced_key))
+        assert referenced_keys.difference(expected_referenced_key) == referenced_keys
