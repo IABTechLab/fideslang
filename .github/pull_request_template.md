@@ -1,4 +1,9 @@
-Closes <issue>
+Closes #<issue>
+
+### Description Of Changes
+
+_Write some things here about the changes and any potential caveats_
+
 
 ### Code Changes
 
@@ -15,7 +20,3 @@ Closes <issue>
 * [ ] Issue Requirements are Met
 * [ ] Relevant Follow-Up Issues Created
 * [ ] Update `CHANGELOG.md`
-
-### Description Of Changes
-
-_Write some things here about the changes and any potential caveats_
