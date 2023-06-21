@@ -37,7 +37,7 @@ def find_referenced_fides_keys(resource: object) -> Set[FidesKey]:
 
     # Str type doesn't have a signature, so we return early
     if isinstance(resource, str) and not isinstance(resource, Enum):
-        return {resource}
+        return set()
 
     signature = inspect.signature(type(resource), follow_wrapped=True)
     attributes = filter(

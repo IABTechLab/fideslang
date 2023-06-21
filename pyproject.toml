@@ -81,8 +81,7 @@ log_level = "DEBUG"
 addopts = ["--cov=fideslang",
             "--cov-report=term-missing",
             "-vv",
-            "--no-cov-on-fail",
-            "--disable-pytest-warnings"]
+            "--no-cov-on-fail",]
 markers = [
     "unit: only runs tests that don't require non-python dependencies (i.e. a database)",
 ]
