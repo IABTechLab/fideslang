@@ -9,6 +9,7 @@ from fideslang.models import (
     Dataset,
     DatasetCollection,
     DatasetField,
+    DataUse,
     MatchesEnum,
     Organization,
     Policy,
@@ -74,7 +75,10 @@ class TestFindReferencedKeys:
                     data_categories=["privacy_declaration_data_category_1"],
                     data_use="privacy_declaration_data_use_1",
                     data_qualifier="privacy_declaration_data_qualifier_1",
-                    data_subjects=["privacy_declaration_data_subject_1"],
+                    data_subjects=[
+                        "privacy_declaration_data_subject_1",
+                        "privacy_declaration_data_subject_2",
+                    ],
                     dataset_references=["privacy_declaration_data_set_1"],
                     egress=None,
                     ingress=None,
@@ -89,11 +93,12 @@ class TestFindReferencedKeys:
             "privacy_declaration_data_use_1",
             "privacy_declaration_data_qualifier_1",
             "privacy_declaration_data_subject_1",
+            "privacy_declaration_data_subject_2",
             "privacy_declaration_data_set_1",
         }
         assert not found_keys.difference(expected_keys)
 
-    def test_find_referenced_fides_keys_1(self):
+    def test_find_referenced_fides_keys_1(self) -> None:
         test_data_category = DataCategory(
             name="test_dc",
             fides_key="key_1.test_dc",
@@ -104,7 +109,7 @@ class TestFindReferencedKeys:
         referenced_keys = relationships.find_referenced_fides_keys(test_data_category)
         assert referenced_keys == set(expected_referenced_key)
 
-    def test_find_referenced_fides_keys_2(self):
+    def test_find_referenced_fides_keys_2(self) -> None:
         test_system = System.construct(
             name="test_dc",
             fides_key="test_dc",
@@ -118,6 +123,21 @@ class TestFindReferencedKeys:
         )
         expected_referenced_key = {"key_1", "key_2", "test_dc", "default_organization"}
         referenced_keys = relationships.find_referenced_fides_keys(test_system)
+        assert referenced_keys == set(expected_referenced_key)
+
+    def test_find_referenced_fides_keys_3(self) -> None:
+        resource = DataUse(
+            fides_key="direct_marketing",
+            name="Direct Marketing",
+            description="User information for direct marketing purposes",
+            recipients=["Processor - marketing co."],
+            legal_basis="Legitimate Interests",
+            special_category="Vital Interests",
+            legitimate_interest_impact_assessment="https://example.org/legitimate_interest_assessment",
+            parent_key=None,
+        )
+        expected_referenced_key = {"direct_marketing", "default_organization"}
+        referenced_keys = relationships.find_referenced_fides_keys(resource)
         assert referenced_keys == set(expected_referenced_key)
 
 
