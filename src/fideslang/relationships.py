@@ -35,8 +35,9 @@ def find_referenced_fides_keys(resource: object) -> Set[FidesKey]:
     """
     referenced_fides_keys: Set[FidesKey] = set()
 
+    # Str type doesn't have a signature, so we return early
     if isinstance(resource, str) and not isinstance(resource, Enum):
-        return {resource}
+        return set()
 
     signature = inspect.signature(type(resource), follow_wrapped=True)
     attributes = filter(
@@ -59,15 +60,15 @@ def find_referenced_fides_keys(resource: object) -> Set[FidesKey]:
             ):
                 nested_keys = find_nested_keys_in_list(attribute_value)
                 referenced_fides_keys.update(nested_keys)
-            # If it is an object, recurse this function
-            elif hasattr(attribute_value, "__dict__"):
+            # If it is a Pydantic Model then recurse
+            elif isinstance(attribute_value, BaseModel):
                 referenced_fides_keys.update(
                     find_referenced_fides_keys(attribute_value)
                 )
     return referenced_fides_keys
 
 
-def get_referenced_missing_keys(taxonomy: Taxonomy) -> List[FidesKey]:
+def get_referenced_missing_keys(taxonomy: Taxonomy) -> Set[FidesKey]:
     """
     Iterate through the Taxonomy and create a set of all of the FidesKeys
     that are contained within it.
@@ -80,9 +81,9 @@ def get_referenced_missing_keys(taxonomy: Taxonomy) -> List[FidesKey]:
     key_set: Set[FidesKey] = set(
         reduce(lambda x, y: set().union(x).union(y), referenced_keys)
     )
-    keys_not_in_taxonomy = [
+    keys_not_in_taxonomy = {
         fides_key
         for fides_key in key_set
         if get_resource_by_fides_key(taxonomy, fides_key) is None
-    ]
+    }
     return keys_not_in_taxonomy
