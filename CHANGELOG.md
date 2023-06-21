@@ -14,8 +14,13 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/1.4.1...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/1.4.2...main)
 
+
+## [1.4.2](https://github.com/ethyca/fideslang/compare/1.4.1...1.4.2)
+
+### Added
+- Support Pydantic <1.11 [#122] (https://github.com/ethyca/fideslang/pull/122)
 
 ### Changed
 
@@ -24,6 +29,12 @@ The types of changes are:
 ### Fixed
 
 - Fix Fideslang visual explorer on docs site [#123](https://github.com/ethyca/fideslang/pull/123)
+- Fix Fideslang key finding function [#131](https://github.com/ethyca/fideslang/pull/131)
+
+### Developer Experience
+- Allow Docker to select plaform [#121] https://github.com/ethyca/fideslang/pull/121
+- Use build time versioneer [#120] https://github.com/ethyca/fideslang/pull/120
+- 
 
 ## [1.4.1](https://github.com/ethyca/fideslang/compare/1.4.0...1.4.1)
 
