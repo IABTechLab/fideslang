@@ -83,6 +83,7 @@ jobs:
       matrix:
         python_version: ["3.8", "3.9", "3.10", "3.11"]
         pydantic_version: ["1.8.2", "1.9.2", "1.10.9"]
+        pyyaml_version: ["5.4.1", "6.0"]
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
@@ -99,4 +100,4 @@ jobs:
         run: pip install nox
 
       - name: Run Tests
-        run: nox -s "tests-${{ matrix.python_version }}(pydantic_version='${{ matrix.pydantic_version }}')"
+        run: nox -s "tests-${{ matrix.python_version }}(pyyaml_version='${{ matrix.pyyaml_version }}', pydantic_version='${{ matrix.pydantic_version }}')"
