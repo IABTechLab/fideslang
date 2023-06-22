@@ -5,6 +5,7 @@ nox.options.reuse_existing_virtualenvs = True
 
 TESTED_PYTHON_VERSIONS = ["3.8", "3.9", "3.10", "3.11"]
 TESTED_PYDANTIC_VERSIONS = ["1.8.2", "1.9.2", "1.10.9"]
+TESTED_PYYAML_VERSIONS = ["5.4.1", "6.0"]
 
 
 def install_requirements(session: nox.Session) -> None:
@@ -14,10 +15,12 @@ def install_requirements(session: nox.Session) -> None:
 
 @nox.session(python=TESTED_PYTHON_VERSIONS)
 @nox.parametrize("pydantic_version", TESTED_PYDANTIC_VERSIONS)
-def tests(session: nox.Session, pydantic_version: str) -> None:
+@nox.parametrize("pyyaml_version", TESTED_PYYAML_VERSIONS)
+def tests(session: nox.Session, pydantic_version: str, pyyaml_version: str) -> None:
     install_requirements(session)
     session.install(".")
     session.install(f"pydantic=={pydantic_version}")
+    session.install(f"pyyaml=={pyyaml_version}")
     if session.posargs:
         test_args = session.posargs
     else:
