@@ -1,3 +1,6 @@
+###############
+## Packaging ##
+###############
 [build-system]
 requires = ["setuptools", "wheel", "setuptools_scm"]
 
@@ -34,9 +37,9 @@ dependencies = {file = "requirements.txt"}
 [tool.setuptools.packages.find]
 where = ["src"]
 
-##########
-## MyPy ##
-##########
+############
+## Typing ##
+############
 [tool.mypy]
 check_untyped_defs = true
 disallow_untyped_defs = true
@@ -51,12 +54,6 @@ warn_unused_configs = true
 warn_unused_ignores = true
 ignore_missing_imports = true
 
-[tool.pydantic-mypy]
-init_forbid_extra = true
-init_typed = true
-warn_required_dynamic_aliases = true
-warn_untyped_fields = true
-
 [[tool.mypy.overrides]]
 module= "fideslang._version"
 ignore_errors=true
@@ -65,10 +62,15 @@ ignore_errors=true
 module = ["tests.*"]
 disallow_untyped_defs = false
 
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
 
-#######
-# Black
-#######
+###########
+## Black ##
+###########
 [tool.black]
 py39 = true
 line-length = 88
@@ -91,9 +93,9 @@ exclude = '''
 )/
 '''
 
-########
-# Pylint
-########
+############
+## Pylint ##
+############
 [tool.pylint.messages_control]
 ignore="migrations"
 disable=[
@@ -121,9 +123,9 @@ max-line-length="88"
 [tool.pylint.basic]
 good-names="_,i,setUp,tearDown,maxDiff,default_app_config"
 
-########
-# Pytest
-########
+############
+## Pytest ##
+############
 [tool.pytest.ini_options]
 testpaths="tests"
 log_level = "DEBUG"
