@@ -34,14 +34,37 @@ dependencies = {file = "requirements.txt"}
 [tool.setuptools.packages.find]
 where = ["src"]
 
+##########
+## MyPy ##
+##########
+[tool.mypy]
+check_untyped_defs = true
+disallow_untyped_defs = true
+disallow_any_explicit = true
+files = ["src"]
+no_implicit_reexport = true
+plugins = ["pydantic.mypy"]
+pretty = true
+show_error_codes = true
+warn_redundant_casts = true
+warn_unused_configs = true
+warn_unused_ignores = true
+ignore_missing_imports = true
 
-######
-# MyPy
-######
-# [tool.mypy] Waiting for new version of Mypy
-# warn_unused_configs = true
-# ignore_missing_imports = true
-# pretty = true
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
+
+[[tool.mypy.overrides]]
+module= "fideslang._version"
+ignore_errors=true
+
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+disallow_untyped_defs = false
+
 
 #######
 # Black
