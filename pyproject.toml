@@ -1,6 +1,8 @@
 [build-system]
 requires = ["setuptools", "wheel", "versioneer[toml]==0.28"]  # PEP 508 specifications.
 
+# Consolidate everything into here
+
 [tool.versioneer]
 VCS = "git"
 style = "pep440"
