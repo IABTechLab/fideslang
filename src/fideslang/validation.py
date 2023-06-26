@@ -3,6 +3,7 @@ Contains all of the additional validation for the resource models.
 """
 
 import re
+from collections import Counter
 from typing import Dict, List, Optional, Pattern, Set, Tuple
 
 from pydantic import ConstrainedStr
@@ -41,6 +42,22 @@ def sort_list_objects_by_name(values: List) -> List:
     This makes resource comparisons deterministic.
     """
     values.sort(key=lambda value: value.name)
+    return values
+
+
+def unique_items_in_list(values: List) -> List:
+    """
+    Verify that the names/FidesKeys of each item in the provided list are unique.
+    """
+    names = [item.name for item in values]
+    duplicates: Dict[str, int] = {
+        name: count for name, count in Counter(names).items() if count > 1
+    }
+    if duplicates:
+        raise FidesValidationError(
+            f"Duplicate entries found: [{','.join(duplicates.keys())}]"
+        )
+
     return values
 
 

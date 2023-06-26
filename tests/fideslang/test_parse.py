@@ -1,6 +1,6 @@
 import pytest
 
-import fideslang as models
+from fideslang import models
 from fideslang import parse
 
 

@@ -28,6 +28,7 @@ from fideslang.validation import (
     parse_data_type_string,
     sort_list_objects_by_name,
     valid_data_type,
+    unique_items_in_list,
 )
 
 # Reusable Validators
@@ -41,6 +42,9 @@ matching_parent_key_validator = validator("parent_key", allow_reuse=True, always
 no_self_reference_validator = validator("parent_key", allow_reuse=True)(
     no_self_reference
 )
+unique_items_in_list_validator = validator(
+    "collections", allow_reuse=True, always=True
+)(unique_items_in_list)
 
 # Reusable Fields
 name_field = Field(description="Human-Readable name for this resource.")
@@ -577,6 +581,7 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
         sort_list_objects_by_name
     )
     _check_valid_country_code: classmethod = country_code_validator
+    _unique_items_in_list: classmethod = unique_items_in_list_validator
 
 
 # Evaluation
