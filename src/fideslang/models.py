@@ -507,6 +507,7 @@ class DatasetCollection(FidesopsMetaBackwardsCompat):
     _sort_fields: classmethod = validator("fields", allow_reuse=True)(
         sort_list_objects_by_name
     )
+    _unique_items_in_list: classmethod = validator("fields", allow_reuse=True)(unique_items_in_list)
 
 
 class ContactDetails(BaseModel):
@@ -577,11 +578,9 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
         description="An array of objects that describe the Dataset's collections.",
     )
 
-    _sort_collections: classmethod = validator("collections", allow_reuse=True)(
-        sort_list_objects_by_name
-    )
+    _sort_collections: classmethod = validator("collections", allow_reuse=True)(sort_list_objects_by_name)
     _check_valid_country_code: classmethod = country_code_validator
-    _unique_items_in_list: classmethod = unique_items_in_list_validator
+    _unique_items_in_list: classmethod = validator("collections", allow_reuse=True)(unique_items_in_list)
 
 
 # Evaluation

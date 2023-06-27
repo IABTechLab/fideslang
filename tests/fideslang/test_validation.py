@@ -28,6 +28,33 @@ from fideslang.validation import (
 
 
 @pytest.mark.unit
+def test_collections_duplicate_fields_error():
+    with pytest.raises(ValidationError):
+        DatasetCollection(
+            name="foo",
+            description="Fides Generated Description for Table: foo",
+            data_categories=[],
+            fields=[
+                DatasetField(
+                    name=1,
+                    description="Fides Generated Description for Column: 1",
+                    data_categories=[],
+                ),
+                DatasetField(
+                    name=2,
+                    description="Fides Generated Description for Column: 1",
+                    data_categories=[],
+                ),
+                DatasetField(
+                    name=1,
+                    description="Fides Generated Description for Column: 1",
+                    data_categories=[],
+                ),
+            ],
+        )
+
+
+@pytest.mark.unit
 def test_dataset_duplicate_collections_error():
     with pytest.raises(ValidationError):
         Dataset(

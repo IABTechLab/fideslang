@@ -6,8 +6,6 @@ from typing import Dict, List
 
 from fideslang import FidesModel, Taxonomy, model_map
 
-# Throw a warning/error when multiple identical keys are found
-
 
 def parse_dict(
     resource_type: str, resource: Dict, from_server: bool = False
