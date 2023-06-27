@@ -47,7 +47,10 @@ def sort_list_objects_by_name(values: List) -> List:
 
 def unique_items_in_list(values: List) -> List:
     """
-    Verify that the names/FidesKeys of each item in the provided list are unique.
+    Verify that the names of each item in the provided list are unique.
+
+    This is useful for fields where there is no FidesKey but we want to
+    do a uniqueness check.
     """
     names = [item.name for item in values]
     duplicates: Dict[str, int] = {
