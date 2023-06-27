@@ -7,9 +7,8 @@ from typing import Dict, Type, Union
 from fideslang.default_fixtures import COUNTRY_CODES
 from fideslang.default_taxonomy import DEFAULT_TAXONOMY
 
-from . import _version
+from ._version import __version__
 
-__version__ = _version.get_versions()["version"]
 
 # Export the Models
 from .models import (

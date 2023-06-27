@@ -1,25 +1,76 @@
+###############
+## Packaging ##
+###############
 [build-system]
-requires = ["setuptools", "wheel", "versioneer[toml]==0.28"]  # PEP 508 specifications.
+requires = ["setuptools", "wheel", "setuptools_scm"]
 
-[tool.versioneer]
-VCS = "git"
-style = "pep440"
-versionfile_source = "src/fideslang/_version.py"
-versionfile_build = "fideslang/_version.py"
-tag_prefix = ""
-parentdir_prefix = ""
+[project]
+name="fideslang"
+description="Fides Taxonomy Language"
+dynamic = ["dependencies", "version"]
+readme = "README.md"
+requires-python=">=3.8, <4"
+authors = [
+    {name = "Ethyca, Inc.", email = "fidesteam@ethyca.com"}
+]
+license= {text = "Apache License 2.0"}
+classifiers=[
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries",
+]
 
-######
-# MyPy
-######
-# [tool.mypy] Waiting for new version of Mypy
-# warn_unused_configs = true
-# ignore_missing_imports = true
-# pretty = true
+[project.urls]
+documentation = "https://github.com/ethyca/fideslang"
+changelog = "https://github.com/ethyca/fideslang/blob/main/CHANGELOG.md"
 
-#######
-# Black
-#######
+[tool.setuptools_scm]
+write_to = "src/fideslang/_version.py"
+
+[tool.setuptools.dynamic]
+dependencies = {file = "requirements.txt"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+############
+## Typing ##
+############
+[tool.mypy]
+check_untyped_defs = true
+disallow_untyped_defs = true
+disallow_any_explicit = true
+files = ["src"]
+no_implicit_reexport = true
+plugins = ["pydantic.mypy"]
+pretty = true
+show_error_codes = true
+warn_redundant_casts = true
+warn_unused_configs = true
+warn_unused_ignores = true
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module= "fideslang._version"
+ignore_errors=true
+
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+disallow_untyped_defs = false
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
+
+###########
+## Black ##
+###########
 [tool.black]
 py39 = true
 line-length = 88
@@ -42,9 +93,9 @@ exclude = '''
 )/
 '''
 
-########
-# Pylint
-########
+############
+## Pylint ##
+############
 [tool.pylint.messages_control]
 ignore="migrations"
 disable=[
@@ -72,9 +123,9 @@ max-line-length="88"
 [tool.pylint.basic]
 good-names="_,i,setUp,tearDown,maxDiff,default_app_config"
 
-########
-# Pytest
-########
+############
+## Pytest ##
+############
 [tool.pytest.ini_options]
 testpaths="tests"
 log_level = "DEBUG"
