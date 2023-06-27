@@ -1,8 +1,7 @@
-black==22.3
-ipython
-mypy==0.910
-nox
-packaging==20.9
+black==23.3.0
+mypy==1.4.0
+nox>=2023
+packaging>=22.0
 pre-commit==2.9.3
 pylint==2.10.0
 pytest==7.3.1

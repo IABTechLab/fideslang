@@ -14,11 +14,17 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/1.4.2...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/1.4.3...main)
 
 ### Fixed
 
 - Don't allow duplicate entries for DatasetCollections as part of Datasets [#136](https://github.com/ethyca/fideslang/pull/136)
+
+## [1.4.3](https://github.com/ethyca/fideslang/compare/1.4.2...1.4.3)
+
+### Changed
+
+- Consolidate Python build tooling into `pyproject.toml` [#135](https://github.com/ethyca/fideslang/pull/135)
 
 ## [1.4.2](https://github.com/ethyca/fideslang/compare/1.4.1...1.4.2)
 
@@ -36,6 +42,7 @@ The types of changes are:
 - Fix Fideslang key finding function [#131](https://github.com/ethyca/fideslang/pull/131)
 
 ### Developer Experience
+
 - Allow Docker to select plaform [#121] https://github.com/ethyca/fideslang/pull/121
 - Use build time versioneer [#120] https://github.com/ethyca/fideslang/pull/120
 

@@ -103,6 +103,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
+src/fideslang/_version.py
 develop-eggs/
 dist/
 downloads/
