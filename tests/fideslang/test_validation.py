@@ -20,7 +20,75 @@ from fideslang.models import (
     PrivacyRule,
     System,
 )
-from fideslang.validation import FidesKey, FidesValidationError, valid_data_type
+from fideslang.validation import (
+    FidesKey,
+    FidesValidationError,
+    valid_data_type,
+)
+
+
+@pytest.mark.unit
+def test_collections_duplicate_fields_error():
+    with pytest.raises(ValidationError):
+        DatasetCollection(
+            name="foo",
+            description="Fides Generated Description for Table: foo",
+            data_categories=[],
+            fields=[
+                DatasetField(
+                    name=1,
+                    description="Fides Generated Description for Column: 1",
+                    data_categories=[],
+                ),
+                DatasetField(
+                    name=2,
+                    description="Fides Generated Description for Column: 1",
+                    data_categories=[],
+                ),
+                DatasetField(
+                    name=1,
+                    description="Fides Generated Description for Column: 1",
+                    data_categories=[],
+                ),
+            ],
+        )
+
+
+@pytest.mark.unit
+def test_dataset_duplicate_collections_error():
+    with pytest.raises(ValidationError):
+        Dataset(
+            name="ds",
+            fides_key="ds",
+            data_categories=[],
+            description="Fides Generated Description for Schema: ds",
+            collections=[
+                DatasetCollection(
+                    name="foo",
+                    description="Fides Generated Description for Table: foo",
+                    data_categories=[],
+                    fields=[
+                        DatasetField(
+                            name=1,
+                            description="Fides Generated Description for Column: 1",
+                            data_categories=[],
+                        ),
+                    ],
+                ),
+                DatasetCollection(
+                    name="foo",
+                    description="Fides Generated Description for Table: foo",
+                    data_categories=[],
+                    fields=[
+                        DatasetField(
+                            name=4,
+                            description="Fides Generated Description for Column: 4",
+                            data_categories=[],
+                        ),
+                    ],
+                ),
+            ],
+        )
 
 
 @pytest.mark.unit

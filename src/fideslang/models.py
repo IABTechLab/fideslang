@@ -28,6 +28,7 @@ from fideslang.validation import (
     parse_data_type_string,
     sort_list_objects_by_name,
     valid_data_type,
+    unique_items_in_list,
 )
 
 # Reusable Validators
@@ -503,6 +504,9 @@ class DatasetCollection(FidesopsMetaBackwardsCompat):
     _sort_fields: classmethod = validator("fields", allow_reuse=True)(
         sort_list_objects_by_name
     )
+    _unique_items_in_list: classmethod = validator("fields", allow_reuse=True)(
+        unique_items_in_list
+    )
 
 
 class ContactDetails(BaseModel):
@@ -577,6 +581,9 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
         sort_list_objects_by_name
     )
     _check_valid_country_code: classmethod = country_code_validator
+    _unique_items_in_list: classmethod = validator("collections", allow_reuse=True)(
+        unique_items_in_list
+    )
 
 
 # Evaluation

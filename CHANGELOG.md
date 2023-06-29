@@ -16,6 +16,10 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/1.4.3...main)
 
+### Fixed
+
+- Don't allow duplicate entries for DatasetCollections as part of Datasets [#136](https://github.com/ethyca/fideslang/pull/136)
+
 ## [1.4.3](https://github.com/ethyca/fideslang/compare/1.4.2...1.4.3)
 
 ### Changed
