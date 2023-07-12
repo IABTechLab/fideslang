@@ -27,8 +27,8 @@ from fideslang.validation import (
     no_self_reference,
     parse_data_type_string,
     sort_list_objects_by_name,
-    valid_data_type,
     unique_items_in_list,
+    valid_data_type,
 )
 
 # Reusable Validators
@@ -55,6 +55,9 @@ is_default_field = Field(
 meta_field = Field(
     default=None,
     description="An optional property to store any extra information for a resource. Data can be structured in any way: simple set of `key: value` pairs or deeply nested objects.",
+)
+active_field = Field(
+    default=True, description="Indicates whether the resource is currently 'active'."
 )
 
 
@@ -164,6 +167,7 @@ class DataCategory(FidesModel):
 
     parent_key: Optional[FidesKey]
     is_default: bool = is_default_field
+    active: bool = active_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
@@ -174,6 +178,7 @@ class DataQualifier(FidesModel):
 
     parent_key: Optional[FidesKey]
     is_default: bool = is_default_field
+    active: bool = active_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
@@ -231,6 +236,7 @@ class DataSubject(FidesModel):
         description="A boolean value to annotate whether or not automated decisions/profiling exists for the data subject.",
     )
     is_default: bool = is_default_field
+    active: bool = active_field
 
 
 class DataUse(FidesModel):
@@ -258,6 +264,7 @@ class DataUse(FidesModel):
         description="A url pointing to the legitimate interest impact assessment. Required if the legal bases used is legitimate interest.",
     )
     is_default: bool = is_default_field
+    active: bool = active_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
