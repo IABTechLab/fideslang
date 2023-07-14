@@ -16,6 +16,10 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/1.4.3...main)
 
+### Added
+
+- Add an `active` boolean property to taxonomy elements [#137](https://github.com/ethyca/fideslang/pull/137)
+
 ### Fixed
 
 - Don't allow duplicate entries for DatasetCollections as part of Datasets [#136](https://github.com/ethyca/fideslang/pull/136)
