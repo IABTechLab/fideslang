@@ -1,10 +1,15 @@
 import os
 from json import load
+from os.path import dirname, join
 from typing import List
 
 from .models import MappedPurpose, Purpose
 
-PURPOSE_MAPPING_FILE = "src/fideslang/gvl/gvl_data_use_mapping.json"
+PURPOSE_MAPPING_FILE = join(
+    dirname(__file__),
+    "",
+    "gvl_data_use_mapping.json",
+)
 
 GVL_PURPOSES: dict[int, Purpose] = {}
 MAPPED_PURPOSES: dict[int, MappedPurpose] = {}
