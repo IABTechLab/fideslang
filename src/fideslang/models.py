@@ -27,8 +27,8 @@ from fideslang.validation import (
     no_self_reference,
     parse_data_type_string,
     sort_list_objects_by_name,
-    valid_data_type,
     unique_items_in_list,
+    valid_data_type,
 )
 
 # Reusable Validators
@@ -270,6 +270,7 @@ class DataUse(FidesModel):
         default=None,
         description="A url pointing to the legitimate interest impact assessment. Required if the legal bases used is legitimate interest.",
     )
+
     is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
@@ -992,8 +993,8 @@ class System(FidesModel):
     system_type: str = Field(
         description="A required value to describe the type of system being modeled, examples include: Service, Application, Third Party, etc.",
     )
-    data_responsibility_title: DataResponsibilityTitle = Field(
-        default=DataResponsibilityTitle.CONTROLLER,
+    data_responsibility_title: List[DataResponsibilityTitle] = Field(
+        default=[],
         description=DataResponsibilityTitle.__doc__,
     )
     egress: Optional[List[DataFlow]] = Field(
@@ -1070,9 +1071,6 @@ class System(FidesModel):
     )
     department: Optional[str] = Field(
         description="The department within the organization that this system belongs to."
-    )
-    responsibility: Optional[str] = Field(
-        description="The role of the business with regard to data processing."
     )
     dpo: Optional[str] = Field(
         description="The official privacy contact address or DPO."
