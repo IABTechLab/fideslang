@@ -133,7 +133,7 @@ class LegalBasisForProcessingEnum(str, Enum):
 
     CONSENT = "Consent"
     CONTRACT = "Contract"
-    LEGAL_OBLIGATION = "Legal Obligation" # TODO: spec indicates this should now be "Legal claims" - do we update?
+    LEGAL_OBLIGATION = "Legal Obligation"  # TODO: spec indicates this should now be "Legal claims" - do we update?
     VITAL_INTEREST = "Vital Interest"
     PUBLIC_INTEREST = "Public Interest"
     LEGITIMATE_INTEREST = "Legitimate Interests"
@@ -152,7 +152,9 @@ class LegalBasisForTransfersEnum(str, Enum):
     other = "Other"
 
 
-class SpecialCategoriesEnum(str, Enum): # TODO: spec has updated friendly text here - do we need to update?
+class SpecialCategoriesEnum(
+    str, Enum
+):  # TODO: spec has updated friendly text here - do we need to update?
     """
     The model for processing special categories
     of personal data.
@@ -842,7 +844,7 @@ class PrivacyDeclaration(BaseModel):
         description="The fides key of the data qualifier describing a system in a privacy declaration.",
     )
     data_subjects: List[FidesKey] = Field(
-        default=[]
+        default=[],
         description="An array of data subjects describing a system in a privacy declaration.",
     )
     egress: Optional[List[FidesKey]] = Field(
@@ -855,8 +857,7 @@ class PrivacyDeclaration(BaseModel):
         description="Cookies associated with this data use to deliver services and functionality",
     )
     features: List[str] = Field(
-        default=[],
-        description="The features of processing personal data."
+        default=[], description="The features of processing personal data."
     )
     legal_basis_for_processing: Optional[LegalBasisForProcessingEnum] = Field(
         description="The features of processing personal data."
@@ -866,7 +867,7 @@ class PrivacyDeclaration(BaseModel):
     )
     processes_special_category_data: bool = Field(
         default=False,
-        description="The amount of time (in days) for which data is retained for this purpose."
+        description="The amount of time (in days) for which data is retained for this purpose.",
     )
     special_category: Optional[SpecialCategoriesEnum] = Field(
         description="The legal basis under which the special category data is processed.",
@@ -878,7 +879,6 @@ class PrivacyDeclaration(BaseModel):
         default=[],
         description="The categories of personal data that this system shares with third parties.",
     )
-
 
     @validator("dataset_references")
     @classmethod
