@@ -124,7 +124,7 @@ class DataSubjectRightsEnum(str, Enum):
     OBJECT_TO_AUTOMATED_PROCESSING = "Object to Automated Processing"
 
 
-class LegalBasisEnum(str, Enum):
+class LegalBasisForProcessingEnum(str, Enum):
     """
     The model for allowable legal basis categories
 
@@ -133,13 +133,26 @@ class LegalBasisEnum(str, Enum):
 
     CONSENT = "Consent"
     CONTRACT = "Contract"
-    LEGAL_OBLIGATION = "Legal Obligation"
+    LEGAL_OBLIGATION = "Legal Obligation" # TODO: spec indicates this should now be "Legal claims" - do we update?
     VITAL_INTEREST = "Vital Interest"
     PUBLIC_INTEREST = "Public Interest"
     LEGITIMATE_INTEREST = "Legitimate Interests"
 
 
-class SpecialCategoriesEnum(str, Enum):
+class LegalBasisForProfilingEnum(str, Enum):
+    explicit_consent = "Explicit Consent"
+    contract = "Contract"
+    authorized_by_law = "Authorized by law"
+
+
+class LegalBasisForTransfersEnum(str, Enum):
+    adequacy_decision = "Adequacy decision"
+    standard_contractual_clauses = "Standard Contractual Clauses"
+    binding_corporate_rules = "Binding Corporate Rules"
+    other = "Other"
+
+
+class SpecialCategoriesEnum(str, Enum): # TODO: spec has updated friendly text here - do we need to update?
     """
     The model for processing special categories
     of personal data.
@@ -237,7 +250,7 @@ class DataUse(FidesModel):
     """The DataUse resource model."""
 
     parent_key: Optional[FidesKey] = None
-    legal_basis: Optional[LegalBasisEnum] = Field(
+    legal_basis: Optional[LegalBasisForProcessingEnum] = Field(
         default=None,
         description="The legal basis category of which the data use falls under. This field is used as part of the creation of an exportable data map.",
     )
@@ -828,10 +841,8 @@ class PrivacyDeclaration(BaseModel):
         description="The fides key of the data qualifier describing a system in a privacy declaration.",
     )
     data_subjects: List[FidesKey] = Field(
+        default=[]
         description="An array of data subjects describing a system in a privacy declaration.",
-    )
-    dataset_references: Optional[List[FidesKey]] = Field(
-        description="Referenced Dataset fides keys used by the system.",
     )
     egress: Optional[List[FidesKey]] = Field(
         description="The resources to which data is sent. Any `fides_key`s included in this list reference `DataFlow` entries in the `egress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
@@ -842,6 +853,31 @@ class PrivacyDeclaration(BaseModel):
     cookies: Optional[List[Cookies]] = Field(
         description="Cookies associated with this data use to deliver services and functionality",
     )
+    features: List[str] = Field(
+        default=[],
+        description="The features of processing personal data."
+    )
+    legal_basis_for_processing: Optional[LegalBasisForProcessingEnum] = Field(
+        description="The features of processing personal data."
+    )
+    retention_period: Optional[int] = Field(
+        description="The amount of time (in days) for which data is retained for this purpose."
+    )
+    processes_special_category_data: bool = Field(
+        default=False,
+        description="The amount of time (in days) for which data is retained for this purpose."
+    )
+    special_category: Optional[SpecialCategoriesEnum] = Field(
+        description="The legal basis under which the special category data is processed.",
+    )
+    third_parties: Optional[str] = Field(
+        description="The types of third parties the data is shared with.",
+    )
+    shared_categories: List[str] = Field(
+        default=[],
+        description="The categories of personal data that this system shares with third parties.",
+    )
+
 
     @validator("dataset_references")
     @classmethod
@@ -983,6 +1019,71 @@ class System(FidesModel):
         default=DataProtectionImpactAssessment(),
         description=DataProtectionImpactAssessment.__doc__,
     )
+    vendor_id = Optional[str] = Field(
+        description="The unique identifier for the vendor that's associated with this system."
+    )
+    dataset_references: Optional[List[FidesKey]] = Field(
+        description="Referenced Dataset fides keys used by the system.",
+    )
+    processes_personal_data: bool = Field(
+        default=True,
+        description="This toggle indicates whether the system stores or processes personal data.",
+    )
+    exempt_from_privacy_regulations: bool = Field(
+        default=False,
+        description="This toggle indicates whether the system is exempt from privacy regulation if they do process personal data.",
+    )
+    reason_for_exemption: Optional[str] = Field(
+        description="The reason that the system is exempt from privacy regulation."
+    )
+    uses_profiling: bool = Field(
+        default=False,
+        description="Whether the vendor uses data to profile a consumer in a way that has a legal effect.",
+    )
+    legal_basis_for_profiling: Optional[LegalBasisForProfilingEnum] = Field(
+        default=False,
+        description="The legal basis for performing profiling that has a legal effect.",
+    )
+    international_transfers: bool = Field(
+        default=False,
+        description="Whether this system transfers data to other countries or international organizations.",
+    )
+    legal_basis_for_transfers: Optional[LegalBasisForTransfersEnum] = Field(
+        default=False,
+        description="The legal basis under which the data is transferred.",
+    )
+    requires_data_protection_assessments: bool = Field(
+        default=False,
+        description="Whether this system requires data protection impact assessments.",
+    )
+    dpa_location: Optional[str] = Field(
+        description="Location where the DPAs or DIPAs can be found."
+    )
+    privacy_policy: Optional[AnyUrl] = Field(
+        description="A URL that points to the System's publicly accessible privacy policy."
+    )
+    legal_name: Optional[str] = Field(
+        description="The legal name for the business represented by the system."
+    )
+    legal_address: Optional[str] = Field(
+        description="The legal address for the business represented by the system."
+    )
+    department: Optional[str] = Field(
+        description="The department within the organization that this system belongs to."
+    )
+    responsibility: Optional[str] = Field(
+        description="The role of the business with regard to data processing."
+    )
+    dpo: Optional[str] = Field(
+        description="The official privacy contact address or DPO."
+    )
+    joint_controller: Optional[str] = Field(
+        description="The party or parties that share the responsibility for processing personal data."
+    )  # TODO: need to reconcile with Dataset.joint_controller, which has a nested model.
+    data_security_practices: Optional[str] = Field(
+        description="The data security practices employed by this system."
+    )
+
     _sort_privacy_declarations: classmethod = validator(
         "privacy_declarations", allow_reuse=True
     )(sort_list_objects_by_name)
