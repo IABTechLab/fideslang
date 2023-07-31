@@ -131,8 +131,8 @@ class TestFindReferencedKeys:
             name="Direct Marketing",
             description="User information for direct marketing purposes",
             recipients=["Processor - marketing co."],
-            legal_basis="Legitimate Interests",
-            special_category="Vital Interests",
+            legal_basis="Legitimate interests",
+            special_category="Vital interests",
             legitimate_interest_impact_assessment="https://example.org/legitimate_interest_assessment",
             parent_key=None,
         )

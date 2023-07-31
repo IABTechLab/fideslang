@@ -1,6 +1,7 @@
 from pytest import deprecated_call, mark, raises
 
-from fideslang import DataFlow, Dataset, Organization, PrivacyDeclaration, System
+from fideslang import (DataFlow, Dataset, Organization, PrivacyDeclaration,
+                       System)
 from fideslang.models import ContactDetails, DatasetCollection, DatasetField
 
 pytestmark = mark.unit
@@ -70,19 +71,6 @@ class TestPrivacyDeclaration:
             ingress=[],
             name="declaration-name",
         )
-
-    def test_dataset_references_deprecation(self) -> None:
-        with deprecated_call(match="dataset_references"):
-            assert PrivacyDeclaration(
-                data_categories=[],
-                data_qualifier="aggregated_data",
-                data_subjects=[],
-                data_use="provide",
-                dataset_references=[],
-                egress=["test_system_2"],
-                ingress=["test_system_3"],
-                name="declaration-name",
-            )
 
 
 class TestSystem:
@@ -323,6 +311,91 @@ class TestSystem:
             registry_id=1,
             system_type="SYSTEM",
             tags=["some", "tags"],
+        )
+
+    def test_expanded_system(self):
+        assert System(
+            fides_key="test_system",
+            organization_fides_key=1,
+            tags=["some", "tags"],
+            name="Exponential Interactive, Inc d/b/a VDX.tv",
+            description="My system test",
+            registry_id=1,
+            meta={"some": "meta stuff"},
+            system_type="SYSTEM",
+            egress=[
+                DataFlow(
+                    fides_key="test_system_2",
+                    type="system",
+                    data_categories=[],
+                )
+            ],
+            ingress=[
+                DataFlow(
+                    fides_key="test_system_3",
+                    type="system",
+                    data_categories=[],
+                )
+            ],
+            privacy_declarations=[
+                PrivacyDeclaration(
+                    name="declaration-name",
+                    data_categories=[
+                        "user.device.ip_address",
+                        "user.device.cookie_id",
+                        "user.device.device_id",
+                        "user.id.pseudonymous",
+                        "user.behavior.purchase_history",
+                        "user.behavior",
+                        "user.behavior.browsing_history",
+                        "user.behavior.media_consumption",
+                        "user.behavior.search_history",
+                        "user.location.imprecise",
+                        "user.demographic",
+                        "user.privacy_preferences",
+                    ],
+                    data_qualifier="aggregated_data",
+                    data_use="functional.storage",
+                    data_subjects=[],
+                    egress=["test_system_2"],
+                    ingress=["test_system_3"],
+                    features=[
+                        "Match and combine offline data sources",
+                        "Link different devices",
+                        "Receive and use automatically-sent device characteristics for identification",
+                    ],
+                    legal_basis_for_processing="Consent",
+                    retention_period=387,
+                    processes_special_category_data=False,
+                    special_category_legal_basis=None,
+                    data_shared_with_third_parties=True,
+                    third_parties="advertising",
+                    shared_categories=[],
+                    cookies=[
+                        {"name": "ANON_ID", "path": "/", "domain": "tribalfusion.com"}
+                    ],
+                )
+            ],
+            third_country_transfers=["ARM"],
+            administrating_department="Not defined",
+            vendor_id="1",
+            processes_personal_data=True,
+            exempt_from_privacy_regulations=False,
+            reason_for_exemption=None,
+            uses_profiling=False,
+            legal_basis_for_profiling=[],
+            does_international_transfers=True,
+            legal_basis_for_transfers="Standard contractual clauses",
+            requires_data_protection_assessments=False,
+            dpa_location=None,
+            privacy_policy="https://vdx.tv/privacy/",
+            legal_name="Exponential Interactive, Inc d/b/a VDX.tv",
+            legal_address="Exponential Interactive Spain S.L.;General Martinez Campos Num 41;Madrid;28010;Spain",
+            department="Privacy Department",
+            data_responsibility_title=["Controller"],
+            dpo="privacyofficertest@vdx.tv",
+            data_security_practices=None,
+            cookies=[{"name": "test_cookie"}],
         )
 
 
