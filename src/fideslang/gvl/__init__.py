@@ -1,7 +1,7 @@
 import os
 from json import load
 from os.path import dirname, join
-from typing import List
+from typing import Dict, List
 
 from .models import MappedPurpose, Purpose
 
@@ -11,14 +11,14 @@ PURPOSE_MAPPING_FILE = join(
     "gvl_data_use_mapping.json",
 )
 
-GVL_PURPOSES: dict[int, Purpose] = {}
-MAPPED_PURPOSES: dict[int, MappedPurpose] = {}
+GVL_PURPOSES: Dict[int, Purpose] = {}
+MAPPED_PURPOSES: Dict[int, MappedPurpose] = {}
 
-GVL_SPECIAL_PURPOSES: dict[int, Purpose] = {}
-MAPPED_SPECIAL_PURPOSES: dict[int, MappedPurpose] = {}
+GVL_SPECIAL_PURPOSES: Dict[int, Purpose] = {}
+MAPPED_SPECIAL_PURPOSES: Dict[int, MappedPurpose] = {}
 
 
-MAPPED_PURPOSES_BY_DATA_USE: dict[str, MappedPurpose] = {}
+MAPPED_PURPOSES_BY_DATA_USE: Dict[str, MappedPurpose] = {}
 
 
 def _load_data():

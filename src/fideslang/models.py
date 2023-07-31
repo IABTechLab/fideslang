@@ -133,28 +133,26 @@ class LegalBasisForProcessingEnum(str, Enum):
 
     CONSENT = "Consent"
     CONTRACT = "Contract"
-    LEGAL_OBLIGATION = "Legal Obligation"  # TODO: spec indicates this should now be "Legal claims" - do we update?
-    VITAL_INTEREST = "Vital Interest"
-    PUBLIC_INTEREST = "Public Interest"
-    LEGITIMATE_INTEREST = "Legitimate Interests"
+    LEGAL_OBLIGATION = "Legal obligations"
+    VITAL_INTEREST = "Vital interests"
+    PUBLIC_INTEREST = "Public interest"
+    LEGITIMATE_INTEREST = "Legitimate interests"
 
 
 class LegalBasisForProfilingEnum(str, Enum):
-    explicit_consent = "Explicit Consent"
+    explicit_consent = "Explicit consent"
     contract = "Contract"
-    authorized_by_law = "Authorized by law"
+    authorized_by_law = "Authorised by law"
 
 
 class LegalBasisForTransfersEnum(str, Enum):
     adequacy_decision = "Adequacy decision"
-    standard_contractual_clauses = "Standard Contractual Clauses"
-    binding_corporate_rules = "Binding Corporate Rules"
+    standard_contractual_clauses = "Standard contractual clauses"
+    binding_corporate_rules = "Binding corporate rules"
     other = "Other"
 
 
-class SpecialCategoriesEnum(
-    str, Enum
-):  # TODO: spec has updated friendly text here - do we need to update?
+class SpecialCategoriesEnum(str, Enum):
     """
     The model for processing special categories
     of personal data.
@@ -162,15 +160,16 @@ class SpecialCategoriesEnum(
     Based upon article 9 of the GDPR
     """
 
-    CONSENT = "Consent"
-    EMPLOYMENT = "Employment"
-    VITAL_INTEREST = "Vital Interests"
-    NON_PROFIT_BODIES = "Non-profit Bodies"
-    PUBLIC_BY_DATA_SUBJECT = "Public by Data Subject"
-    LEGAL_CLAIMS = "Legal Claims"
-    PUBLIC_INTEREST = "Substantial Public Interest"
-    MEDICAL = "Medical"
-    PUBLIC_HEALTH_INTEREST = "Public Health Interest"
+    CONSENT = "Explicit consent"
+    EMPLOYMENT = "Employment, social security and social protection"
+    VITAL_INTEREST = "Vital interests"
+    NON_PROFIT_BODIES = "Not-for-profit bodies"
+    PUBLIC_BY_DATA_SUBJECT = "Made public by the data subject"
+    LEGAL_CLAIMS = "Legal claims or judicial acts"
+    PUBLIC_INTEREST = "Reasons of substantial public interest (with a basis in law)"
+    MEDICAL = "Health or social care (with a basis in law)"
+    PUBLIC_HEALTH_INTEREST = "Public health (with a basis in law)"
+    RESEARCH = "Archiving, research and statistics (with a basis in law) "
 
 
 # Privacy Data Types
@@ -579,9 +578,6 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
     fides_meta: Optional[DatasetMetadata] = Field(
         description=DatasetMetadata.__doc__, default=None
     )
-    joint_controller: Optional[ContactDetails] = Field(
-        description=ContactDetails.__doc__,
-    )
     retention: Optional[str] = Field(
         default="No retention or erasure policy",
         description="An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
@@ -853,24 +849,25 @@ class PrivacyDeclaration(BaseModel):
     ingress: Optional[List[FidesKey]] = Field(
         description="The resources from which data is received. Any `fides_key`s included in this list reference `DataFlow` entries in the `ingress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
     )
-    cookies: Optional[List[Cookies]] = Field(
-        description="Cookies associated with this data use to deliver services and functionality",
-    )
     features: List[str] = Field(
         default=[], description="The features of processing personal data."
     )
     legal_basis_for_processing: Optional[LegalBasisForProcessingEnum] = Field(
-        description="The features of processing personal data."
+        description="The legal basis under which personal data is processed for this purpose."
     )
     retention_period: Optional[int] = Field(
         description="The amount of time (in days) for which data is retained for this purpose."
     )
     processes_special_category_data: bool = Field(
         default=False,
-        description="The amount of time (in days) for which data is retained for this purpose.",
+        description="This system processes special category data",
     )
-    special_category: Optional[SpecialCategoriesEnum] = Field(
+    special_category_legal_basis: Optional[SpecialCategoriesEnum] = Field(
         description="The legal basis under which the special category data is processed.",
+    )
+    data_shared_with_third_parties: Optional[bool] = Field(
+        default=False,
+        description="This system shares data with third parties for this purpose.",
     )
     third_parties: Optional[str] = Field(
         description="The types of third parties the data is shared with.",
@@ -879,21 +876,9 @@ class PrivacyDeclaration(BaseModel):
         default=[],
         description="The categories of personal data that this system shares with third parties.",
     )
-
-    @validator("dataset_references")
-    @classmethod
-    def deprecate_dataset_references(cls, value: List[FidesKey]) -> List[FidesKey]:
-        """
-        Warn that the `dataset_references` field is deprecated, if set.
-        """
-
-        if value is not None:
-            warn(
-                "The dataset_references field is deprecated, and will be removed in a future version of fideslang. Use the 'egress' and 'ingress` fields instead.",
-                DeprecationWarning,
-            )
-
-        return value
+    cookies: Optional[List[Cookies]] = Field(
+        description="Cookies associated with this data use to deliver services and functionality",
+    )
 
     class Config:
         """Config for the Privacy Declaration"""
@@ -993,10 +978,6 @@ class System(FidesModel):
     system_type: str = Field(
         description="A required value to describe the type of system being modeled, examples include: Service, Application, Third Party, etc.",
     )
-    data_responsibility_title: List[DataResponsibilityTitle] = Field(
-        default=[],
-        description=DataResponsibilityTitle.__doc__,
-    )
     egress: Optional[List[DataFlow]] = Field(
         description="The resources to which the System sends data."
     )
@@ -1005,9 +986,6 @@ class System(FidesModel):
     )
     privacy_declarations: List[PrivacyDeclaration] = Field(
         description=PrivacyDeclaration.__doc__,
-    )
-    joint_controller: Optional[ContactDetails] = Field(
-        description=ContactDetails.__doc__,
     )
     third_country_transfers: Optional[List[str]] = Field(
         description="An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in ISO 3166-1.",
@@ -1020,7 +998,7 @@ class System(FidesModel):
         default=DataProtectionImpactAssessment(),
         description=DataProtectionImpactAssessment.__doc__,
     )
-    vendor_id = Optional[str] = Field(
+    vendor_id: Optional[str] = Field(
         description="The unique identifier for the vendor that's associated with this system."
     )
     dataset_references: Optional[List[FidesKey]] = Field(
@@ -1041,16 +1019,15 @@ class System(FidesModel):
         default=False,
         description="Whether the vendor uses data to profile a consumer in a way that has a legal effect.",
     )
-    legal_basis_for_profiling: Optional[LegalBasisForProfilingEnum] = Field(
-        default=False,
+    legal_basis_for_profiling: List[LegalBasisForProfilingEnum] = Field(
         description="The legal basis for performing profiling that has a legal effect.",
+        default=[],
     )
-    international_transfers: bool = Field(
+    does_international_transfers: bool = Field(
         default=False,
         description="Whether this system transfers data to other countries or international organizations.",
     )
     legal_basis_for_transfers: Optional[LegalBasisForTransfersEnum] = Field(
-        default=False,
         description="The legal basis under which the data is transferred.",
     )
     requires_data_protection_assessments: bool = Field(
@@ -1072,12 +1049,17 @@ class System(FidesModel):
     department: Optional[str] = Field(
         description="The department within the organization that this system belongs to."
     )
+    data_responsibility_title: List[DataResponsibilityTitle] = Field(
+        default=[],
+        description=DataResponsibilityTitle.__doc__,
+    )
     dpo: Optional[str] = Field(
         description="The official privacy contact address or DPO."
     )
     joint_controller: Optional[str] = Field(
         description="The party or parties that share the responsibility for processing personal data."
     )  # TODO: need to reconcile with Dataset.joint_controller, which has a nested model.
+
     data_security_practices: Optional[str] = Field(
         description="The data security practices employed by this system."
     )
