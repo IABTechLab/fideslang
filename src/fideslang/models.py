@@ -4,10 +4,9 @@
 Contains all of the Fides resources modeled as Pydantic models.
 """
 from __future__ import annotations
-
+from warnings import warn
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
-from warnings import warn
 
 from pydantic import (
     AnyUrl,
@@ -142,7 +141,7 @@ class LegalBasisForProcessingEnum(str, Enum):
 class LegalBasisForProfilingEnum(str, Enum):
     explicit_consent = "Explicit consent"
     contract = "Contract"
-    authorized_by_law = "Authorised by law"
+    authorised_by_law = "Authorised by law"
 
 
 class LegalBasisForTransfersEnum(str, Enum):
@@ -169,7 +168,7 @@ class SpecialCategoriesEnum(str, Enum):
     PUBLIC_INTEREST = "Reasons of substantial public interest (with a basis in law)"
     MEDICAL = "Health or social care (with a basis in law)"
     PUBLIC_HEALTH_INTEREST = "Public health (with a basis in law)"
-    RESEARCH = "Archiving, research and statistics (with a basis in law) "
+    RESEARCH = "Archiving, research and statistics (with a basis in law)"
 
 
 # Privacy Data Types
@@ -843,6 +842,9 @@ class PrivacyDeclaration(BaseModel):
         default=[],
         description="An array of data subjects describing a system in a privacy declaration.",
     )
+    dataset_references: Optional[List[FidesKey]] = Field(
+        description="Referenced Dataset fides keys used by the system.",
+    )
     egress: Optional[List[FidesKey]] = Field(
         description="The resources to which data is sent. Any `fides_key`s included in this list reference `DataFlow` entries in the `egress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
     )
@@ -879,6 +881,21 @@ class PrivacyDeclaration(BaseModel):
     cookies: Optional[List[Cookies]] = Field(
         description="Cookies associated with this data use to deliver services and functionality",
     )
+
+    @validator("dataset_references")
+    @classmethod
+    def deprecate_dataset_references(cls, value: List[FidesKey]) -> List[FidesKey]:
+        """
+        Warn that the `dataset_references` field is deprecated, if set.
+        """
+
+        if value is not None:
+            warn(
+                "The dataset_references field is deprecated, and will be removed in a future version of fideslang. Use the 'egress' and 'ingress` fields instead.",
+                DeprecationWarning,
+            )
+
+        return value
 
     class Config:
         """Config for the Privacy Declaration"""
@@ -978,6 +995,10 @@ class System(FidesModel):
     system_type: str = Field(
         description="A required value to describe the type of system being modeled, examples include: Service, Application, Third Party, etc.",
     )
+    data_responsibility_title: DataResponsibilityTitle = Field(
+        default=DataResponsibilityTitle.CONTROLLER,
+        description=DataResponsibilityTitle.__doc__,
+    )
     egress: Optional[List[DataFlow]] = Field(
         description="The resources to which the System sends data."
     )
@@ -1037,6 +1058,9 @@ class System(FidesModel):
     dpa_location: Optional[str] = Field(
         description="Location where the DPAs or DIPAs can be found."
     )
+    dpa_progress: Optional[str] = Field(
+        description="The optional status of a Data Protection Impact Assessment"
+    )
     privacy_policy: Optional[AnyUrl] = Field(
         description="A URL that points to the System's publicly accessible privacy policy."
     )
@@ -1046,10 +1070,7 @@ class System(FidesModel):
     legal_address: Optional[str] = Field(
         description="The legal address for the business represented by the system."
     )
-    department: Optional[str] = Field(
-        description="The department within the organization that this system belongs to."
-    )
-    data_responsibility_title: List[DataResponsibilityTitle] = Field(
+    responsibility: List[DataResponsibilityTitle] = Field(
         default=[],
         description=DataResponsibilityTitle.__doc__,
     )
@@ -1058,7 +1079,7 @@ class System(FidesModel):
     )
     joint_controller: Optional[str] = Field(
         description="The party or parties that share the responsibility for processing personal data."
-    )  # TODO: need to reconcile with Dataset.joint_controller, which has a nested model.
+    )
 
     data_security_practices: Optional[str] = Field(
         description="The data security practices employed by this system."

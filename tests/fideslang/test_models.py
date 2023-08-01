@@ -1,8 +1,12 @@
 from pytest import deprecated_call, mark, raises
 
-from fideslang import (DataFlow, Dataset, Organization, PrivacyDeclaration,
-                       System)
-from fideslang.models import ContactDetails, DatasetCollection, DatasetField
+from fideslang import DataFlow, Dataset, Organization, PrivacyDeclaration, System
+from fideslang.models import (
+    ContactDetails,
+    DatasetCollection,
+    DatasetField,
+    DataResponsibilityTitle,
+)
 
 pytestmark = mark.unit
 
@@ -71,6 +75,19 @@ class TestPrivacyDeclaration:
             ingress=[],
             name="declaration-name",
         )
+
+    def test_dataset_references_deprecation(self) -> None:
+        with deprecated_call(match="dataset_references"):
+            assert PrivacyDeclaration(
+                data_categories=[],
+                data_qualifier="aggregated_data",
+                data_subjects=[],
+                data_use="provide",
+                dataset_references=[],
+                egress=["test_system_2"],
+                ingress=["test_system_3"],
+                name="declaration-name",
+            )
 
 
 class TestSystem:
@@ -392,7 +409,7 @@ class TestSystem:
             legal_name="Exponential Interactive, Inc d/b/a VDX.tv",
             legal_address="Exponential Interactive Spain S.L.;General Martinez Campos Num 41;Madrid;28010;Spain",
             department="Privacy Department",
-            data_responsibility_title=["Controller"],
+            responsibility=[DataResponsibilityTitle.CONTROLLER],
             dpo="privacyofficertest@vdx.tv",
             data_security_practices=None,
             cookies=[{"name": "test_cookie"}],
