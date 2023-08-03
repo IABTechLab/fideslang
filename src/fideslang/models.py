@@ -577,6 +577,9 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
     fides_meta: Optional[DatasetMetadata] = Field(
         description=DatasetMetadata.__doc__, default=None
     )
+    joint_controller: Optional[ContactDetails] = Field(
+        description=ContactDetails.__doc__,
+    )
     retention: Optional[str] = Field(
         default="No retention or erasure policy",
         description="An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
@@ -857,6 +860,9 @@ class PrivacyDeclaration(BaseModel):
     legal_basis_for_processing: Optional[LegalBasisForProcessingEnum] = Field(
         description="The legal basis under which personal data is processed for this purpose."
     )
+    impact_assessment_location: Optional[str] = Field(
+        description="Where the legitimate interest impact assessment is stored"
+    )
     retention_period: Optional[int] = Field(
         description="The amount of time (in days) for which data is retained for this purpose."
     )
@@ -1040,9 +1046,8 @@ class System(FidesModel):
         default=False,
         description="Whether the vendor uses data to profile a consumer in a way that has a legal effect.",
     )
-    legal_basis_for_profiling: List[LegalBasisForProfilingEnum] = Field(
+    legal_basis_for_profiling: Optional[LegalBasisForProfilingEnum] = Field(
         description="The legal basis for performing profiling that has a legal effect.",
-        default=[],
     )
     does_international_transfers: bool = Field(
         default=False,
