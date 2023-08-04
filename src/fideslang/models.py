@@ -4,31 +4,19 @@
 Contains all of the Fides resources modeled as Pydantic models.
 """
 from __future__ import annotations
-from warnings import warn
+
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
+from warnings import warn
 
-from pydantic import (
-    AnyUrl,
-    BaseModel,
-    ConstrainedStr,
-    Field,
-    HttpUrl,
-    PositiveInt,
-    root_validator,
-    validator,
-)
+from pydantic import (AnyUrl, BaseModel, ConstrainedStr, Field, HttpUrl,
+                      PositiveInt, root_validator, validator)
 
-from fideslang.validation import (
-    FidesKey,
-    check_valid_country_code,
-    matching_parent_key,
-    no_self_reference,
-    parse_data_type_string,
-    sort_list_objects_by_name,
-    unique_items_in_list,
-    valid_data_type,
-)
+from fideslang.validation import (FidesKey, check_valid_country_code,
+                                  matching_parent_key, no_self_reference,
+                                  parse_data_type_string,
+                                  sort_list_objects_by_name,
+                                  unique_items_in_list, valid_data_type)
 
 # Reusable Validators
 country_code_validator = validator("third_country_transfers", allow_reuse=True)(
@@ -1011,6 +999,12 @@ class System(FidesModel):
     ingress: Optional[List[DataFlow]] = Field(
         description="The resources from which the System receives data."
     )
+    destination: Optional[List[DataFlow]] = Field(
+        description="The resources to which the System sends data."
+    )
+    source: Optional[List[DataFlow]] = Field(
+        description="The resources from which the System receives data."
+    )
     privacy_declarations: List[PrivacyDeclaration] = Field(
         description=PrivacyDeclaration.__doc__,
     )
@@ -1082,10 +1076,12 @@ class System(FidesModel):
     dpo: Optional[str] = Field(
         description="The official privacy contact address or DPO."
     )
-    joint_controller: Optional[str] = Field(
+    joint_controller: Optional[ContactDetails] = Field(
+        description=ContactDetails.__doc__,
+    )
+    joint_controller_info: Optional[str] = Field(
         description="The party or parties that share the responsibility for processing personal data."
     )
-
     data_security_practices: Optional[str] = Field(
         description="The data security practices employed by this system."
     )
