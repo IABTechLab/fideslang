@@ -111,6 +111,19 @@ class DataSubjectRightsEnum(str, Enum):
     OBJECT_TO_AUTOMATED_PROCESSING = "Object to Automated Processing"
 
 
+class LegalBasisEnum(str, Enum):
+    """
+    The model for allowable legal basis categories on Data Uses. Soon to be deprecated.
+    """
+
+    CONSENT = "Consent"
+    CONTRACT = "Contract"
+    LEGAL_OBLIGATION = "Legal Obligation"
+    VITAL_INTEREST = "Vital Interest"
+    PUBLIC_INTEREST = "Public Interest"
+    LEGITIMATE_INTEREST = "Legitimate Interests"
+
+
 class LegalBasisForProcessingEnum(str, Enum):
     """
     The model for allowable legal basis categories
@@ -140,6 +153,22 @@ class LegalBasisForTransfersEnum(str, Enum):
 
 
 class SpecialCategoriesEnum(str, Enum):
+    """
+    Old Special Categories Enum that was used on Data Uses. Soon to be deprecated.
+    """
+
+    CONSENT = "Consent"
+    EMPLOYMENT = "Employment"
+    VITAL_INTEREST = "Vital Interests"
+    NON_PROFIT_BODIES = "Non-profit Bodies"
+    PUBLIC_BY_DATA_SUBJECT = "Public by Data Subject"
+    LEGAL_CLAIMS = "Legal Claims"
+    PUBLIC_INTEREST = "Substantial Public Interest"
+    MEDICAL = "Medical"
+    PUBLIC_HEALTH_INTEREST = "Public Health Interest"
+
+
+class SpecialCategoryLegalBasisEnum(str, Enum):
     """
     The model for processing special categories
     of personal data.
@@ -238,7 +267,7 @@ class DataUse(FidesModel):
     """The DataUse resource model."""
 
     parent_key: Optional[FidesKey] = None
-    legal_basis: Optional[LegalBasisForProcessingEnum] = Field(
+    legal_basis: Optional[LegalBasisEnum] = Field(
         default=None,
         description="The legal basis category of which the data use falls under. This field is used as part of the creation of an exportable data map.",
     )
@@ -858,7 +887,7 @@ class PrivacyDeclaration(BaseModel):
         default=False,
         description="This system processes special category data",
     )
-    special_category_legal_basis: Optional[SpecialCategoriesEnum] = Field(
+    special_category_legal_basis: Optional[SpecialCategoryLegalBasisEnum] = Field(
         description="The legal basis under which the special category data is processed.",
     )
     data_shared_with_third_parties: Optional[bool] = Field(
