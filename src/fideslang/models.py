@@ -9,14 +9,27 @@ from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 from warnings import warn
 
-from pydantic import (AnyUrl, BaseModel, ConstrainedStr, Field, HttpUrl,
-                      PositiveInt, root_validator, validator)
+from pydantic import (
+    AnyUrl,
+    BaseModel,
+    ConstrainedStr,
+    Field,
+    HttpUrl,
+    PositiveInt,
+    root_validator,
+    validator,
+)
 
-from fideslang.validation import (FidesKey, check_valid_country_code,
-                                  matching_parent_key, no_self_reference,
-                                  parse_data_type_string,
-                                  sort_list_objects_by_name,
-                                  unique_items_in_list, valid_data_type)
+from fideslang.validation import (
+    FidesKey,
+    check_valid_country_code,
+    matching_parent_key,
+    no_self_reference,
+    parse_data_type_string,
+    sort_list_objects_by_name,
+    unique_items_in_list,
+    valid_data_type,
+)
 
 # Reusable Validators
 country_code_validator = validator("third_country_transfers", allow_reuse=True)(
@@ -269,23 +282,23 @@ class DataUse(FidesModel):
     parent_key: Optional[FidesKey] = None
     legal_basis: Optional[LegalBasisEnum] = Field(
         default=None,
-        description="The legal basis category of which the data use falls under. This field is used as part of the creation of an exportable data map.",
+        description="Deprecated. The legal basis category of which the data use falls under. This field is used as part of the creation of an exportable data map.",
     )
     special_category: Optional[SpecialCategoriesEnum] = Field(
         default=None,
-        description="The special category for processing of which the data use falls under. This field is used as part of the creation of an exportable data map.",
+        description="Deprecated. The special category for processing of which the data use falls under. This field is used as part of the creation of an exportable data map.",
     )
     recipients: Optional[List[str]] = Field(
         default=None,
-        description="An array of recipients when sharing personal data outside of your organization.",
+        description="Deprecated. An array of recipients when sharing personal data outside of your organization.",
     )
     legitimate_interest: bool = Field(
         default=False,
-        description="A boolean representation of if the legal basis used is `Legitimate Interest`. Validated at run time and looks for a `legitimate_interest_impact_assessment` to exist if true.",
+        description="Deprecated. A boolean representation of if the legal basis used is `Legitimate Interest`. Validated at run time and looks for a `legitimate_interest_impact_assessment` to exist if true.",
     )
     legitimate_interest_impact_assessment: Optional[AnyUrl] = Field(
         default=None,
-        description="A url pointing to the legitimate interest impact assessment. Required if the legal bases used is legitimate interest.",
+        description="Deprecated. A url pointing to the legitimate interest impact assessment. Required if the legal bases used is legitimate interest.",
     )
 
     is_default: bool = is_default_field
@@ -589,20 +602,20 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
     )
     data_qualifier: FidesKey = Field(
         default="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
-        description="Array of Data Qualifier resources identified by `fides_key`, that apply to all collections in the Dataset.",
+        description="Deprecated. Array of Data Qualifier resources identified by `fides_key`, that apply to all collections in the Dataset.",
     )
     fides_meta: Optional[DatasetMetadata] = Field(
         description=DatasetMetadata.__doc__, default=None
     )
     joint_controller: Optional[ContactDetails] = Field(
-        description=ContactDetails.__doc__,
+        description="Deprecated. " + ContactDetails.__doc__,
     )
     retention: Optional[str] = Field(
         default="No retention or erasure policy",
-        description="An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
+        description="Deprecated. An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
     )
     third_country_transfers: Optional[List[str]] = Field(
-        description="An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).",
+        description="Deprecated. An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).",
     )
     collections: List[DatasetCollection] = Field(
         description="An array of objects that describe the Dataset's collections.",
@@ -856,14 +869,14 @@ class PrivacyDeclaration(BaseModel):
     )
     data_qualifier: FidesKey = Field(
         default="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
-        description="The fides key of the data qualifier describing a system in a privacy declaration.",
+        description="Deprecated. The fides key of the data qualifier describing a system in a privacy declaration.",
     )
     data_subjects: List[FidesKey] = Field(
         default=[],
         description="An array of data subjects describing a system in a privacy declaration.",
     )
     dataset_references: Optional[List[FidesKey]] = Field(
-        description="Referenced Dataset fides keys used by the system.",
+        description="Deprecated. Referenced Dataset fides keys used by the system.",
     )
     egress: Optional[List[FidesKey]] = Field(
         description="The resources to which data is sent. Any `fides_key`s included in this list reference `DataFlow` entries in the `egress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
@@ -1020,13 +1033,13 @@ class System(FidesModel):
     )
     data_responsibility_title: DataResponsibilityTitle = Field(
         default=DataResponsibilityTitle.CONTROLLER,
-        description=DataResponsibilityTitle.__doc__,
+        description="Deprecated. " + DataResponsibilityTitle.__doc__,
     )
     egress: Optional[List[DataFlow]] = Field(
-        description="The resources to which the System sends data."
+        description="Deprecated. The resources to which the System sends data."
     )
     ingress: Optional[List[DataFlow]] = Field(
-        description="The resources from which the System receives data."
+        description="Deprecated. The resources from which the System receives data."
     )
     destination: Optional[List[DataFlow]] = Field(
         description="The resources to which the System sends data."
@@ -1038,7 +1051,7 @@ class System(FidesModel):
         description=PrivacyDeclaration.__doc__,
     )
     third_country_transfers: Optional[List[str]] = Field(
-        description="An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in ISO 3166-1.",
+        description="Deprecated. An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in ISO 3166-1.",
     )
     administrating_department: Optional[str] = Field(
         default="Not defined",
@@ -1046,7 +1059,7 @@ class System(FidesModel):
     )
     data_protection_impact_assessment: DataProtectionImpactAssessment = Field(
         default=DataProtectionImpactAssessment(),
-        description=DataProtectionImpactAssessment.__doc__,
+        description="Deprecated. " + DataProtectionImpactAssessment.__doc__,
     )
     vendor_id: Optional[str] = Field(
         description="The unique identifier for the vendor that's associated with this system."
@@ -1106,8 +1119,9 @@ class System(FidesModel):
         description="The official privacy contact address or DPO."
     )
     joint_controller: Optional[ContactDetails] = Field(
-        description=ContactDetails.__doc__,
+        description="Deprecated. The party or parties that share the responsibility for processing personal data."
     )
+
     joint_controller_info: Optional[str] = Field(
         description="The party or parties that share the responsibility for processing personal data."
     )
