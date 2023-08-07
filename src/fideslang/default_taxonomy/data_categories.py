@@ -1,5 +1,7 @@
 from fideslang.models import DataCategory
 
+# Add new data categories
+
 DEFAULT_DATA_CATEGORIES = [
     DataCategory(
         fides_key="user",
