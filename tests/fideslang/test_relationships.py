@@ -1,23 +1,11 @@
 import pytest
 
 from fideslang import relationships
-from fideslang.models import (
-    ContactDetails,
-    DataCategory,
-    DataFlow,
-    DataProtectionImpactAssessment,
-    Dataset,
-    DatasetCollection,
-    DatasetField,
-    DataUse,
-    MatchesEnum,
-    Organization,
-    Policy,
-    PolicyRule,
-    PrivacyDeclaration,
-    System,
-    Taxonomy,
-)
+from fideslang.models import (ContactDetails, DataCategory, DataFlow,
+                              DataProtectionImpactAssessment, Dataset,
+                              DatasetCollection, DatasetField, DataUse,
+                              MatchesEnum, Organization, Policy, PolicyRule,
+                              PrivacyDeclaration, System, Taxonomy)
 
 
 @pytest.mark.unit
@@ -131,8 +119,8 @@ class TestFindReferencedKeys:
             name="Direct Marketing",
             description="User information for direct marketing purposes",
             recipients=["Processor - marketing co."],
-            legal_basis="Legitimate interests",
-            special_category="Vital interests",
+            legal_basis="Legitimate Interests",
+            special_category="Vital Interests",
             legitimate_interest_impact_assessment="https://example.org/legitimate_interest_assessment",
             parent_key=None,
         )
