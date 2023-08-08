@@ -9,27 +9,14 @@ from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 from warnings import warn
 
-from pydantic import (
-    AnyUrl,
-    BaseModel,
-    ConstrainedStr,
-    Field,
-    HttpUrl,
-    PositiveInt,
-    root_validator,
-    validator,
-)
+from pydantic import (AnyUrl, BaseModel, ConstrainedStr, Field, HttpUrl,
+                      PositiveInt, root_validator, validator)
 
-from fideslang.validation import (
-    FidesKey,
-    check_valid_country_code,
-    matching_parent_key,
-    no_self_reference,
-    parse_data_type_string,
-    sort_list_objects_by_name,
-    unique_items_in_list,
-    valid_data_type,
-)
+from fideslang.validation import (FidesKey, check_valid_country_code,
+                                  matching_parent_key, no_self_reference,
+                                  parse_data_type_string,
+                                  sort_list_objects_by_name,
+                                  unique_items_in_list, valid_data_type)
 
 # Reusable Validators
 country_code_validator = validator("third_country_transfers", allow_reuse=True)(
@@ -292,7 +279,7 @@ class DataUse(FidesModel):
         default=None,
         description="Deprecated. An array of recipients when sharing personal data outside of your organization.",
     )
-    legitimate_interest: bool = Field(
+    legitimate_interest: Optional[bool] = Field(
         default=False,
         description="Deprecated. A boolean representation of if the legal basis used is `Legitimate Interest`. Validated at run time and looks for a `legitimate_interest_impact_assessment` to exist if true.",
     )
@@ -621,7 +608,7 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
     data_categories: Optional[List[FidesKey]] = Field(
         description="Array of Data Category resources identified by `fides_key`, that apply to all collections in the Dataset.",
     )
-    data_qualifier: FidesKey = Field(
+    data_qualifier: Optional[FidesKey] = Field(
         default="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
         description="Deprecated. Array of Data Qualifier resources identified by `fides_key`, that apply to all collections in the Dataset.",
     )
@@ -908,7 +895,7 @@ class PrivacyDeclaration(BaseModel):
     data_use: FidesKey = Field(
         description="The Data Use describing a system in a privacy declaration.",
     )
-    data_qualifier: FidesKey = Field(
+    data_qualifier: Optional[FidesKey] = Field(
         default="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
         description="Deprecated. The fides key of the data qualifier describing a system in a privacy declaration.",
     )
@@ -1071,7 +1058,7 @@ class System(FidesModel):
     system_type: str = Field(
         description="A required value to describe the type of system being modeled, examples include: Service, Application, Third Party, etc.",
     )
-    data_responsibility_title: DataResponsibilityTitle = Field(
+    data_responsibility_title: Optional[DataResponsibilityTitle] = Field(
         default=DataResponsibilityTitle.CONTROLLER,
         description="Deprecated. " + DataResponsibilityTitle.__doc__,
     )
@@ -1094,7 +1081,7 @@ class System(FidesModel):
         default="Not defined",
         description="An optional value to identify the owning department or group of the system within your organization",
     )
-    data_protection_impact_assessment: DataProtectionImpactAssessment = Field(
+    data_protection_impact_assessment: Optional[DataProtectionImpactAssessment] = Field(
         default=DataProtectionImpactAssessment(),
         description="Deprecated. " + DataProtectionImpactAssessment.__doc__,
     )
