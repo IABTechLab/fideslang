@@ -1,18 +1,47 @@
 from fideslang.default_taxonomy import DEFAULT_TAXONOMY
+import pytest
+from typing import Tuple
+from collections import Counter
+
+taxonomy_counts = {
+    "data_category": 100,
+    "data_use": 45,
+    "data_subject": 15,
+    "data_qualifier": 5,
+    "organization": 1,
+}
 
 
 class TestDefaultTaxonomy:
-    def test_category_count(self):
-        assert len(DEFAULT_TAXONOMY.data_category) == 56
+    @pytest.mark.parametrize("type_and_count", taxonomy_counts.items())
+    def test_taxonomy_count(self, type_and_count: Tuple[str, int]) -> None:
+        data_type = type_and_count[0]
+        expected_count = type_and_count[1]
+        assert len(getattr(DEFAULT_TAXONOMY, data_type)) == expected_count
 
-    def test_use_count(self):
-        assert len(DEFAULT_TAXONOMY.data_use) == 45
+    @pytest.mark.parametrize("data_type", taxonomy_counts.keys())
+    def test_key_uniqueness(self, data_type: str) -> None:
+        keys = [x.fides_key for x in getattr(DEFAULT_TAXONOMY, data_type)]
+        duplicate_keys = {
+            key: value for key, value in Counter(keys).items() if value > 1
+        }
+        print(duplicate_keys)
+        assert not duplicate_keys
 
-    def test_subject_count(self):
-        assert len(DEFAULT_TAXONOMY.data_subject) == 15
+    @pytest.mark.parametrize("data_type", taxonomy_counts.keys())
+    def test_name_uniqueness(self, data_type: str) -> None:
+        keys = [x.name for x in getattr(DEFAULT_TAXONOMY, data_type)]
+        duplicate_keys = {
+            key: value for key, value in Counter(keys).items() if value > 1
+        }
+        print(duplicate_keys)
+        assert not duplicate_keys
 
-    def test_qualifier_count(self):
-        assert len(DEFAULT_TAXONOMY.data_qualifier) == 5
-
-    def test_organization_count(self):
-        assert len(DEFAULT_TAXONOMY.organization) == 1
+    @pytest.mark.parametrize("data_type", taxonomy_counts.keys())
+    def test_description_uniqueness(self, data_type: str) -> None:
+        keys = [x.description for x in getattr(DEFAULT_TAXONOMY, data_type)]
+        duplicate_keys = {
+            key: value for key, value in Counter(keys).items() if value > 1
+        }
+        print(duplicate_keys)
+        assert not duplicate_keys
