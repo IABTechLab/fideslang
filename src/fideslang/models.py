@@ -9,14 +9,27 @@ from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 from warnings import warn
 
-from pydantic import (AnyUrl, BaseModel, ConstrainedStr, Field, HttpUrl,
-                      PositiveInt, root_validator, validator)
+from pydantic import (
+    AnyUrl,
+    BaseModel,
+    ConstrainedStr,
+    Field,
+    HttpUrl,
+    PositiveInt,
+    root_validator,
+    validator,
+)
 
-from fideslang.validation import (FidesKey, check_valid_country_code,
-                                  matching_parent_key, no_self_reference,
-                                  parse_data_type_string,
-                                  sort_list_objects_by_name,
-                                  unique_items_in_list, valid_data_type)
+from fideslang.validation import (
+    FidesKey,
+    check_valid_country_code,
+    matching_parent_key,
+    no_self_reference,
+    parse_data_type_string,
+    sort_list_objects_by_name,
+    unique_items_in_list,
+    valid_data_type,
+)
 
 # Reusable Validators
 country_code_validator = validator("third_country_transfers", allow_reuse=True)(
@@ -170,8 +183,8 @@ class SpecialCategoriesEnum(str, Enum):
 
 class SpecialCategoryLegalBasisEnum(str, Enum):
     """
-    The model for processing special categories
-    of personal data.
+    The model for the legal basis for processing special categories of personal data
+    on privacy declarations
 
     Based upon article 9 of the GDPR
     """
@@ -1183,7 +1196,7 @@ class System(FidesModel):
         values: Dict,
     ) -> PrivacyDeclaration:
         """
-        Any `PrivacyDeclaration`s which include `source` and/or `destination` fields must
+        Any `PrivacyDeclaration`s which include `egress` and/or `ingress` fields must
         only reference the `fides_key`s of defined `DataFlow`s in said field(s).
         """
 
