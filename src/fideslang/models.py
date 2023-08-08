@@ -1179,8 +1179,6 @@ class System(FidesModel):
             "third_country_transfers",
             "data_responsibility_title",
             "data_protection_impact_assessment",
-            "egress",
-            "ingress",
         ]
         for field in deprecated_fields:
             if values.get(field) is not None:
