@@ -1,9 +1,13 @@
 from pytest import deprecated_call, mark, raises
 
-from fideslang import (DataFlow, Dataset, Organization, PrivacyDeclaration,
-                       System)
-from fideslang.models import (ContactDetails, DataResponsibilityTitle,
-                              DatasetCollection, DatasetField)
+from fideslang import DataFlow, Dataset, Organization, PrivacyDeclaration, System
+from fideslang.models import (
+    ContactDetails,
+    DataResponsibilityTitle,
+    DatasetCollection,
+    DatasetField,
+    DataUse,
+)
 
 pytestmark = mark.unit
 
@@ -381,10 +385,10 @@ class TestSystem:
                     legal_basis_for_processing="Legitimate interests",
                     impact_assessment_location="www.example.com/impact_asessment_location",
                     retention_period=387,
-                    processes_special_category_data=False,
-                    special_category_legal_basis=None,
+                    processes_special_category_data=True,
+                    special_category_legal_basis="Reasons of substantial public interest (with a basis in law)",
                     data_shared_with_third_parties=True,
-                    third_parties="advertising",
+                    third_parties="advertising; marketing",
                     shared_categories=[],
                     cookies=[
                         {"name": "ANON_ID", "path": "/", "domain": "tribalfusion.com"}
@@ -392,7 +396,6 @@ class TestSystem:
                 )
             ],
             third_country_transfers=["ARM"],
-            administrating_department="Not defined",
             vendor_id="1",
             dataset_references=["test_fides_key_dataset"],
             processes_personal_data=True,
@@ -407,12 +410,73 @@ class TestSystem:
             privacy_policy="https://vdx.tv/privacy/",
             legal_name="Exponential Interactive, Inc d/b/a VDX.tv",
             legal_address="Exponential Interactive Spain S.L.;General Martinez Campos Num 41;Madrid;28010;Spain",
-            department="Privacy Department",
+            administrating_department="Privacy Department",
             responsibility=[DataResponsibilityTitle.CONTROLLER],
             dpo="privacyofficertest@vdx.tv",
             data_security_practices=None,
             cookies=[{"name": "test_cookie"}],
         )
+
+    def test_system_data_responsibility_title_deprecation(self) -> None:
+        with deprecated_call(match="data_responsibility_title"):
+            assert System(
+                description="Test Policy",
+                fides_key="test_system",
+                name="Test System",
+                registry_id=1,
+                system_type="SYSTEM",
+                tags=["some", "tags"],
+                privacy_declarations=[],
+                data_responsiblity_title="Controller",
+            )
+
+    def test_joint_controller_deprecation(self) -> None:
+        with deprecated_call(match="joint_controller"):
+            assert System(
+                description="Test Policy",
+                fides_key="test_system",
+                name="Test System",
+                registry_id=1,
+                system_type="SYSTEM",
+                tags=["some", "tags"],
+                privacy_declarations=[],
+                joint_controller={
+                    "name": "Jane Doe",
+                    "address": "104 Test Lane; Test Town, TX, 32522",
+                    "email": "jane@example.com",
+                    "phone": "345-255-2555",
+                },
+            )
+
+    def test_system_third_country_transfers_deprecation(self) -> None:
+        with deprecated_call(match="third_country_transfers"):
+            assert System(
+                description="Test Policy",
+                fides_key="test_system",
+                name="Test System",
+                registry_id=1,
+                system_type="SYSTEM",
+                tags=["some", "tags"],
+                privacy_declarations=[],
+                third_country_transfers=["GBR"],
+            )
+
+    def test_system_data_protection_impact_assessment_deprecation(self) -> None:
+        with deprecated_call(match="data_protection_impact_assessment"):
+            assert System(
+                description="Test Policy",
+                fides_key="test_system",
+                name="Test System",
+                registry_id=1,
+                system_type="SYSTEM",
+                tags=["some", "tags"],
+                privacy_declarations=[],
+                data_protection_impact_assessment={
+                    "is_required": True,
+                    "progress": "pending",
+                    "link": "https://www.example.com/dpia",
+                },
+            )
 
 
 class TestDataset:
@@ -479,3 +543,69 @@ class TestDataset:
                 ),
             ],
         )
+
+    def test_dataset_data_qualifier_deprecation(self) -> None:
+        with deprecated_call(match="data_qualifier"):
+            assert Dataset(
+                fides_key="new_dataset",
+                collections=[],
+                data_qualifier="dataset_qualifier_1",
+            )
+
+    def test_dataset_joint_controller_deprecation(self) -> None:
+        with deprecated_call(match="joint_controller"):
+            assert Dataset(
+                fides_key="new_dataset",
+                collections=[],
+                joint_controller={"name": "Controller_name"},
+            )
+
+    def test_dataset_retention_deprecation(self) -> None:
+        with deprecated_call(match="retention"):
+            assert Dataset(
+                fides_key="new_dataset",
+                collections=[],
+                retention="90 days",
+            )
+
+    def test_dataset_third_country_transfers_deprecation(self) -> None:
+        with deprecated_call(match="retention"):
+            assert Dataset(
+                fides_key="new_dataset",
+                collections=[],
+                third_country_transfers=["IRL"],
+            )
+
+
+class TestDataUse:
+    def test_minimal_data_use(self):
+        assert DataUse(fides_key="new_use")
+
+    def test_data_use_legal_basis_deprecation(self) -> None:
+        with deprecated_call(match="legal_basis"):
+            assert DataUse(fides_key="new_use", legal_basis="Legal Obligation")
+
+    def test_data_use_special_category_deprecation(self) -> None:
+        with deprecated_call(match="special_category"):
+            assert DataUse(
+                fides_key="new_use", special_category="Substantial Public Interest"
+            )
+
+    def test_data_use_recipients_deprecation(self) -> None:
+        with deprecated_call(match="recipients"):
+            assert DataUse(fides_key="new_use", recipients=["Advertising Bureau"])
+
+    def test_data_use_legitimate_interest_deprecation(self) -> None:
+        with deprecated_call(match="legitimate_interest"):
+            assert DataUse(
+                fides_key="new_use",
+                legitimate_interest=True,
+                legitimate_interest_impact_assessment="https://www.example.com",
+            )
+
+    def test_data_use_legitimate_interest_impact_assessment_deprecation(self) -> None:
+        with deprecated_call(match="legitimate_interest_impact_assessment"):
+            assert DataUse(
+                fides_key="new_use",
+                legitimate_interest_impact_assessment="https://www.example.com",
+            )
