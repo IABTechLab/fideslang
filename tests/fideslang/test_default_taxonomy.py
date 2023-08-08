@@ -5,7 +5,7 @@ from collections import Counter
 
 taxonomy_counts = {
     "data_category": 100,
-    "data_use": 45,
+    "data_use": 54,
     "data_subject": 15,
     "data_qualifier": 5,
     "organization": 1,
