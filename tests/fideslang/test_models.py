@@ -1,12 +1,9 @@
 from pytest import deprecated_call, mark, raises
 
-from fideslang import DataFlow, Dataset, Organization, PrivacyDeclaration, System
-from fideslang.models import (
-    ContactDetails,
-    DatasetCollection,
-    DatasetField,
-    DataResponsibilityTitle,
-)
+from fideslang import (DataFlow, Dataset, Organization, PrivacyDeclaration,
+                       System)
+from fideslang.models import (ContactDetails, DataResponsibilityTitle,
+                              DatasetCollection, DatasetField)
 
 pytestmark = mark.unit
 
@@ -76,8 +73,8 @@ class TestPrivacyDeclaration:
             name="declaration-name",
         )
 
-    def test_dataset_references_deprecation(self) -> None:
-        with deprecated_call(match="dataset_references"):
+    def test_dataset_data_qualifier_deprecation(self) -> None:
+        with deprecated_call(match="data_qualifier"):
             assert PrivacyDeclaration(
                 data_categories=[],
                 data_qualifier="aggregated_data",
@@ -381,7 +378,8 @@ class TestSystem:
                         "Link different devices",
                         "Receive and use automatically-sent device characteristics for identification",
                     ],
-                    legal_basis_for_processing="Consent",
+                    legal_basis_for_processing="Legitimate interests",
+                    impact_assessment_location="www.example.com/impact_asessment_location",
                     retention_period=387,
                     processes_special_category_data=False,
                     special_category_legal_basis=None,
@@ -396,15 +394,16 @@ class TestSystem:
             third_country_transfers=["ARM"],
             administrating_department="Not defined",
             vendor_id="1",
+            dataset_references=["test_fides_key_dataset"],
             processes_personal_data=True,
             exempt_from_privacy_regulations=False,
             reason_for_exemption=None,
-            uses_profiling=False,
-            legal_basis_for_profiling=[],
+            uses_profiling=True,
+            legal_basis_for_profiling="Explicit consent",
             does_international_transfers=True,
             legal_basis_for_transfers="Standard contractual clauses",
-            requires_data_protection_assessments=False,
-            dpa_location=None,
+            requires_data_protection_assessments=True,
+            dpa_location="www.example.com/dpa_location",
             privacy_policy="https://vdx.tv/privacy/",
             legal_name="Exponential Interactive, Inc d/b/a VDX.tv",
             legal_address="Exponential Interactive Spain S.L.;General Martinez Campos Num 41;Madrid;28010;Spain",

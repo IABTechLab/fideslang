@@ -126,7 +126,7 @@ class DataSubjectRightsEnum(str, Enum):
 
 class LegalBasisEnum(str, Enum):
     """
-    The model for allowable legal basis categories on Data Uses. Soon to be deprecated.
+    The model for allowable legal basis categories on data uses. Soon to be deprecated.
     """
 
     CONSENT = "Consent"
@@ -139,7 +139,7 @@ class LegalBasisEnum(str, Enum):
 
 class LegalBasisForProcessingEnum(str, Enum):
     """
-    The model for allowable legal basis categories
+    The model for allowable legal basis categories on privacy declarations.
 
     Based upon article 6 of the GDPR
     """
@@ -167,7 +167,7 @@ class LegalBasisForTransfersEnum(str, Enum):
 
 class SpecialCategoriesEnum(str, Enum):
     """
-    Old Special Categories Enum that was used on Data Uses. Soon to be deprecated.
+    Special Categories Enum that was used on Data Uses. Soon to be deprecated.
     """
 
     CONSENT = "Consent"
@@ -305,6 +305,27 @@ class DataUse(FidesModel):
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
+
+    @root_validator
+    @classmethod
+    def deprecate_fields(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Warn of Data Use fields pending deprecation.
+        """
+        deprecated_fields = [
+            "legal_basis",
+            "recipients",
+            "special_category",
+            "legitimate_interest",
+            "legitimate_interest_impact_assessment",
+        ]
+        for field in deprecated_fields:
+            if values.get(field) is not None:
+                warn(
+                    f"The {field} field is deprecated, and will be removed in a future version of fideslang.",
+                    DeprecationWarning,
+                )
+        return values
 
     @validator("legitimate_interest", always=True)
     @classmethod
@@ -629,6 +650,26 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
         unique_items_in_list
     )
 
+    @root_validator
+    @classmethod
+    def deprecate_fields(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Warn of Dataset fields pending deprecation.
+        """
+        deprecated_fields = [
+            "joint_controller",
+            "data_qualifier",
+            "retention",
+            "third_country_transfers",
+        ]
+        for field in deprecated_fields:
+            if values.get(field) is not None:
+                warn(
+                    f"The {field} field is deprecated, and will be removed in a future version of fideslang.",
+                    DeprecationWarning,
+                )
+        return values
+
 
 # Evaluation
 class ViolationAttributes(BaseModel):
@@ -876,7 +917,7 @@ class PrivacyDeclaration(BaseModel):
         description="An array of data subjects describing a system in a privacy declaration.",
     )
     dataset_references: Optional[List[FidesKey]] = Field(
-        description="Deprecated. Referenced Dataset fides keys used by the system.",
+        description="Referenced Dataset fides keys used by the system.",
     )
     egress: Optional[List[FidesKey]] = Field(
         description="The resources to which data is sent. Any `fides_key`s included in this list reference `DataFlow` entries in the `egress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
@@ -918,16 +959,15 @@ class PrivacyDeclaration(BaseModel):
         description="Cookies associated with this data use to deliver services and functionality",
     )
 
-    @validator("dataset_references")
+    @validator("data_qualifier")
     @classmethod
-    def deprecate_dataset_references(cls, value: List[FidesKey]) -> List[FidesKey]:
+    def deprecate_data_qualifier(cls, value: FidesKey) -> FidesKey:
         """
-        Warn that the `dataset_references` field is deprecated, if set.
+        Warn that the `data_qualifier` field is deprecated, if set.
         """
-
         if value is not None:
             warn(
-                "The dataset_references field is deprecated, and will be removed in a future version of fideslang. Use the 'egress' and 'ingress` fields instead.",
+                "The data_qualifier field is deprecated, and will be removed in a future version of fideslang.",
                 DeprecationWarning,
             )
 
@@ -1036,19 +1076,16 @@ class System(FidesModel):
         description="Deprecated. " + DataResponsibilityTitle.__doc__,
     )
     egress: Optional[List[DataFlow]] = Field(
-        description="Deprecated. The resources to which the System sends data."
-    )
-    ingress: Optional[List[DataFlow]] = Field(
-        description="Deprecated. The resources from which the System receives data."
-    )
-    destination: Optional[List[DataFlow]] = Field(
         description="The resources to which the System sends data."
     )
-    source: Optional[List[DataFlow]] = Field(
+    ingress: Optional[List[DataFlow]] = Field(
         description="The resources from which the System receives data."
     )
     privacy_declarations: List[PrivacyDeclaration] = Field(
         description=PrivacyDeclaration.__doc__,
+    )
+    joint_controller: Optional[ContactDetails] = Field(
+        description="Deprecated." + ContactDetails.__doc__,
     )
     third_country_transfers: Optional[List[str]] = Field(
         description="Deprecated. An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in ISO 3166-1.",
@@ -1118,13 +1155,9 @@ class System(FidesModel):
     dpo: Optional[str] = Field(
         description="The official privacy contact address or DPO."
     )
-    joint_controller: Optional[ContactDetails] = Field(
-        description="Deprecated. The party or parties that share the responsibility for processing personal data."
-    )
-
     joint_controller_info: Optional[str] = Field(
         description="The party or parties that share the responsibility for processing personal data."
-    )
+    )  # Use joint_controller_info in favor of joint_controller
     data_security_practices: Optional[str] = Field(
         description="The data security practices employed by this system."
     )
@@ -1135,6 +1168,28 @@ class System(FidesModel):
 
     _check_valid_country_code: classmethod = country_code_validator
 
+    @root_validator
+    @classmethod
+    def deprecate_fields(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Warn of System fields pending deprecation.
+        """
+        deprecated_fields = [
+            "joint_controller",
+            "third_country_transfers",
+            "data_responsibility_title",
+            "data_protection_impact_assessment",
+            "egress",
+            "ingress",
+        ]
+        for field in deprecated_fields:
+            if values.get(field) is not None:
+                warn(
+                    f"The {field} field is deprecated, and will be removed in a future version of fideslang.",
+                    DeprecationWarning,
+                )
+        return values
+
     @validator("privacy_declarations", each_item=True)
     @classmethod
     def privacy_declarations_reference_data_flows(
@@ -1143,7 +1198,7 @@ class System(FidesModel):
         values: Dict,
     ) -> PrivacyDeclaration:
         """
-        Any `PrivacyDeclaration`s which include `egress` and/or `ingress` fields must
+        Any `PrivacyDeclaration`s which include `source` and/or `destination` fields must
         only reference the `fides_key`s of defined `DataFlow`s in said field(s).
         """
 
