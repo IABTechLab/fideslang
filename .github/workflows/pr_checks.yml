@@ -70,6 +70,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
+          cache: "pip"
 
       - name: Install Nox
         run: pip install nox
@@ -82,7 +83,7 @@ jobs:
       matrix:
         python_version: ["3.8", "3.9", "3.10", "3.11"]
         pydantic_version: ["1.8.2", "1.9.2", "1.10.9"]
-        pyyaml_version: ["5.3.1", "6.0"]
+        pyyaml_version: ["5.4.1", "6.0"]
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
