@@ -108,6 +108,12 @@ jobs:
           python-version: ${{ matrix.python_version }}
           cache: "pip"
 
+      - name: Pin Cython
+        run: |
+          echo 'Cython < 3.0' > /tmp/constraint.txt
+          PIP_CONSTRAINT=/tmp/constraint.txt pip wheel PyYAML==5.4.1
+          pip install 'PyYAML==5.4.1'
+
       - name: Install Nox
         run: pip install nox
 
