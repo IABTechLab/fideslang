@@ -34,7 +34,7 @@ DEFAULT_DATA_CATEGORIES = [
     DataCategory(
         fides_key="user.authorization",
         name="Authorization Information.",
-        description="Account creation or registration information.",
+        description="Scope of permissions and access to a system.",
         parent_key="user",
     ),
     DataCategory(
@@ -141,7 +141,7 @@ DEFAULT_DATA_CATEGORIES = [
     ),
     DataCategory(
         fides_key="user.contact.address",
-        name="Contact Data",
+        name="User Contact Address",
         description="Contact address data collected about a user.",
         parent_key="user.contact",
     ),
@@ -312,7 +312,7 @@ DEFAULT_DATA_CATEGORIES = [
     ),
     DataCategory(
         fides_key="user.location.imprecise",
-        name="Precise Subject Location",
+        name="Imprecise Subject Location",
         description="Imprecise location derived form sensors (more than 500M).",
         parent_key="user.location",
     ),
@@ -356,18 +356,6 @@ DEFAULT_DATA_CATEGORIES = [
         parent_key="user.device",
     ),
     DataCategory(
-        fides_key="user.gender",
-        name="Gender",
-        description="Gender of an individual.",
-        parent_key="user",
-    ),
-    DataCategory(
-        fides_key="user.media_consumption",
-        name="Media Consumption",
-        description="Content Consumption history of the subject",
-        parent_key="user",
-    ),
-    DataCategory(
         fides_key="user.non_specific_age",
         name="Non-Specific Age",
         description="Age range data.",
@@ -392,27 +380,9 @@ DEFAULT_DATA_CATEGORIES = [
         parent_key="user",
     ),
     DataCategory(
-        fides_key="user.race",
-        name="Race",
-        description="Racial or ethnic origin data.",
-        parent_key="user",
-    ),
-    DataCategory(
         fides_key="user.religious_belief",
         name="Religious Belief",
         description="Religion or religious belief.",
-        parent_key="user",
-    ),
-    DataCategory(
-        fides_key="user.search_history",
-        name="Search History",
-        description="Records of search history and queries of a user.",
-        parent_key="user",
-    ),
-    DataCategory(
-        fides_key="user.sexual_orientation",
-        name="Sexual Orientation",
-        description="Personal sex life or sexual data.",
         parent_key="user",
     ),
     DataCategory(
@@ -608,12 +578,6 @@ DEFAULT_DATA_CATEGORIES = [
         fides_key="user.job_title",
         name="Job Title",
         description="Professional data.",
-        parent_key="user",
-    ),
-    DataCategory(
-        fides_key="user.political_opinion",
-        name="Political Opinion",
-        description="Data related to the individual's political opinions.",
         parent_key="user",
     ),
     DataCategory(

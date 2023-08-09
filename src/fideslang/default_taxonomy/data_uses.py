@@ -191,21 +191,6 @@ DEFAULT_DATA_USES = [
         description="Improves the specific product, service, application or system.",
         parent_key="functional.service",
     ),
-    ###########
-    # Improve #
-    ###########
-    DataUse(
-        fides_key="improve",
-        name="Improves the product, service, application or system.",
-        description="Improve the product, service, application or system.",
-        parent_key=None,
-    ),
-    DataUse(
-        fides_key="improve.system",
-        name="System",
-        description="Improves the specific product, service, application or system.",
-        parent_key="improve",
-    ),
     #############
     # Marketing #
     #############
@@ -332,7 +317,7 @@ DEFAULT_DATA_USES = [
     DataUse(
         fides_key="personalize.system",
         name="System Personalization",
-        description="Personalizes the product, service, application or system.",
+        description="Personalizes the system.",
         parent_key="personalize",
     ),
     #########

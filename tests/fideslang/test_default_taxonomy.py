@@ -4,8 +4,8 @@ from typing import Tuple
 from collections import Counter
 
 taxonomy_counts = {
-    "data_category": 100,
-    "data_use": 54,
+    "data_category": 92,
+    "data_use": 52,
     "data_subject": 15,
     "data_qualifier": 5,
     "organization": 1,
@@ -13,7 +13,9 @@ taxonomy_counts = {
 
 
 class TestDefaultTaxonomy:
-    @pytest.mark.parametrize("type_and_count", taxonomy_counts.items())
+    @pytest.mark.parametrize(
+        "type_and_count", taxonomy_counts.items(), ids=lambda items: items[0]
+    )
     def test_taxonomy_count(self, type_and_count: Tuple[str, int]) -> None:
         data_type = type_and_count[0]
         expected_count = type_and_count[1]
