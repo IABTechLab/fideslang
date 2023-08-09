@@ -126,7 +126,7 @@ class DataSubjectRightsEnum(str, Enum):
 
 class LegalBasisEnum(str, Enum):
     """
-    The model for allowable legal basis categories on data uses. Soon to be deprecated.
+    Deprecated. The model for allowable legal basis categories on data uses.
     """
 
     CONSENT = "Consent"
@@ -153,21 +153,25 @@ class LegalBasisForProcessingEnum(str, Enum):
 
 
 class LegalBasisForProfilingEnum(str, Enum):
-    explicit_consent = "Explicit consent"
-    contract = "Contract"
-    authorised_by_law = "Authorised by law"
+    """The model for describing the legal basis under which profiling is performed"""
+
+    EXPLICIT_CONSENT = "Explicit consent"
+    CONTRACT = "Contract"
+    AUTHORISED_BY_LAW = "Authorised by law"
 
 
 class LegalBasisForTransfersEnum(str, Enum):
-    adequacy_decision = "Adequacy decision"
-    standard_contractual_clauses = "Standard contractual clauses"
-    binding_corporate_rules = "Binding corporate rules"
-    other = "Other"
+    """The model for describing the legal basis under which data is transferred"""
+
+    ADEQUACY_DECISION = "Adequacy decision"
+    STANDARD_CONTRACTUAL_CLAUSES = "Standard contractual clauses"
+    BINDING_CORPORATE_RULES = "Binding corporate rules"
+    OTHER = "Other"
 
 
 class SpecialCategoriesEnum(str, Enum):
     """
-    Special Categories Enum that was used on Data Uses. Soon to be deprecated.
+    Deprecated. Special Categories Enum that was used on Data Uses.
     """
 
     CONSENT = "Consent"
@@ -308,7 +312,7 @@ class DataUse(FidesModel):
 
     @root_validator
     @classmethod
-    def deprecate_fields(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+    def deprecate_fields(cls, values: Dict) -> Dict:
         """
         Warn of Data Use fields pending deprecation.
         """
@@ -652,7 +656,7 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
 
     @root_validator
     @classmethod
-    def deprecate_fields(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+    def deprecate_fields(cls, values: Dict) -> Dict:
         """
         Warn of Dataset fields pending deprecation.
         """
@@ -1073,7 +1077,7 @@ class System(FidesModel):
     )
     data_responsibility_title: Optional[DataResponsibilityTitle] = Field(
         default=DataResponsibilityTitle.CONTROLLER,
-        description="Deprecated. " + DataResponsibilityTitle.__doc__,
+        description="Deprecated. The responsibility or role over the system that processes personal data",
     )
     egress: Optional[List[DataFlow]] = Field(
         description="The resources to which the System sends data."
@@ -1085,7 +1089,7 @@ class System(FidesModel):
         description=PrivacyDeclaration.__doc__,
     )
     joint_controller: Optional[ContactDetails] = Field(
-        description="Deprecated." + ContactDetails.__doc__,
+        description="Deprecated. " + ContactDetails.__doc__,
     )
     third_country_transfers: Optional[List[str]] = Field(
         description="Deprecated. An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in ISO 3166-1.",
@@ -1170,7 +1174,7 @@ class System(FidesModel):
 
     @root_validator
     @classmethod
-    def deprecate_fields(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+    def deprecate_fields(cls, values: Dict) -> Dict:
         """
         Warn of System fields pending deprecation.
         """
