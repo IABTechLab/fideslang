@@ -5,7 +5,7 @@ nox.options.reuse_existing_virtualenvs = True
 
 TESTED_PYTHON_VERSIONS = ["3.8", "3.9", "3.10", "3.11"]
 TESTED_PYDANTIC_VERSIONS = ["1.8.2", "1.9.2", "1.10.9"]
-TESTED_PYYAML_VERSIONS = ["5.4.1", "6.0"]
+TESTED_PYYAML_VERSIONS = ["5.3.1", "6.0"]
 
 
 def install_requirements(session: nox.Session) -> None:
