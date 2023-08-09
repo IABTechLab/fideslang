@@ -384,7 +384,7 @@ class TestSystem:
                     ],
                     legal_basis_for_processing="Legitimate interests",
                     impact_assessment_location="www.example.com/impact_asessment_location",
-                    retention_period=387,
+                    retention_period="3-5 years",
                     processes_special_category_data=True,
                     special_category_legal_basis="Reasons of substantial public interest (with a basis in law)",
                     data_shared_with_third_parties=True,
