@@ -19,6 +19,7 @@ The types of changes are:
 ### Fixed
 
 - Don't allow duplicate entries for DatasetCollections as part of Datasets [#136](https://github.com/ethyca/fideslang/pull/136)
+- Cython/PyYAML versions breaking builds [#145](https://github.com/ethyca/fideslang/pull/145)
 
 ## [1.4.3](https://github.com/ethyca/fideslang/compare/1.4.2...1.4.3)
 
