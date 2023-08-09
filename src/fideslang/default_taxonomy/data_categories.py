@@ -28,7 +28,9 @@ DEFAULT_DATA_CATEGORIES = [
         description="Username associated with account.",
         parent_key="user.account",
     ),
-    # user.authorization
+    ######################
+    # user.authorization #
+    ######################
     DataCategory(
         fides_key="user.authorization",
         name="Authorization Information.",
@@ -42,12 +44,20 @@ DEFAULT_DATA_CATEGORIES = [
         parent_key="user.authorization",
     ),
     DataCategory(
-        fides_key="user.authorization.credentials.unencrypted",
-        name="Account password.",
-        description="Unencrypted authentication credentials to a system.",
-        parent_key="user.authorization.credentials",
+        fides_key="user.authorization.biometric",
+        name="Biometric Credentials",
+        description="Credentials for system authentication.",
+        parent_key="user.authorization",
     ),
-    # user.behavior
+    DataCategory(
+        fides_key="user.authorization.password",
+        name="Password",
+        description="Password for system authentication.",
+        parent_key="user.authorization",
+    ),
+    #################
+    # user.behavior #
+    #################
     DataCategory(
         fides_key="user.behavior",
         name="Observed Behavior",
@@ -78,7 +88,9 @@ DEFAULT_DATA_CATEGORIES = [
         description="Search history of the subject.",
         parent_key="user.behavior",
     ),
-    # user.biometric
+    ##################
+    # user.biometric #
+    ##################
     DataCategory(
         fides_key="user.biometric",
         name="Biometric Data",
@@ -410,9 +422,9 @@ DEFAULT_DATA_CATEGORIES = [
         parent_key="user",
     ),
     DataCategory(
-        fides_key="user.id",
-        name="User ID",
-        description="Subject identifier assigned through the use of a system.",
+        fides_key="user.unique_id",
+        name="Unique ID",
+        description="Unique identifier for a user assigned through system use.",
         parent_key="user",
     ),
     DataCategory(
@@ -444,27 +456,6 @@ DEFAULT_DATA_CATEGORIES = [
         name="Sensor Data",
         description="Measurement data from sensors and monitoring systems.",
         parent_key="user",
-    ),
-    ####################
-    # user.credentials #
-    ####################
-    DataCategory(
-        fides_key="user.credentials",
-        name="Credentials",
-        description="User authentication data.",
-        parent_key="user",
-    ),
-    DataCategory(
-        fides_key="user.credentials.biometric_credentials",
-        name="Biometric Credentials",
-        description="Credentials for system authentication.",
-        parent_key="user.credentials",
-    ),
-    DataCategory(
-        fides_key="user.credentials.password",
-        name="Password",
-        description="Password for system authentication.",
-        parent_key="user.credentials",
     ),
     DataCategory(
         fides_key="user.date_of_birth",
