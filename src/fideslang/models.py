@@ -934,8 +934,8 @@ class PrivacyDeclaration(BaseModel):
     impact_assessment_location: Optional[str] = Field(
         description="Where the legitimate interest impact assessment is stored"
     )
-    retention_period: Optional[int] = Field(
-        description="The amount of time (in days) for which data is retained for this purpose."
+    retention_period: Optional[str] = Field(
+        description="An optional string to describe the time period for which data is retained for this purpose."
     )
     processes_special_category_data: bool = Field(
         default=False,
