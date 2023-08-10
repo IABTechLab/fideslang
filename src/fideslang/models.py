@@ -1095,7 +1095,8 @@ class System(FidesModel):
     vendor_id: Optional[str] = Field(
         description="The unique identifier for the vendor that's associated with this system."
     )
-    dataset_references: Optional[List[FidesKey]] = Field(
+    dataset_references: List[FidesKey] = Field(
+        default_factory=list,
         description="Referenced Dataset fides keys used by the system.",
     )
     processes_personal_data: bool = Field(
