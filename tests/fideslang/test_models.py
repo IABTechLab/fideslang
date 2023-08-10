@@ -77,7 +77,7 @@ class TestPrivacyDeclaration:
             name="declaration-name",
         )
 
-    def test_dataset_data_qualifier_deprecation(self) -> None:
+    def test_privacy_declaration_data_qualifier_deprecation(self) -> None:
         with deprecated_call(match="data_qualifier"):
             assert PrivacyDeclaration(
                 data_categories=[],
@@ -417,65 +417,42 @@ class TestSystem:
             cookies=[{"name": "test_cookie"}],
         )
 
-    def test_system_data_responsibility_title_deprecation(self) -> None:
-        with deprecated_call(match="data_responsibility_title"):
-            assert System(
-                description="Test Policy",
-                fides_key="test_system",
-                name="Test System",
-                registry_id=1,
-                system_type="SYSTEM",
-                tags=["some", "tags"],
-                privacy_declarations=[],
-                data_responsiblity_title="Controller",
-            )
-
-    def test_joint_controller_deprecation(self) -> None:
-        with deprecated_call(match="joint_controller"):
-            assert System(
-                description="Test Policy",
-                fides_key="test_system",
-                name="Test System",
-                registry_id=1,
-                system_type="SYSTEM",
-                tags=["some", "tags"],
-                privacy_declarations=[],
-                joint_controller={
+    @mark.parametrize(
+        "deprecated_field,value",
+        [
+            ("data_responsibility_title", "Controller"),
+            (
+                "joint_controller",
+                {
                     "name": "Jane Doe",
                     "address": "104 Test Lane; Test Town, TX, 32522",
                     "email": "jane@example.com",
                     "phone": "345-255-2555",
                 },
-            )
-
-    def test_system_third_country_transfers_deprecation(self) -> None:
-        with deprecated_call(match="third_country_transfers"):
-            assert System(
-                description="Test Policy",
-                fides_key="test_system",
-                name="Test System",
-                registry_id=1,
-                system_type="SYSTEM",
-                tags=["some", "tags"],
-                privacy_declarations=[],
-                third_country_transfers=["GBR"],
-            )
-
-    def test_system_data_protection_impact_assessment_deprecation(self) -> None:
-        with deprecated_call(match="data_protection_impact_assessment"):
-            assert System(
-                description="Test Policy",
-                fides_key="test_system",
-                name="Test System",
-                registry_id=1,
-                system_type="SYSTEM",
-                tags=["some", "tags"],
-                privacy_declarations=[],
-                data_protection_impact_assessment={
+            ),
+            ("third_country_transfers", ["GBR"]),
+            (
+                "data_protection_impact_assessment",
+                {
                     "is_required": True,
                     "progress": "pending",
                     "link": "https://www.example.com/dpia",
                 },
+            ),
+        ],
+    )
+    def test_system_deprecated_fields(self, deprecated_field, value) -> None:
+        with deprecated_call(match=deprecated_field):
+            assert System(
+                **{
+                    "description": "Test System",
+                    "fides_key": "test_system",
+                    "name": "Test System",
+                    "registry": 1,
+                    "system_type": "SYSTEM",
+                    "privacy_declarations": [],
+                    deprecated_field: value,
+                }
             )
 
 
@@ -544,36 +521,23 @@ class TestDataset:
             ],
         )
 
-    def test_dataset_data_qualifier_deprecation(self) -> None:
-        with deprecated_call(match="data_qualifier"):
+    @mark.parametrize(
+        "deprecated_field,value",
+        [
+            ("data_qualifier", "dataset_qualifier_1"),
+            ("joint_controller", {"name": "Controller_name"}),
+            ("retention", "90 days"),
+            ("third_country_transfers", ["IRL"]),
+        ],
+    )
+    def test_dataset_deprecated_fields(self, deprecated_field, value) -> None:
+        with deprecated_call(match=deprecated_field):
             assert Dataset(
-                fides_key="new_dataset",
-                collections=[],
-                data_qualifier="dataset_qualifier_1",
-            )
-
-    def test_dataset_joint_controller_deprecation(self) -> None:
-        with deprecated_call(match="joint_controller"):
-            assert Dataset(
-                fides_key="new_dataset",
-                collections=[],
-                joint_controller={"name": "Controller_name"},
-            )
-
-    def test_dataset_retention_deprecation(self) -> None:
-        with deprecated_call(match="retention"):
-            assert Dataset(
-                fides_key="new_dataset",
-                collections=[],
-                retention="90 days",
-            )
-
-    def test_dataset_third_country_transfers_deprecation(self) -> None:
-        with deprecated_call(match="retention"):
-            assert Dataset(
-                fides_key="new_dataset",
-                collections=[],
-                third_country_transfers=["IRL"],
+                **{
+                    "fides_key": "test_dataset",
+                    "collections": [],
+                    deprecated_field: value,
+                }
             )
 
 
@@ -581,31 +545,16 @@ class TestDataUse:
     def test_minimal_data_use(self):
         assert DataUse(fides_key="new_use")
 
-    def test_data_use_legal_basis_deprecation(self) -> None:
-        with deprecated_call(match="legal_basis"):
-            assert DataUse(fides_key="new_use", legal_basis="Legal Obligation")
-
-    def test_data_use_special_category_deprecation(self) -> None:
-        with deprecated_call(match="special_category"):
-            assert DataUse(
-                fides_key="new_use", special_category="Substantial Public Interest"
-            )
-
-    def test_data_use_recipients_deprecation(self) -> None:
-        with deprecated_call(match="recipients"):
-            assert DataUse(fides_key="new_use", recipients=["Advertising Bureau"])
-
-    def test_data_use_legitimate_interest_deprecation(self) -> None:
-        with deprecated_call(match="legitimate_interest"):
-            assert DataUse(
-                fides_key="new_use",
-                legitimate_interest=True,
-                legitimate_interest_impact_assessment="https://www.example.com",
-            )
-
-    def test_data_use_legitimate_interest_impact_assessment_deprecation(self) -> None:
-        with deprecated_call(match="legitimate_interest_impact_assessment"):
-            assert DataUse(
-                fides_key="new_use",
-                legitimate_interest_impact_assessment="https://www.example.com",
-            )
+    @mark.parametrize(
+        "deprecated_field,value",
+        [
+            ("legal_basis", "Legal Obligation"),
+            ("special_category", "Substantial Public Interest"),
+            ("recipients", ["Advertising Bureau"]),
+            ("legitimate_interest", False),
+            ("legitimate_interest_impact_assessment", "https://www.example.com"),
+        ],
+    )
+    def test_datause_deprecated_fields(self, deprecated_field, value) -> None:
+        with deprecated_call(match=deprecated_field):
+            assert DataUse(**{"fides_key": "new_use", deprecated_field: value})

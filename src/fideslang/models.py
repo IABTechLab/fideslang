@@ -917,7 +917,7 @@ class PrivacyDeclaration(BaseModel):
         description="Deprecated. The fides key of the data qualifier describing a system in a privacy declaration.",
     )
     data_subjects: List[FidesKey] = Field(
-        default=[],
+        default_factory=list,
         description="An array of data subjects describing a system in a privacy declaration.",
     )
     dataset_references: Optional[List[FidesKey]] = Field(
@@ -930,7 +930,7 @@ class PrivacyDeclaration(BaseModel):
         description="The resources from which data is received. Any `fides_key`s included in this list reference `DataFlow` entries in the `ingress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
     )
     features: List[str] = Field(
-        default=[], description="The features of processing personal data."
+        default_factory=list, description="The features of processing personal data."
     )
     legal_basis_for_processing: Optional[LegalBasisForProcessingEnum] = Field(
         description="The legal basis under which personal data is processed for this purpose."
@@ -948,7 +948,7 @@ class PrivacyDeclaration(BaseModel):
     special_category_legal_basis: Optional[SpecialCategoryLegalBasisEnum] = Field(
         description="The legal basis under which the special category data is processed.",
     )
-    data_shared_with_third_parties: Optional[bool] = Field(
+    data_shared_with_third_parties: bool = Field(
         default=False,
         description="This system shares data with third parties for this purpose.",
     )
@@ -956,7 +956,7 @@ class PrivacyDeclaration(BaseModel):
         description="The types of third parties the data is shared with.",
     )
     shared_categories: List[str] = Field(
-        default=[],
+        default_factory=list,
         description="The categories of personal data that this system shares with third parties.",
     )
     cookies: Optional[List[Cookies]] = Field(
@@ -1153,7 +1153,7 @@ class System(FidesModel):
         description="The legal address for the business represented by the system."
     )
     responsibility: List[DataResponsibilityTitle] = Field(
-        default=[],
+        default_factory=list,
         description=DataResponsibilityTitle.__doc__,
     )
     dpo: Optional[str] = Field(
