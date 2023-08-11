@@ -54,6 +54,18 @@ is_default_field = Field(
     default=False,
     description="Denotes whether the resource is part of the default taxonomy or not.",
 )
+version_added_field = Field(
+    default=None,
+    description="The version of Fideslang in which this record was added.",
+)
+version_deprecated_field = Field(
+    default=None,
+    description="The version of Fideslang in which this record was deprecated.",
+)
+replaced_by_field = Field(
+    default=None,
+    description="The new name, if applicable, for this field after deprecation.",
+)
 meta_field = Field(
     default=None,
     description="An optional property to store any extra information for a resource. Data can be structured in any way: simple set of `key: value` pairs or deeply nested objects.",
@@ -165,7 +177,12 @@ class DataCategory(FidesModel):
     """The DataCategory resource model."""
 
     parent_key: Optional[FidesKey]
+
+    # Specific for Default Taxonomy objects
     is_default: bool = is_default_field
+    version_added: Optional[str] = version_added_field
+    version_deprecated: Optional[str] = version_deprecated_field
+    replaced_by_field: Optional[FidesKey] = replaced_by_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
@@ -175,7 +192,12 @@ class DataQualifier(FidesModel):
     """The DataQualifier resource model."""
 
     parent_key: Optional[FidesKey]
+
+    # Specific for Default Taxonomy objects
     is_default: bool = is_default_field
+    version_added: Optional[str] = version_added_field
+    version_deprecated: Optional[str] = version_deprecated_field
+    replaced_by_field: Optional[FidesKey] = replaced_by_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
@@ -232,7 +254,12 @@ class DataSubject(FidesModel):
     automated_decisions_or_profiling: Optional[bool] = Field(
         description="A boolean value to annotate whether or not automated decisions/profiling exists for the data subject.",
     )
+
+    # Specific for Default Taxonomy objects
     is_default: bool = is_default_field
+    version_added: Optional[str] = version_added_field
+    version_deprecated: Optional[str] = version_deprecated_field
+    replaced_by_field: Optional[FidesKey] = replaced_by_field
 
 
 class DataUse(FidesModel):
@@ -259,7 +286,12 @@ class DataUse(FidesModel):
         default=None,
         description="A url pointing to the legitimate interest impact assessment. Required if the legal bases used is legitimate interest.",
     )
+
+    # Specific for Default Taxonomy objects
     is_default: bool = is_default_field
+    version_added: Optional[str] = version_added_field
+    version_deprecated: Optional[str] = version_deprecated_field
+    replaced_by_field: Optional[FidesKey] = replaced_by_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
