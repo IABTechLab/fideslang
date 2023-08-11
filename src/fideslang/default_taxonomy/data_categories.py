@@ -4,7 +4,7 @@ from fideslang.models import DataCategory
 
 from .utils import default_factory
 
-default_category_factory = partial(default_factory, TaxonomyClass=DataCategory)
+default_category_factory = partial(default_factory, taxonomy_class=DataCategory)
 
 DEFAULT_DATA_CATEGORIES = [
     # user

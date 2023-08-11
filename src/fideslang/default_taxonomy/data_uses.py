@@ -4,7 +4,7 @@ from fideslang.models import DataUse
 
 from .utils import default_factory
 
-default_use_factory = partial(default_factory, TaxonomyClass=DataUse)
+default_use_factory = partial(default_factory, taxonomy_class=DataUse)
 
 
 DEFAULT_DATA_USES = [

@@ -4,7 +4,7 @@ from fideslang.models import DataQualifier
 
 from .utils import default_factory
 
-default_qualifier_factory = partial(default_factory, TaxonomyClass=DataQualifier)
+default_qualifier_factory = partial(default_factory, taxonomy_class=DataQualifier)
 
 
 DEFAULT_DATA_QUALIFIERS = [

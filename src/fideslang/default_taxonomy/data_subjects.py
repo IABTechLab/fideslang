@@ -4,7 +4,7 @@ from fideslang.models import DataSubject
 
 from .utils import default_factory
 
-default_subject_factory = partial(default_factory, TaxonomyClass=DataSubject)
+default_subject_factory = partial(default_factory, taxonomy_class=DataSubject)
 
 
 DEFAULT_DATA_SUBJECTS = [
