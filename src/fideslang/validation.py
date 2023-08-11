@@ -90,14 +90,16 @@ def no_self_reference(value: FidesKey, values: Dict) -> FidesKey:
     return value
 
 
-def deprecated_version_later_than_added(value: FidesVersion, values: Dict) -> FidesVersion:
+def deprecated_version_later_than_added(
+    value: FidesVersion, values: Dict
+) -> FidesVersion:
     """
-    Check to make sure that the fides_key doesn't match other fides_key
-    references within an object.
+    Check to make sure that the deprecated version is later than the added version.
 
-    i.e. DataCategory.parent_key != DataCategory.fides_key
+    This will also catch errors where the deprecated version is defined but the added
+    version is empty.
     """
-    if value and value > values["version_added"]:
+    if value < values.get("version_added", Version("0")):
         raise FidesValidationError(
             "Deprecated version number can't be earlier than version added!"
         )

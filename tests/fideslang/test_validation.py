@@ -6,6 +6,9 @@ from fideslang.models import (
     DataCategory,
     DataFlow,
     Dataset,
+    DataUse,
+    DataSubject,
+    DataQualifier,
     DatasetCollection,
     DatasetField,
     DatasetMetadata,
@@ -25,6 +28,117 @@ from fideslang.validation import (
     FidesValidationError,
     valid_data_type,
 )
+
+DEFAULT_TAXONOMY_CLASSES = [DataCategory, DataUse, DataQualifier, DataSubject]
+
+
+@pytest.mark.unit
+class TestVersioning:
+    """Test versioning functionality for default Taxonomy types."""
+
+    @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
+    def test_default_no_versions_error(self, TaxonomyClass):
+        """There should be version info for default items."""
+        with pytest.raises(ValidationError):
+            TaxonomyClass(
+                organization_fides_key=1,
+                fides_key="user",
+                name="Custom Test Data",
+                description="Custom Test Data Category",
+                is_default=True,
+            )
+
+    @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
+    def test_not_default_no_versions_error(self, TaxonomyClass):
+        """There shouldn't be version info on a non-default item."""
+        with pytest.raises(ValidationError):
+            TaxonomyClass(
+                organization_fides_key=1,
+                fides_key="user",
+                name="Custom Test Data",
+                description="Custom Test Data Category",
+                version_added="1.2.3",
+            )
+
+    @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
+    def test_deprecated_after_added(self, TaxonomyClass):
+        """Item can't be deprecated in a version earlier than it was added."""
+        with pytest.raises(ValidationError):
+            TaxonomyClass(
+                organization_fides_key=1,
+                fides_key="user",
+                name="Custom Test Data",
+                description="Custom Test Data Category",
+                is_default=True,
+                version_added="1.2.3",
+                version_deprecated="0.2",
+            )
+
+    @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
+    def test_deprecated_not_added(self, TaxonomyClass):
+        """Can't be deprecated without being added in an earlier version."""
+        with pytest.raises(ValidationError):
+            TaxonomyClass(
+                organization_fides_key=1,
+                fides_key="user",
+                name="Custom Test Data",
+                description="Custom Test Data Category",
+                is_default=True,
+                version_deprecated="0.2",
+            )
+
+    @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
+    def test_replaced_not_deprecated(self, TaxonomyClass):
+        """If the field is replaced, it must also be deprecated."""
+        with pytest.raises(ValidationError):
+            TaxonomyClass(
+                organization_fides_key=1,
+                fides_key="user",
+                name="Custom Test Data",
+                description="Custom Test Data Category",
+                is_default=True,
+                version_added="1.2.3",
+                replaced_by="some.field",
+            )
+
+    @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
+    def test_replaced_and_deprecated(self, TaxonomyClass):
+        """If the field is replaced, it must also be deprecated."""
+        assert TaxonomyClass(
+            organization_fides_key=1,
+            fides_key="user",
+            name="Custom Test Data",
+            description="Custom Test Data Category",
+            is_default=True,
+            version_added="1.2.3",
+            version_deprecated="1.3",
+            replaced_by="some.field",
+        )
+
+    @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
+    def test_version_error(self, TaxonomyClass):
+        """Check that versions are validated."""
+        with pytest.raises(ValidationError):
+            TaxonomyClass(
+                organization_fides_key=1,
+                fides_key="user",
+                name="Custom Test Data",
+                description="Custom Test Data Category",
+                is_default=True,
+                version_added="a.2.3",
+            )
+
+    @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
+    def test_versions_valid(self, TaxonomyClass):
+        """Check that versions are validated."""
+        assert TaxonomyClass(
+            organization_fides_key=1,
+            fides_key="user",
+            name="Custom Test Data",
+            description="Custom Test Data Category",
+            is_default=True,
+            version_added="1.2.3",
+        )
 
 
 @pytest.mark.unit

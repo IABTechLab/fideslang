@@ -32,6 +32,7 @@ from fideslang.validation import (
     unique_items_in_list,
     has_versioning_if_default,
     deprecated_version_later_than_added,
+    is_deprecated_if_replaced,
 )
 
 # Reusable Validators
@@ -44,12 +45,15 @@ matching_parent_key_validator = validator("parent_key", allow_reuse=True, always
 no_self_reference_validator = validator("parent_key", allow_reuse=True)(
     no_self_reference
 )
-has_versioning_if_default_validator = validator("is_default", allow_reuse=True)(
-    has_versioning_if_default
-)
+has_versioning_if_default_validator = validator(
+    "is_default", allow_reuse=True, always=True
+)(has_versioning_if_default)
 deprecated_version_later_than_added_validator = validator(
     "version_deprecated", allow_reuse=True
 )(deprecated_version_later_than_added)
+is_deprecated_if_replaced_validator = validator("replaced_by", allow_reuse=True)(
+    is_deprecated_if_replaced
+)
 
 # Reusable Fields
 name_field = Field(description="Human-Readable name for this resource.")
@@ -187,7 +191,7 @@ class DataCategory(FidesModel):
     # Specific for Default Taxonomy objects
     version_added: Optional[FidesVersion] = version_added_field
     version_deprecated: Optional[FidesVersion] = version_deprecated_field
-    replaced_by_field: Optional[FidesKey] = replaced_by_field
+    replaced_by: Optional[FidesKey] = replaced_by_field
     is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
@@ -196,6 +200,7 @@ class DataCategory(FidesModel):
     _deprecated_version_later_than_added: classmethod = (
         deprecated_version_later_than_added_validator
     )
+    _is_deprecated_if_replaced: classmethod = is_deprecated_if_replaced_validator
 
 
 class DataQualifier(FidesModel):
@@ -206,7 +211,7 @@ class DataQualifier(FidesModel):
     # Specific for Default Taxonomy objects
     version_added: Optional[FidesVersion] = version_added_field
     version_deprecated: Optional[FidesVersion] = version_deprecated_field
-    replaced_by_field: Optional[FidesKey] = replaced_by_field
+    replaced_by: Optional[FidesKey] = replaced_by_field
     is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
@@ -215,6 +220,7 @@ class DataQualifier(FidesModel):
     _deprecated_version_later_than_added: classmethod = (
         deprecated_version_later_than_added_validator
     )
+    _is_deprecated_if_replaced: classmethod = is_deprecated_if_replaced_validator
 
 
 class Cookies(BaseModel):
@@ -272,13 +278,14 @@ class DataSubject(FidesModel):
     # Specific for Default Taxonomy objects
     version_added: Optional[FidesVersion] = version_added_field
     version_deprecated: Optional[FidesVersion] = version_deprecated_field
-    replaced_by_field: Optional[FidesKey] = replaced_by_field
+    replaced_by: Optional[FidesKey] = replaced_by_field
     is_default: bool = is_default_field
 
     _has_versioning_if_default: classmethod = has_versioning_if_default_validator
     _deprecated_version_later_than_added: classmethod = (
         deprecated_version_later_than_added_validator
     )
+    _is_deprecated_if_replaced: classmethod = is_deprecated_if_replaced_validator
 
 
 class DataUse(FidesModel):
@@ -309,7 +316,7 @@ class DataUse(FidesModel):
     # Specific for Default Taxonomy objects
     version_added: Optional[FidesVersion] = version_added_field
     version_deprecated: Optional[FidesVersion] = version_deprecated_field
-    replaced_by_field: Optional[FidesKey] = replaced_by_field
+    replaced_by: Optional[FidesKey] = replaced_by_field
     is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
@@ -318,6 +325,7 @@ class DataUse(FidesModel):
     _deprecated_version_later_than_added: classmethod = (
         deprecated_version_later_than_added_validator
     )
+    _is_deprecated_if_replaced: classmethod = is_deprecated_if_replaced_validator
 
     @validator("legitimate_interest", always=True)
     @classmethod
