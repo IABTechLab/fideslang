@@ -22,6 +22,7 @@ from pydantic import (
 
 from fideslang.validation import (
     FidesKey,
+    FidesVersion,
     check_valid_country_code,
     matching_parent_key,
     no_self_reference,
@@ -30,6 +31,7 @@ from fideslang.validation import (
     valid_data_type,
     unique_items_in_list,
     has_versioning_if_default,
+    deprecated_version_later_than_added,
 )
 
 # Reusable Validators
@@ -45,6 +47,9 @@ no_self_reference_validator = validator("parent_key", allow_reuse=True)(
 has_versioning_if_default_validator = validator("is_default", allow_reuse=True)(
     has_versioning_if_default
 )
+deprecated_version_later_than_added_validator = validator(
+    "version_deprecated", allow_reuse=True
+)(deprecated_version_later_than_added)
 
 # Reusable Fields
 name_field = Field(description="Human-Readable name for this resource.")
@@ -180,14 +185,17 @@ class DataCategory(FidesModel):
     parent_key: Optional[FidesKey]
 
     # Specific for Default Taxonomy objects
-    version_added: Optional[str] = version_added_field
-    version_deprecated: Optional[str] = version_deprecated_field
+    version_added: Optional[FidesVersion] = version_added_field
+    version_deprecated: Optional[FidesVersion] = version_deprecated_field
     replaced_by_field: Optional[FidesKey] = replaced_by_field
     is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
     _has_versioning_if_default: classmethod = has_versioning_if_default_validator
+    _deprecated_version_later_than_added: classmethod = (
+        deprecated_version_later_than_added_validator
+    )
 
 
 class DataQualifier(FidesModel):
@@ -196,14 +204,17 @@ class DataQualifier(FidesModel):
     parent_key: Optional[FidesKey]
 
     # Specific for Default Taxonomy objects
-    version_added: Optional[str] = version_added_field
-    version_deprecated: Optional[str] = version_deprecated_field
+    version_added: Optional[FidesVersion] = version_added_field
+    version_deprecated: Optional[FidesVersion] = version_deprecated_field
     replaced_by_field: Optional[FidesKey] = replaced_by_field
     is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
     _has_versioning_if_default: classmethod = has_versioning_if_default_validator
+    _deprecated_version_later_than_added: classmethod = (
+        deprecated_version_later_than_added_validator
+    )
 
 
 class Cookies(BaseModel):
@@ -259,12 +270,15 @@ class DataSubject(FidesModel):
     )
 
     # Specific for Default Taxonomy objects
-    version_added: Optional[str] = version_added_field
-    version_deprecated: Optional[str] = version_deprecated_field
+    version_added: Optional[FidesVersion] = version_added_field
+    version_deprecated: Optional[FidesVersion] = version_deprecated_field
     replaced_by_field: Optional[FidesKey] = replaced_by_field
     is_default: bool = is_default_field
 
     _has_versioning_if_default: classmethod = has_versioning_if_default_validator
+    _deprecated_version_later_than_added: classmethod = (
+        deprecated_version_later_than_added_validator
+    )
 
 
 class DataUse(FidesModel):
@@ -293,14 +307,17 @@ class DataUse(FidesModel):
     )
 
     # Specific for Default Taxonomy objects
-    version_added: Optional[str] = version_added_field
-    version_deprecated: Optional[str] = version_deprecated_field
+    version_added: Optional[FidesVersion] = version_added_field
+    version_deprecated: Optional[FidesVersion] = version_deprecated_field
     replaced_by_field: Optional[FidesKey] = replaced_by_field
     is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
     _has_versioning_if_default: classmethod = has_versioning_if_default_validator
+    _deprecated_version_later_than_added: classmethod = (
+        deprecated_version_later_than_added_validator
+    )
 
     @validator("legitimate_interest", always=True)
     @classmethod

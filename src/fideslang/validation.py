@@ -4,17 +4,30 @@ Contains all of the additional validation for the resource models.
 
 import re
 from collections import Counter
-from typing import Dict, List, Optional, Pattern, Set, Tuple
+from typing import Dict, List, Optional, Pattern, Set, Tuple, Generator
 
 from pydantic import ConstrainedStr
 
 from fideslang.default_fixtures import COUNTRY_CODES
+from packaging.version import Version
 
 VALID_COUNTRY_CODES = [country["alpha3Code"] for country in COUNTRY_CODES]
 
 
 class FidesValidationError(ValueError):
     """Custom exception for when the pydantic ValidationError can't be used."""
+
+
+class FidesVersion(Version):
+    """Validate strings as proper semantic versions."""
+
+    @classmethod
+    def __get_validators__(cls) -> Generator:
+        yield cls.validate
+
+    @classmethod
+    def validate(cls, value: str) -> Version:
+        return Version(value)
 
 
 class FidesKey(ConstrainedStr):
@@ -77,7 +90,21 @@ def no_self_reference(value: FidesKey, values: Dict) -> FidesKey:
     return value
 
 
-def has_versioning_if_default(value: FidesKey, values: Dict) -> FidesKey:
+def deprecated_version_later_than_added(value: FidesVersion, values: Dict) -> FidesVersion:
+    """
+    Check to make sure that the fides_key doesn't match other fides_key
+    references within an object.
+
+    i.e. DataCategory.parent_key != DataCategory.fides_key
+    """
+    if value and value > values["version_added"]:
+        raise FidesValidationError(
+            "Deprecated version number can't be earlier than version added!"
+        )
+    return value
+
+
+def has_versioning_if_default(value: bool, values: Dict) -> bool:
     """
     Check to make sure that version fields are set for default items.
     """
@@ -98,6 +125,17 @@ def has_versioning_if_default(value: FidesKey, values: Dict) -> FidesKey:
             assert values.get("version_added")
         except AssertionError:
             raise FidesValidationError("Default items must have version information!")
+
+    return value
+
+
+def is_deprecated_if_replaced(value: str, values: Dict) -> str:
+    """
+    Check to make sure that the item has been deprecated if there is a replacement.
+    """
+
+    if value and not values.get("version_deprecated"):
+        raise FidesValidationError("Cannot be replaced without deprecation!")
 
     return value
 
