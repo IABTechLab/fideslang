@@ -36,7 +36,7 @@ from fideslang.validation import (
 country_code_validator = validator("third_country_transfers", allow_reuse=True)(
     check_valid_country_code
 )
-matching_parent_key_validator = validator("parent_key", allow_reuse=True)(
+matching_parent_key_validator = validator("parent_key", allow_reuse=True, always=True)(
     matching_parent_key
 )
 no_self_reference_validator = validator("parent_key", allow_reuse=True)(
