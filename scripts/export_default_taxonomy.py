@@ -5,9 +5,10 @@ import csv
 import json
 import shutil
 import yaml
-from fideslang import DEFAULT_TAXONOMY
+from fideslang.default_taxonomy import DEFAULT_TAXONOMY
 from fideslang.manifests import write_manifest
 from typing import Tuple
+from packaging.version import Version
 
 FILE_RESOURCE_PAIRS: Tuple[Tuple[str, str], ...] = (
     ("data_categories", "data_category"),
@@ -27,9 +28,17 @@ def export_yaml() -> None:
     for filename, resource_type in FILE_RESOURCE_PAIRS:
         output_filename = f"{DATA_DIR}/{filename}.yml"
         print(f"> Writing YAML to {output_filename}")
+        resources = [x.dict() for x in getattr(DEFAULT_TAXONOMY, resource_type)]
+
+        # Clean up specific data types
+        resources = [{
+                key: str(value) if isinstance(value, Version) else value
+                for key, value in resource.items()
+            } for resource in resources]
+
         write_manifest(
             output_filename,
-            manifest=[x.dict() for x in getattr(DEFAULT_TAXONOMY, resource_type)],
+            manifest=resources,
             resource_type=resource_type,
         )
 

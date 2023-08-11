@@ -1,6 +1,10 @@
 {
     "data_use": [
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "analytics",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -11,10 +15,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "analytics.reporting",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -25,10 +32,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "analytics.reporting.ad_performance",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -39,10 +49,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "analytics.reporting.content_performance",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -53,10 +66,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "analytics.reporting.campaign_insights",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -67,10 +83,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "analytics.reporting.system",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -81,10 +100,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "analytics.reporting.system.performance",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -95,10 +117,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "collect",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -109,10 +134,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "employment",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -123,10 +151,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "employment.recruitment",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -137,10 +168,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "essential",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -151,10 +185,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "essential.fraud_detection",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -165,10 +202,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "essential.legal_obligation",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -179,10 +219,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "essential.service",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -193,10 +236,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "essential.service.authentication",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -207,10 +253,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "essential.service.notifications",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -221,10 +270,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "essential.service.operations",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -235,10 +287,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "essential.service.payment_processing",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -249,10 +304,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "essential.service.security",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -263,10 +321,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "essential.service.upgrades",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -277,10 +338,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "essential.service.notifications.email",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -291,10 +355,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "essential.service.notifications.sms",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -305,10 +372,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "essential.service.operations.support",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -319,10 +389,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "essential.service.operations.improve",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -333,10 +406,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "essential.service.operations.support.optimization",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -347,10 +423,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "finance",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -361,10 +440,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "functional",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -375,10 +457,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "functional.storage",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -389,10 +474,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "functional.service.improve",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -403,10 +491,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "marketing",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -417,10 +508,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "marketing.advertising",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -431,10 +525,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "marketing.communications",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -445,10 +542,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "marketing.advertising.first_party",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -459,10 +559,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "marketing.advertising.frequency_capping",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -473,10 +576,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "marketing.advertising.negative_targeting",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -487,10 +593,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "marketing.advertising.profiling",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -501,10 +610,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "marketing.advertising.serving",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -515,10 +627,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "marketing.advertising.third_party",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -529,10 +644,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "marketing.advertising.first_party.contextual",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -543,10 +661,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "marketing.advertising.first_party.targeted",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -557,10 +678,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "marketing.advertising.third_party.targeted",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -571,10 +695,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "marketing.communications.email",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -585,10 +712,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "marketing.communications.sms",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -599,10 +729,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "operations",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -613,10 +746,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "personalize",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -627,10 +763,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "personalize.content",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -641,10 +780,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "personalize.profiling",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -655,10 +797,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "personalize.system",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -669,10 +814,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "sales",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -683,10 +831,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "third_party_sharing",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -697,10 +848,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "third_party_sharing.legal_obligation",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -711,10 +865,13 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "train_ai_system",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -725,8 +882,7 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": false,
-            "legitimate_interest_impact_assessment": null,
-            "is_default": true
+            "legitimate_interest_impact_assessment": null
         }
     ]
 }

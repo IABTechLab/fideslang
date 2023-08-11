@@ -1,5 +1,9 @@
 data_use:
-- fides_key: analytics
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
+  is_default: true
+  fides_key: analytics
   organization_fides_key: default_organization
   tags: null
   name: Analytics
@@ -11,8 +15,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: analytics.reporting
+  fides_key: analytics.reporting
   organization_fides_key: default_organization
   tags: null
   name: Analytics for Reporting
@@ -24,8 +31,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: analytics.reporting.ad_performance
+  fides_key: analytics.reporting.ad_performance
   organization_fides_key: default_organization
   tags: null
   name: Analytics for Advertising Performance
@@ -36,8 +46,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: analytics.reporting.content_performance
+  fides_key: analytics.reporting.content_performance
   organization_fides_key: default_organization
   tags: null
   name: Analytics for Content Performance
@@ -48,8 +61,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: analytics.reporting.campaign_insights
+  fides_key: analytics.reporting.campaign_insights
   organization_fides_key: default_organization
   tags: null
   name: Analytics for Insights
@@ -61,8 +77,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: analytics.reporting.system
+  fides_key: analytics.reporting.system
   organization_fides_key: default_organization
   tags: null
   name: Analytics for System Activity
@@ -73,8 +92,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: analytics.reporting.system.performance
+  fides_key: analytics.reporting.system.performance
   organization_fides_key: default_organization
   tags: null
   name: Analytics for System Performance
@@ -85,8 +107,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: collect
+  fides_key: collect
   organization_fides_key: default_organization
   tags: null
   name: Collect
@@ -98,8 +123,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: employment
+  fides_key: employment
   organization_fides_key: default_organization
   tags: null
   name: Employment
@@ -111,8 +139,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: employment.recruitment
+  fides_key: employment.recruitment
   organization_fides_key: default_organization
   tags: null
   name: Employment Recruitment
@@ -123,8 +154,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: essential
+  fides_key: essential
   organization_fides_key: default_organization
   tags: null
   name: Essential
@@ -136,8 +170,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: essential.fraud_detection
+  fides_key: essential.fraud_detection
   organization_fides_key: default_organization
   tags: null
   name: Essential Fraud Detection
@@ -149,8 +186,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: essential.legal_obligation
+  fides_key: essential.legal_obligation
   organization_fides_key: default_organization
   tags: null
   name: Essential Legal Obligation
@@ -162,8 +202,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: essential.service
+  fides_key: essential.service
   organization_fides_key: default_organization
   tags: null
   name: Essential for Service
@@ -175,8 +218,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: essential.service.authentication
+  fides_key: essential.service.authentication
   organization_fides_key: default_organization
   tags: null
   name: Essential Service Authentication
@@ -187,8 +233,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: essential.service.notifications
+  fides_key: essential.service.notifications
   organization_fides_key: default_organization
   tags: null
   name: Essential Service Notifications
@@ -199,8 +248,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: essential.service.operations
+  fides_key: essential.service.operations
   organization_fides_key: default_organization
   tags: null
   name: Essential for Service Operations
@@ -211,8 +263,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: essential.service.payment_processing
+  fides_key: essential.service.payment_processing
   organization_fides_key: default_organization
   tags: null
   name: Essential for Service Payment Processing
@@ -223,8 +278,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: essential.service.security
+  fides_key: essential.service.security
   organization_fides_key: default_organization
   tags: null
   name: Essential for Security
@@ -236,8 +294,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: essential.service.upgrades
+  fides_key: essential.service.upgrades
   organization_fides_key: default_organization
   tags: null
   name: Essential for Service Upgrades
@@ -248,8 +309,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: essential.service.notifications.email
+  fides_key: essential.service.notifications.email
   organization_fides_key: default_organization
   tags: null
   name: Essential Email Service Notifications
@@ -261,8 +325,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: essential.service.notifications.sms
+  fides_key: essential.service.notifications.sms
   organization_fides_key: default_organization
   tags: null
   name: Essential SMS Service Notifications
@@ -274,8 +341,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: essential.service.operations.support
+  fides_key: essential.service.operations.support
   organization_fides_key: default_organization
   tags: null
   name: Essential for Serivce Operations Support
@@ -286,8 +356,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: essential.service.operations.improve
+  fides_key: essential.service.operations.improve
   organization_fides_key: default_organization
   tags: null
   name: Essential for Support Improvement
@@ -299,8 +372,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: essential.service.operations.support.optimization
+  fides_key: essential.service.operations.support.optimization
   organization_fides_key: default_organization
   tags: null
   name: Essential for Serivce Support Optimization
@@ -312,8 +388,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: finance
+  fides_key: finance
   organization_fides_key: default_organization
   tags: null
   name: Finance
@@ -324,8 +403,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: functional
+  fides_key: functional
   organization_fides_key: default_organization
   tags: null
   name: Functional
@@ -336,8 +418,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: functional.storage
+  fides_key: functional.storage
   organization_fides_key: default_organization
   tags: null
   name: Local Data Storage
@@ -349,8 +434,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: functional.service.improve
+  fides_key: functional.service.improve
   organization_fides_key: default_organization
   tags: null
   name: Improve Service
@@ -361,8 +449,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: marketing
+  fides_key: marketing
   organization_fides_key: default_organization
   tags: null
   name: Marketing
@@ -374,8 +465,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: marketing.advertising
+  fides_key: marketing.advertising
   organization_fides_key: default_organization
   tags: null
   name: Advertising, Marketing or Promotion
@@ -387,8 +481,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: marketing.communications
+  fides_key: marketing.communications
   organization_fides_key: default_organization
   tags: null
   name: Marketing Communications
@@ -400,8 +497,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: marketing.advertising.first_party
+  fides_key: marketing.advertising.first_party
   organization_fides_key: default_organization
   tags: null
   name: First Party Advertising
@@ -413,8 +513,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: marketing.advertising.frequency_capping
+  fides_key: marketing.advertising.frequency_capping
   organization_fides_key: default_organization
   tags: null
   name: Frequency Capping
@@ -426,8 +529,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: marketing.advertising.negative_targeting
+  fides_key: marketing.advertising.negative_targeting
   organization_fides_key: default_organization
   tags: null
   name: Negative Targeting
@@ -439,8 +545,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: marketing.advertising.profiling
+  fides_key: marketing.advertising.profiling
   organization_fides_key: default_organization
   tags: null
   name: Profiling for Advertising
@@ -451,8 +560,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: marketing.advertising.serving
+  fides_key: marketing.advertising.serving
   organization_fides_key: default_organization
   tags: null
   name: Essential for Serving Ads
@@ -463,8 +575,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: marketing.advertising.third_party
+  fides_key: marketing.advertising.third_party
   organization_fides_key: default_organization
   tags: null
   name: Third Party Advertising
@@ -476,8 +591,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: marketing.advertising.first_party.contextual
+  fides_key: marketing.advertising.first_party.contextual
   organization_fides_key: default_organization
   tags: null
   name: First Party Contextual Advertising
@@ -489,8 +607,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: marketing.advertising.first_party.targeted
+  fides_key: marketing.advertising.first_party.targeted
   organization_fides_key: default_organization
   tags: null
   name: First Party Personalized Advertising
@@ -502,8 +623,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: marketing.advertising.third_party.targeted
+  fides_key: marketing.advertising.third_party.targeted
   organization_fides_key: default_organization
   tags: null
   name: Third Party Targeted Advertising
@@ -515,8 +639,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: marketing.communications.email
+  fides_key: marketing.communications.email
   organization_fides_key: default_organization
   tags: null
   name: Marketing Email Communications
@@ -527,8 +654,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: marketing.communications.sms
+  fides_key: marketing.communications.sms
   organization_fides_key: default_organization
   tags: null
   name: Marketing SMS Communications
@@ -539,8 +669,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: operations
+  fides_key: operations
   organization_fides_key: default_organization
   tags: null
   name: Operations
@@ -551,8 +684,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: personalize
+  fides_key: personalize
   organization_fides_key: default_organization
   tags: null
   name: Personalize
@@ -563,8 +699,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: personalize.content
+  fides_key: personalize.content
   organization_fides_key: default_organization
   tags: null
   name: Content Personalization
@@ -575,8 +714,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: personalize.profiling
+  fides_key: personalize.profiling
   organization_fides_key: default_organization
   tags: null
   name: Personalized Profiling
@@ -587,8 +729,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: personalize.system
+  fides_key: personalize.system
   organization_fides_key: default_organization
   tags: null
   name: System Personalization
@@ -599,8 +744,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: sales
+  fides_key: sales
   organization_fides_key: default_organization
   tags: null
   name: Sales
@@ -611,8 +759,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: third_party_sharing
+  fides_key: third_party_sharing
   organization_fides_key: default_organization
   tags: null
   name: Third Party Sharing
@@ -624,8 +775,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: third_party_sharing.legal_obligation
+  fides_key: third_party_sharing.legal_obligation
   organization_fides_key: default_organization
   tags: null
   name: Sharing for Legal Obligation
@@ -637,8 +791,11 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: train_ai_system
+  fides_key: train_ai_system
   organization_fides_key: default_organization
   tags: null
   name: Train AI System
@@ -649,4 +806,3 @@ data_use:
   recipients: null
   legitimate_interest: false
   legitimate_interest_impact_assessment: null
-  is_default: true
