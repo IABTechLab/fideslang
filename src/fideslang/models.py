@@ -9,31 +9,18 @@ from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 from warnings import warn
 
-from pydantic import (
-    AnyUrl,
-    BaseModel,
-    ConstrainedStr,
-    Field,
-    HttpUrl,
-    PositiveInt,
-    root_validator,
-    validator,
-)
+from pydantic import (AnyUrl, BaseModel, ConstrainedStr, Field, HttpUrl,
+                      PositiveInt, root_validator, validator)
 
-from fideslang.validation import (
-    FidesKey,
-    FidesVersion,
-    check_valid_country_code,
-    matching_parent_key,
-    no_self_reference,
-    parse_data_type_string,
-    sort_list_objects_by_name,
-    valid_data_type,
-    unique_items_in_list,
-    has_versioning_if_default,
-    deprecated_version_later_than_added,
-    is_deprecated_if_replaced,
-)
+from fideslang.validation import (FidesKey, FidesVersion,
+                                  check_valid_country_code,
+                                  deprecated_version_later_than_added,
+                                  has_versioning_if_default,
+                                  is_deprecated_if_replaced,
+                                  matching_parent_key, no_self_reference,
+                                  parse_data_type_string,
+                                  sort_list_objects_by_name,
+                                  unique_items_in_list, valid_data_type)
 
 # Reusable Validators
 country_code_validator = validator("third_country_transfers", allow_reuse=True)(

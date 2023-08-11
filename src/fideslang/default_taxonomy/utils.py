@@ -1,5 +1,6 @@
 from typing import Dict, Union
-from fideslang.models import DataCategory, DataSubject, DataQualifier, DataUse
+
+from fideslang.models import DataCategory, DataQualifier, DataSubject, DataUse
 
 CustomType = Union[DataCategory, DataSubject, DataQualifier, DataUse]
 

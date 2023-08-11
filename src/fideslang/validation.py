@@ -4,12 +4,12 @@ Contains all of the additional validation for the resource models.
 
 import re
 from collections import Counter
-from typing import Dict, List, Optional, Pattern, Set, Tuple, Generator
+from typing import Dict, Generator, List, Optional, Pattern, Set, Tuple
 
+from packaging.version import Version
 from pydantic import ConstrainedStr
 
 from fideslang.default_fixtures import COUNTRY_CODES
-from packaging.version import Version
 
 VALID_COUNTRY_CODES = [country["alpha3Code"] for country in COUNTRY_CODES]
 

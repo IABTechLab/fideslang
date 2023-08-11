@@ -1,5 +1,7 @@
-from fideslang.models import DataQualifier
 from functools import partial
+
+from fideslang.models import DataQualifier
+
 from .utils import default_factory
 
 default_qualifier_factory = partial(default_factory, TaxonomyClass=DataQualifier)
