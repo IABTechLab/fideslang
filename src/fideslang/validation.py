@@ -1,7 +1,6 @@
 """
 Contains all of the additional validation for the resource models.
 """
-
 import re
 from collections import Counter
 from typing import Dict, Generator, List, Optional, Pattern, Set, Tuple
@@ -27,6 +26,7 @@ class FidesVersion(Version):
 
     @classmethod
     def validate(cls, value: str) -> Version:
+        """Validates that the provided string is a valid Semantic Version."""
         return Version(value)
 
 

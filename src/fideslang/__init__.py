@@ -8,13 +8,31 @@ from fideslang.default_fixtures import COUNTRY_CODES
 from fideslang.default_taxonomy import DEFAULT_TAXONOMY
 
 from ._version import __version__
+
 # Export the Models
-from .models import (DataCategory, DataFlow, DataQualifier, Dataset,
-                     DatasetField, DatasetFieldBase, DataSubject, DataUse,
-                     Evaluation, FidesCollectionKey, FidesDatasetReference,
-                     FidesMeta, FidesModel, Organization, Policy, PolicyRule,
-                     PrivacyDeclaration, PrivacyRule, Registry, System,
-                     Taxonomy)
+from .models import (
+    DataCategory,
+    DataFlow,
+    DataQualifier,
+    Dataset,
+    DatasetField,
+    DatasetFieldBase,
+    DataSubject,
+    DataUse,
+    Evaluation,
+    FidesCollectionKey,
+    FidesDatasetReference,
+    FidesMeta,
+    FidesModel,
+    Organization,
+    Policy,
+    PolicyRule,
+    PrivacyDeclaration,
+    PrivacyRule,
+    Registry,
+    System,
+    Taxonomy,
+)
 
 FidesModelType = Union[Type[FidesModel], Type[Evaluation]]
 model_map: Dict[str, FidesModelType] = {
