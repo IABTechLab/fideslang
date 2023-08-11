@@ -82,9 +82,8 @@ meta_field = Field(
 )
 
 
-# Fides Base Model
 class FidesModel(BaseModel):
-    """The base model for all Fides Resources."""
+    """The base model for most top-level Fides objects."""
 
     fides_key: FidesKey = Field(
         description="A unique key used to identify this resource."
@@ -101,6 +100,23 @@ class FidesModel(BaseModel):
         "Config for the FidesModel"
         extra = "ignore"
         orm_mode = True
+
+
+class DefaultModel(BaseModel):
+    """
+    A model meant to be inherited by versioned parts of the Default Taxonomy.
+    """
+
+    version_added: Optional[FidesVersion] = version_added_field
+    version_deprecated: Optional[FidesVersion] = version_deprecated_field
+    replaced_by: Optional[FidesKey] = replaced_by_field
+    is_default: bool = is_default_field
+
+    _has_versioning_if_default: classmethod = has_versioning_if_default_validator
+    _deprecated_version_later_than_added: classmethod = (
+        deprecated_version_later_than_added_validator
+    )
+    _is_deprecated_if_replaced: classmethod = is_deprecated_if_replaced_validator
 
 
 class DataResponsibilityTitle(str, Enum):
@@ -183,44 +199,22 @@ class SpecialCategoriesEnum(str, Enum):
 
 
 # Privacy Data Types
-class DataCategory(FidesModel):
+class DataCategory(FidesModel, DefaultModel):
     """The DataCategory resource model."""
 
     parent_key: Optional[FidesKey]
 
-    # Specific for Default Taxonomy objects
-    version_added: Optional[FidesVersion] = version_added_field
-    version_deprecated: Optional[FidesVersion] = version_deprecated_field
-    replaced_by: Optional[FidesKey] = replaced_by_field
-    is_default: bool = is_default_field
-
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
-    _has_versioning_if_default: classmethod = has_versioning_if_default_validator
-    _deprecated_version_later_than_added: classmethod = (
-        deprecated_version_later_than_added_validator
-    )
-    _is_deprecated_if_replaced: classmethod = is_deprecated_if_replaced_validator
 
 
-class DataQualifier(FidesModel):
+class DataQualifier(FidesModel, DefaultModel):
     """The DataQualifier resource model."""
 
     parent_key: Optional[FidesKey]
 
-    # Specific for Default Taxonomy objects
-    version_added: Optional[FidesVersion] = version_added_field
-    version_deprecated: Optional[FidesVersion] = version_deprecated_field
-    replaced_by: Optional[FidesKey] = replaced_by_field
-    is_default: bool = is_default_field
-
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
-    _has_versioning_if_default: classmethod = has_versioning_if_default_validator
-    _deprecated_version_later_than_added: classmethod = (
-        deprecated_version_later_than_added_validator
-    )
-    _is_deprecated_if_replaced: classmethod = is_deprecated_if_replaced_validator
 
 
 class Cookies(BaseModel):
@@ -267,7 +261,7 @@ class DataSubjectRights(BaseModel):
         return values
 
 
-class DataSubject(FidesModel):
+class DataSubject(FidesModel, DefaultModel):
     """The DataSubject resource model."""
 
     rights: Optional[DataSubjectRights] = Field(description=DataSubjectRights.__doc__)
@@ -275,20 +269,8 @@ class DataSubject(FidesModel):
         description="A boolean value to annotate whether or not automated decisions/profiling exists for the data subject.",
     )
 
-    # Specific for Default Taxonomy objects
-    version_added: Optional[FidesVersion] = version_added_field
-    version_deprecated: Optional[FidesVersion] = version_deprecated_field
-    replaced_by: Optional[FidesKey] = replaced_by_field
-    is_default: bool = is_default_field
 
-    _has_versioning_if_default: classmethod = has_versioning_if_default_validator
-    _deprecated_version_later_than_added: classmethod = (
-        deprecated_version_later_than_added_validator
-    )
-    _is_deprecated_if_replaced: classmethod = is_deprecated_if_replaced_validator
-
-
-class DataUse(FidesModel):
+class DataUse(FidesModel, DefaultModel):
     """The DataUse resource model."""
 
     parent_key: Optional[FidesKey] = None
@@ -313,19 +295,8 @@ class DataUse(FidesModel):
         description="A url pointing to the legitimate interest impact assessment. Required if the legal bases used is legitimate interest.",
     )
 
-    # Specific for Default Taxonomy objects
-    version_added: Optional[FidesVersion] = version_added_field
-    version_deprecated: Optional[FidesVersion] = version_deprecated_field
-    replaced_by: Optional[FidesKey] = replaced_by_field
-    is_default: bool = is_default_field
-
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
-    _has_versioning_if_default: classmethod = has_versioning_if_default_validator
-    _deprecated_version_later_than_added: classmethod = (
-        deprecated_version_later_than_added_validator
-    )
-    _is_deprecated_if_replaced: classmethod = is_deprecated_if_replaced_validator
 
     @validator("legitimate_interest", always=True)
     @classmethod
