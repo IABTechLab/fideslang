@@ -29,21 +29,22 @@ from fideslang.validation import (
     sort_list_objects_by_name,
     valid_data_type,
     unique_items_in_list,
+    has_versioning_if_default,
 )
 
 # Reusable Validators
 country_code_validator = validator("third_country_transfers", allow_reuse=True)(
     check_valid_country_code
 )
-
-# Create default Taxonomy Models
-
-matching_parent_key_validator = validator("parent_key", allow_reuse=True, always=True)(
+matching_parent_key_validator = validator("parent_key", allow_reuse=True)(
     matching_parent_key
 )
 no_self_reference_validator = validator("parent_key", allow_reuse=True)(
     no_self_reference
 )
+has_versioning_if_default_validator = validator(
+    "is_default", allow_reuse=True, always=True, pre=True
+)(has_versioning_if_default)
 
 # Reusable Fields
 name_field = Field(description="Human-Readable name for this resource.")
@@ -179,13 +180,14 @@ class DataCategory(FidesModel):
     parent_key: Optional[FidesKey]
 
     # Specific for Default Taxonomy objects
-    is_default: bool = is_default_field
     version_added: Optional[str] = version_added_field
     version_deprecated: Optional[str] = version_deprecated_field
     replaced_by_field: Optional[FidesKey] = replaced_by_field
+    is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
+    _has_versioning_if_default: classmethod = has_versioning_if_default_validator
 
 
 class DataQualifier(FidesModel):
@@ -194,13 +196,14 @@ class DataQualifier(FidesModel):
     parent_key: Optional[FidesKey]
 
     # Specific for Default Taxonomy objects
-    is_default: bool = is_default_field
     version_added: Optional[str] = version_added_field
     version_deprecated: Optional[str] = version_deprecated_field
     replaced_by_field: Optional[FidesKey] = replaced_by_field
+    is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
+    _has_versioning_if_default: classmethod = has_versioning_if_default_validator
 
 
 class Cookies(BaseModel):

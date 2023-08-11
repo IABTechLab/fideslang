@@ -77,6 +77,31 @@ def no_self_reference(value: FidesKey, values: Dict) -> FidesKey:
     return value
 
 
+def has_versioning_if_default(value: FidesKey, values: Dict) -> FidesKey:
+    """
+    Check to make sure that version fields are set for default items.
+    """
+
+    # If it's not default, it shouldn't have version info
+    if not value:
+        try:
+            assert not values.get("version_added")
+            assert not values.get("version_deprecated")
+            assert not values.get("replaced_by")
+        except AssertionError:
+            raise FidesValidationError(
+                "Non-default items can't have version information!"
+            )
+    # If it's a default item, it at least needs a starting version
+    else:
+        try:
+            assert values.get("version_added")
+        except AssertionError:
+            raise FidesValidationError("Default items must have version information!")
+
+    return value
+
+
 def matching_parent_key(value: FidesKey, values: Dict) -> FidesKey:
     """
     Confirm that the parent_key matches the parent parsed from the FidesKey.
