@@ -42,9 +42,9 @@ matching_parent_key_validator = validator("parent_key", allow_reuse=True)(
 no_self_reference_validator = validator("parent_key", allow_reuse=True)(
     no_self_reference
 )
-has_versioning_if_default_validator = validator(
-    "is_default", allow_reuse=True, always=True, pre=True
-)(has_versioning_if_default)
+has_versioning_if_default_validator = validator("is_default", allow_reuse=True)(
+    has_versioning_if_default
+)
 
 # Reusable Fields
 name_field = Field(description="Human-Readable name for this resource.")
