@@ -259,10 +259,12 @@ class DataSubject(FidesModel):
     )
 
     # Specific for Default Taxonomy objects
-    is_default: bool = is_default_field
     version_added: Optional[str] = version_added_field
     version_deprecated: Optional[str] = version_deprecated_field
     replaced_by_field: Optional[FidesKey] = replaced_by_field
+    is_default: bool = is_default_field
+
+    _has_versioning_if_default: classmethod = has_versioning_if_default_validator
 
 
 class DataUse(FidesModel):
@@ -291,13 +293,14 @@ class DataUse(FidesModel):
     )
 
     # Specific for Default Taxonomy objects
-    is_default: bool = is_default_field
     version_added: Optional[str] = version_added_field
     version_deprecated: Optional[str] = version_deprecated_field
     replaced_by_field: Optional[FidesKey] = replaced_by_field
+    is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
+    _has_versioning_if_default: classmethod = has_versioning_if_default_validator
 
     @validator("legitimate_interest", always=True)
     @classmethod
