@@ -1,7 +1,13 @@
 from pytest import deprecated_call, mark, raises
 
 from fideslang import DataFlow, Dataset, Organization, PrivacyDeclaration, System
-from fideslang.models import ContactDetails, DatasetCollection, DatasetField
+from fideslang.models import (
+    ContactDetails,
+    DataResponsibilityTitle,
+    DatasetCollection,
+    DatasetField,
+    DataUse,
+)
 
 pytestmark = mark.unit
 
@@ -71,8 +77,8 @@ class TestPrivacyDeclaration:
             name="declaration-name",
         )
 
-    def test_dataset_references_deprecation(self) -> None:
-        with deprecated_call(match="dataset_references"):
+    def test_privacy_declaration_data_qualifier_deprecation(self) -> None:
+        with deprecated_call(match="data_qualifier"):
             assert PrivacyDeclaration(
                 data_categories=[],
                 data_qualifier="aggregated_data",
@@ -325,6 +331,130 @@ class TestSystem:
             tags=["some", "tags"],
         )
 
+    def test_expanded_system(self):
+        assert System(
+            fides_key="test_system",
+            organization_fides_key=1,
+            tags=["some", "tags"],
+            name="Exponential Interactive, Inc d/b/a VDX.tv",
+            description="My system test",
+            registry_id=1,
+            meta={"some": "meta stuff"},
+            system_type="SYSTEM",
+            egress=[
+                DataFlow(
+                    fides_key="test_system_2",
+                    type="system",
+                    data_categories=[],
+                )
+            ],
+            ingress=[
+                DataFlow(
+                    fides_key="test_system_3",
+                    type="system",
+                    data_categories=[],
+                )
+            ],
+            privacy_declarations=[
+                PrivacyDeclaration(
+                    name="declaration-name",
+                    data_categories=[
+                        "user.device.ip_address",
+                        "user.device.cookie_id",
+                        "user.device.device_id",
+                        "user.id.pseudonymous",
+                        "user.behavior.purchase_history",
+                        "user.behavior",
+                        "user.behavior.browsing_history",
+                        "user.behavior.media_consumption",
+                        "user.behavior.search_history",
+                        "user.location.imprecise",
+                        "user.demographic",
+                        "user.privacy_preferences",
+                    ],
+                    data_qualifier="aggregated_data",
+                    data_use="functional.storage",
+                    data_subjects=[],
+                    egress=["test_system_2"],
+                    ingress=["test_system_3"],
+                    features=[
+                        "Match and combine offline data sources",
+                        "Link different devices",
+                        "Receive and use automatically-sent device characteristics for identification",
+                    ],
+                    legal_basis_for_processing="Legitimate interests",
+                    impact_assessment_location="www.example.com/impact_asessment_location",
+                    retention_period="3-5 years",
+                    processes_special_category_data=True,
+                    special_category_legal_basis="Reasons of substantial public interest (with a basis in law)",
+                    data_shared_with_third_parties=True,
+                    third_parties="advertising; marketing",
+                    shared_categories=[],
+                    cookies=[
+                        {"name": "ANON_ID", "path": "/", "domain": "tribalfusion.com"}
+                    ],
+                )
+            ],
+            third_country_transfers=["ARM"],
+            vendor_id="1",
+            dataset_references=["test_fides_key_dataset"],
+            processes_personal_data=True,
+            exempt_from_privacy_regulations=False,
+            reason_for_exemption=None,
+            uses_profiling=True,
+            legal_basis_for_profiling="Explicit consent",
+            does_international_transfers=True,
+            legal_basis_for_transfers="Standard contractual clauses",
+            requires_data_protection_assessments=True,
+            dpa_location="www.example.com/dpa_location",
+            privacy_policy="https://vdx.tv/privacy/",
+            legal_name="Exponential Interactive, Inc d/b/a VDX.tv",
+            legal_address="Exponential Interactive Spain S.L.;General Martinez Campos Num 41;Madrid;28010;Spain",
+            administrating_department="Privacy Department",
+            responsibility=[DataResponsibilityTitle.CONTROLLER],
+            dpo="privacyofficertest@vdx.tv",
+            data_security_practices=None,
+            cookies=[{"name": "test_cookie"}],
+        )
+
+    @mark.parametrize(
+        "deprecated_field,value",
+        [
+            ("data_responsibility_title", "Controller"),
+            (
+                "joint_controller",
+                {
+                    "name": "Jane Doe",
+                    "address": "104 Test Lane; Test Town, TX, 32522",
+                    "email": "jane@example.com",
+                    "phone": "345-255-2555",
+                },
+            ),
+            ("third_country_transfers", ["GBR"]),
+            (
+                "data_protection_impact_assessment",
+                {
+                    "is_required": True,
+                    "progress": "pending",
+                    "link": "https://www.example.com/dpia",
+                },
+            ),
+        ],
+    )
+    def test_system_deprecated_fields(self, deprecated_field, value) -> None:
+        with deprecated_call(match=deprecated_field):
+            assert System(
+                **{
+                    "description": "Test System",
+                    "fides_key": "test_system",
+                    "name": "Test System",
+                    "registry": 1,
+                    "system_type": "SYSTEM",
+                    "privacy_declarations": [],
+                    deprecated_field: value,
+                }
+            )
+
 
 class TestDataset:
     def test_valid_dataset(self):
@@ -390,3 +520,41 @@ class TestDataset:
                 ),
             ],
         )
+
+    @mark.parametrize(
+        "deprecated_field,value",
+        [
+            ("data_qualifier", "dataset_qualifier_1"),
+            ("joint_controller", {"name": "Controller_name"}),
+            ("retention", "90 days"),
+            ("third_country_transfers", ["IRL"]),
+        ],
+    )
+    def test_dataset_deprecated_fields(self, deprecated_field, value) -> None:
+        with deprecated_call(match=deprecated_field):
+            assert Dataset(
+                **{
+                    "fides_key": "test_dataset",
+                    "collections": [],
+                    deprecated_field: value,
+                }
+            )
+
+
+class TestDataUse:
+    def test_minimal_data_use(self):
+        assert DataUse(fides_key="new_use")
+
+    @mark.parametrize(
+        "deprecated_field,value",
+        [
+            ("legal_basis", "Legal Obligation"),
+            ("special_category", "Substantial Public Interest"),
+            ("recipients", ["Advertising Bureau"]),
+            ("legitimate_interest", False),
+            ("legitimate_interest_impact_assessment", "https://www.example.com"),
+        ],
+    )
+    def test_datause_deprecated_fields(self, deprecated_field, value) -> None:
+        with deprecated_call(match=deprecated_field):
+            assert DataUse(**{"fides_key": "new_use", deprecated_field: value})

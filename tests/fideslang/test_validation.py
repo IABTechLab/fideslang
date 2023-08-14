@@ -20,11 +20,7 @@ from fideslang.models import (
     PrivacyRule,
     System,
 )
-from fideslang.validation import (
-    FidesKey,
-    FidesValidationError,
-    valid_data_type,
-)
+from fideslang.validation import FidesKey, FidesValidationError, valid_data_type
 
 
 @pytest.mark.unit
