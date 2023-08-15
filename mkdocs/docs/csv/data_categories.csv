@@ -14,29 +14,23 @@ user.content,True,User Content,default_organization,user,,"Content related to, o
 user.demographic,True,Demographic Data,default_organization,user,,Demographic data about a user.
 user.location,True,Location Data,default_organization,user,,Records of the location of a user.
 user.device,True,Device Data,default_organization,user,,"Data related to a user's device, configuration and setting."
-user.non_specific_age,True,Non-Specific Age,default_organization,user,,Age range data.
-user.observed,True,Observed Data,default_organization,user,,Data collected through observation of use of the system.
 user.payment,True,Payment Data,default_organization,user,,Payment data related to user.
-user.profiling,True,Profiling Data,default_organization,user,,Preference and interest data about a user.
-user.religious_belief,True,Religious Belief,default_organization,user,,Religion or religious belief.
 user.social,True,Social Data,default_organization,user,,Social activity and interaction data.
 user.unique_id,True,Unique ID,default_organization,user,,Unique identifier for a user assigned through system use.
 user.telemetry,True,Telemetry Data,default_organization,user,,User identifiable measurement data from system sensors and monitoring.
 user.user_sensor,True,User Sensor Data,default_organization,user,,Measurement data about a user's environment through system use.
 user.workplace,True,Workplace,default_organization,user,,Organization of employment.
 user.sensor,True,Sensor Data,default_organization,user,,Measurement data from sensors and monitoring systems.
-user.date_of_birth,True,Date of Birth,default_organization,user,,User's date of birth.
 user.financial,True,Financial Data,default_organization,user,,Payment data and financial history.
 user.government_id,True,Government ID,default_organization,user,,State provided identification data.
 user.health_and_medical,True,Health and Medical Data,default_organization,user,,Health records or individual's personal medical information.
 user.name,True,Name,default_organization,user,,User's real name.
 user.criminal_history,True,Criminal History,default_organization,user,,Criminal records or information about the data subject.
-user.genetic,True,Genetic Data,default_organization,user,,Data about the genetic makeup provided by a user.
 user.privacy_preferences,True,Privacy Preferences,default_organization,user,,Privacy preferences or settings set by the subject.
 user.job_title,True,Job Title,default_organization,user,,Professional data.
-user.account.settings,True,Account Information,default_organization,user.account,,Account preferences and settings.
+user.account.settings,True,Account Settings,default_organization,user.account,,Account preferences and settings.
 user.account.username,True,Account Username,default_organization,user.account,,Username associated with account.
-user.authorization.credentials,True,Account Credentials.,default_organization,user.authorization,,Unencrypted authentication credentials to a system.
+user.authorization.credentials,True,Account password.,default_organization,user.authorization,,Authentication credentials to a system.
 user.authorization.biometric,True,Biometric Credentials,default_organization,user.authorization,,Credentials for system authentication.
 user.authorization.password,True,Password,default_organization,user.authorization,,Password for system authentication.
 user.behavior.browsing_history,True,Browsing History,default_organization,user.behavior,,Content browsing history of a user.
@@ -75,7 +69,6 @@ user.device.cookie,True,Device Cookie,default_organization,user.device,,"Data re
 user.device.cookie_id,True,Cookie ID,default_organization,user.device,,Cookie unique identification number.
 user.device.device_id,True,Device ID,default_organization,user.device,,Device unique identification number.
 user.device.ip_address,True,IP Address,default_organization,user.device,,Unique identifier related to device connection.
-user.financial.account_number,True,User Financial Account Number,default_organization,user.financial,,"User's account number for a payment card, bank account, or other financial system."
 user.financial.bank_account,True,Bank Account Information,default_organization,user.financial,,Bank account information belonging to the subject.
 user.financial.credit_card,True,Credit Card Information,default_organization,user.financial,,Credit card information belonging to the subject.
 user.government_id.birth_certificate,True,Birth Certificate,default_organization,user.government_id,,State issued certificate of birth.
@@ -87,8 +80,8 @@ user.government_id.vehicle_registration,True,Vehicle Registration,default_organi
 user.health_and_medical.genetic,True,User's Genetic Data,default_organization,user.health_and_medical,,Data about the genetic makeup provided by the subject.
 user.health_and_medical.insurance_beneficiary_id,True,Medical Insurance ID,default_organization,user.health_and_medical,,Health insurance beneficiary number of the subject.
 user.health_and_medical.record_id,True,Medical Record ID,default_organization,user.health_and_medical,,Medical record identifiers belonging to a subject.
-user.id.pseudonymous,True,Pseudonymous User ID,default_organization,user.id,,"A pseudonymous, or probabilistic identifier generated from other subject or device data belonging to the subject."
-user.location.imprecise,True,Imprecise Subject Location,default_organization,user.location,,Imprecise location derived form sensors (more than 500M).
+user.location.imprecise,True,Imprecise Subject Location,default_organization,user.location,,Imprecise location derived from sensors (more than 500M).
 user.location.precise,True,Precise Subject Location,default_organization,user.location,,Precise location derived form sensors (less than 500M).
 user.name.first,True,First Name,default_organization,user.name,,Subject's first name.
 user.name.last,True,Last Name,default_organization,user.name,,"Subject's last, or family, name."
+user.unique_id.pseudonymous,True,Pseudonymous User ID,default_organization,user.unique_id,,"A pseudonymous, or probabilistic identifier generated from other subject or device data belonging to the subject."

@@ -123,32 +123,26 @@ DEFAULT_DATA_USES = [
     ),
     DataUse(
         fides_key="essential.service.operations",
-        name="Essential for Service Operations",
-        description="Ensures the operation of the product, service, application or system.",
+        name="Essential for Operations",
+        description="Essential to ensure the operation of the product, service, application or system.",
         parent_key="essential.service",
     ),
     DataUse(
         fides_key="essential.service.operations.support",
-        name="Essential for Serivce Operations Support",
+        name="Essential for Operations Support",
         description="Provides support for the product, service, application or system.",
         parent_key="essential.service.operations",
     ),
     DataUse(
         fides_key="essential.service.operations.improve",
         name="Essential for Support Improvement",
-        description="Essential to optimize and improve support for for the product, service, application or system.",
+        description="Essential to optimize and improve support for the product, service, application or system.",
         parent_key="essential.service.operations",
     ),
     DataUse(
-        fides_key="essential.service.operations.support.optimization",
-        name="Essential for Serivce Support Optimization",
-        description="Optimizes and improves support for the product, service, application or system.",
-        parent_key="essential.service.operations.support",
-    ),
-    DataUse(
         fides_key="essential.service.payment_processing",
-        name="Essential for Service Payment Processing",
-        description="Processes payments for the product, service, application or system.",
+        name="Essential for Payment Processing",
+        description="Essential to processes payments for the product, service, application or system.",
         parent_key="essential.service",
     ),
     DataUse(

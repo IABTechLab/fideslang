@@ -18,7 +18,7 @@ DEFAULT_DATA_CATEGORIES = [
     ),
     DataCategory(
         fides_key="user.account.settings",
-        name="Account Information",
+        name="Account Settings",
         description="Account preferences and settings.",
         parent_key="user.account",
     ),
@@ -39,8 +39,8 @@ DEFAULT_DATA_CATEGORIES = [
     ),
     DataCategory(
         fides_key="user.authorization.credentials",
-        name="Account Credentials.",
-        description="Unencrypted authentication credentials to a system.",
+        name="Account password.",
+        description="Authentication credentials to a system.",
         parent_key="user.authorization",
     ),
     DataCategory(
@@ -313,7 +313,7 @@ DEFAULT_DATA_CATEGORIES = [
     DataCategory(
         fides_key="user.location.imprecise",
         name="Imprecise Subject Location",
-        description="Imprecise location derived form sensors (more than 500M).",
+        description="Imprecise location derived from sensors (more than 500M).",
         parent_key="user.location",
     ),
     DataCategory(
@@ -356,33 +356,9 @@ DEFAULT_DATA_CATEGORIES = [
         parent_key="user.device",
     ),
     DataCategory(
-        fides_key="user.non_specific_age",
-        name="Non-Specific Age",
-        description="Age range data.",
-        parent_key="user",
-    ),
-    DataCategory(
-        fides_key="user.observed",
-        name="Observed Data",
-        description="Data collected through observation of use of the system.",
-        parent_key="user",
-    ),
-    DataCategory(
         fides_key="user.payment",
         name="Payment Data",
         description="Payment data related to user.",
-        parent_key="user",
-    ),
-    DataCategory(
-        fides_key="user.profiling",
-        name="Profiling Data",
-        description="Preference and interest data about a user.",
-        parent_key="user",
-    ),
-    DataCategory(
-        fides_key="user.religious_belief",
-        name="Religious Belief",
-        description="Religion or religious belief.",
         parent_key="user",
     ),
     DataCategory(
@@ -398,10 +374,10 @@ DEFAULT_DATA_CATEGORIES = [
         parent_key="user",
     ),
     DataCategory(
-        fides_key="user.id.pseudonymous",
+        fides_key="user.unique_id.pseudonymous",
         name="Pseudonymous User ID",
         description="A pseudonymous, or probabilistic identifier generated from other subject or device data belonging to the subject.",
-        parent_key="user.id",
+        parent_key="user.unique_id",
     ),
     DataCategory(
         fides_key="user.telemetry",
@@ -427,12 +403,6 @@ DEFAULT_DATA_CATEGORIES = [
         description="Measurement data from sensors and monitoring systems.",
         parent_key="user",
     ),
-    DataCategory(
-        fides_key="user.date_of_birth",
-        name="Date of Birth",
-        description="User's date of birth.",
-        parent_key="user",
-    ),
     ##################
     # user.financial #
     ##################
@@ -441,12 +411,6 @@ DEFAULT_DATA_CATEGORIES = [
         name="Financial Data",
         description="Payment data and financial history.",
         parent_key="user",
-    ),
-    DataCategory(
-        fides_key="user.financial.account_number",
-        name="User Financial Account Number",
-        description="User's account number for a payment card, bank account, or other financial system.",
-        parent_key="user.financial",
     ),
     DataCategory(
         fides_key="user.financial.bank_account",
@@ -560,12 +524,6 @@ DEFAULT_DATA_CATEGORIES = [
         fides_key="user.criminal_history",
         name="Criminal History",
         description="Criminal records or information about the data subject.",
-        parent_key="user",
-    ),
-    DataCategory(
-        fides_key="user.genetic",
-        name="Genetic Data",
-        description="Data about the genetic makeup provided by a user.",
         parent_key="user",
     ),
     DataCategory(

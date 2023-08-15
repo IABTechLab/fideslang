@@ -127,47 +127,11 @@
             "is_default": true
         },
         {
-            "fides_key": "user.non_specific_age",
-            "organization_fides_key": "default_organization",
-            "tags": null,
-            "name": "Non-Specific Age",
-            "description": "Age range data.",
-            "parent_key": "user",
-            "is_default": true
-        },
-        {
-            "fides_key": "user.observed",
-            "organization_fides_key": "default_organization",
-            "tags": null,
-            "name": "Observed Data",
-            "description": "Data collected through observation of use of the system.",
-            "parent_key": "user",
-            "is_default": true
-        },
-        {
             "fides_key": "user.payment",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "Payment Data",
             "description": "Payment data related to user.",
-            "parent_key": "user",
-            "is_default": true
-        },
-        {
-            "fides_key": "user.profiling",
-            "organization_fides_key": "default_organization",
-            "tags": null,
-            "name": "Profiling Data",
-            "description": "Preference and interest data about a user.",
-            "parent_key": "user",
-            "is_default": true
-        },
-        {
-            "fides_key": "user.religious_belief",
-            "organization_fides_key": "default_organization",
-            "tags": null,
-            "name": "Religious Belief",
-            "description": "Religion or religious belief.",
             "parent_key": "user",
             "is_default": true
         },
@@ -226,15 +190,6 @@
             "is_default": true
         },
         {
-            "fides_key": "user.date_of_birth",
-            "organization_fides_key": "default_organization",
-            "tags": null,
-            "name": "Date of Birth",
-            "description": "User's date of birth.",
-            "parent_key": "user",
-            "is_default": true
-        },
-        {
             "fides_key": "user.financial",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -280,15 +235,6 @@
             "is_default": true
         },
         {
-            "fides_key": "user.genetic",
-            "organization_fides_key": "default_organization",
-            "tags": null,
-            "name": "Genetic Data",
-            "description": "Data about the genetic makeup provided by a user.",
-            "parent_key": "user",
-            "is_default": true
-        },
-        {
             "fides_key": "user.privacy_preferences",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -310,7 +256,7 @@
             "fides_key": "user.account.settings",
             "organization_fides_key": "default_organization",
             "tags": null,
-            "name": "Account Information",
+            "name": "Account Settings",
             "description": "Account preferences and settings.",
             "parent_key": "user.account",
             "is_default": true
@@ -328,8 +274,8 @@
             "fides_key": "user.authorization.credentials",
             "organization_fides_key": "default_organization",
             "tags": null,
-            "name": "Account Credentials.",
-            "description": "Unencrypted authentication credentials to a system.",
+            "name": "Account password.",
+            "description": "Authentication credentials to a system.",
             "parent_key": "user.authorization",
             "is_default": true
         },
@@ -676,15 +622,6 @@
             "is_default": true
         },
         {
-            "fides_key": "user.financial.account_number",
-            "organization_fides_key": "default_organization",
-            "tags": null,
-            "name": "User Financial Account Number",
-            "description": "User's account number for a payment card, bank account, or other financial system.",
-            "parent_key": "user.financial",
-            "is_default": true
-        },
-        {
             "fides_key": "user.financial.bank_account",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -784,20 +721,11 @@
             "is_default": true
         },
         {
-            "fides_key": "user.id.pseudonymous",
-            "organization_fides_key": "default_organization",
-            "tags": null,
-            "name": "Pseudonymous User ID",
-            "description": "A pseudonymous, or probabilistic identifier generated from other subject or device data belonging to the subject.",
-            "parent_key": "user.id",
-            "is_default": true
-        },
-        {
             "fides_key": "user.location.imprecise",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "Imprecise Subject Location",
-            "description": "Imprecise location derived form sensors (more than 500M).",
+            "description": "Imprecise location derived from sensors (more than 500M).",
             "parent_key": "user.location",
             "is_default": true
         },
@@ -826,6 +754,15 @@
             "name": "Last Name",
             "description": "Subject's last, or family, name.",
             "parent_key": "user.name",
+            "is_default": true
+        },
+        {
+            "fides_key": "user.unique_id.pseudonymous",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Pseudonymous User ID",
+            "description": "A pseudonymous, or probabilistic identifier generated from other subject or device data belonging to the subject.",
+            "parent_key": "user.unique_id",
             "is_default": true
         }
     ]
