@@ -339,6 +339,19 @@ data_use:
   legitimate_interest: null
   legitimate_interest_impact_assessment: null
   is_default: true
+- fides_key: functional.service
+  organization_fides_key: default_organization
+  tags: null
+  name: Service
+  description: Functions relating to provided services, products, applications or
+    systems.
+  parent_key: functional
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: null
+  legitimate_interest_impact_assessment: null
+  is_default: true
 - fides_key: functional.service.improve
   organization_fides_key: default_organization
   tags: null

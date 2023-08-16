@@ -270,7 +270,7 @@ data_category:
   organization_fides_key: default_organization
   tags: null
   name: Retina Scan
-  description: Retinal encoded data about a subject.
+  description: Retinal data about a subject.
   parent_key: user.biometric
   is_default: true
 - fides_key: user.biometric.voice
@@ -572,7 +572,7 @@ data_category:
   organization_fides_key: default_organization
   tags: null
   name: Precise Subject Location
-  description: Precise location derived form sensors (less than 500M).
+  description: Precise location derived from sensors (less than 500M).
   parent_key: user.location
   is_default: true
 - fides_key: user.name.first

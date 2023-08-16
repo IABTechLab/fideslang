@@ -38,7 +38,7 @@ user.behavior.media_consumption,True,Media Consumption,default_organization,user
 user.behavior.purchase_history,True,Purchase History,default_organization,user.behavior,,Purchase history of the subject.
 user.behavior.search_history,True,Search History,default_organization,user.behavior,,Search history of the subject.
 user.biometric.fingerprint,True,Fingerprint,default_organization,user.biometric,,Fingerprint encoded data about a subject.
-user.biometric.retinal,True,Retina Scan,default_organization,user.biometric,,Retinal encoded data about a subject.
+user.biometric.retinal,True,Retina Scan,default_organization,user.biometric,,Retinal data about a subject.
 user.biometric.voice,True,Voice Recording,default_organization,user.biometric,,Voice encoded data about a subject.
 user.biometric.health,True,Biometric Health Data,default_organization,user.biometric,,Encoded characteristic collected about a user.
 user.contact.address,True,User Contact Address,default_organization,user.contact,,Contact address data collected about a user.
@@ -81,7 +81,7 @@ user.health_and_medical.genetic,True,User's Genetic Data,default_organization,us
 user.health_and_medical.insurance_beneficiary_id,True,Medical Insurance ID,default_organization,user.health_and_medical,,Health insurance beneficiary number of the subject.
 user.health_and_medical.record_id,True,Medical Record ID,default_organization,user.health_and_medical,,Medical record identifiers belonging to a subject.
 user.location.imprecise,True,Imprecise Subject Location,default_organization,user.location,,Imprecise location derived from sensors (more than 500M).
-user.location.precise,True,Precise Subject Location,default_organization,user.location,,Precise location derived form sensors (less than 500M).
+user.location.precise,True,Precise Subject Location,default_organization,user.location,,Precise location derived from sensors (less than 500M).
 user.name.first,True,First Name,default_organization,user.name,,Subject's first name.
 user.name.last,True,Last Name,default_organization,user.name,,"Subject's last, or family, name."
 user.unique_id.pseudonymous,True,Pseudonymous User ID,default_organization,user.unique_id,,"A pseudonymous, or probabilistic identifier generated from other subject or device data belonging to the subject."

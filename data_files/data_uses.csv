@@ -27,6 +27,7 @@ essential.service.operations.improve,True,,,,Essential for Support Improvement,d
 finance,True,,,,Finance,default_organization,data_use,,,,Enables finance and accounting activities such as audits and tax reporting.
 functional,True,,,,Functional,default_organization,data_use,,,,"Used for specific, necessary, and legitimate purposes"
 functional.storage,True,,,,Local Data Storage,default_organization,functional,,,,"Stores or accesses information from the device as needed when using a product, service, application, or system"
+functional.service,True,,,,Service,default_organization,functional,,,,"Functions relating to provided services, products, applications or systems."
 functional.service.improve,True,,,,Improve Service,default_organization,functional.service,,,,"Improves the specific product, service, application or system."
 marketing,True,,,,Marketing,default_organization,data_use,,,,"Enables marketing, promotion, advertising and sales activities for the product, service, application or system."
 marketing.advertising,True,,,,"Advertising, Marketing or Promotion",default_organization,marketing,,,,"Advertises or promotes the product, service, application or system and associated services."
