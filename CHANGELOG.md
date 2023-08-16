@@ -14,11 +14,14 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/1.4.4...main)
+## [Unrelease](https://github.com/ethyca/fideslang/compare/2.0.0...main)
+
+## [2.0.0](https://github.com/ethyca/fideslang/compare/1.4.4...2.0.0)
 
 ### Changed
 
 - Updated the Data Categories and Data Uses to support GVL [#144](https://github.com/ethyca/fideslang/pull/144)
+- Add version metadata to the default taxonomy items [#147](https://github.com/ethyca/fideslang/pull/147)
 
 ## [1.4.4](https://github.com/ethyca/fideslang/compare/1.4.3...1.4.4)
 
