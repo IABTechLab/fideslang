@@ -1,40 +1,52 @@
 {
     "data_category": [
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "system",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "System Data",
             "description": "Data unique to, and under control of the system.",
-            "parent_key": null,
-            "is_default": true
+            "parent_key": null
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "system.authentication",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "Authentication Data",
             "description": "Data used to manage access to the system.",
-            "parent_key": "system",
-            "is_default": true
+            "parent_key": "system"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "system.operations",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "Operations Data",
             "description": "Data used for system operations.",
-            "parent_key": "system",
-            "is_default": true
+            "parent_key": "system"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "User Data",
             "description": "Data related to the user of the system, either provided directly or derived based on their usage.",
-            "parent_key": null,
-            "is_default": true
+            "parent_key": null
         },
         {
             "fides_key": "user.account",
@@ -64,6 +76,34 @@
             "is_default": true
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
+            "fides_key": "user.authorization",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Authorization Information.",
+            "description": "Scope of permissions and access to a system.",
+            "parent_key": "user"
+        },
+        {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
+            "fides_key": "user.behavior",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Observed Behavior",
+            "description": "Behavioral data about the subject.",
+            "parent_key": "user"
+        },
+        {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.biometric",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -204,10 +244,13 @@
             "tags": null,
             "name": "Government ID",
             "description": "State provided identification data.",
-            "parent_key": "user",
-            "is_default": true
+            "parent_key": "user"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.health_and_medical",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -222,8 +265,7 @@
             "tags": null,
             "name": "Name",
             "description": "User's real name.",
-            "parent_key": "user",
-            "is_default": true
+            "parent_key": "user"
         },
         {
             "fides_key": "user.criminal_history",
@@ -375,26 +417,31 @@
             "tags": null,
             "name": "User Contact Address",
             "description": "Contact address data collected about a user.",
-            "parent_key": "user.contact",
-            "is_default": true
+            "parent_key": "user.contact"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.contact.email",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "User Contact Email",
             "description": "User's contact email address.",
-            "parent_key": "user.contact",
-            "is_default": true
+            "parent_key": "user.contact"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.contact.phone_number",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "User Contact Phone Number",
             "description": "User's phone number.",
-            "parent_key": "user.contact",
-            "is_default": true
+            "parent_key": "user.contact"
         },
         {
             "fides_key": "user.contact.url",
@@ -429,44 +476,55 @@
             "tags": null,
             "name": "User Contact City",
             "description": "User's city level address data.",
-            "parent_key": "user.contact.address",
-            "is_default": true
+            "parent_key": "user.contact.address"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.contact.address.country",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "User Contact Country",
             "description": "User's country level address data.",
-            "parent_key": "user.contact.address",
-            "is_default": true
+            "parent_key": "user.contact.address"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.contact.address.postal_code",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "User Contact Postal Code",
             "description": "User's postal code.",
-            "parent_key": "user.contact.address",
-            "is_default": true
+            "parent_key": "user.contact.address"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.contact.address.state",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "User Contact State",
             "description": "User's state level address data.",
-            "parent_key": "user.contact.address",
-            "is_default": true
+            "parent_key": "user.contact.address"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.contact.address.street",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "User Contact Street",
             "description": "User's street level address data.",
-            "parent_key": "user.contact.address",
-            "is_default": true
+            "parent_key": "user.contact.address"
         },
         {
             "fides_key": "user.content.private",
@@ -595,31 +653,184 @@
             "is_default": true
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
+            "fides_key": "user.content.self_image",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "User Image",
+            "description": "Photograph or image in which subject is whole or partially recognized.",
+            "parent_key": "user.content"
+        },
+        {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
+            "fides_key": "user.demographic.age_range",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Age Range",
+            "description": "Non specific age or age-range of data subject.",
+            "parent_key": "user.demographic"
+        },
+        {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
+            "fides_key": "user.demographic.date_of_birth",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Birth Date",
+            "description": "Date of birth of data subject.",
+            "parent_key": "user.demographic"
+        },
+        {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
+            "fides_key": "user.demographic.gender",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Gender",
+            "description": "Gender of data subject.",
+            "parent_key": "user.demographic"
+        },
+        {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
+            "fides_key": "user.demographic.language",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Language",
+            "description": "Spoken or written language of subject.",
+            "parent_key": "user.demographic"
+        },
+        {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
+            "fides_key": "user.demographic.marital_status",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Marital Status",
+            "description": "Marital status of data subject.",
+            "parent_key": "user.demographic"
+        },
+        {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
+            "fides_key": "user.demographic.political_opinion",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Political Opinion",
+            "description": "Political opinion or belief of data subject.",
+            "parent_key": "user.demographic"
+        },
+        {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
+            "fides_key": "user.demographic.profile",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "User Profile Data",
+            "description": "Profile or preference information about the data subject.",
+            "parent_key": "user.demographic"
+        },
+        {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
+            "fides_key": "user.demographic.race_ethnicity",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Race",
+            "description": "Race or ethnicity of data subject.",
+            "parent_key": "user.demographic"
+        },
+        {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
+            "fides_key": "user.demographic.religious_belief",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Religion",
+            "description": "Religion or religious beliefs of the data subject.",
+            "parent_key": "user.demographic"
+        },
+        {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
+            "fides_key": "user.demographic.sexual_orientation",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Sexual Orientation",
+            "description": "Sexual orientation of data subject.",
+            "parent_key": "user.demographic"
+        },
+        {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
+            "fides_key": "user.device.cookie",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Device Cookie",
+            "description": "Data related to a subject, stored within a cookie.",
+            "parent_key": "user.device"
+        },
+        {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.device.cookie_id",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "Cookie ID",
             "description": "Cookie unique identification number.",
-            "parent_key": "user.device",
-            "is_default": true
+            "parent_key": "user.device"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.device.device_id",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "Device ID",
             "description": "Device unique identification number.",
-            "parent_key": "user.device",
-            "is_default": true
+            "parent_key": "user.device"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.device.ip_address",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "IP Address",
             "description": "Unique identifier related to device connection.",
-            "parent_key": "user.device",
-            "is_default": true
+            "parent_key": "user.device"
         },
         {
             "fides_key": "user.financial.bank_account",
@@ -654,8 +865,7 @@
             "tags": null,
             "name": "Driver's License Number",
             "description": "State issued driving identification number.",
-            "parent_key": "user.government_id",
-            "is_default": true
+            "parent_key": "user.government_id"
         },
         {
             "fides_key": "user.government_id.immigration",
@@ -672,17 +882,19 @@
             "tags": null,
             "name": "National Identification Number",
             "description": "State issued personal identification number.",
-            "parent_key": "user.government_id",
-            "is_default": true
+            "parent_key": "user.government_id"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.government_id.passport_number",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "Passport Number",
             "description": "State issued passport data.",
-            "parent_key": "user.government_id",
-            "is_default": true
+            "parent_key": "user.government_id"
         },
         {
             "fides_key": "user.government_id.vehicle_registration",

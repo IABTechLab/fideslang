@@ -9,7 +9,6 @@ from fideslang.default_taxonomy import DEFAULT_TAXONOMY
 
 from ._version import __version__
 
-
 # Export the Models
 from .models import (
     DataCategory,

@@ -22,7 +22,11 @@ from pydantic import (
 
 from fideslang.validation import (
     FidesKey,
+    FidesVersion,
     check_valid_country_code,
+    deprecated_version_later_than_added,
+    has_versioning_if_default,
+    is_deprecated_if_replaced,
     matching_parent_key,
     no_self_reference,
     parse_data_type_string,
@@ -35,12 +39,20 @@ from fideslang.validation import (
 country_code_validator = validator("third_country_transfers", allow_reuse=True)(
     check_valid_country_code
 )
-
 matching_parent_key_validator = validator("parent_key", allow_reuse=True, always=True)(
     matching_parent_key
 )
 no_self_reference_validator = validator("parent_key", allow_reuse=True)(
     no_self_reference
+)
+has_versioning_if_default_validator = validator(
+    "is_default", allow_reuse=True, always=True
+)(has_versioning_if_default)
+deprecated_version_later_than_added_validator = validator(
+    "version_deprecated", allow_reuse=True
+)(deprecated_version_later_than_added)
+is_deprecated_if_replaced_validator = validator("replaced_by", allow_reuse=True)(
+    is_deprecated_if_replaced
 )
 
 # Reusable Fields
@@ -48,19 +60,14 @@ name_field = Field(description="Human-Readable name for this resource.")
 description_field = Field(
     description="A detailed description of what this resource is."
 )
-is_default_field = Field(
-    default=False,
-    description="Denotes whether the resource is part of the default taxonomy or not.",
-)
 meta_field = Field(
     default=None,
     description="An optional property to store any extra information for a resource. Data can be structured in any way: simple set of `key: value` pairs or deeply nested objects.",
 )
 
 
-# Fides Base Model
 class FidesModel(BaseModel):
-    """The base model for all Fides Resources."""
+    """The base model for most top-level Fides objects."""
 
     fides_key: FidesKey = Field(
         description="A unique key used to identify this resource."
@@ -77,6 +84,35 @@ class FidesModel(BaseModel):
         "Config for the FidesModel"
         extra = "ignore"
         orm_mode = True
+
+
+class DefaultModel(BaseModel):
+    """
+    A model meant to be inherited by versioned parts of the Default Taxonomy.
+    """
+
+    version_added: Optional[FidesVersion] = Field(
+        default=None,
+        description="The version of Fideslang in which this label was added.",
+    )
+    version_deprecated: Optional[FidesVersion] = Field(
+        default=None,
+        description="The version of Fideslang in which this label was deprecated.",
+    )
+    replaced_by: Optional[FidesKey] = Field(
+        default=None,
+        description="The new name, if applicable, for this label after deprecation.",
+    )
+    is_default: bool = Field(
+        default=False,
+        description="Denotes whether the resource is part of the default taxonomy or not.",
+    )
+
+    _has_versioning_if_default: classmethod = has_versioning_if_default_validator
+    _deprecated_version_later_than_added: classmethod = (
+        deprecated_version_later_than_added_validator
+    )
+    _is_deprecated_if_replaced: classmethod = is_deprecated_if_replaced_validator
 
 
 class DataResponsibilityTitle(str, Enum):
@@ -206,21 +242,19 @@ class SpecialCategoryLegalBasisEnum(str, Enum):
 
 
 # Privacy Data Types
-class DataCategory(FidesModel):
+class DataCategory(FidesModel, DefaultModel):
     """The DataCategory resource model."""
 
     parent_key: Optional[FidesKey]
-    is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
 
 
-class DataQualifier(FidesModel):
+class DataQualifier(FidesModel, DefaultModel):
     """The DataQualifier resource model."""
 
     parent_key: Optional[FidesKey]
-    is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
@@ -270,17 +304,16 @@ class DataSubjectRights(BaseModel):
         return values
 
 
-class DataSubject(FidesModel):
+class DataSubject(FidesModel, DefaultModel):
     """The DataSubject resource model."""
 
     rights: Optional[DataSubjectRights] = Field(description=DataSubjectRights.__doc__)
     automated_decisions_or_profiling: Optional[bool] = Field(
         description="A boolean value to annotate whether or not automated decisions/profiling exists for the data subject.",
     )
-    is_default: bool = is_default_field
 
 
-class DataUse(FidesModel):
+class DataUse(FidesModel, DefaultModel):
     """The DataUse resource model."""
 
     parent_key: Optional[FidesKey] = None
@@ -299,8 +332,6 @@ class DataUse(FidesModel):
     legitimate_interest_impact_assessment: Optional[AnyUrl] = Field(
         description="Deprecated. A url pointing to the legitimate interest impact assessment. Required if the legal bases used is legitimate interest.",
     )
-
-    is_default: bool = is_default_field
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
