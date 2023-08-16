@@ -4,8 +4,8 @@ from typing import Tuple
 from collections import Counter
 
 taxonomy_counts = {
-    "data_category": 92,
-    "data_use": 52,
+    "data_category": 85,
+    "data_use": 51,
     "data_subject": 15,
     "data_qualifier": 5,
     "organization": 1,

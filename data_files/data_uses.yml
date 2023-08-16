@@ -13,7 +13,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -29,7 +29,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -44,7 +44,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -59,7 +59,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -75,7 +75,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -90,7 +90,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -105,7 +105,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -121,7 +121,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -137,7 +137,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -152,7 +152,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -168,7 +168,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -184,7 +184,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -200,7 +200,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -216,7 +216,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -231,7 +231,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -246,7 +246,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -255,13 +255,14 @@ data_use:
   fides_key: essential.service.operations
   organization_fides_key: default_organization
   tags: null
-  name: Essential for Service Operations
-  description: Ensures the operation of the product, service, application or system.
+  name: Essential for Operations
+  description: Essential to ensure the operation of the product, service, application
+    or system.
   parent_key: essential.service
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -270,13 +271,14 @@ data_use:
   fides_key: essential.service.payment_processing
   organization_fides_key: default_organization
   tags: null
-  name: Essential for Service Payment Processing
-  description: Processes payments for the product, service, application or system.
+  name: Essential for Payment Processing
+  description: Essential to processes payments for the product, service, application
+    or system.
   parent_key: essential.service
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -292,7 +294,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -307,7 +309,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -323,7 +325,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -339,7 +341,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -348,13 +350,13 @@ data_use:
   fides_key: essential.service.operations.support
   organization_fides_key: default_organization
   tags: null
-  name: Essential for Serivce Operations Support
+  name: Essential for Operations Support
   description: Provides support for the product, service, application or system.
   parent_key: essential.service.operations
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -364,29 +366,13 @@ data_use:
   organization_fides_key: default_organization
   tags: null
   name: Essential for Support Improvement
-  description: Essential to optimize and improve support for for the product, service,
+  description: Essential to optimize and improve support for the product, service,
     application or system.
   parent_key: essential.service.operations
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
-  legitimate_interest_impact_assessment: null
-- version_added: 2.0.0
-  version_deprecated: null
-  replaced_by: null
-  is_default: true
-  fides_key: essential.service.operations.support.optimization
-  organization_fides_key: default_organization
-  tags: null
-  name: Essential for Serivce Support Optimization
-  description: Optimizes and improves support for the product, service, application
-    or system.
-  parent_key: essential.service.operations.support
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -401,7 +387,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -416,7 +402,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -432,7 +418,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -447,7 +433,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -463,7 +449,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -479,7 +465,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -495,7 +481,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -511,7 +497,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -527,7 +513,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -543,7 +529,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -558,7 +544,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -573,7 +559,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -589,7 +575,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -605,7 +591,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -621,7 +607,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -637,7 +623,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -652,7 +638,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -667,7 +653,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -682,7 +668,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -697,7 +683,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -712,7 +698,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -727,7 +713,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -742,7 +728,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -757,7 +743,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -773,7 +759,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -789,7 +775,7 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
@@ -804,5 +790,5 @@ data_use:
   legal_basis: null
   special_category: null
   recipients: null
-  legitimate_interest: false
+  legitimate_interest: null
   legitimate_interest_impact_assessment: null

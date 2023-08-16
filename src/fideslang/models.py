@@ -162,9 +162,7 @@ class DataSubjectRightsEnum(str, Enum):
 
 class LegalBasisEnum(str, Enum):
     """
-    The model for allowable legal basis categories
-
-    Based upon article 6 of the GDPR
+    Deprecated. The model for allowable legal basis categories on data uses.
     """
 
     CONSENT = "Consent"
@@ -175,12 +173,41 @@ class LegalBasisEnum(str, Enum):
     LEGITIMATE_INTEREST = "Legitimate Interests"
 
 
+class LegalBasisForProcessingEnum(str, Enum):
+    """
+    The model for allowable legal basis categories on privacy declarations.
+
+    Based upon article 6 of the GDPR
+    """
+
+    CONSENT = "Consent"
+    CONTRACT = "Contract"
+    LEGAL_OBLIGATION = "Legal obligations"
+    VITAL_INTEREST = "Vital interests"
+    PUBLIC_INTEREST = "Public interest"
+    LEGITIMATE_INTEREST = "Legitimate interests"
+
+
+class LegalBasisForProfilingEnum(str, Enum):
+    """The model for describing the legal basis under which profiling is performed"""
+
+    EXPLICIT_CONSENT = "Explicit consent"
+    CONTRACT = "Contract"
+    AUTHORISED_BY_LAW = "Authorised by law"
+
+
+class LegalBasisForTransfersEnum(str, Enum):
+    """The model for describing the legal basis under which data is transferred"""
+
+    ADEQUACY_DECISION = "Adequacy decision"
+    STANDARD_CONTRACTUAL_CLAUSES = "Standard contractual clauses"
+    BINDING_CORPORATE_RULES = "Binding corporate rules"
+    OTHER = "Other"
+
+
 class SpecialCategoriesEnum(str, Enum):
     """
-    The model for processing special categories
-    of personal data.
-
-    Based upon article 9 of the GDPR
+    Deprecated. Special Categories Enum that was used on Data Uses.
     """
 
     CONSENT = "Consent"
@@ -192,6 +219,26 @@ class SpecialCategoriesEnum(str, Enum):
     PUBLIC_INTEREST = "Substantial Public Interest"
     MEDICAL = "Medical"
     PUBLIC_HEALTH_INTEREST = "Public Health Interest"
+
+
+class SpecialCategoryLegalBasisEnum(str, Enum):
+    """
+    The model for the legal basis for processing special categories of personal data
+    on privacy declarations
+
+    Based upon article 9 of the GDPR
+    """
+
+    CONSENT = "Explicit consent"
+    EMPLOYMENT = "Employment, social security and social protection"
+    VITAL_INTEREST = "Vital interests"
+    NON_PROFIT_BODIES = "Not-for-profit bodies"
+    PUBLIC_BY_DATA_SUBJECT = "Made public by the data subject"
+    LEGAL_CLAIMS = "Legal claims or judicial acts"
+    PUBLIC_INTEREST = "Reasons of substantial public interest (with a basis in law)"
+    MEDICAL = "Health or social care (with a basis in law)"
+    PUBLIC_HEALTH_INTEREST = "Public health (with a basis in law)"
+    RESEARCH = "Archiving, research and statistics (with a basis in law)"
 
 
 # Privacy Data Types
@@ -271,28 +318,44 @@ class DataUse(FidesModel, DefaultModel):
 
     parent_key: Optional[FidesKey] = None
     legal_basis: Optional[LegalBasisEnum] = Field(
-        default=None,
-        description="The legal basis category of which the data use falls under. This field is used as part of the creation of an exportable data map.",
+        description="Deprecated. The legal basis category of which the data use falls under. This field is used as part of the creation of an exportable data map.",
     )
     special_category: Optional[SpecialCategoriesEnum] = Field(
-        default=None,
-        description="The special category for processing of which the data use falls under. This field is used as part of the creation of an exportable data map.",
+        description="Deprecated. The special category for processing of which the data use falls under. This field is used as part of the creation of an exportable data map.",
     )
     recipients: Optional[List[str]] = Field(
-        default=None,
-        description="An array of recipients when sharing personal data outside of your organization.",
+        description="Deprecated. An array of recipients when sharing personal data outside of your organization.",
     )
-    legitimate_interest: bool = Field(
-        default=False,
-        description="A boolean representation of if the legal basis used is `Legitimate Interest`. Validated at run time and looks for a `legitimate_interest_impact_assessment` to exist if true.",
+    legitimate_interest: Optional[bool] = Field(
+        description="Deprecated. A boolean representation of if the legal basis used is `Legitimate Interest`. Validated at run time and looks for a `legitimate_interest_impact_assessment` to exist if true.",
     )
     legitimate_interest_impact_assessment: Optional[AnyUrl] = Field(
-        default=None,
-        description="A url pointing to the legitimate interest impact assessment. Required if the legal bases used is legitimate interest.",
+        description="Deprecated. A url pointing to the legitimate interest impact assessment. Required if the legal bases used is legitimate interest.",
     )
 
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
+
+    @root_validator
+    @classmethod
+    def deprecate_fields(cls, values: Dict) -> Dict:
+        """
+        Warn of Data Use fields pending deprecation.
+        """
+        deprecated_fields = [
+            "legal_basis",
+            "recipients",
+            "special_category",
+            "legitimate_interest",
+            "legitimate_interest_impact_assessment",
+        ]
+        for field in deprecated_fields:
+            if values.get(field) is not None:
+                warn(
+                    f"The {field} field is deprecated, and will be removed in a future version of fideslang.",
+                    DeprecationWarning,
+                )
+        return values
 
     @validator("legitimate_interest", always=True)
     @classmethod
@@ -588,22 +651,20 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
     data_categories: Optional[List[FidesKey]] = Field(
         description="Array of Data Category resources identified by `fides_key`, that apply to all collections in the Dataset.",
     )
-    data_qualifier: FidesKey = Field(
-        default="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
-        description="Array of Data Qualifier resources identified by `fides_key`, that apply to all collections in the Dataset.",
+    data_qualifier: Optional[FidesKey] = Field(
+        description="Deprecated. Array of Data Qualifier resources identified by `fides_key`, that apply to all collections in the Dataset.",
     )
     fides_meta: Optional[DatasetMetadata] = Field(
         description=DatasetMetadata.__doc__, default=None
     )
     joint_controller: Optional[ContactDetails] = Field(
-        description=ContactDetails.__doc__,
+        description="Deprecated. " + ContactDetails.__doc__,
     )
     retention: Optional[str] = Field(
-        default="No retention or erasure policy",
-        description="An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
+        description="Deprecated. An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
     )
     third_country_transfers: Optional[List[str]] = Field(
-        description="An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).",
+        description="Deprecated. An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).",
     )
     collections: List[DatasetCollection] = Field(
         description="An array of objects that describe the Dataset's collections.",
@@ -616,6 +677,26 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
     _unique_items_in_list: classmethod = validator("collections", allow_reuse=True)(
         unique_items_in_list
     )
+
+    @root_validator
+    @classmethod
+    def deprecate_fields(cls, values: Dict) -> Dict:
+        """
+        Warn of Dataset fields pending deprecation.
+        """
+        deprecated_fields = [
+            "joint_controller",
+            "data_qualifier",
+            "retention",
+            "third_country_transfers",
+        ]
+        for field in deprecated_fields:
+            if values.get(field) is not None:
+                warn(
+                    f"The {field} field is deprecated, and will be removed in a future version of fideslang.",
+                    DeprecationWarning,
+                )
+        return values
 
 
 # Evaluation
@@ -855,11 +936,11 @@ class PrivacyDeclaration(BaseModel):
     data_use: FidesKey = Field(
         description="The Data Use describing a system in a privacy declaration.",
     )
-    data_qualifier: FidesKey = Field(
-        default="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
-        description="The fides key of the data qualifier describing a system in a privacy declaration.",
+    data_qualifier: Optional[FidesKey] = Field(
+        description="Deprecated. The fides key of the data qualifier describing a system in a privacy declaration.",
     )
     data_subjects: List[FidesKey] = Field(
+        default_factory=list,
         description="An array of data subjects describing a system in a privacy declaration.",
     )
     dataset_references: Optional[List[FidesKey]] = Field(
@@ -871,20 +952,49 @@ class PrivacyDeclaration(BaseModel):
     ingress: Optional[List[FidesKey]] = Field(
         description="The resources from which data is received. Any `fides_key`s included in this list reference `DataFlow` entries in the `ingress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
     )
+    features: List[str] = Field(
+        default_factory=list, description="The features of processing personal data."
+    )
+    legal_basis_for_processing: Optional[LegalBasisForProcessingEnum] = Field(
+        description="The legal basis under which personal data is processed for this purpose."
+    )
+    impact_assessment_location: Optional[str] = Field(
+        description="Where the legitimate interest impact assessment is stored"
+    )
+    retention_period: Optional[str] = Field(
+        description="An optional string to describe the time period for which data is retained for this purpose."
+    )
+    processes_special_category_data: bool = Field(
+        default=False,
+        description="This system processes special category data",
+    )
+    special_category_legal_basis: Optional[SpecialCategoryLegalBasisEnum] = Field(
+        description="The legal basis under which the special category data is processed.",
+    )
+    data_shared_with_third_parties: bool = Field(
+        default=False,
+        description="This system shares data with third parties for this purpose.",
+    )
+    third_parties: Optional[str] = Field(
+        description="The types of third parties the data is shared with.",
+    )
+    shared_categories: List[str] = Field(
+        default_factory=list,
+        description="The categories of personal data that this system shares with third parties.",
+    )
     cookies: Optional[List[Cookies]] = Field(
         description="Cookies associated with this data use to deliver services and functionality",
     )
 
-    @validator("dataset_references")
+    @validator("data_qualifier")
     @classmethod
-    def deprecate_dataset_references(cls, value: List[FidesKey]) -> List[FidesKey]:
+    def deprecate_data_qualifier(cls, value: FidesKey) -> FidesKey:
         """
-        Warn that the `dataset_references` field is deprecated, if set.
+        Warn that the `data_qualifier` field is deprecated, if set.
         """
-
         if value is not None:
             warn(
-                "The dataset_references field is deprecated, and will be removed in a future version of fideslang. Use the 'egress' and 'ingress` fields instead.",
+                "The data_qualifier field is deprecated, and will be removed in a future version of fideslang.",
                 DeprecationWarning,
             )
 
@@ -988,9 +1098,8 @@ class System(FidesModel):
     system_type: str = Field(
         description="A required value to describe the type of system being modeled, examples include: Service, Application, Third Party, etc.",
     )
-    data_responsibility_title: DataResponsibilityTitle = Field(
-        default=DataResponsibilityTitle.CONTROLLER,
-        description=DataResponsibilityTitle.__doc__,
+    data_responsibility_title: Optional[DataResponsibilityTitle] = Field(
+        description="Deprecated. The responsibility or role over the system that processes personal data",
     )
     egress: Optional[List[DataFlow]] = Field(
         description="The resources to which the System sends data."
@@ -1002,24 +1111,108 @@ class System(FidesModel):
         description=PrivacyDeclaration.__doc__,
     )
     joint_controller: Optional[ContactDetails] = Field(
-        description=ContactDetails.__doc__,
+        description="Deprecated. " + ContactDetails.__doc__,
     )
     third_country_transfers: Optional[List[str]] = Field(
-        description="An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in ISO 3166-1.",
+        description="Deprecated. An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in ISO 3166-1.",
     )
     administrating_department: Optional[str] = Field(
         default="Not defined",
         description="An optional value to identify the owning department or group of the system within your organization",
     )
-    data_protection_impact_assessment: DataProtectionImpactAssessment = Field(
-        default=DataProtectionImpactAssessment(),
-        description=DataProtectionImpactAssessment.__doc__,
+    data_protection_impact_assessment: Optional[DataProtectionImpactAssessment] = Field(
+        description="Deprecated. " + DataProtectionImpactAssessment.__doc__,
     )
+    vendor_id: Optional[str] = Field(
+        description="The unique identifier for the vendor that's associated with this system."
+    )
+    dataset_references: List[FidesKey] = Field(
+        default_factory=list,
+        description="Referenced Dataset fides keys used by the system.",
+    )
+    processes_personal_data: bool = Field(
+        default=True,
+        description="This toggle indicates whether the system stores or processes personal data.",
+    )
+    exempt_from_privacy_regulations: bool = Field(
+        default=False,
+        description="This toggle indicates whether the system is exempt from privacy regulation if they do process personal data.",
+    )
+    reason_for_exemption: Optional[str] = Field(
+        description="The reason that the system is exempt from privacy regulation."
+    )
+    uses_profiling: bool = Field(
+        default=False,
+        description="Whether the vendor uses data to profile a consumer in a way that has a legal effect.",
+    )
+    legal_basis_for_profiling: Optional[LegalBasisForProfilingEnum] = Field(
+        description="The legal basis for performing profiling that has a legal effect.",
+    )
+    does_international_transfers: bool = Field(
+        default=False,
+        description="Whether this system transfers data to other countries or international organizations.",
+    )
+    legal_basis_for_transfers: Optional[LegalBasisForTransfersEnum] = Field(
+        description="The legal basis under which the data is transferred.",
+    )
+    requires_data_protection_assessments: bool = Field(
+        default=False,
+        description="Whether this system requires data protection impact assessments.",
+    )
+    dpa_location: Optional[str] = Field(
+        description="Location where the DPAs or DIPAs can be found."
+    )
+    dpa_progress: Optional[str] = Field(
+        description="The optional status of a Data Protection Impact Assessment"
+    )
+    privacy_policy: Optional[AnyUrl] = Field(
+        description="A URL that points to the System's publicly accessible privacy policy."
+    )
+    legal_name: Optional[str] = Field(
+        description="The legal name for the business represented by the system."
+    )
+    legal_address: Optional[str] = Field(
+        description="The legal address for the business represented by the system."
+    )
+    responsibility: List[DataResponsibilityTitle] = Field(
+        default_factory=list,
+        description=DataResponsibilityTitle.__doc__,
+    )
+    dpo: Optional[str] = Field(
+        description="The official privacy contact address or DPO."
+    )
+    joint_controller_info: Optional[str] = Field(
+        description="The party or parties that share the responsibility for processing personal data."
+    )  # Use joint_controller_info in favor of joint_controller
+    data_security_practices: Optional[str] = Field(
+        description="The data security practices employed by this system."
+    )
+
     _sort_privacy_declarations: classmethod = validator(
         "privacy_declarations", allow_reuse=True
     )(sort_list_objects_by_name)
 
     _check_valid_country_code: classmethod = country_code_validator
+
+    @root_validator
+    @classmethod
+    def deprecate_fields(cls, values: Dict) -> Dict:
+        """
+        Warn of System fields pending deprecation.
+        """
+        deprecated_fields = [
+            "joint_controller",
+            "third_country_transfers",
+            "data_responsibility_title",
+            "data_protection_impact_assessment",
+        ]
+        for field in deprecated_fields:
+            if values.get(field) is not None:
+                warn(
+                    f"The {field} field is deprecated, and will be removed in a future version of fideslang.",
+                    DeprecationWarning,
+                )
+        return values
 
     @validator("privacy_declarations", each_item=True)
     @classmethod
