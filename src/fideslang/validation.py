@@ -91,7 +91,7 @@ def no_self_reference(value: FidesKey, values: Dict) -> FidesKey:
 
 
 def deprecated_version_later_than_added(
-    value: FidesVersion, values: Dict
+    version_deprecated: FidesVersion, values: Dict
 ) -> FidesVersion:
     """
     Check to make sure that the deprecated version is later than the added version.
@@ -99,20 +99,26 @@ def deprecated_version_later_than_added(
     This will also catch errors where the deprecated version is defined but the added
     version is empty.
     """
-    if value < values.get("version_added", Version("0")):
+    if version_deprecated < values.get("version_added", Version("0")):
         raise FidesValidationError(
             "Deprecated version number can't be earlier than version added!"
         )
-    return value
+    return version_deprecated
 
 
-def has_versioning_if_default(value: bool, values: Dict) -> bool:
+def has_versioning_if_default(is_default: bool, values: Dict) -> bool:
     """
     Check to make sure that version fields are set for default items.
     """
 
+    # If it's a default item, it at least needs a starting version
+    if is_default:
+        try:
+            assert values.get("version_added")
+        except AssertionError:
+            raise FidesValidationError("Default items must have version information!")
     # If it's not default, it shouldn't have version info
-    if not value:
+    else:
         try:
             assert not values.get("version_added")
             assert not values.get("version_deprecated")
@@ -121,28 +127,22 @@ def has_versioning_if_default(value: bool, values: Dict) -> bool:
             raise FidesValidationError(
                 "Non-default items can't have version information!"
             )
-    # If it's a default item, it at least needs a starting version
-    else:
-        try:
-            assert values.get("version_added")
-        except AssertionError:
-            raise FidesValidationError("Default items must have version information!")
 
-    return value
+    return is_default
 
 
-def is_deprecated_if_replaced(value: str, values: Dict) -> str:
+def is_deprecated_if_replaced(replaced_by: str, values: Dict) -> str:
     """
     Check to make sure that the item has been deprecated if there is a replacement.
     """
 
-    if value and not values.get("version_deprecated"):
+    if replaced_by and not values.get("version_deprecated"):
         raise FidesValidationError("Cannot be replaced without deprecation!")
 
-    return value
+    return replaced_by
 
 
-def matching_parent_key(value: FidesKey, values: Dict) -> FidesKey:
+def matching_parent_key(parent_key: FidesKey, values: Dict) -> FidesKey:
     """
     Confirm that the parent_key matches the parent parsed from the FidesKey.
     """
@@ -151,18 +151,18 @@ def matching_parent_key(value: FidesKey, values: Dict) -> FidesKey:
     split_fides_key = fides_key.split(".")
 
     # Check if it is a top-level resource
-    if len(split_fides_key) == 1 and not value:
-        return value
+    if len(split_fides_key) == 1 and not parent_key:
+        return parent_key
 
     # Reform the parent_key from the fides_key and compare
     parent_key_from_fides_key = ".".join(split_fides_key[:-1])
-    if parent_key_from_fides_key != value:
+    if parent_key_from_fides_key != parent_key:
         raise FidesValidationError(
             "The parent_key ({0}) does match the parent parsed ({1}) from the fides_key ({2})!".format(
-                value, parent_key_from_fides_key, fides_key
+                parent_key, parent_key_from_fides_key, fides_key
             )
         )
-    return value
+    return parent_key
 
 
 def check_valid_country_code(country_code_list: List) -> List:
