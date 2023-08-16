@@ -14,7 +14,13 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/1.4.3...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/1.4.4...main)
+
+## [1.4.4](https://github.com/ethyca/fideslang/compare/1.4.3...1.4.4)
+
+### Changed
+
+- Add new fields to System and Privacy Declarations to support GVL [#146](https://github.com/ethyca/fideslang/pull/146)
 
 ### Changed
 
