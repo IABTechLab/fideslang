@@ -60,22 +60,6 @@ name_field = Field(description="Human-Readable name for this resource.")
 description_field = Field(
     description="A detailed description of what this resource is."
 )
-is_default_field = Field(
-    default=False,
-    description="Denotes whether the resource is part of the default taxonomy or not.",
-)
-version_added_field = Field(
-    default=None,
-    description="The version of Fideslang in which this record was added.",
-)
-version_deprecated_field = Field(
-    default=None,
-    description="The version of Fideslang in which this record was deprecated.",
-)
-replaced_by_field = Field(
-    default=None,
-    description="The new name, if applicable, for this field after deprecation.",
-)
 meta_field = Field(
     default=None,
     description="An optional property to store any extra information for a resource. Data can be structured in any way: simple set of `key: value` pairs or deeply nested objects.",
@@ -89,7 +73,7 @@ class FidesModel(BaseModel):
         description="A unique key used to identify this resource."
     )
     organization_fides_key: FidesKey = Field(
-        default="default_organization",
+        default=FidesKey("default_organization"),
         description="Defines the Organization that this resource belongs to.",
     )
     tags: Optional[List[str]] = None
@@ -107,10 +91,22 @@ class DefaultModel(BaseModel):
     A model meant to be inherited by versioned parts of the Default Taxonomy.
     """
 
-    version_added: Optional[FidesVersion] = version_added_field
-    version_deprecated: Optional[FidesVersion] = version_deprecated_field
-    replaced_by: Optional[FidesKey] = replaced_by_field
-    is_default: bool = is_default_field
+    version_added: Optional[FidesVersion] = Field(
+        default=None,
+        description="The version of Fideslang in which this label was added.",
+    )
+    version_deprecated: Optional[FidesVersion] = Field(
+        default=None,
+        description="The version of Fideslang in which this label was deprecated.",
+    )
+    replaced_by: Optional[FidesKey] = Field(
+        default=None,
+        description="The new name, if applicable, for this label after deprecation.",
+    )
+    is_default: bool = Field(
+        default=False,
+        description="Denotes whether the resource is part of the default taxonomy or not.",
+    )
 
     _has_versioning_if_default: classmethod = has_versioning_if_default_validator
     _deprecated_version_later_than_added: classmethod = (
