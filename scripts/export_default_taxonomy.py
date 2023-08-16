@@ -31,10 +31,14 @@ def export_yaml() -> None:
         resources = [x.dict() for x in getattr(DEFAULT_TAXONOMY, resource_type)]
 
         # Clean up specific data types
-        resources = [{
+
+        resources = [
+            {
                 key: str(value) if isinstance(value, Version) else value
                 for key, value in resource.items()
-            } for resource in resources]
+            }
+            for resource in resources
+        ]
 
         write_manifest(
             output_filename,

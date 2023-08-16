@@ -144,7 +144,7 @@ data_category:
   version_deprecated: null
   replaced_by: null
   is_default: true
-- fides_key: user.payment
+  fides_key: user.payment
   organization_fides_key: default_organization
   tags: null
   name: Payment Data
@@ -154,7 +154,7 @@ data_category:
   version_deprecated: null
   replaced_by: null
   is_default: true
-- fides_key: user.social
+  fides_key: user.social
   organization_fides_key: default_organization
   tags: null
   name: Social Data
@@ -214,7 +214,7 @@ data_category:
   version_deprecated: null
   replaced_by: null
   is_default: true
-- fides_key: user.financial
+  fides_key: user.financial
   organization_fides_key: default_organization
   tags: null
   name: Financial Data
@@ -264,7 +264,7 @@ data_category:
   version_deprecated: null
   replaced_by: null
   is_default: true
-- fides_key: user.privacy_preferences
+  fides_key: user.privacy_preferences
   organization_fides_key: default_organization
   tags: null
   name: Privacy Preferences
@@ -388,7 +388,7 @@ data_category:
   organization_fides_key: default_organization
   tags: null
   name: Retina Scan
-  description: Retinal encoded data about a subject.
+  description: Retinal data about a subject.
   parent_key: user.biometric
 - version_added: 2.0.0
   version_deprecated: null
@@ -695,7 +695,7 @@ data_category:
   version_deprecated: null
   replaced_by: null
   is_default: true
-- fides_key: user.financial.bank_account
+  fides_key: user.financial.bank_account
   organization_fides_key: default_organization
   tags: null
   name: Bank Account Information
@@ -805,7 +805,7 @@ data_category:
   version_deprecated: null
   replaced_by: null
   is_default: true
-- fides_key: user.location.imprecise
+  fides_key: user.location.imprecise
   organization_fides_key: default_organization
   tags: null
   name: Imprecise Subject Location
@@ -819,7 +819,7 @@ data_category:
   organization_fides_key: default_organization
   tags: null
   name: Precise Subject Location
-  description: Precise location derived form sensors (less than 500M).
+  description: Precise location derived from sensors (less than 500M).
   parent_key: user.location
 - version_added: 2.0.0
   version_deprecated: null
@@ -841,12 +841,14 @@ data_category:
   name: Last Name
   description: Subject's last, or family, name.
   parent_key: user.name
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: user.unique_id.pseudonymous
+  fides_key: user.unique_id.pseudonymous
   organization_fides_key: default_organization
   tags: null
   name: Pseudonymous User ID
   description: A pseudonymous, or probabilistic identifier generated from other subject
     or device data belonging to the subject.
   parent_key: user.unique_id
-  is_default: true

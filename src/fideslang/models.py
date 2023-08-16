@@ -73,7 +73,7 @@ class FidesModel(BaseModel):
         description="A unique key used to identify this resource."
     )
     organization_fides_key: FidesKey = Field(
-        default=FidesKey("default_organization"),
+        default="default_organization",
         description="Defines the Organization that this resource belongs to.",
     )
     tags: Optional[List[str]] = None

@@ -169,6 +169,10 @@
             "parent_key": "user"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.payment",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -177,6 +181,10 @@
             "parent_key": "user"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.social",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -245,6 +253,10 @@
             "parent_key": "user"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.financial",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -301,6 +313,10 @@
             "parent_key": "user"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.privacy_preferences",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -354,8 +370,7 @@
             "tags": null,
             "name": "Account password.",
             "description": "Authentication credentials to a system.",
-            "parent_key": "user.authorization",
-            "is_default": true
+            "parent_key": "user.authorization"
         },
         {
             "version_added": "2.0.0",
@@ -450,7 +465,7 @@
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "Retina Scan",
-            "description": "Retinal encoded data about a subject.",
+            "description": "Retinal data about a subject.",
             "parent_key": "user.biometric"
         },
         {
@@ -814,6 +829,10 @@
             "parent_key": "user.device"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.financial.bank_account",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -942,13 +961,16 @@
             "parent_key": "user.health_and_medical"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.location.imprecise",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "Imprecise Subject Location",
             "description": "Imprecise location derived from sensors (more than 500M).",
-            "parent_key": "user.location",
-            "is_default": true
+            "parent_key": "user.location"
         },
         {
             "version_added": "2.0.0",
@@ -959,7 +981,7 @@
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "Precise Subject Location",
-            "description": "Precise location derived form sensors (less than 500M).",
+            "description": "Precise location derived from sensors (less than 500M).",
             "parent_key": "user.location"
         },
         {
@@ -984,17 +1006,19 @@
             "tags": null,
             "name": "Last Name",
             "description": "Subject's last, or family, name.",
-            "parent_key": "user.name",
-            "is_default": true
+            "parent_key": "user.name"
         },
         {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
             "fides_key": "user.unique_id.pseudonymous",
             "organization_fides_key": "default_organization",
             "tags": null,
             "name": "Pseudonymous User ID",
             "description": "A pseudonymous, or probabilistic identifier generated from other subject or device data belonging to the subject.",
-            "parent_key": "user.unique_id",
-            "is_default": true
+            "parent_key": "user.unique_id"
         }
     ]
 }
