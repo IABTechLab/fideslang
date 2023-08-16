@@ -15,7 +15,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -32,7 +33,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -49,7 +51,22 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
+        },
+        {
+            "fides_key": "analytics.reporting.content_performance",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Analytics for Content Performance",
+            "description": "Analytics for reporting on content performance.",
+            "parent_key": "analytics.reporting",
+            "legal_basis": null,
+            "special_category": null,
+            "recipients": null,
+            "legitimate_interest": null,
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -83,7 +100,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -100,7 +118,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -117,7 +136,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -134,7 +154,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -151,7 +172,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -168,7 +190,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -185,7 +208,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -202,7 +226,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -219,7 +244,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -236,7 +262,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -253,7 +280,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -270,7 +298,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -287,7 +316,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -304,7 +334,22 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
+        },
+        {
+            "fides_key": "essential.service.security",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Essential for Security",
+            "description": "Essential to provide security for the product, service, application or system",
+            "parent_key": "essential.service",
+            "legal_basis": null,
+            "special_category": null,
+            "recipients": null,
+            "legitimate_interest": null,
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -338,7 +383,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -355,7 +401,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -372,7 +419,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -389,13 +437,10 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
-            "version_added": "2.0.0",
-            "version_deprecated": null,
-            "replaced_by": null,
-            "is_default": true,
             "fides_key": "essential.service.operations.improve",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -406,7 +451,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -423,13 +469,10 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
-            "version_added": "2.0.0",
-            "version_deprecated": null,
-            "replaced_by": null,
-            "is_default": true,
             "fides_key": "functional",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -440,13 +483,10 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
-            "version_added": "2.0.0",
-            "version_deprecated": null,
-            "replaced_by": null,
-            "is_default": true,
             "fides_key": "functional.storage",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -457,7 +497,36 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
+        },
+        {
+            "fides_key": "functional.service",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Service",
+            "description": "Functions relating to provided services, products, applications or systems.",
+            "parent_key": "functional",
+            "legal_basis": null,
+            "special_category": null,
+            "recipients": null,
+            "legitimate_interest": null,
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
+        },
+        {
+            "fides_key": "functional.service.improve",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Improve Service",
+            "description": "Improves the specific product, service, application or system.",
+            "parent_key": "functional.service",
+            "legal_basis": null,
+            "special_category": null,
+            "recipients": null,
+            "legitimate_interest": null,
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -491,7 +560,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -508,7 +578,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -525,7 +596,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -542,7 +614,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -559,7 +632,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -576,7 +650,36 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
+        },
+        {
+            "fides_key": "marketing.advertising.profiling",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Profiling for Advertising",
+            "description": "Creates audience profiles for the purpose of targeted advertising",
+            "parent_key": "marketing.advertising",
+            "legal_basis": null,
+            "special_category": null,
+            "recipients": null,
+            "legitimate_interest": null,
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
+        },
+        {
+            "fides_key": "marketing.advertising.serving",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "Essential for Serving Ads",
+            "description": "Essential to the delivery of advertising and content.",
+            "parent_key": "marketing.advertising",
+            "legal_basis": null,
+            "special_category": null,
+            "recipients": null,
+            "legitimate_interest": null,
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -627,7 +730,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -644,7 +748,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -661,7 +766,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -678,7 +784,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -695,7 +802,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -712,7 +820,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -729,7 +838,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -746,7 +856,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -763,13 +874,10 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
-            "version_added": "2.0.0",
-            "version_deprecated": null,
-            "replaced_by": null,
-            "is_default": true,
             "fides_key": "personalize.profiling",
             "organization_fides_key": "default_organization",
             "tags": null,
@@ -780,7 +888,26 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
+        },
+        {
+            "version_added": "2.0.0",
+            "version_deprecated": null,
+            "replaced_by": null,
+            "is_default": true,
+            "fides_key": "personalize.profiling",
+            "organization_fides_key": "default_organization",
+            "tags": null,
+            "name": "System Personalization",
+            "description": "Personalizes the system.",
+            "parent_key": "personalize",
+            "legal_basis": null,
+            "special_category": null,
+            "recipients": null,
+            "legitimate_interest": null,
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -814,7 +941,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -831,7 +959,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -848,7 +977,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         },
         {
             "version_added": "2.0.0",
@@ -865,7 +995,8 @@
             "special_category": null,
             "recipients": null,
             "legitimate_interest": null,
-            "legitimate_interest_impact_assessment": null
+            "legitimate_interest_impact_assessment": null,
+            "is_default": true
         }
     ]
 }

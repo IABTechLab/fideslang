@@ -5,10 +5,9 @@ from collections import Counter
 
 taxonomy_counts = {
     "data_category": 85,
-    "data_use": 51,
+    "data_use": 52,
     "data_subject": 15,
     "data_qualifier": 5,
-    "organization": 1,
 }
 
 
@@ -47,3 +46,13 @@ class TestDefaultTaxonomy:
         }
         print(duplicate_keys)
         assert not duplicate_keys
+
+    @pytest.mark.parametrize("data_type", ["data_category", "data_use"])
+    def test_parent_keys_exist(self, data_type: str) -> None:
+        """This test catches any keys that are used as parents but don't exist as fides keys."""
+        fides_keys = set([x.fides_key for x in getattr(DEFAULT_TAXONOMY, data_type)])
+        parent_keys = set(
+            [x.parent_key for x in getattr(DEFAULT_TAXONOMY, data_type) if x.parent_key]
+        )
+        diff = parent_keys.difference(fides_keys)
+        assert not diff

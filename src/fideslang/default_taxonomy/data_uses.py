@@ -6,7 +6,6 @@ from .utils import default_factory
 
 default_use_factory = partial(default_factory, taxonomy_class=DataUse)
 
-
 DEFAULT_DATA_USES = [
     #############
     # Analytics #
@@ -15,7 +14,6 @@ DEFAULT_DATA_USES = [
         fides_key="analytics",
         name="Analytics",
         description="Provides analytics for activities such as system and advertising performance reporting, insights and fraud detection.",
-        parent_key=None,
     ),
     default_use_factory(
         fides_key="analytics.reporting",
@@ -60,7 +58,6 @@ DEFAULT_DATA_USES = [
         fides_key="collect",
         name="Collect",
         description="Collects or stores data in order to use it for another purpose which has not yet been expressly defined.",
-        parent_key=None,
     ),
     ##############
     # Employment #
@@ -69,7 +66,6 @@ DEFAULT_DATA_USES = [
         fides_key="employment",
         name="Employment",
         description="Processes data for the purpose of recruitment or employment and human resources (HR) related activities.",
-        parent_key=None,
     ),
     default_use_factory(
         fides_key="employment.recruitment",
@@ -84,7 +80,6 @@ DEFAULT_DATA_USES = [
         fides_key="essential",
         name="Essential",
         description="Operates the service or product, including legal obligations, support and basic system operations.",
-        parent_key=None,
     ),
     default_use_factory(
         fides_key="essential.fraud_detection",
@@ -169,7 +164,6 @@ DEFAULT_DATA_USES = [
         fides_key="finance",
         name="Finance",
         description="Enables finance and accounting activities such as audits and tax reporting.",
-        parent_key=None,
     ),
     ##############
     # Functional #
@@ -178,12 +172,17 @@ DEFAULT_DATA_USES = [
         fides_key="functional",
         name="Functional",
         description="Used for specific, necessary, and legitimate purposes",
-        parent_key=None,
     ),
     default_use_factory(
         fides_key="functional.storage",
         name="Local Data Storage",
         description="Stores or accesses information from the device as needed when using a product, service, application, or system",
+        parent_key="functional",
+    ),
+    default_use_factory(
+        fides_key="functional.service",
+        name="Service",
+        description="Functions relating to provided services, products, applications or systems.",
         parent_key="functional",
     ),
     default_use_factory(
@@ -199,7 +198,6 @@ DEFAULT_DATA_USES = [
         fides_key="marketing",
         name="Marketing",
         description="Enables marketing, promotion, advertising and sales activities for the product, service, application or system.",
-        parent_key=None,
     ),
     #########################
     # marketing.advertising #
@@ -292,7 +290,6 @@ DEFAULT_DATA_USES = [
         fides_key="operations",
         name="Operations",
         description="Supports business processes necessary to the organization's operation.",
-        parent_key=None,
     ),
     ###############
     # Personalize #
@@ -301,7 +298,6 @@ DEFAULT_DATA_USES = [
         fides_key="personalize",
         name="Personalize",
         description="Personalizes the product, service, application or system.",
-        parent_key=None,
     ),
     default_use_factory(
         fides_key="personalize.content",
@@ -328,7 +324,6 @@ DEFAULT_DATA_USES = [
         fides_key="sales",
         name="Sales",
         description="Supports sales activities such as communications and outreach.",
-        parent_key=None,
     ),
     #######################
     # Third-Party Sharing #
@@ -337,7 +332,6 @@ DEFAULT_DATA_USES = [
         fides_key="third_party_sharing",
         name="Third Party Sharing",
         description="Transfers data to third parties outside of the system or service's scope.",
-        parent_key=None,
     ),
     default_use_factory(
         fides_key="third_party_sharing.legal_obligation",
@@ -352,9 +346,5 @@ DEFAULT_DATA_USES = [
         fides_key="train_ai_system",
         name="Train AI System",
         description="Trains an AI system or data model for machine learning.",
-        parent_key=None,
     ),
 ]
-
-for category in DEFAULT_DATA_USES:
-    category.is_default = True

@@ -12,7 +12,6 @@ DEFAULT_DATA_CATEGORIES = [
         fides_key="user",
         name="User Data",
         description="Data related to the user of the system, either provided directly or derived based on their usage.",
-        parent_key=None,
     ),
     # user.account
     default_category_factory(
@@ -547,7 +546,6 @@ DEFAULT_DATA_CATEGORIES = [
         fides_key="system",
         name="System Data",
         description="Data unique to, and under control of the system.",
-        parent_key=None,
     ),
     default_category_factory(
         fides_key="system.authentication",
