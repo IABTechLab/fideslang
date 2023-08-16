@@ -180,6 +180,12 @@ DEFAULT_DATA_USES = [
         parent_key="functional",
     ),
     DataUse(
+        fides_key="functional.service",
+        name="Service",
+        description="Functions relating to provided services, products, applications or systems.",
+        parent_key="functional",
+    ),
+    DataUse(
         fides_key="functional.service.improve",
         name="Improve Service",
         description="Improves the specific product, service, application or system.",
