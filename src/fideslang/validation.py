@@ -103,6 +103,10 @@ def deprecated_version_later_than_added(
         raise FidesValidationError(
             "Deprecated version number can't be earlier than version added!"
         )
+    elif version_deprecated == values.get("version_added", Version("0")):
+        raise FidesValidationError(
+            "Deprecated version number can't be the same as the version added!"
+        )
     return version_deprecated
 
 

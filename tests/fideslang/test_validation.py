@@ -61,6 +61,20 @@ class TestVersioning:
             )
 
     @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
+    def test_deprecated_when_added(self, TaxonomyClass):
+        """Item can't be deprecated in a version earlier than it was added."""
+        with pytest.raises(ValidationError):
+            TaxonomyClass(
+                organization_fides_key=1,
+                fides_key="user",
+                name="Custom Test Data",
+                description="Custom Test Data Category",
+                is_default=True,
+                version_added="1.2",
+                version_deprecated="1.2",
+            )
+
+    @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
     def test_deprecated_after_added(self, TaxonomyClass):
         """Item can't be deprecated in a version earlier than it was added."""
         with pytest.raises(ValidationError):
