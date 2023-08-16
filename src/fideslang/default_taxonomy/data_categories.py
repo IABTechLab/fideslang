@@ -106,7 +106,7 @@ DEFAULT_DATA_CATEGORIES = [
     DataCategory(
         fides_key="user.biometric.retinal",
         name="Retina Scan",
-        description="Retinal encoded data about a subject.",
+        description="Retinal data about a subject.",
         parent_key="user.biometric",
     ),
     DataCategory(
@@ -319,7 +319,7 @@ DEFAULT_DATA_CATEGORIES = [
     DataCategory(
         fides_key="user.location.precise",
         name="Precise Subject Location",
-        description="Precise location derived form sensors (less than 500M).",
+        description="Precise location derived from sensors (less than 500M).",
         parent_key="user.location",
     ),
     ###############
