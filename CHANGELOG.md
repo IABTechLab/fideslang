@@ -16,15 +16,15 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/1.4.4...main)
 
+### Changed
+
+- Updated the Data Categories and Data Uses to support GVL [#144](https://github.com/ethyca/fideslang/pull/144)
+
 ## [1.4.4](https://github.com/ethyca/fideslang/compare/1.4.3...1.4.4)
 
 ### Changed
 
 - Add new fields to System and Privacy Declarations to support GVL [#146](https://github.com/ethyca/fideslang/pull/146)
-
-### Changed
-
-- Updated the Data Categories and Data Uses to support GVL [#144](https://github.com/ethyca/fideslang/pull/144)
 
 ### Fixed
 
