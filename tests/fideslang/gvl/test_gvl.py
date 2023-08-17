@@ -1,6 +1,11 @@
 import pytest
 
-from fideslang.gvl import purpose_to_data_use
+from fideslang.gvl import (
+    purpose_to_data_use,
+    GVL_FEATURES,
+    GVL_SPECIAL_FEATURES,
+    Feature,
+)
 
 
 def test_purpose_to_data_use():
@@ -31,3 +36,12 @@ def test_purpose_to_data_use():
 
     with pytest.raises(KeyError):
         purpose_to_data_use(3, True)
+
+
+def test_features():
+    """Add a sanity check for features and special features parsing"""
+    assert isinstance(GVL_FEATURES[1], Feature)
+    assert GVL_FEATURES[1].name == "Match and combine offline data sources"
+
+    assert isinstance(GVL_SPECIAL_FEATURES[1], Feature)
+    assert GVL_SPECIAL_FEATURES[1].name == "Use precise geolocation data"
