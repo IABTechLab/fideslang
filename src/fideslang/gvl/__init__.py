@@ -1,9 +1,9 @@
 import os
 from json import load
 from os.path import dirname, join
-from typing import List
+from typing import List, Dict
 
-from .models import MappedPurpose, Purpose
+from .models import MappedPurpose, Purpose, Feature
 
 PURPOSE_MAPPING_FILE = join(
     dirname(__file__),
@@ -11,14 +11,23 @@ PURPOSE_MAPPING_FILE = join(
     "gvl_data_use_mapping.json",
 )
 
-GVL_PURPOSES: dict[int, Purpose] = {}
-MAPPED_PURPOSES: dict[int, MappedPurpose] = {}
+FEATURE_MAPPING_FILE = join(
+    dirname(__file__),
+    "",
+    "gvl_feature_mapping.json",
+)
 
-GVL_SPECIAL_PURPOSES: dict[int, Purpose] = {}
-MAPPED_SPECIAL_PURPOSES: dict[int, MappedPurpose] = {}
 
+GVL_PURPOSES: Dict[int, Purpose] = {}
+MAPPED_PURPOSES: Dict[int, MappedPurpose] = {}
 
-MAPPED_PURPOSES_BY_DATA_USE: dict[str, MappedPurpose] = {}
+GVL_SPECIAL_PURPOSES: Dict[int, Purpose] = {}
+MAPPED_SPECIAL_PURPOSES: Dict[int, MappedPurpose] = {}
+
+GVL_FEATURES: Dict[int, Feature] = {}
+GVL_SPECIAL_FEATURES: Dict[int, Feature] = {}
+
+MAPPED_PURPOSES_BY_DATA_USE: Dict[str, MappedPurpose] = {}
 
 
 def _load_data():
@@ -41,6 +50,19 @@ def _load_data():
             MAPPED_SPECIAL_PURPOSES[mapped_special_purpose.id] = mapped_special_purpose
             for data_use in mapped_special_purpose.data_uses:
                 MAPPED_PURPOSES_BY_DATA_USE[data_use] = mapped_special_purpose
+
+    with open(
+        os.path.join(os.curdir, FEATURE_MAPPING_FILE), encoding="utf-8"
+    ) as feature_mapping_file:
+        feature_data = load(feature_mapping_file)
+
+        for raw_feature in feature_data["features"].values():
+            feature = Feature.parse_obj(raw_feature)
+            GVL_FEATURES[feature.id] = feature
+
+        for raw_special_feature in feature_data["specialFeatures"].values():
+            special_feature = Feature.parse_obj(raw_special_feature)
+            GVL_SPECIAL_FEATURES[special_feature.id] = special_feature
 
 
 def purpose_to_data_use(purpose_id: int, special_purpose: bool = False) -> List[str]:
