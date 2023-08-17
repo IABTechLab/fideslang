@@ -5,6 +5,7 @@ from fideslang.gvl import (
     GVL_FEATURES,
     GVL_SPECIAL_FEATURES,
     Feature,
+    feature_name_to_feature,
 )
 
 
@@ -45,3 +46,8 @@ def test_features():
 
     assert isinstance(GVL_SPECIAL_FEATURES[1], Feature)
     assert GVL_SPECIAL_FEATURES[1].name == "Use precise geolocation data"
+
+
+def test_feature_name_to_feature():
+    assert feature_name_to_feature("Link different devices").id == 2
+    assert feature_name_to_feature("Use precise geolocation data").id == 1
