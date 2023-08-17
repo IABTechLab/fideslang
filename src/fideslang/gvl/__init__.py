@@ -26,6 +26,7 @@ MAPPED_SPECIAL_PURPOSES: Dict[int, MappedPurpose] = {}
 
 GVL_FEATURES: Dict[int, Feature] = {}
 GVL_SPECIAL_FEATURES: Dict[int, Feature] = {}
+FEATURES_BY_NAME: Dict[str, Feature] = {}
 
 MAPPED_PURPOSES_BY_DATA_USE: Dict[str, MappedPurpose] = {}
 
@@ -59,10 +60,12 @@ def _load_data():
         for raw_feature in feature_data["features"].values():
             feature = Feature.parse_obj(raw_feature)
             GVL_FEATURES[feature.id] = feature
+            FEATURES_BY_NAME[feature.name] = feature
 
         for raw_special_feature in feature_data["specialFeatures"].values():
             special_feature = Feature.parse_obj(raw_special_feature)
             GVL_SPECIAL_FEATURES[special_feature.id] = special_feature
+            FEATURES_BY_NAME[special_feature.name] = special_feature
 
 
 def purpose_to_data_use(purpose_id: int, special_purpose: bool = False) -> List[str]:
@@ -87,6 +90,11 @@ def data_use_to_purpose(data_use: str) -> Purpose:
     Returns None if no associated purpose (or special purpose) is found
     """
     return MAPPED_PURPOSES_BY_DATA_USE.get(data_use, None)
+
+
+def feature_name_to_feature(feature_name: str) -> Feature:
+    """Utility function to return a GVL feature (or special feature) given the feature's name"""
+    return FEATURES_BY_NAME[feature_name]
 
 
 _load_data()
