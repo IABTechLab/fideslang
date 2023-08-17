@@ -91,7 +91,7 @@ class DefaultModel(BaseModel):
     A model meant to be inherited by versioned parts of the Default Taxonomy.
     """
 
-    version_added: Optional[FidesVersion] = Field(
+    version_added: Optional[str] = Field(
         default=None,
         description="The version of Fideslang in which this label was added.",
     )
