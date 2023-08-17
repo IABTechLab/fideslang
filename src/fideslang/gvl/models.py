@@ -29,3 +29,12 @@ class MappedPurpose(Purpose):
     data_uses: List[str] = Field(
         description="The fideslang default taxonomy data uses that are associated with the purpose."
     )
+
+
+class Feature(BaseModel):
+    "Pydantic model for GVL feature records"
+    id: int = Field(description="Official GVL feature ID or special feature ID")
+    name: str = Field(description="Name of the GVL feature or special feature.")
+    description: str = Field(
+        description="Description of the GVL feature or special feature."
+    )
