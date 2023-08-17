@@ -1,23 +1,11 @@
 import pytest
 
 from fideslang import relationships
-from fideslang.models import (
-    ContactDetails,
-    DataCategory,
-    DataFlow,
-    DataProtectionImpactAssessment,
-    Dataset,
-    DatasetCollection,
-    DatasetField,
-    DataUse,
-    MatchesEnum,
-    Organization,
-    Policy,
-    PolicyRule,
-    PrivacyDeclaration,
-    System,
-    Taxonomy,
-)
+from fideslang.models import (ContactDetails, DataCategory, DataFlow,
+                              DataProtectionImpactAssessment, Dataset,
+                              DatasetCollection, DatasetField, DataUse,
+                              MatchesEnum, Organization, Policy, PolicyRule,
+                              PrivacyDeclaration, System, Taxonomy)
 
 
 @pytest.mark.unit

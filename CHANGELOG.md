@@ -14,11 +14,33 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/1.4.3...main)
+## [Unrelease](https://github.com/ethyca/fideslang/compare/2.0.0...main)
+
+## [2.0.0](https://github.com/ethyca/fideslang/compare/1.4.4...2.0.0)
+
+### Changed
+
+- Updated the Data Categories and Data Uses to support GVL [#144](https://github.com/ethyca/fideslang/pull/144)
+- Add version metadata to the default taxonomy items [#147](https://github.com/ethyca/fideslang/pull/147)
+
+## [1.4.4](https://github.com/ethyca/fideslang/compare/1.4.3...1.4.4)
+
+### Changed
+
+- Add new fields to System and Privacy Declarations to support GVL [#146](https://github.com/ethyca/fideslang/pull/146)
+
+### Added
+
+- Add versioning metadata as fields on Taxonomy Data types [#147](https://github.com/ethyca/fideslang/pull/147)
+
+### Changed
+
+- Updated the Data Categories and Data Uses to support GVL [#144](https://github.com/ethyca/fideslang/pull/144)
 
 ### Fixed
 
 - Don't allow duplicate entries for DatasetCollections as part of Datasets [#136](https://github.com/ethyca/fideslang/pull/136)
+- Cython/PyYAML versions breaking builds [#145](https://github.com/ethyca/fideslang/pull/145)
 
 ## [1.4.3](https://github.com/ethyca/fideslang/compare/1.4.2...1.4.3)
 

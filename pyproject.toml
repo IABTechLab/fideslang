@@ -5,16 +5,14 @@
 requires = ["setuptools", "wheel", "setuptools_scm"]
 
 [project]
-name="fideslang"
-description="Fides Taxonomy Language"
+name = "fideslang"
+description = "Fides Taxonomy Language"
 dynamic = ["dependencies", "version"]
 readme = "README.md"
-requires-python=">=3.8, <4"
-authors = [
-    {name = "Ethyca, Inc.", email = "fidesteam@ethyca.com"}
-]
-license= {text = "Apache License 2.0"}
-classifiers=[
+requires-python = ">=3.8, <4"
+authors = [{ name = "Ethyca, Inc.", email = "fidesteam@ethyca.com" }]
+license = { text = "Apache License 2.0" }
+classifiers = [
     "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.8",
@@ -32,7 +30,7 @@ changelog = "https://github.com/ethyca/fideslang/blob/main/CHANGELOG.md"
 write_to = "src/fideslang/_version.py"
 
 [tool.setuptools.dynamic]
-dependencies = {file = "requirements.txt"}
+dependencies = { file = "requirements.txt" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -55,8 +53,8 @@ warn_unused_ignores = true
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
-module= "fideslang._version"
-ignore_errors=true
+module = "fideslang._version"
+ignore_errors = true
 
 [[tool.mypy.overrides]]
 module = ["tests.*"]
@@ -97,8 +95,8 @@ exclude = '''
 ## Pylint ##
 ############
 [tool.pylint.messages_control]
-ignore="migrations"
-disable=[
+ignore = ["migrations", "_version.py"]
+disable = [
     "line-too-long",
     "too-few-public-methods",
     "duplicate-code",
@@ -106,33 +104,36 @@ disable=[
     "unused-argument",
     "no-self-use",
     "import-outside-toplevel",
-    "unsubscriptable-object", # Otherwise throws errors on certain Type annotations
+    "unsubscriptable-object",   # Otherwise throws errors on certain Type annotations
     "too-many-arguments",
     "missing-module-docstring",
     "raise-missing-from",
-    "fixme"]
+    "fixme",
+]
 extension-pkg-whitelist = "pydantic"
 
 [tool.pylint.reports]
-reports="no"
-output-format="colorized"
+reports = "no"
+output-format = "colorized"
 
 [tool.pylint.format]
-max-line-length="88"
+max-line-length = "88"
 
 [tool.pylint.basic]
-good-names="_,i,setUp,tearDown,maxDiff,default_app_config"
+good-names = "_,i,setUp,tearDown,maxDiff,default_app_config"
 
 ############
 ## Pytest ##
 ############
 [tool.pytest.ini_options]
-testpaths="tests"
+testpaths = "tests"
 log_level = "DEBUG"
-addopts = ["--cov=fideslang",
-            "--cov-report=term-missing",
-            "-vv",
-            "--no-cov-on-fail",]
+addopts = [
+    "--cov=fideslang",
+    "--cov-report=term-missing",
+    "-vv",
+    "--no-cov-on-fail",
+]
 markers = [
     "unit: only runs tests that don't require non-python dependencies (i.e. a database)",
 ]

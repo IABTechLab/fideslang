@@ -1,5 +1,9 @@
 data_subject:
-- fides_key: anonymous_user
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
+  is_default: true
+  fides_key: anonymous_user
   organization_fides_key: default_organization
   tags: null
   name: Anonymous User
@@ -7,16 +11,22 @@ data_subject:
     only be applied to truly anonymous users where there is no risk of re-identification
   rights: null
   automated_decisions_or_profiling: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: citizen_voter
+  fides_key: citizen_voter
   organization_fides_key: default_organization
   tags: null
   name: Citizen Voter
   description: An individual registered to voter with a state or authority.
   rights: null
   automated_decisions_or_profiling: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: commuter
+  fides_key: commuter
   organization_fides_key: default_organization
   tags: null
   name: Commuter
@@ -24,8 +34,11 @@ data_subject:
     tracking.
   rights: null
   automated_decisions_or_profiling: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: consultant
+  fides_key: consultant
   organization_fides_key: default_organization
   tags: null
   name: Consultant
@@ -33,8 +46,11 @@ data_subject:
     organization.
   rights: null
   automated_decisions_or_profiling: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: customer
+  fides_key: customer
   organization_fides_key: default_organization
   tags: null
   name: Customer
@@ -42,24 +58,33 @@ data_subject:
     from the organization.
   rights: null
   automated_decisions_or_profiling: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: employee
+  fides_key: employee
   organization_fides_key: default_organization
   tags: null
   name: Employee
   description: An individual employed by the organization.
   rights: null
   automated_decisions_or_profiling: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: job_applicant
+  fides_key: job_applicant
   organization_fides_key: default_organization
   tags: null
   name: Job Applicant
   description: An individual applying for employment to the organization.
   rights: null
   automated_decisions_or_profiling: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: next_of_kin
+  fides_key: next_of_kin
   organization_fides_key: default_organization
   tags: null
   name: Next of Kin
@@ -67,24 +92,33 @@ data_subject:
     is known.
   rights: null
   automated_decisions_or_profiling: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: passenger
+  fides_key: passenger
   organization_fides_key: default_organization
   tags: null
   name: Passenger
   description: An individual traveling on some means of provided transport.
   rights: null
   automated_decisions_or_profiling: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: patient
+  fides_key: patient
   organization_fides_key: default_organization
   tags: null
   name: Patient
   description: An individual identified for the purposes of any medical care.
   rights: null
   automated_decisions_or_profiling: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: prospect
+  fides_key: prospect
   organization_fides_key: default_organization
   tags: null
   name: Prospect
@@ -92,16 +126,22 @@ data_subject:
     or services.
   rights: null
   automated_decisions_or_profiling: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: shareholder
+  fides_key: shareholder
   organization_fides_key: default_organization
   tags: null
   name: Shareholder
   description: An individual or organization that holds equity in the organization.
   rights: null
   automated_decisions_or_profiling: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: supplier_vendor
+  fides_key: supplier_vendor
   organization_fides_key: default_organization
   tags: null
   name: Supplier/Vendor
@@ -109,20 +149,25 @@ data_subject:
     organization.
   rights: null
   automated_decisions_or_profiling: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: trainee
+  fides_key: trainee
   organization_fides_key: default_organization
   tags: null
   name: Trainee
   description: An individual undergoing training by the organization.
   rights: null
   automated_decisions_or_profiling: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: visitor
+  fides_key: visitor
   organization_fides_key: default_organization
   tags: null
   name: Visitor
   description: An individual visiting a location.
   rights: null
   automated_decisions_or_profiling: null
-  is_default: true

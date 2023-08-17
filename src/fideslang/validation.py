@@ -1,11 +1,11 @@
 """
 Contains all of the additional validation for the resource models.
 """
-
 import re
 from collections import Counter
-from typing import Dict, List, Optional, Pattern, Set, Tuple
+from typing import Dict, Generator, List, Optional, Pattern, Set, Tuple
 
+from packaging.version import Version
 from pydantic import ConstrainedStr
 
 from fideslang.default_fixtures import COUNTRY_CODES
@@ -15,6 +15,19 @@ VALID_COUNTRY_CODES = [country["alpha3Code"] for country in COUNTRY_CODES]
 
 class FidesValidationError(ValueError):
     """Custom exception for when the pydantic ValidationError can't be used."""
+
+
+class FidesVersion(Version):
+    """Validate strings as proper semantic versions."""
+
+    @classmethod
+    def __get_validators__(cls) -> Generator:
+        yield cls.validate
+
+    @classmethod
+    def validate(cls, value: str) -> Version:
+        """Validates that the provided string is a valid Semantic Version."""
+        return Version(value)
 
 
 class FidesKey(ConstrainedStr):
@@ -77,7 +90,64 @@ def no_self_reference(value: FidesKey, values: Dict) -> FidesKey:
     return value
 
 
-def matching_parent_key(value: FidesKey, values: Dict) -> FidesKey:
+def deprecated_version_later_than_added(
+    version_deprecated: FidesVersion, values: Dict
+) -> FidesVersion:
+    """
+    Check to make sure that the deprecated version is later than the added version.
+
+    This will also catch errors where the deprecated version is defined but the added
+    version is empty.
+    """
+    if version_deprecated < values.get("version_added", Version("0")):
+        raise FidesValidationError(
+            "Deprecated version number can't be earlier than version added!"
+        )
+
+    if version_deprecated == values.get("version_added", Version("0")):
+        raise FidesValidationError(
+            "Deprecated version number can't be the same as the version added!"
+        )
+    return version_deprecated
+
+
+def has_versioning_if_default(is_default: bool, values: Dict) -> bool:
+    """
+    Check to make sure that version fields are set for default items.
+    """
+
+    # If it's a default item, it at least needs a starting version
+    if is_default:
+        try:
+            assert values.get("version_added")
+        except AssertionError:
+            raise FidesValidationError("Default items must have version information!")
+    # If it's not default, it shouldn't have version info
+    else:
+        try:
+            assert not values.get("version_added")
+            assert not values.get("version_deprecated")
+            assert not values.get("replaced_by")
+        except AssertionError:
+            raise FidesValidationError(
+                "Non-default items can't have version information!"
+            )
+
+    return is_default
+
+
+def is_deprecated_if_replaced(replaced_by: str, values: Dict) -> str:
+    """
+    Check to make sure that the item has been deprecated if there is a replacement.
+    """
+
+    if replaced_by and not values.get("version_deprecated"):
+        raise FidesValidationError("Cannot be replaced without deprecation!")
+
+    return replaced_by
+
+
+def matching_parent_key(parent_key: FidesKey, values: Dict) -> FidesKey:
     """
     Confirm that the parent_key matches the parent parsed from the FidesKey.
     """
@@ -86,18 +156,18 @@ def matching_parent_key(value: FidesKey, values: Dict) -> FidesKey:
     split_fides_key = fides_key.split(".")
 
     # Check if it is a top-level resource
-    if len(split_fides_key) == 1 and not value:
-        return value
+    if len(split_fides_key) == 1 and not parent_key:
+        return parent_key
 
     # Reform the parent_key from the fides_key and compare
     parent_key_from_fides_key = ".".join(split_fides_key[:-1])
-    if parent_key_from_fides_key != value:
+    if parent_key_from_fides_key != parent_key:
         raise FidesValidationError(
             "The parent_key ({0}) does match the parent parsed ({1}) from the fides_key ({2})!".format(
-                value, parent_key_from_fides_key, fides_key
+                parent_key, parent_key_from_fides_key, fides_key
             )
         )
-    return value
+    return parent_key
 
 
 def check_valid_country_code(country_code_list: List) -> List:

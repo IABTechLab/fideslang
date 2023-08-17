@@ -50,6 +50,12 @@ jobs:
           python-version: "3.10.11"
           cache: "pip"
 
+      - name: Pin Cython
+        run: |
+          echo 'Cython < 3.0' > /tmp/constraint.txt
+          PIP_CONSTRAINT=/tmp/constraint.txt pip wheel PyYAML==5.4.1
+          pip install 'PyYAML==5.4.1'
+
       - name: Install Package
         run: pip install .
 
@@ -71,6 +77,12 @@ jobs:
         with:
           python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
           cache: "pip"
+
+      - name: Pin Cython
+        run: |
+          echo 'Cython < 3.0' > /tmp/constraint.txt
+          PIP_CONSTRAINT=/tmp/constraint.txt pip wheel PyYAML==5.4.1
+          pip install 'PyYAML==5.4.1'
 
       - name: Install Nox
         run: pip install nox
@@ -95,6 +107,12 @@ jobs:
         with:
           python-version: ${{ matrix.python_version }}
           cache: "pip"
+
+      - name: Pin Cython
+        run: |
+          echo 'Cython < 3.0' > /tmp/constraint.txt
+          PIP_CONSTRAINT=/tmp/constraint.txt pip wheel PyYAML==5.4.1
+          pip install 'PyYAML==5.4.1'
 
       - name: Install Nox
         run: pip install nox
