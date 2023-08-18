@@ -123,9 +123,13 @@ jobs:
   CSV-Checks:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Check CSV Files
         run: |
           echo "Check all data_files/*.csv for any empty lines..."
+          ls -l data_files/*.csv
           if grep -n -E '^$' data_files/*.csv; then
             echo "Error: Empty lines found"
           fi
