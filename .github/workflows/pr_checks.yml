@@ -62,14 +62,6 @@ jobs:
       - name: Run Export
         run: python scripts/export_default_taxonomy.py
 
-      - name: Check CSV export for errors
-        run: |
-          echo "Check all data_files/*.csv for any empty lines..."
-          if grep -n -E '^$' data_files/*.csv; then
-            echo "Error: Empty lines found"
-          fi
-          echo "Success!"
-
   Static-Checks:
     continue-on-error: true
     strategy:
@@ -127,3 +119,15 @@ jobs:
 
       - name: Run Tests
         run: nox -s "tests-${{ matrix.python_version }}(pyyaml_version='${{ matrix.pyyaml_version }}', pydantic_version='${{ matrix.pydantic_version }}')"
+
+
+  CSV-Checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check CSV export for errors
+        run: |
+          echo "Check all data_files/*.csv for any empty lines..."
+          if grep -n -E '^$' data_files/*.csv; then
+            echo "Error: Empty lines found"
+          fi
+          echo "Success!"
