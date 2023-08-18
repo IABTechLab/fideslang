@@ -62,6 +62,14 @@ jobs:
       - name: Run Export
         run: python scripts/export_default_taxonomy.py
 
+      - name: Check CSV export for errors
+        run: |
+          echo "Check all data_files/*.csv for any empty lines..."
+          if grep -n -E '^$' data_files/*.csv; then
+            echo "Error: Empty lines found"
+          fi
+          echo "Success!"
+
   Static-Checks:
     continue-on-error: true
     strategy:
