@@ -131,6 +131,7 @@ jobs:
           echo "Check all data_files/*.csv for any empty lines..."
           ls -l data_files/*.csv
           if grep -n -E '^$' data_files/*.csv; then
-            echo "Error: Empty lines found"
+            echo "Error: empty lines found (see grep matches above)"
+            exit 1
           fi
           echo "Success!"
