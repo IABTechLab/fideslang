@@ -46,18 +46,6 @@ data_use:
   recipients: null
   legitimate_interest: null
   legitimate_interest_impact_assessment: null
-  is_default: true
-- fides_key: analytics.reporting.content_performance
-  organization_fides_key: default_organization
-  tags: null
-  name: Analytics for Content Performance
-  description: Analytics for reporting on content performance.
-  parent_key: analytics.reporting
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: null
-  legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
   replaced_by: null
@@ -292,19 +280,6 @@ data_use:
   recipients: null
   legitimate_interest: null
   legitimate_interest_impact_assessment: null
-  is_default: true
-- fides_key: essential.service.security
-  organization_fides_key: default_organization
-  tags: null
-  name: Essential for Security
-  description: Essential to provide security for the product, service, application
-    or system
-  parent_key: essential.service
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: null
-  legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
   replaced_by: null
@@ -387,7 +362,7 @@ data_use:
   version_deprecated: null
   replaced_by: null
   is_default: true
-- fides_key: essential.service.operations.improve
+  fides_key: essential.service.operations.improve
   organization_fides_key: default_organization
   tags: null
   name: Essential for Support Improvement
@@ -418,7 +393,7 @@ data_use:
   version_deprecated: null
   replaced_by: null
   is_default: true
-- fides_key: functional
+  fides_key: functional
   organization_fides_key: default_organization
   tags: null
   name: Functional
@@ -433,7 +408,7 @@ data_use:
   version_deprecated: null
   replaced_by: null
   is_default: true
-- fides_key: functional.storage
+  fides_key: functional.storage
   organization_fides_key: default_organization
   tags: null
   name: Local Data Storage
@@ -445,26 +420,17 @@ data_use:
   recipients: null
   legitimate_interest: null
   legitimate_interest_impact_assessment: null
+- version_added: 2.0.0
+  version_deprecated: null
+  replaced_by: null
   is_default: true
-- fides_key: functional.service
+  fides_key: functional.service
   organization_fides_key: default_organization
   tags: null
   name: Service
   description: Functions relating to provided services, products, applications or
     systems.
   parent_key: functional
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: null
-  legitimate_interest_impact_assessment: null
-  is_default: true
-- fides_key: functional.service.improve
-  organization_fides_key: default_organization
-  tags: null
-  name: Improve Service
-  description: Improves the specific product, service, application or system.
-  parent_key: functional.service
   legal_basis: null
   special_category: null
   recipients: null
@@ -575,30 +541,6 @@ data_use:
   name: Negative Targeting
   description: Enforces rules used to ensure a certain audience or group is not targeted
     by advertising.
-  parent_key: marketing.advertising
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: null
-  legitimate_interest_impact_assessment: null
-  is_default: true
-- fides_key: marketing.advertising.profiling
-  organization_fides_key: default_organization
-  tags: null
-  name: Profiling for Advertising
-  description: Creates audience profiles for the purpose of targeted advertising
-  parent_key: marketing.advertising
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: null
-  legitimate_interest_impact_assessment: null
-  is_default: true
-- fides_key: marketing.advertising.serving
-  organization_fides_key: default_organization
-  tags: null
-  name: Essential for Serving Ads
-  description: Essential to the delivery of advertising and content.
   parent_key: marketing.advertising
   legal_basis: null
   special_category: null
@@ -774,18 +716,6 @@ data_use:
   recipients: null
   legitimate_interest: null
   legitimate_interest_impact_assessment: null
-  is_default: true
-- fides_key: personalize.profiling
-  organization_fides_key: default_organization
-  tags: null
-  name: Personalized Profiling
-  description: Creates profiles for the purpose of serving content.
-  parent_key: personalize
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: null
-  legitimate_interest_impact_assessment: null
 - version_added: 2.0.0
   version_deprecated: null
   replaced_by: null
@@ -793,8 +723,8 @@ data_use:
   fides_key: personalize.profiling
   organization_fides_key: default_organization
   tags: null
-  name: System Personalization
-  description: Personalizes the system.
+  name: Personalized Profiling
+  description: Creates profiles for the purpose of serving content.
   parent_key: personalize
   legal_basis: null
   special_category: null
