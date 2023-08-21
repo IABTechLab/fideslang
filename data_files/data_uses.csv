@@ -1,107 +1,54 @@
-fides_key,is_default,legal_basis,legitimate_interest,legitimate_interest_impact_assessment,name,organization_fides_key,parent_key,recipients,special_category,tags,description
-
-data_use,,,,,Data Use,,,,,,
-
-analytics,True,,,,Analytics,default_organization,data_use,,,,"Provides analytics for activities such as system and advertising performance reporting, insights and fraud detection."
-
-analytics.reporting,True,,,,Analytics for Reporting,default_organization,analytics,,,,Provides analytics for general reporting such as system and advertising performance.
-
-analytics.reporting.ad_performance,True,,,,Analytics for Advertising Performance,default_organization,analytics.reporting,,,,Provides analytics for reporting of advertising performance.
-
-analytics.reporting.content_performance,True,,,,Analytics for Content Performance,default_organization,analytics.reporting,,,,Analytics for reporting on content performance.
-
-analytics.reporting.campaign_insights,True,,,,Analytics for Insights,default_organization,analytics.reporting,,,,Provides analytics for reporting of campaign insights related to advertising and promotion activities.
-
-analytics.reporting.system,True,,,,Analytics for System Activity,default_organization,analytics.reporting,,,,Provides analytics for reporting on system activity.
-
-analytics.reporting.system.performance,True,,,,Analytics for System Performance,default_organization,analytics.reporting.system,,,,Provides analytics for reporting on system performance.
-
-collect,True,,,,Collect,default_organization,data_use,,,,Collects or stores data in order to use it for another purpose which has not yet been expressly defined.
-
-employment,True,,,,Employment,default_organization,data_use,,,,Processes data for the purpose of recruitment or employment and human resources (HR) related activities.
-
-employment.recruitment,True,,,,Employment Recruitment,default_organization,employment,,,,Processes data of prospective employees for the purpose of recruitment.
-
-essential,True,,,,Essential,default_organization,data_use,,,,"Operates the service or product, including legal obligations, support and basic system operations."
-
-essential.fraud_detection,True,,,,Essential Fraud Detection,default_organization,essential,,,,"Detects possible fraud or misuse of the product, service, application or system."
-
-essential.legal_obligation,True,,,,Essential Legal Obligation,default_organization,essential,,,,Provides service to meet a legal or compliance obligation such as consent management.
-
-essential.service,True,,,,Essential for Service,default_organization,essential,,,,"Provides the essential product, service, application or system, without which the product/service would not be possible."
-
-essential.service.authentication,True,,,,Essential Service Authentication,default_organization,essential.service,,,,"Authenticate users to the product, service, application or system."
-
-essential.service.notifications,True,,,,Essential Service Notifications,default_organization,essential.service,,,,"Sends notifications about the product, service, application or system."
-
-essential.service.operations,True,,,,Essential for Operations,default_organization,essential.service,,,,"Essential to ensure the operation of the product, service, application or system."
-
-essential.service.payment_processing,True,,,,Essential for Payment Processing,default_organization,essential.service,,,,"Essential to processes payments for the product, service, application or system."
-
-essential.service.security,True,,,,Essential for Security,default_organization,essential.service,,,,"Essential to provide security for the product, service, application or system"
-
-essential.service.upgrades,True,,,,Essential for Service Upgrades,default_organization,essential.service,,,,Provides timely system upgrade information options.
-
-essential.service.notifications.email,True,,,,Essential Email Service Notifications,default_organization,essential.service.notifications,,,,"Sends email notifications about the product, service, application or system."
-
-essential.service.notifications.sms,True,,,,Essential SMS Service Notifications,default_organization,essential.service.notifications,,,,"Sends SMS notifications about the product, service, application or system."
-
-essential.service.operations.support,True,,,,Essential for Operations Support,default_organization,essential.service.operations,,,,"Provides support for the product, service, application or system."
-
-essential.service.operations.improve,True,,,,Essential for Support Improvement,default_organization,essential.service.operations,,,,"Essential to optimize and improve support for the product, service, application or system."
-
-finance,True,,,,Finance,default_organization,data_use,,,,Enables finance and accounting activities such as audits and tax reporting.
-
-functional,True,,,,Functional,default_organization,data_use,,,,"Used for specific, necessary, and legitimate purposes"
-
-functional.storage,True,,,,Local Data Storage,default_organization,functional,,,,"Stores or accesses information from the device as needed when using a product, service, application, or system"
-
-functional.service,True,,,,Service,default_organization,functional,,,,"Functions relating to provided services, products, applications or systems."
-
-functional.service.improve,True,,,,Improve Service,default_organization,functional.service,,,,"Improves the specific product, service, application or system."
-
-marketing,True,,,,Marketing,default_organization,data_use,,,,"Enables marketing, promotion, advertising and sales activities for the product, service, application or system."
-
-marketing.advertising,True,,,,"Advertising, Marketing or Promotion",default_organization,marketing,,,,"Advertises or promotes the product, service, application or system and associated services."
-
-marketing.communications,True,,,,Marketing Communications,default_organization,marketing,,,,"Uses combined channels to message and market to a customer, user or prospect."
-
-marketing.advertising.first_party,True,,,,First Party Advertising,default_organization,marketing.advertising,,,,Serves advertisements based on first party data collected or derived about the user.
-
-marketing.advertising.frequency_capping,True,,,,Frequency Capping,default_organization,marketing.advertising,,,,Restricts the number of times a specific advertisement is shown to an individual.
-
-marketing.advertising.negative_targeting,True,,,,Negative Targeting,default_organization,marketing.advertising,,,,Enforces rules used to ensure a certain audience or group is not targeted by advertising.
-
-marketing.advertising.profiling,True,,,,Profiling for Advertising,default_organization,marketing.advertising,,,,Creates audience profiles for the purpose of targeted advertising
-
-marketing.advertising.serving,True,,,,Essential for Serving Ads,default_organization,marketing.advertising,,,,Essential to the delivery of advertising and content.
-
-marketing.advertising.third_party,True,,,,Third Party Advertising,default_organization,marketing.advertising,,,,Serves advertisements based on data within the system or joined with data provided by 3rd parties.
-
-marketing.advertising.first_party.contextual,True,,,,First Party Contextual Advertising,default_organization,marketing.advertising.first_party,,,,Serves advertisements based on current content being viewed by the user of the system or service.
-
-marketing.advertising.first_party.targeted,True,,,,First Party Personalized Advertising,default_organization,marketing.advertising.first_party,,,,Targets advertisements based on data collected or derived about the user from use of the system.
-
-marketing.advertising.third_party.targeted,True,,,,Third Party Targeted Advertising,default_organization,marketing.advertising.third_party,,,,Targets advertisements based on data within the system or joined with data provided by 3rd parties.
-
-marketing.communications.email,True,,,,Marketing Email Communications,default_organization,marketing.communications,,,,Sends email marketing communications.
-
-marketing.communications.sms,True,,,,Marketing SMS Communications,default_organization,marketing.communications,,,,Sends SMS marketing communications.
-
-operations,True,,,,Operations,default_organization,data_use,,,,Supports business processes necessary to the organization's operation.
-
-personalize,True,,,,Personalize,default_organization,data_use,,,,"Personalizes the product, service, application or system."
-
-personalize.content,True,,,,Content Personalization,default_organization,personalize,,,,"Personalizes the content of the product, service, application or system."
-
-personalize.profiling,True,,,,Personalized Profiling,default_organization,personalize,,,,Creates profiles for the purpose of serving content.
-
-personalize.system,True,,,,System Personalization,default_organization,personalize,,,,Personalizes the system.
-
-sales,True,,,,Sales,default_organization,data_use,,,,Supports sales activities such as communications and outreach.
-
-third_party_sharing,True,,,,Third Party Sharing,default_organization,data_use,,,,Transfers data to third parties outside of the system or service's scope.
-
-third_party_sharing.legal_obligation,True,,,,Sharing for Legal Obligation,default_organization,third_party_sharing,,,,"Shares data for legal obligations, including contracts, applicable laws or regulations."
-
-train_ai_system,True,,,,Train AI System,default_organization,data_use,,,,Trains an AI system or data model for machine learning.
+fides_key,is_default,legal_basis,legitimate_interest,legitimate_interest_impact_assessment,name,organization_fides_key,parent_key,recipients,replaced_by,special_category,tags,version_added,version_deprecated,description
+data_use,,,,,Data Use,,,,,,,,,
+analytics,True,,,,Analytics,default_organization,data_use,,,,,2.0.0,,"Provides analytics for activities such as system and advertising performance reporting, insights and fraud detection."
+analytics.reporting,True,,,,Analytics for Reporting,default_organization,analytics,,,,,2.0.0,,Provides analytics for general reporting such as system and advertising performance.
+analytics.reporting.ad_performance,True,,,,Analytics for Advertising Performance,default_organization,analytics.reporting,,,,,2.0.0,,Provides analytics for reporting of advertising performance.
+analytics.reporting.content_performance,True,,,,Analytics for Content Performance,default_organization,analytics.reporting,,,,,2.0.0,,Analytics for reporting on content performance.
+analytics.reporting.campaign_insights,True,,,,Analytics for Insights,default_organization,analytics.reporting,,,,,2.0.0,,Provides analytics for reporting of campaign insights related to advertising and promotion activities.
+analytics.reporting.system,True,,,,Analytics for System Activity,default_organization,analytics.reporting,,,,,2.0.0,,Provides analytics for reporting on system activity.
+analytics.reporting.system.performance,True,,,,Analytics for System Performance,default_organization,analytics.reporting.system,,,,,2.0.0,,Provides analytics for reporting on system performance.
+collect,True,,,,Collect,default_organization,data_use,,,,,2.0.0,,Collects or stores data in order to use it for another purpose which has not yet been expressly defined.
+employment,True,,,,Employment,default_organization,data_use,,,,,2.0.0,,Processes data for the purpose of recruitment or employment and human resources (HR) related activities.
+employment.recruitment,True,,,,Employment Recruitment,default_organization,employment,,,,,2.0.0,,Processes data of prospective employees for the purpose of recruitment.
+essential,True,,,,Essential,default_organization,data_use,,,,,2.0.0,,"Operates the service or product, including legal obligations, support and basic system operations."
+essential.fraud_detection,True,,,,Essential Fraud Detection,default_organization,essential,,,,,2.0.0,,"Detects possible fraud or misuse of the product, service, application or system."
+essential.legal_obligation,True,,,,Essential Legal Obligation,default_organization,essential,,,,,2.0.0,,Provides service to meet a legal or compliance obligation such as consent management.
+essential.service,True,,,,Essential for Service,default_organization,essential,,,,,2.0.0,,"Provides the essential product, service, application or system, without which the product/service would not be possible."
+essential.service.authentication,True,,,,Essential Service Authentication,default_organization,essential.service,,,,,2.0.0,,"Authenticate users to the product, service, application or system."
+essential.service.notifications,True,,,,Essential Service Notifications,default_organization,essential.service,,,,,2.0.0,,"Sends notifications about the product, service, application or system."
+essential.service.operations,True,,,,Essential for Operations,default_organization,essential.service,,,,,2.0.0,,"Essential to ensure the operation of the product, service, application or system."
+essential.service.payment_processing,True,,,,Essential for Payment Processing,default_organization,essential.service,,,,,2.0.0,,"Essential to processes payments for the product, service, application or system."
+essential.service.security,True,,,,Essential for Security,default_organization,essential.service,,,,,2.0.0,,"Essential to provide security for the product, service, application or system"
+essential.service.upgrades,True,,,,Essential for Service Upgrades,default_organization,essential.service,,,,,2.0.0,,Provides timely system upgrade information options.
+essential.service.notifications.email,True,,,,Essential Email Service Notifications,default_organization,essential.service.notifications,,,,,2.0.0,,"Sends email notifications about the product, service, application or system."
+essential.service.notifications.sms,True,,,,Essential SMS Service Notifications,default_organization,essential.service.notifications,,,,,2.0.0,,"Sends SMS notifications about the product, service, application or system."
+essential.service.operations.support,True,,,,Essential for Operations Support,default_organization,essential.service.operations,,,,,2.0.0,,"Provides support for the product, service, application or system."
+essential.service.operations.improve,True,,,,Essential for Support Improvement,default_organization,essential.service.operations,,,,,2.0.0,,"Essential to optimize and improve support for the product, service, application or system."
+finance,True,,,,Finance,default_organization,data_use,,,,,2.0.0,,Enables finance and accounting activities such as audits and tax reporting.
+functional,True,,,,Functional,default_organization,data_use,,,,,2.0.0,,"Used for specific, necessary, and legitimate purposes"
+functional.storage,True,,,,Local Data Storage,default_organization,functional,,,,,2.0.0,,"Stores or accesses information from the device as needed when using a product, service, application, or system"
+functional.service,True,,,,Service,default_organization,functional,,,,,2.0.0,,"Functions relating to provided services, products, applications or systems."
+functional.service.improve,True,,,,Improve Service,default_organization,functional.service,,,,,2.0.0,,"Improves the specific product, service, application or system."
+marketing,True,,,,Marketing,default_organization,data_use,,,,,2.0.0,,"Enables marketing, promotion, advertising and sales activities for the product, service, application or system."
+marketing.advertising,True,,,,"Advertising, Marketing or Promotion",default_organization,marketing,,,,,2.0.0,,"Advertises or promotes the product, service, application or system and associated services."
+marketing.communications,True,,,,Marketing Communications,default_organization,marketing,,,,,2.0.0,,"Uses combined channels to message and market to a customer, user or prospect."
+marketing.advertising.first_party,True,,,,First Party Advertising,default_organization,marketing.advertising,,,,,2.0.0,,Serves advertisements based on first party data collected or derived about the user.
+marketing.advertising.frequency_capping,True,,,,Frequency Capping,default_organization,marketing.advertising,,,,,2.0.0,,Restricts the number of times a specific advertisement is shown to an individual.
+marketing.advertising.negative_targeting,True,,,,Negative Targeting,default_organization,marketing.advertising,,,,,2.0.0,,Enforces rules used to ensure a certain audience or group is not targeted by advertising.
+marketing.advertising.profiling,True,,,,Profiling for Advertising,default_organization,marketing.advertising,,,,,2.0.0,,Creates audience profiles for the purpose of targeted advertising
+marketing.advertising.serving,True,,,,Essential for Serving Ads,default_organization,marketing.advertising,,,,,2.0.0,,Essential to the delivery of advertising and content.
+marketing.advertising.third_party,True,,,,Third Party Advertising,default_organization,marketing.advertising,,,,,2.0.0,,Serves advertisements based on data within the system or joined with data provided by 3rd parties.
+marketing.advertising.first_party.contextual,True,,,,First Party Contextual Advertising,default_organization,marketing.advertising.first_party,,,,,2.0.0,,Serves advertisements based on current content being viewed by the user of the system or service.
+marketing.advertising.first_party.targeted,True,,,,First Party Personalized Advertising,default_organization,marketing.advertising.first_party,,,,,2.0.0,,Targets advertisements based on data collected or derived about the user from use of the system.
+marketing.advertising.third_party.targeted,True,,,,Third Party Targeted Advertising,default_organization,marketing.advertising.third_party,,,,,2.0.0,,Targets advertisements based on data within the system or joined with data provided by 3rd parties.
+marketing.communications.email,True,,,,Marketing Email Communications,default_organization,marketing.communications,,,,,2.0.0,,Sends email marketing communications.
+marketing.communications.sms,True,,,,Marketing SMS Communications,default_organization,marketing.communications,,,,,2.0.0,,Sends SMS marketing communications.
+operations,True,,,,Operations,default_organization,data_use,,,,,2.0.0,,Supports business processes necessary to the organization's operation.
+personalize,True,,,,Personalize,default_organization,data_use,,,,,2.0.0,,"Personalizes the product, service, application or system."
+personalize.content,True,,,,Content Personalization,default_organization,personalize,,,,,2.0.0,,"Personalizes the content of the product, service, application or system."
+personalize.profiling,True,,,,Personalized Profiling,default_organization,personalize,,,,,2.0.0,,Creates profiles for the purpose of serving content.
+personalize.system,True,,,,System Personalization,default_organization,personalize,,,,,2.0.0,,Personalizes the system.
+sales,True,,,,Sales,default_organization,data_use,,,,,2.0.0,,Supports sales activities such as communications and outreach.
+third_party_sharing,True,,,,Third Party Sharing,default_organization,data_use,,,,,2.0.0,,Transfers data to third parties outside of the system or service's scope.
+third_party_sharing.legal_obligation,True,,,,Sharing for Legal Obligation,default_organization,third_party_sharing,,,,,2.0.0,,"Shares data for legal obligations, including contracts, applicable laws or regulations."
+train_ai_system,True,,,,Train AI System,default_organization,data_use,,,,,2.0.0,,Trains an AI system or data model for machine learning.
