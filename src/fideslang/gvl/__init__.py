@@ -1,7 +1,7 @@
 import os
 from json import load
 from os.path import dirname, join
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 from .models import MappedPurpose, Purpose, Feature
 
@@ -82,7 +82,7 @@ def purpose_to_data_use(purpose_id: int, special_purpose: bool = False) -> List[
     return purpose_map[purpose_id].data_uses
 
 
-def data_use_to_purpose(data_use: str) -> Purpose:
+def data_use_to_purpose(data_use: str) -> Optional[Purpose]:
     """
     Utility function to return the GVL purpose (or special purpose) associated
     with the given fideslang data use.
@@ -92,9 +92,20 @@ def data_use_to_purpose(data_use: str) -> Purpose:
     return MAPPED_PURPOSES_BY_DATA_USE.get(data_use, None)
 
 
-def feature_name_to_feature(feature_name: str) -> Feature:
+def feature_name_to_feature(feature_name: str) -> Optional[Feature]:
     """Utility function to return a GVL feature (or special feature) given the feature's name"""
-    return FEATURES_BY_NAME[feature_name]
+    return FEATURES_BY_NAME.get(feature_name, None)
+
+
+def feature_id_to_feature_name(
+    feature_id: int, special_feature: bool = False
+) -> Optional[str]:
+    """Utility function to return a GVL feature/special feature name given the feature/special feature's id"""
+    feature_map = GVL_SPECIAL_FEATURES if special_feature else GVL_FEATURES
+    feature = feature_map.get(feature_id, None)
+    if not feature:
+        return
+    return feature.name
 
 
 _load_data()

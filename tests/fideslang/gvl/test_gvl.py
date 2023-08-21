@@ -6,6 +6,7 @@ from fideslang.gvl import (
     GVL_SPECIAL_FEATURES,
     Feature,
     feature_name_to_feature,
+    feature_id_to_feature_name,
 )
 
 
@@ -51,3 +52,17 @@ def test_features():
 def test_feature_name_to_feature():
     assert feature_name_to_feature("Link different devices").id == 2
     assert feature_name_to_feature("Use precise geolocation data").id == 1
+    assert feature_name_to_feature("Name doesn't exist") is None
+
+
+def test_feature_id_to_feature_name():
+    assert (
+        feature_id_to_feature_name(feature_id=1)
+        == "Match and combine offline data sources"
+    )
+    assert (
+        feature_id_to_feature_name(feature_id=1, special_feature=True)
+        == "Use precise geolocation data"
+    )
+
+    assert feature_id_to_feature_name(feature_id=1001) is None
