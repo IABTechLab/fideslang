@@ -91,14 +91,18 @@ def no_self_reference(value: FidesKey, values: Dict) -> FidesKey:
 
 
 def deprecated_version_later_than_added(
-    version_deprecated: FidesVersion, values: Dict
-) -> FidesVersion:
+    version_deprecated: Optional[FidesVersion], values: Dict
+) -> Optional[FidesVersion]:
     """
     Check to make sure that the deprecated version is later than the added version.
 
     This will also catch errors where the deprecated version is defined but the added
     version is empty.
     """
+
+    if not version_deprecated:
+        return None
+
     if version_deprecated < values.get("version_added", Version("0")):
         raise FidesValidationError(
             "Deprecated version number can't be earlier than version added!"

@@ -91,11 +91,11 @@ class DefaultModel(BaseModel):
     A model meant to be inherited by versioned parts of the Default Taxonomy.
     """
 
-    version_added: Optional[FidesVersion] = Field(
+    version_added: Optional[str] = Field(
         default=None,
         description="The version of Fideslang in which this label was added.",
     )
-    version_deprecated: Optional[FidesVersion] = Field(
+    version_deprecated: Optional[str] = Field(
         default=None,
         description="The version of Fideslang in which this label was deprecated.",
     )
@@ -113,6 +113,34 @@ class DefaultModel(BaseModel):
         deprecated_version_later_than_added_validator
     )
     _is_deprecated_if_replaced: classmethod = is_deprecated_if_replaced_validator
+
+    @validator("version_added")
+    @classmethod
+    def validate_verion_added(
+        cls, version_added: Optional[str], values: Dict
+    ) -> Optional[str]:
+        """
+        Validate that the `version_added` field is a proper FidesVersion
+        """
+        if not version_added:
+            return None
+
+        FidesVersion.validate(version_added)
+        return version_added
+
+    @validator("version_deprecated")
+    @classmethod
+    def validate_version_deprecated(
+        cls, version_deprecated: Optional[str], values: Dict
+    ) -> Optional[str]:
+        """
+        Validate that the `version_deprecated` is a proper FidesVersion
+        """
+        if not version_deprecated:
+            return None
+
+        FidesVersion.validate(version_deprecated)
+        return version_deprecated
 
 
 class DataResponsibilityTitle(str, Enum):

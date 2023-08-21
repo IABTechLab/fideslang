@@ -21,6 +21,10 @@ class TestDefaultTaxonomy:
         assert len(getattr(DEFAULT_TAXONOMY, data_type)) == expected_count
 
     @pytest.mark.parametrize("data_type", taxonomy_counts.keys())
+    def test_are_set_as_default(self, data_type: str) -> None:
+        assert all([x.is_default for x in getattr(DEFAULT_TAXONOMY, data_type)])
+
+    @pytest.mark.parametrize("data_type", taxonomy_counts.keys())
     def test_key_uniqueness(self, data_type: str) -> None:
         keys = [x.fides_key for x in getattr(DEFAULT_TAXONOMY, data_type)]
         duplicate_keys = {
