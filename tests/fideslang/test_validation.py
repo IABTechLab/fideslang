@@ -86,7 +86,7 @@ class TestVersioning:
 
     @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
     def test_built_from_dict_with_empty_versions(self, TaxonomyClass) -> None:
-        """Item can't be deprecated in a version earlier than it was added."""
+        """Try building from a dictionary with explicit None values."""
         TaxonomyClass.parse_obj(
             {
                 "organization_fides_key": 1,
@@ -102,7 +102,7 @@ class TestVersioning:
 
     @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
     def test_built_with_empty_versions(self, TaxonomyClass) -> None:
-        """Item can't be deprecated in a version earlier than it was added."""
+        """Try building directly with explicit None values."""
         TaxonomyClass(
             organization_fides_key=1,
             fides_key="user",
