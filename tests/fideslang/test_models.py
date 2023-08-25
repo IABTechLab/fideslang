@@ -402,7 +402,7 @@ class TestSystem:
             exempt_from_privacy_regulations=False,
             reason_for_exemption=None,
             uses_profiling=True,
-            legal_basis_for_profiling="Explicit consent",
+            legal_basis_for_profiling=["Explicit consent", "Contract"],
             does_international_transfers=True,
             legal_basis_for_transfers=["Adequacy Decision", "SCCs"],
             requires_data_protection_assessments=True,

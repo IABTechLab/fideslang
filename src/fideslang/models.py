@@ -1173,8 +1173,9 @@ class System(FidesModel):
         default=False,
         description="Whether the vendor uses data to profile a consumer in a way that has a legal effect.",
     )
-    legal_basis_for_profiling: Optional[LegalBasisForProfilingEnum] = Field(
-        description="The legal basis for performing profiling that has a legal effect.",
+    legal_basis_for_profiling: List[LegalBasisForProfilingEnum] = Field(
+        default_factory=list,
+        description="The legal basis (or bases) for performing profiling that has a legal effect.",
     )
     does_international_transfers: bool = Field(
         default=False,
