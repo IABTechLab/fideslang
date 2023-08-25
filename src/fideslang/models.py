@@ -227,9 +227,9 @@ class LegalBasisForProfilingEnum(str, Enum):
 class LegalBasisForTransfersEnum(str, Enum):
     """The model for describing the legal basis under which data is transferred"""
 
-    ADEQUACY_DECISION = "Adequacy decision"
-    STANDARD_CONTRACTUAL_CLAUSES = "Standard contractual clauses"
-    BINDING_CORPORATE_RULES = "Binding corporate rules"
+    ADEQUACY_DECISION = "Adequacy Decision"
+    SCCS = "SCCs"
+    BCRS = "BCRs"
     OTHER = "Other"
 
 
@@ -1173,15 +1173,17 @@ class System(FidesModel):
         default=False,
         description="Whether the vendor uses data to profile a consumer in a way that has a legal effect.",
     )
-    legal_basis_for_profiling: Optional[LegalBasisForProfilingEnum] = Field(
-        description="The legal basis for performing profiling that has a legal effect.",
+    legal_basis_for_profiling: List[LegalBasisForProfilingEnum] = Field(
+        default_factory=list,
+        description="The legal basis (or bases) for performing profiling that has a legal effect.",
     )
     does_international_transfers: bool = Field(
         default=False,
         description="Whether this system transfers data to other countries or international organizations.",
     )
-    legal_basis_for_transfers: Optional[LegalBasisForTransfersEnum] = Field(
-        description="The legal basis under which the data is transferred.",
+    legal_basis_for_transfers: List[LegalBasisForTransfersEnum] = Field(
+        default_factory=list,
+        description="The legal basis (or bases) under which the data is transferred.",
     )
     requires_data_protection_assessments: bool = Field(
         default=False,
