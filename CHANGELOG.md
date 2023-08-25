@@ -16,6 +16,10 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/2.0.1...main)
 
+### Changed
+
+- Update `system.legal_basis_for_profiling` and `system.legal_basis_for_transfers` fields [#156](https://github.com/ethyca/fideslang/pull/156)
+
 ## [2.0.1](https://github.com/ethyca/fideslang/compare/2.0.0...2.0.1)
 
 ### Changed
