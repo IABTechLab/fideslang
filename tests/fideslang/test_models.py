@@ -404,7 +404,7 @@ class TestSystem:
             uses_profiling=True,
             legal_basis_for_profiling="Explicit consent",
             does_international_transfers=True,
-            legal_basis_for_transfers="Standard contractual clauses",
+            legal_basis_for_transfers=["Adequacy Decision", "SCCs"],
             requires_data_protection_assessments=True,
             dpa_location="www.example.com/dpa_location",
             privacy_policy="https://vdx.tv/privacy/",
