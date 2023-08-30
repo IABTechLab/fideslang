@@ -14,7 +14,13 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/1.4.4...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/1.4.5...main)
+
+## [1.4.5](https://github.com/ethyca/fideslang/compare/1.4.4...1.4.5)
+
+### Changed
+
+- Update `system.legal_basis_for_profiling` and `system.legal_basis_for_transfers` fields [#156](https://github.com/ethyca/fideslang/pull/156)
 
 ## [1.4.4](https://github.com/ethyca/fideslang/compare/1.4.3...1.4.4)
 
