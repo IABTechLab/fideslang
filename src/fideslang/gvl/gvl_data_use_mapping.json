@@ -113,7 +113,7 @@
     "specialPurposes": {
         "1": {
             "id": 1,
-            "name": "Ensure security, prevent and detect fraud, and fix errors\n",
+            "name": "Ensure security, prevent and detect fraud, and fix errors",
             "data_uses": ["essential.fraud_detection", "essential.service.security"],
             "description": "Your data can be used to monitor for and prevent unusual and possibly fraudulent activity (for example, regarding advertising, ad clicks by bots), and ensure systems and processes work properly and securely. It can also be used to correct any problems you, the publisher or the advertiser may encounter in the delivery of content and ads and in your interaction with them.",
             "illustrations": [
