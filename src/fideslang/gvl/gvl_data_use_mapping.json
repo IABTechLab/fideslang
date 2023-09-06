@@ -92,7 +92,7 @@
         "10": {
             "id": 10,
             "name": "Develop and improve services",
-            "data_uses": ["functional.improve_service"],
+            "data_uses": ["functional.service.improve"],
             "description": "Information about your activity on this service, such as your interaction with ads or content, can be very helpful to improve products and services and to build new products and services based on user interactions, the type of audience, etc. This specific purpose does not include the development or improvement of user profiles and identifiers.",
             "illustrations": [
                 "A technology platform working with a social media provider notices a growth in mobile app users, and sees based on their profiles that many of them are connecting through mobile connections. It uses a new technology to deliver ads that are formatted for mobile devices and that are low-bandwidth, to improve their performance.",
@@ -123,7 +123,7 @@
         "2": {
             "id": 2,
             "name": "Deliver and present advertising and content",
-            "data_uses": ["marketing.advertising.ad_serving"],
+            "data_uses": ["marketing.advertising.serving"],
             "description": "Certain information (like an IP address or device capabilities) is used to ensure the technical compatibility of the content or advertising, and to facilitate the transmission of the content or ad to your device.",
             "illustrations": [
                 "Clicking on a link in an article might normally send you to another page or part of the article. To achieve this, 1°) your browser sends a request to a server linked to the website, 2°) the server answers back (“here is the article you asked for”), using technical information automatically included in the request sent by your device, to properly display the information / images that are part of the article you asked for. Technically, such exchange of information is necessary to deliver the content that appears on your screen."
