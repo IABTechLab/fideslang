@@ -597,6 +597,7 @@ class CollectionMeta(BaseModel):
     """Collection-level specific annotations used for query traversal"""
 
     after: Optional[List[FidesCollectionKey]]
+    skip_processing: Optional[bool] = False
 
 
 class DatasetCollection(FidesopsMetaBackwardsCompat):

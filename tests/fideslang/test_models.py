@@ -540,6 +540,35 @@ class TestDataset:
                 }
             )
 
+    def test_dataset_collection_skip_processing(self):
+        collection = DatasetCollection(
+            name="dataset_collection_1",
+            data_qualifier="data_collection_data_qualifier_1",
+            data_categories=["dataset_collection_data_category_1"],
+            fields=[],
+        )
+        assert not collection.fides_meta
+
+        collection = DatasetCollection(
+            name="dataset_collection_1",
+            data_qualifier="data_collection_data_qualifier_1",
+            data_categories=["dataset_collection_data_category_1"],
+            fides_meta={"after": ["third_dataset.blue_collection"]},
+            fields=[],
+        )
+
+        assert collection.fides_meta.skip_processing is False
+
+        collection = DatasetCollection(
+            name="dataset_collection_1",
+            data_qualifier="data_collection_data_qualifier_1",
+            data_categories=["dataset_collection_data_category_1"],
+            fides_meta={"skip_processing": True},
+            fields=[],
+        )
+
+        assert collection.fides_meta.skip_processing
+
 
 class TestDataUse:
     def test_minimal_data_use(self):
