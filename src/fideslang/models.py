@@ -229,7 +229,7 @@ class LegalBasisForTransfersEnum(str, Enum):
     The model for describing the legal basis under which data is transferred
 
     We currently do _not_ enforce this enum on the `legal_basis_for_transfers`
-    field, because the set of allowable values seems to be changing frequently 
+    field, because the set of allowable values seems to be changing frequently
     and without clear notice in upstream, public data sources.
     """
 
