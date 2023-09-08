@@ -230,6 +230,7 @@ class LegalBasisForTransfersEnum(str, Enum):
     ADEQUACY_DECISION = "Adequacy Decision"
     SCCS = "SCCs"
     BCRS = "BCRs"
+    SUPPLEMENTARY_MEASURES = "Supplementary Measures"
     OTHER = "Other"
 
 
@@ -1181,7 +1182,7 @@ class System(FidesModel):
         default=False,
         description="Whether this system transfers data to other countries or international organizations.",
     )
-    legal_basis_for_transfers: List[LegalBasisForTransfersEnum] = Field(
+    legal_basis_for_transfers: List[str] = Field(
         default_factory=list,
         description="The legal basis (or bases) under which the data is transferred.",
     )
