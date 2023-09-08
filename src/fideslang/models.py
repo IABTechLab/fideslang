@@ -161,11 +161,18 @@ class LegalBasisForProfilingEnum(str, Enum):
 
 
 class LegalBasisForTransfersEnum(str, Enum):
-    """The model for describing the legal basis under which data is transferred"""
+    """
+    The model for describing the legal basis under which data is transferred
+
+    We currently do _not_ enforce this enum on the `legal_basis_for_transfers`
+    field, because the set of allowable values seems to be changing frequently
+    and without clear notice in upstream, public data sources.
+    """
 
     ADEQUACY_DECISION = "Adequacy Decision"
     SCCS = "SCCs"
     BCRS = "BCRs"
+    SUPPLEMENTARY_MEASURES = "Supplementary Measures"
     OTHER = "Other"
 
 
@@ -1122,7 +1129,7 @@ class System(FidesModel):
         default=False,
         description="Whether this system transfers data to other countries or international organizations.",
     )
-    legal_basis_for_transfers: List[LegalBasisForTransfersEnum] = Field(
+    legal_basis_for_transfers: List[str] = Field(
         default_factory=list,
         description="The legal basis (or bases) under which the data is transferred.",
     )
