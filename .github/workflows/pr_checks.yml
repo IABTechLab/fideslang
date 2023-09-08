@@ -94,7 +94,7 @@ jobs:
     strategy:
       matrix:
         python_version: ["3.8", "3.9", "3.10", "3.11"]
-        pydantic_version: ["1.8.2", "1.9.2", "1.10.9"]
+        pydantic_version: ["1.8.2", "1.9.2", "1.10.9", "2.3.0"]
         pyyaml_version: ["5.4.1", "6.0"]
     runs-on: ubuntu-latest
     continue-on-error: true
