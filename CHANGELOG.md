@@ -20,7 +20,7 @@ The types of changes are:
 
 ### Changed
 
-- Relax `system.legal_basis_for_transfers` field to be any string [#142](https://github.com/ethyca/fideslang/pull/162)
+- Relax `system.legal_basis_for_transfers` field to be any string [#162](https://github.com/ethyca/fideslang/pull/162)
 
 
 ## [1.4.5](https://github.com/ethyca/fideslang/compare/1.4.4...1.4.5)
