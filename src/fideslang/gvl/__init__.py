@@ -31,7 +31,7 @@ FEATURES_BY_NAME: Dict[str, Feature] = {}
 MAPPED_PURPOSES_BY_DATA_USE: Dict[str, MappedPurpose] = {}
 
 
-def _load_data():
+def _load_data() -> None:
     with open(
         os.path.join(os.curdir, PURPOSE_MAPPING_FILE), encoding="utf-8"
     ) as mapping_file:
@@ -104,7 +104,7 @@ def feature_id_to_feature_name(
     feature_map = GVL_SPECIAL_FEATURES if special_feature else GVL_FEATURES
     feature = feature_map.get(feature_id, None)
     if not feature:
-        return
+        return None
     return feature.name
 
 
