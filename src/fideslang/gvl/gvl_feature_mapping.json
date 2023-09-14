@@ -1,0 +1,32 @@
+{
+    "features": {
+        "1": {
+            "id": 1,
+            "name": "Match and combine data from other data sources",
+            "description": "Information about your activity on this service may be matched and combined with other information relating to you and originating from various sources (for instance your activity on a separate online service, your use of a loyalty card in-store, or your answers to a survey), in support of the purposes explained in this notice."
+        },
+        "2": {
+            "id": 2,
+            "name": "Link different devices",
+            "description": "In support of the purposes explained in this notice, your device might be considered as likely linked to other devices that belong to you or your household (for instance because you are logged in to the same service on both your phone and your computer, or because you may use the same Internet connection on both devices)."
+        },
+        "3": {
+            "id": 3,
+            "name": "Identify devices based on information transmitted automatically",
+            "description": "Your device might be distinguished from other devices based on information it automatically sends when accessing the Internet (for instance, the IP address of your Internet connection or the type of browser you are using) in support of the purposes exposed in this notice."
+        }
+    },
+    "specialFeatures": {
+        "1": {
+            "id": 1,
+            "name": "Use precise geolocation data",
+            "description": "With your acceptance, your precise location (within a radius of less than 500 metres) may be used in support of the purposes explained in this notice."
+        },
+        "2": {
+            "id": 2,
+            "name": "Actively scan device characteristics for identification",
+            "description": "With your acceptance, certain characteristics specific to your device might be requested and used to distinguish it from other devices (such as the installed fonts or plugins, the resolution of your screen) in support of the purposes explained in this notice."
+        }
+    }
+}
+

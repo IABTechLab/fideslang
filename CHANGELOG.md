@@ -16,6 +16,9 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/2.0.4...main)
 
+### Added 
+
+- Added GVL mappings and utility functions [#167](https://github.com/ethyca/fideslang/pull/167)
 
 
 ## [2.0.4](https://github.com/ethyca/fideslang/compare/2.0.3...2.0.4)
