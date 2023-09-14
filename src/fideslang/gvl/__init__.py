@@ -1,9 +1,9 @@
 import os
 from json import load
 from os.path import dirname, join
-from typing import List, Dict, Optional
+from typing import Dict, List, Optional
 
-from .models import MappedPurpose, Purpose, Feature
+from .models import Feature, MappedPurpose, Purpose
 
 PURPOSE_MAPPING_FILE = join(
     dirname(__file__),

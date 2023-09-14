@@ -2,30 +2,30 @@
     "features": {
         "1": {
             "id": 1,
-            "name": "Match and combine offline data sources",
-            "description": "Data from offline data sources can be combined with your online activity in support of one or more purposes"
+            "name": "Match and combine data from other data sources",
+            "description": "Information about your activity on this service may be matched and combined with other information relating to you and originating from various sources (for instance your activity on a separate online service, your use of a loyalty card in-store, or your answers to a survey), in support of the purposes explained in this notice."
         },
         "2": {
             "id": 2,
             "name": "Link different devices",
-            "description": "Different devices can be determined as belonging to you or your household in support of one or more of purposes."
+            "description": "In support of the purposes explained in this notice, your device might be considered as likely linked to other devices that belong to you or your household (for instance because you are logged in to the same service on both your phone and your computer, or because you may use the same Internet connection on both devices)."
         },
         "3": {
             "id": 3,
-            "name": "Receive and use automatically-sent device characteristics for identification",
-            "description": "Your device might be distinguished from other devices based on information it automatically sends, such as IP address or browser type."
+            "name": "Identify devices based on information transmitted automatically",
+            "description": "Your device might be distinguished from other devices based on information it automatically sends when accessing the Internet (for instance, the IP address of your Internet connection or the type of browser you are using) in support of the purposes exposed in this notice."
         }
     },
     "specialFeatures": {
         "1": {
             "id": 1,
             "name": "Use precise geolocation data",
-            "description": "Your precise geolocation data can be used in support of one or more purposes. This means your location can be accurate to within several meters."
+            "description": "With your acceptance, your precise location (within a radius of less than 500 metres) may be used in support of the purposes explained in this notice."
         },
         "2": {
             "id": 2,
             "name": "Actively scan device characteristics for identification",
-            "description": "Your device can be identified based on a scan of your device's unique combination of characteristics."
+            "description": "With your acceptance, certain characteristics specific to your device might be requested and used to distinguish it from other devices (such as the installed fonts or plugins, the resolution of your screen) in support of the purposes explained in this notice."
         }
     }
 }

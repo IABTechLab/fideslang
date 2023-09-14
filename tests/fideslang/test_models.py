@@ -378,7 +378,7 @@ class TestSystem:
                     egress=["test_system_2"],
                     ingress=["test_system_3"],
                     features=[
-                        "Match and combine offline data sources",
+                        "Match and combine data from other data sources",
                         "Link different devices",
                         "Receive and use automatically-sent device characteristics for identification",
                     ],

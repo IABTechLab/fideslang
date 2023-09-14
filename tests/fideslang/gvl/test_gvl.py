@@ -43,7 +43,7 @@ def test_purpose_to_data_use():
 def test_features():
     """Add a sanity check for features and special features parsing"""
     assert isinstance(GVL_FEATURES[1], Feature)
-    assert GVL_FEATURES[1].name == "Match and combine offline data sources"
+    assert GVL_FEATURES[1].name == "Match and combine data from other data sources"
 
     assert isinstance(GVL_SPECIAL_FEATURES[1], Feature)
     assert GVL_SPECIAL_FEATURES[1].name == "Use precise geolocation data"
@@ -58,7 +58,7 @@ def test_feature_name_to_feature():
 def test_feature_id_to_feature_name():
     assert (
         feature_id_to_feature_name(feature_id=1)
-        == "Match and combine offline data sources"
+        == "Match and combine data from other data sources"
     )
     assert (
         feature_id_to_feature_name(feature_id=1, special_feature=True)
