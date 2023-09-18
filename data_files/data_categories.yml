@@ -47,7 +47,7 @@ data_category:
   fides_key: user.account
   organization_fides_key: default_organization
   tags: null
-  name: Account Information.
+  name: Account Information
   description: Account creation or registration information.
   parent_key: user
 - version_added: 2.0.0
@@ -307,7 +307,7 @@ data_category:
   fides_key: user.authorization.credentials
   organization_fides_key: default_organization
   tags: null
-  name: Account password.
+  name: Account password
   description: Authentication credentials to a system.
   parent_key: user.authorization
 - version_added: 2.0.0

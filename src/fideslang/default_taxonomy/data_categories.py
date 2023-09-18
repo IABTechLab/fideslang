@@ -16,7 +16,7 @@ DEFAULT_DATA_CATEGORIES = [
     # user.account
     default_category_factory(
         fides_key="user.account",
-        name="Account Information.",
+        name="Account Information",
         description="Account creation or registration information.",
         parent_key="user",
     ),
@@ -37,13 +37,13 @@ DEFAULT_DATA_CATEGORIES = [
     ######################
     default_category_factory(
         fides_key="user.authorization",
-        name="Authorization Information.",
+        name="Authorization Information",
         description="Scope of permissions and access to a system.",
         parent_key="user",
     ),
     default_category_factory(
         fides_key="user.authorization.credentials",
-        name="Account password.",
+        name="Account password",
         description="Authentication credentials to a system.",
         parent_key="user.authorization",
     ),
