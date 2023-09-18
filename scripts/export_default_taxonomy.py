@@ -30,16 +30,6 @@ def export_yaml() -> None:
         print(f"> Writing YAML to {output_filename}")
         resources = [x.dict() for x in getattr(DEFAULT_TAXONOMY, resource_type)]
 
-        # Clean up specific data types
-
-        resources = [
-            {
-                key: str(value) if isinstance(value, Version) else value
-                for key, value in resource.items()
-            }
-            for resource in resources
-        ]
-
         write_manifest(
             output_filename,
             manifest=resources,

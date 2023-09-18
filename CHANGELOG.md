@@ -14,7 +14,42 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/2.0.0...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/2.1.0...main)
+
+
+## [2.1.0](https://github.com/ethyca/fideslang/compare/2.0.4...2.1.0)
+
+### Added 
+
+- Added GVL mappings and utility functions [#167](https://github.com/ethyca/fideslang/pull/167)
+
+
+## [2.0.4](https://github.com/ethyca/fideslang/compare/2.0.3...2.0.4)
+
+
+### Changed
+
+- Add Collection > Fides Meta > Skip Processing Flag to skip collections in DSR processing [#165](https://github.com/ethyca/fideslang/pull/165)
+
+
+## [2.0.3](https://github.com/ethyca/fideslang/compare/2.0.2...2.0.3)
+
+### Changed
+
+- Relax system legal basis for transfer fields [#162](https://github.com/ethyca/fideslang/pull/162)
+
+
+## [2.0.2](https://github.com/ethyca/fideslang/compare/2.0.1...2.0.2)
+
+### Changed
+
+- Update `system.legal_basis_for_profiling` and `system.legal_basis_for_transfers` fields [#156](https://github.com/ethyca/fideslang/pull/156)
+
+## [2.0.1](https://github.com/ethyca/fideslang/compare/2.0.0...2.0.1)
+
+### Changed
+
+- Fix validation around the new FidesVersion type [#151](https://github.com/ethyca/fideslang/pull/151)
 
 ### Fixed
 
@@ -26,6 +61,20 @@ The types of changes are:
 
 - Updated the Data Categories and Data Uses to support GVL [#144](https://github.com/ethyca/fideslang/pull/144)
 - Add version metadata to the default taxonomy items [#147](https://github.com/ethyca/fideslang/pull/147)
+
+
+## [1.4.6 (Hotfix)](https://github.com/ethyca/fideslang/compare/1.4.5...1.4.6)
+
+### Changed
+
+- Relax system legal basis for transfer fields [#162](https://github.com/ethyca/fideslang/pull/162)
+
+
+## [1.4.5 (Hotfix)](https://github.com/ethyca/fideslang/compare/1.4.4...1.4.5)
+
+### Changed
+
+- Update `system.legal_basis_for_profiling` and `system.legal_basis_for_transfers` fields [#156](https://github.com/ethyca/fideslang/pull/156)
 
 ## [1.4.4](https://github.com/ethyca/fideslang/compare/1.4.3...1.4.4)
 

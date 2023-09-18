@@ -85,6 +85,36 @@ class TestVersioning:
             )
 
     @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
+    def test_built_from_dict_with_empty_versions(self, TaxonomyClass) -> None:
+        """Try building from a dictionary with explicit None values."""
+        TaxonomyClass.parse_obj(
+            {
+                "organization_fides_key": 1,
+                "fides_key": "user",
+                "name": "Custom Test Data",
+                "description": "Custom Test Data Category",
+                "version_deprecated": None,
+                "version_added": None,
+                "replaced_by": None,
+                "is_default": False,
+            }
+        )
+
+    @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
+    def test_built_with_empty_versions(self, TaxonomyClass) -> None:
+        """Try building directly with explicit None values."""
+        TaxonomyClass(
+            organization_fides_key=1,
+            fides_key="user",
+            name="Custom Test Data",
+            description="Custom Test Data Category",
+            version_deprecated=None,
+            version_added=None,
+            replaced_by=None,
+            is_default=False,
+        )
+
+    @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
     def test_deprecated_not_added(self, TaxonomyClass):
         """Can't be deprecated without being added in an earlier version."""
         with pytest.raises(ValidationError):

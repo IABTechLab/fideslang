@@ -91,11 +91,11 @@ class DefaultModel(BaseModel):
     A model meant to be inherited by versioned parts of the Default Taxonomy.
     """
 
-    version_added: Optional[FidesVersion] = Field(
+    version_added: Optional[str] = Field(
         default=None,
         description="The version of Fideslang in which this label was added.",
     )
-    version_deprecated: Optional[FidesVersion] = Field(
+    version_deprecated: Optional[str] = Field(
         default=None,
         description="The version of Fideslang in which this label was deprecated.",
     )
@@ -113,6 +113,34 @@ class DefaultModel(BaseModel):
         deprecated_version_later_than_added_validator
     )
     _is_deprecated_if_replaced: classmethod = is_deprecated_if_replaced_validator
+
+    @validator("version_added")
+    @classmethod
+    def validate_verion_added(
+        cls, version_added: Optional[str], values: Dict
+    ) -> Optional[str]:
+        """
+        Validate that the `version_added` field is a proper FidesVersion
+        """
+        if not version_added:
+            return None
+
+        FidesVersion.validate(version_added)
+        return version_added
+
+    @validator("version_deprecated")
+    @classmethod
+    def validate_version_deprecated(
+        cls, version_deprecated: Optional[str], values: Dict
+    ) -> Optional[str]:
+        """
+        Validate that the `version_deprecated` is a proper FidesVersion
+        """
+        if not version_deprecated:
+            return None
+
+        FidesVersion.validate(version_deprecated)
+        return version_deprecated
 
 
 class DataResponsibilityTitle(str, Enum):
@@ -197,11 +225,18 @@ class LegalBasisForProfilingEnum(str, Enum):
 
 
 class LegalBasisForTransfersEnum(str, Enum):
-    """The model for describing the legal basis under which data is transferred"""
+    """
+    The model for describing the legal basis under which data is transferred
 
-    ADEQUACY_DECISION = "Adequacy decision"
-    STANDARD_CONTRACTUAL_CLAUSES = "Standard contractual clauses"
-    BINDING_CORPORATE_RULES = "Binding corporate rules"
+    We currently do _not_ enforce this enum on the `legal_basis_for_transfers`
+    field, because the set of allowable values seems to be changing frequently
+    and without clear notice in upstream, public data sources.
+    """
+
+    ADEQUACY_DECISION = "Adequacy Decision"
+    SCCS = "SCCs"
+    BCRS = "BCRs"
+    SUPPLEMENTARY_MEASURES = "Supplementary Measures"
     OTHER = "Other"
 
 
@@ -569,6 +604,7 @@ class CollectionMeta(BaseModel):
     """Collection-level specific annotations used for query traversal"""
 
     after: Optional[List[FidesCollectionKey]]
+    skip_processing: Optional[bool] = False
 
 
 class DatasetCollection(FidesopsMetaBackwardsCompat):
@@ -1145,15 +1181,17 @@ class System(FidesModel):
         default=False,
         description="Whether the vendor uses data to profile a consumer in a way that has a legal effect.",
     )
-    legal_basis_for_profiling: Optional[LegalBasisForProfilingEnum] = Field(
-        description="The legal basis for performing profiling that has a legal effect.",
+    legal_basis_for_profiling: List[LegalBasisForProfilingEnum] = Field(
+        default_factory=list,
+        description="The legal basis (or bases) for performing profiling that has a legal effect.",
     )
     does_international_transfers: bool = Field(
         default=False,
         description="Whether this system transfers data to other countries or international organizations.",
     )
-    legal_basis_for_transfers: Optional[LegalBasisForTransfersEnum] = Field(
-        description="The legal basis under which the data is transferred.",
+    legal_basis_for_transfers: List[str] = Field(
+        default_factory=list,
+        description="The legal basis (or bases) under which the data is transferred.",
     )
     requires_data_protection_assessments: bool = Field(
         default=False,

@@ -378,7 +378,7 @@ class TestSystem:
                     egress=["test_system_2"],
                     ingress=["test_system_3"],
                     features=[
-                        "Match and combine offline data sources",
+                        "Match and combine data from other data sources",
                         "Link different devices",
                         "Receive and use automatically-sent device characteristics for identification",
                     ],
@@ -402,9 +402,9 @@ class TestSystem:
             exempt_from_privacy_regulations=False,
             reason_for_exemption=None,
             uses_profiling=True,
-            legal_basis_for_profiling="Explicit consent",
+            legal_basis_for_profiling=["Explicit consent", "Contract"],
             does_international_transfers=True,
-            legal_basis_for_transfers="Standard contractual clauses",
+            legal_basis_for_transfers=["Adequacy Decision", "SCCs", "New legal basis"],
             requires_data_protection_assessments=True,
             dpa_location="www.example.com/dpa_location",
             privacy_policy="https://vdx.tv/privacy/",
@@ -539,6 +539,35 @@ class TestDataset:
                     deprecated_field: value,
                 }
             )
+
+    def test_dataset_collection_skip_processing(self):
+        collection = DatasetCollection(
+            name="dataset_collection_1",
+            data_qualifier="data_collection_data_qualifier_1",
+            data_categories=["dataset_collection_data_category_1"],
+            fields=[],
+        )
+        assert not collection.fides_meta
+
+        collection = DatasetCollection(
+            name="dataset_collection_1",
+            data_qualifier="data_collection_data_qualifier_1",
+            data_categories=["dataset_collection_data_category_1"],
+            fides_meta={"after": ["third_dataset.blue_collection"]},
+            fields=[],
+        )
+
+        assert collection.fides_meta.skip_processing is False
+
+        collection = DatasetCollection(
+            name="dataset_collection_1",
+            data_qualifier="data_collection_data_qualifier_1",
+            data_categories=["dataset_collection_data_category_1"],
+            fides_meta={"skip_processing": True},
+            fields=[],
+        )
+
+        assert collection.fides_meta.skip_processing
 
 
 class TestDataUse:
