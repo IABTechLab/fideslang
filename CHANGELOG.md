@@ -18,7 +18,7 @@ The types of changes are:
 
 ### Fixed
 
-- Removed mistaken trailing `.` on some data cateogry `name`s in the default taxonomy [#169](https://github.com/ethyca/fideslang/pull/169)
+- Removed mistaken trailing `.` on some data category `name`s in the default taxonomy [#169](https://github.com/ethyca/fideslang/pull/169)
 
 
 ## [2.1.0](https://github.com/ethyca/fideslang/compare/2.0.4...2.1.0)
