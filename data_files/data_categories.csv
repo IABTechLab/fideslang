@@ -4,8 +4,8 @@ system,True,System Data,default_organization,data_category,,,2.0.0,,"Data unique
 system.authentication,True,Authentication Data,default_organization,system,,,2.0.0,,Data used to manage access to the system.
 system.operations,True,Operations Data,default_organization,system,,,2.0.0,,Data used for system operations.
 user,True,User Data,default_organization,data_category,,,2.0.0,,"Data related to the user of the system, either provided directly or derived based on their usage."
-user.account,True,Account Information.,default_organization,user,,,2.0.0,,Account creation or registration information.
-user.authorization,True,Authorization Information.,default_organization,user,,,2.0.0,,Scope of permissions and access to a system.
+user.account,True,Account Information,default_organization,user,,,2.0.0,,Account creation or registration information.
+user.authorization,True,Authorization Information,default_organization,user,,,2.0.0,,Scope of permissions and access to a system.
 user.behavior,True,Observed Behavior,default_organization,user,,,2.0.0,,Behavioral data about the subject.
 user.biometric,True,Biometric Data,default_organization,user,,,2.0.0,,Encoded characteristics provided by a user.
 user.childrens,True,Children's Data,default_organization,user,,,2.0.0,,Data relating to children.
@@ -30,7 +30,7 @@ user.privacy_preferences,True,Privacy Preferences,default_organization,user,,,2.
 user.job_title,True,Job Title,default_organization,user,,,2.0.0,,Professional data.
 user.account.settings,True,Account Settings,default_organization,user.account,,,2.0.0,,Account preferences and settings.
 user.account.username,True,Account Username,default_organization,user.account,,,2.0.0,,Username associated with account.
-user.authorization.credentials,True,Account password.,default_organization,user.authorization,,,2.0.0,,Authentication credentials to a system.
+user.authorization.credentials,True,Account password,default_organization,user.authorization,,,2.0.0,,Authentication credentials to a system.
 user.authorization.biometric,True,Biometric Credentials,default_organization,user.authorization,,,2.0.0,,Credentials for system authentication.
 user.authorization.password,True,Password,default_organization,user.authorization,,,2.0.0,,Password for system authentication.
 user.behavior.browsing_history,True,Browsing History,default_organization,user.behavior,,,2.0.0,,Content browsing history of a user.
