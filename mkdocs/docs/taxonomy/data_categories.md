@@ -63,52 +63,84 @@ Below is a reference for all subcategories of `system` and `user` to assist with
 
 | Label                             | Parent Key                                | Description                                                                                   |
 | ---                               | ---                                       | ---                                                                                           |
-| `biometric`                       | `user`                                    |Encoded characteristics of a user.                                                             |
-| `biometric_health`                | `user`                                    |Encoded characteristic about a user's health.                                                  |
-| `browsing_history`                | `user`                                    |Content browsing history of a user.                                                            |
-| `contact`                         | `user`                                    |User contact data.                                                                             |
-| `address`                         | `user.contact`                            |User contact data related to an address.                                                       |
-| `email`                           | `user.contact`                            |User's email address.                                                                          |
-| `phone_number`                    | `user.contact`                            |User's phone number.                                                                           |
-| `city`                            | `user.contact.address`                    |User's city level address data.                                                                |
-| `country`                         | `user.contact.address`                    |User's country level address data.                                                             |
-| `postal_code`                     | `user.contact.address`                    |User's postal code.                                                                            |
-| `state`                           | `user.contact.address`                    |User's state level address data.                                                               |
-| `street`                          | `user.contact.address`                    |User's street level address data.                                                              |
-| `demographic`                     | `user`                                    |Demographic data about a user.                                                                 |
-| `gender`                          | `user`                                    |Gender of an individual.                                                                       |
-| `location`                        | `user`                                    |Records of the location of a user.                                                             |
-| `media_consumption`               | `user`                                    |Media type consumption data of a user.                                                         |
-| `non_specific_age`                | `user`                                    |Age range data.                                                                                |
-| `observed`                        | `user`                                    |Data collected through observation of use of the system.                                       |
-| `organization`                    | `user`                                    |Derived data that is linked to, or identifies an organization.                                 |
-| `profiling`                       | `user`                                    |Preference and interest data about a user.                                                     |
-| `race`                            | `user`                                    |Racial or ethnic origin data.                                                                  |
-| `religious_belief`                | `user`                                    |Religion or religious belief.                                                                  |
-| `search_history`                  | `user`                                    |Records of search history and queries of a user.                                               |
-| `sexual_orientation`              | `user`                                    |Personal sex life or sexual data.                                                              |
-| `social`                          | `user`                                    |Social activity and interaction data.                                                          |
-| `telemetry`                       | `user`                                    |User identifiable measurement data from system sensors and monitoring.                         |
-| `unique_id`                       | `user`                                    |Unique identifier for a user assigned through system use.                                      |
-| `user_sensor`                     | `user`                                    |Measurement data derived about a user's environment through system use.                        |
-| `workplace`                       | `user`                                    |Organization of employment.                                                                    |
-| `device`                          | `user`                                    |Data related to a user's device, configuration and setting.                                    |
-| `cookie_id`                       | `user.device`                             |Cookie unique identification number.                                                           |
-| `device_id`                       | `user.device`                             |Device unique identification number.                                                           |
-| `ip_address`                      | `user.device`                             |Unique identifier related to device connection.                                                |
-| `childrens`                       | `user`                                    |Data relating to children.                                                                     |
-| `health_and_medical`              | `user`                                    |Health records or individual's personal medical information.                                   |
-| `job_title`                       | `user`                                    |Professional data.                                                                             |
-| `name`                            | `user`                                    |User's real name.                                                                              |
-| `political_opinion`               | `user`                                    |Data related to the individual's political opinions.                                           |
-| `date_of_birth`                   | `user`                                    |User's date of birth.                                                                          |
-| `genetic`                         | `user`                                    |Data about the genetic makeup of a user.                                                       |
-| `credentials`                     | `user`                                    |User authentication data.                                                                      |
-| `biometric_credentials`           | `user.credentials`                        |Credentials for system authentication.                                                         |
-| `password`                        | `user.credentials`                        |Password for system authentication.                                                            |
-| `financial`                       | `user`                                    |Payment data and financial history.                                                            |
-| `account_number`                  | `user.financial`                          |User's account number for a payment card, bank account, or other financial system.             |
-| `government_id`                   | `user`                                    |State provided identification data.                                                            |
-| `drivers_license_number`          | `user.government_id`                      |State issued driving identification number.                                                    |
-| `national_identification_number`  | `user.government_id`                      |State issued personal identification number.                                                   |
-| `passport_number`                 | `user.government_id`                      |State issued passport data.                                                                    |
+|  `user.account`  |	   `user`   | 	Account creation or registration information.   | 
+|  `user.authorization`  |	   `user`   | 	Scope of permissions and access to a system.   | 
+|  `user.behavior`  |	   `user`   | 	Behavioral data about the subject.   | 
+|  `user.biometric`  |	   `user`   | 	Encoded characteristics provided by a user.   | 
+|  `user.childrens`  |	   `user`   | 	Data relating to children.   | 
+|  `user.contact`  |	   `user`   | 	Contact data collected about a user.   | 
+|  `user.content`  |	   `user`   | 	Content related to, or created by the subject.   | 
+|  `user.demographic`  |	   `user`   | 	Demographic data about a user.   | 
+|  `user.location`  |	   `user`   | 	Records of the location of a user.   | 
+|  `user.device`  |	   `user`   | 	Data related to a user's device, configuration and setting.   | 
+|  `user.payment`  |	   `user`   | 	Payment data related to user.   | 
+|  `user.social`  |	   `user`   | 	Social activity and interaction data.   | 
+|  `user.unique_id`  |	   `user`   | 	Unique identifier for a user assigned through system use.   | 
+|  `user.telemetry`  |	   `user`   | 	User identifiable measurement data from system sensors and monitoring.   | 
+|  `user.user_sensor`  |	   `user`   | 	Measurement data about a user's environment through system use.   | 
+|  `user.workplace`  |	   `user`   | 	Organization of employment.   | 
+|  `user.sensor`  |	   `user`   | 	Measurement data from sensors and monitoring systems.   | 
+|  `user.financial`  |	   `user`   | 	Payment data and financial history.   | 
+|  `user.government_id`  |	   `user`   | 	State provided identification data.   | 
+|  `user.health_and_medical`  |	   `user`   | 	Health records or individual's personal medical information.   | 
+|  `user.name`  |	   `user`   | 	User's real name.   | 
+|  `user.criminal_history`  |	   `user`   | 	Criminal records or information about the data subject.   | 
+|  `user.privacy_preferences`  |	   `user`   | 	Privacy preferences or settings set by the subject.   | 
+|  `user.job_title`  |	   `user`   | 	Professional data.   | 
+|  `user.account.settings`  |	   `user.account`   | 	Account preferences and settings.   | 
+|  `user.account.username`  |	   `user.account`   | 	Username associated with account.   | 
+|  `user.authorization.credentials`  |	   `user.authorization`   | 	Authentication credentials to a system.   | 
+|  `user.authorization.biometric`  |	   `user.authorization`   | 	Credentials for system authentication.   | 
+|  `user.authorization.password`  |	   `user.authorization`   | 	Password for system authentication.   | 
+|  `user.behavior.browsing_history`  |	   `user.behavior`   | 	Content browsing history of a user.   | 
+|  `user.behavior.media_consumption`  |	   `user.behavior`   | 	Content consumption history of the subject.   | 
+|  `user.behavior.purchase_history`  |	   `user.behavior`   | 	Purchase history of the subject.   | 
+|  `user.behavior.search_history`  |	   `user.behavior`   | 	Search history of the subject.   | 
+|  `user.biometric.fingerprint`  |	   `user.biometric`   | 	Fingerprint encoded data about a subject.   | 
+|  `user.biometric.retinal`  |	   `user.biometric`   | 	Retinal data about a subject.   | 
+|  `user.biometric.voice`  |	   `user.biometric`   | 	Voice encoded data about a subject.   | 
+|  `user.biometric.health`  |	   `user.biometric`   | 	Encoded characteristic collected about a user.   | 
+|  `user.contact.address`  |	   `user.contact`   | 	Contact address data collected about a user.   | 
+|  `user.contact.email`  |	   `user.contact`   | 	User's contact email address.   | 
+|  `user.contact.phone_number`  |	   `user.contact`   | 	User's phone number.   | 
+|  `user.contact.url`  |	   `user.contact`   | 	Subject's websites or links to social and personal profiles.   | 
+|  `user.contact.fax_number`  |	   `user.contact`   | 	Data Subject's fax number.   | 
+|  `user.contact.organization`  |	   `user.contact`   | 	Data Subject's Organization.   | 
+|  `user.contact.address.city`  |	   `user.contact.address`   | 	User's city level address data.   | 
+|  `user.contact.address.country`  |	   `user.contact.address`   | 	User's country level address data.   | 
+|  `user.contact.address.postal_code`  |	   `user.contact.address`   | 	User's postal code.   | 
+|  `user.contact.address.state`  |	   `user.contact.address`   | 	User's state level address data.   | 
+|  `user.contact.address.street`  |	   `user.contact.address`   | 	User's street level address data.   | 
+|  `user.content.private`  |	   `user.content`   | 	Private content related to, or created by the subject, not publicly available.   | 
+|  `user.content.public`  |	   `user.content`   | 	Publicly shared Content related to, or created by the subject.   | 
+|  `user.content.self_image`  |	   `user.content`   | 	Photograph or image in which subject is whole or partially recognized.   | 
+|  `user.demographic.age_range`  |	   `user.demographic`   | 	Non specific age or age-range of data subject.   | 
+|  `user.demographic.date_of_birth`  |	   `user.demographic`   | 	Date of birth of data subject.   | 
+|  `user.demographic.gender`  |	   `user.demographic`   | 	Gender of data subject.   | 
+|  `user.demographic.language`  |	   `user.demographic`   | 	Spoken or written language of subject.   | 
+|  `user.demographic.marital_status`  |	   `user.demographic`   | 	Marital status of data subject.   | 
+|  `user.demographic.political_opinion`  |	   `user.demographic`   | 	Political opinion or belief of data subject.   | 
+|  `user.demographic.profile`  |	   `user.demographic`   | 	Profile or preference information about the data subject.   | 
+|  `user.demographic.race_ethnicity`  |	   `user.demographic`   | 	Race or ethnicity of data subject.   | 
+|  `user.demographic.religious_belief`  |	   `user.demographic`   | 	Religion or religious beliefs of the data subject.   | 
+|  `user.demographic.sexual_orientation`  |	   `user.demographic`   | 	Sexual orientation of data subject.   | 
+|  `user.device.cookie`  |	   `user.device`   | 	Data related to a subject, stored within a cookie.   | 
+|  `user.device.cookie_id`  |	   `user.device`   | 	Cookie unique identification number.   | 
+|  `user.device.device_id`  |	   `user.device`   | 	Device unique identification number.   | 
+|  `user.device.ip_address`  |	   `user.device`   | 	Unique identifier related to device connection.   | 
+|  `user.financial.bank_account`  |	   `user.financial`   | 	Bank account information belonging to the subject.   | 
+|  `user.financial.credit_card`  |	   `user.financial`   | 	Credit card information belonging to the subject.   | 
+|  `user.government_id.birth_certificate`  |	   `user.government_id`   | 	State issued certificate of birth.   | 
+|  `user.government_id.drivers_license_number`  |	   `user.government_id`   | 	State issued driving identification number.   | 
+|  `user.government_id.immigration`  |	   `user.government_id`   | 	State issued immigration or residency data.   | 
+|  `user.government_id.national_identification_number`  |	   `user.government_id`   | 	State issued personal identification number.   | 
+|  `user.government_id.passport_number`  |	   `user.government_id`   | 	State issued passport data.   | 
+|  `user.government_id.vehicle_registration`  |	   `user.government_id`   | 	State issued license plate or vehicle registration data.   | 
+|  `user.health_and_medical.genetic`  |	   `user.health_and_medical`   | 	Data about the genetic makeup provided by the subject.   | 
+|  `user.health_and_medical.insurance_beneficiary_id`  |	   `user.health_and_medical`   | 	Health insurance beneficiary number of the subject.   | 
+|  `user.health_and_medical.record_id`  |	   `user.health_and_medical`   | 	Medical record identifiers belonging to a subject.   | 
+|  `user.location.imprecise`  |	   `user.location`   | 	Imprecise location derived from sensors (more than 500M).   | 
+|  `user.location.precise`  |	   `user.location`   | 	Precise location derived from sensors (less than 500M).   | 
+|  `user.name.first`  |	   `user.name`   | 	Subject's first name.   | 
+|  `user.name.last`  |	   `user.name`   | 	Subject's last, or family, name.   | 
+|  `user.unique_id.pseudonymous`  |	   `user.unique_id`   | 	A pseudonymous, or probabilistic identifier generated from other subject or device data belonging to the subject.   | 

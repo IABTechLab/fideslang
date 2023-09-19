@@ -1,6 +1,6 @@
 # Fides Taxonomy
 
-The Fides taxonomy contains four classification groups that are used together to easily describe all of the data types and associated processing behaviors of an entire tech stack; both the application and it's data storage.
+The Fides taxonomy contains four classification groups that are used together to easily describe all of the data types and associated processing behaviors of an entire tech stack; both the application and its data storage.
 
 ## Summary of Taxonomy Classification Groups
 
@@ -19,7 +19,7 @@ Data Uses are also hierarchical with natural inheritance, meaning you can easily
 Learn more about [Data Uses in the taxonomy reference now](data_uses.md).
 
 ### 3. Data Subjects
-Data Subject is a label commonly used in the regulatory world to describe the users of a system who's data is being processed. In many systems a generic user label may be sufficient, however Fides language is intended to provide greater control through specificity where needed.
+Data Subject is a label commonly used in the regulatory world to describe the users of a system whose data is being processed. In many systems a generic user label may be sufficient, however, Fides language is intended to provide greater control through specificity where needed.
 
 Examples of this are:
 
@@ -30,18 +30,6 @@ Examples of this are:
 - `next_of_kin`
 
 Learn more about [Data Subjects in the taxonomy reference now](data_subjects.md).
-
-
-### 4. Data Qualifiers
-Data Qualifiers describe the degree of identification of the given data. Think of this as a spectrum: on one end is completely anonymous data, i.e. it is impossible to identify an individual from it, and on the other end is data that specifically identifies an individual.
-
-Along this spectrum are labels that describe the degree of identification that a given data might provide, such as:
-
-- `identified`
-- `anonymized`
-- `aggregated`
-
-Learn more about [Data Qualifiers in the taxonomy reference now](data_qualifiers.md).
 
 ### Extensibility & interoperability
 The Fides language is designed to support common privacy compliance regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944.
