@@ -102,7 +102,7 @@
         "11": {
             "id": 11,
             "name": "Use limited data to select content",
-            "data_uses": [],
+            "data_uses": ["personalize.system"],
             "description": "Content presented to you on this service can be based on limited data, such as the website or app you are using, your non-precise location, your device type, or which content you are (or have been) interacting with (for example, to limit the number of times a video or an article is presented to you).",
             "illustrations": [
                 "A travel magazine has published an article on its website about the new online courses proposed by a language school, to improve travelling experiences abroad. The school’s blog posts are inserted directly at the bottom of the page, and selected on the basis of your non-precise location (for instance, blog posts explaining the course curriculum for different languages than the language of the country you are situated in).",
