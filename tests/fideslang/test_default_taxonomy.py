@@ -1,11 +1,13 @@
-from fideslang.default_taxonomy import DEFAULT_TAXONOMY
-import pytest
-from typing import Tuple
 from collections import Counter
+from typing import Tuple
+
+import pytest
+
+from fideslang.default_taxonomy import DEFAULT_TAXONOMY
 
 taxonomy_counts = {
     "data_category": 85,
-    "data_use": 54,
+    "data_use": 55,
     "data_subject": 15,
     "data_qualifier": 5,
 }
