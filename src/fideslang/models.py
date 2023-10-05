@@ -1138,10 +1138,10 @@ class System(FidesModel):
         description="Deprecated. The responsibility or role over the system that processes personal data",
     )
     egress: Optional[List[DataFlow]] = Field(
-        description="The resources to which the System sends data."
+        description="The resources to which the system sends data."
     )
     ingress: Optional[List[DataFlow]] = Field(
-        description="The resources from which the System receives data."
+        description="The resources from which the system receives data."
     )
     privacy_declarations: List[PrivacyDeclaration] = Field(
         description=PrivacyDeclaration.__doc__,
@@ -1204,7 +1204,7 @@ class System(FidesModel):
         description="The optional status of a Data Protection Impact Assessment"
     )
     privacy_policy: Optional[AnyUrl] = Field(
-        description="A URL that points to the System's publicly accessible privacy policy."
+        description="A URL that points to the system's publicly accessible privacy policy."
     )
     legal_name: Optional[str] = Field(
         description="The legal name for the business represented by the system."
@@ -1224,6 +1224,23 @@ class System(FidesModel):
     )  # Use joint_controller_info in favor of joint_controller
     data_security_practices: Optional[str] = Field(
         description="The data security practices employed by this system."
+    )
+    cookie_max_age_seconds: Optional[int] = Field(
+        description="The maximum storage duration, in seconds, for cookies used by this system."
+    )
+    uses_cookies: bool = Field(
+        default=False, description="Whether this system uses cookie storage."
+    )
+    cookie_refresh: bool = Field(
+        default=False,
+        description="Whether the system's cookies are refreshed after being initially set.",
+    )
+    uses_non_cookie_access: bool = Field(
+        default=False,
+        description="Whether the system uses non-cookie methods of storage or accessing information stored on a user's device.",
+    )
+    legitimate_interest_disclosure_url: Optional[AnyUrl] = Field(
+        description="A URL that points to the system's publicly accessible legitimate interest disclosure."
     )
 
     _sort_privacy_declarations: classmethod = validator(
