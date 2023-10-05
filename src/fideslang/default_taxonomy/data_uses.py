@@ -333,6 +333,7 @@ DEFAULT_DATA_USES = [
         name="Targeted Content Personalization",
         description="Uses profiles for the purpose of serving content.",
         parent_key="personalize.content",
+        version_added="2.1.1",
     ),
     default_use_factory(
         fides_key="personalize.system",

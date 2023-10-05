@@ -57,7 +57,7 @@ data_category:
   fides_key: user.authorization
   organization_fides_key: default_organization
   tags: null
-  name: Authorization Information.
+  name: Authorization Information
   description: Scope of permissions and access to a system.
   parent_key: user
 - version_added: 2.0.0
