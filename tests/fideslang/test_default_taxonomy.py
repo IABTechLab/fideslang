@@ -7,7 +7,7 @@ from fideslang.default_taxonomy import DEFAULT_TAXONOMY
 
 taxonomy_counts = {
     "data_category": 85,
-    "data_use": 55,
+    "data_use": 54,
     "data_subject": 15,
     "data_qualifier": 5,
 }

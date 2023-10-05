@@ -45,7 +45,6 @@ marketing.communications.email,True,,,,Marketing Email Communications,default_or
 marketing.communications.sms,True,,,,Marketing SMS Communications,default_organization,marketing.communications,,,,,2.0.0,,Sends SMS marketing communications.
 operations,True,,,,Operations,default_organization,data_use,,,,,2.0.0,,Supports business processes necessary to the organization's operation.
 personalize,True,,,,Personalize,default_organization,data_use,,,,,2.0.0,,"Personalizes the product, service, application or system."
-personalize.profiling,True,,,,Personalized Profiling,default_organization,personalize,,personalize.content.profiling,,,2.0.0,2.1.1,Creates profiles for the purpose of serving content
 personalize.content,True,,,,Content Personalization,default_organization,personalize,,,,,2.1.1,,"Personalizes the content of the product, service, application or system."
 personalize.system,True,,,,System Personalization,default_organization,personalize,,,,,2.0.0,,Personalizes the system.
 personalize.content.limited,True,,,,Limited Content Personalization,default_organization,personalize.content,,,,,2.1.1,,Uses limited data for the purpose of serving content.
