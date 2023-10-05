@@ -701,7 +701,7 @@ data_use:
   recipients: null
   legitimate_interest: null
   legitimate_interest_impact_assessment: null
-- version_added: 2.1.1
+- version_added: 2.0.0
   version_deprecated: null
   replaced_by: null
   is_default: true

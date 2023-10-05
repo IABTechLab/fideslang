@@ -304,7 +304,6 @@ DEFAULT_DATA_USES = [
         name="Content Personalization",
         description="Personalizes the content of the product, service, application or system.",
         parent_key="personalize",
-        version_added="2.1.1",
     ),
     default_use_factory(
         fides_key="personalize.content.limited",
