@@ -42,7 +42,7 @@
         "5": {
             "id": 5,
             "name": "Create profiles to personalise content",
-            "data_uses": ["personalize.profiling"],
+            "data_uses": ["personalize.content.profiling"],
             "description": "Information about your activity on this service (for instance, forms you submit, non-advertising content you look at) can be stored and combined with other information about you (such as your previous activity on this service or other websites or apps) or similar users. This is then used to build or improve a profile about you (which might for example include possible interests and personal aspects). Your profile can be used (also later) to present content that appears more relevant based on your possible interests, such as by adapting the order in which content is shown to you, so that it is even easier for you to find content that matches your interests.",
             "illustrations": [
                 "You read several articles on how to build a treehouse on a social media platform. This information might be added to a profile to mark your interest in content related to outdoors as well as do-it-yourself guides (with the objective of allowing the personalisation of content, so that for example you are presented with more blog posts and articles on treehouses and wood cabins in the future).",
@@ -52,7 +52,7 @@
         "6": {
             "id": 6,
             "name": "Use profiles to select personalised content",
-            "data_uses": ["personalize.content"],
+            "data_uses": ["personalize.content.profiled"],
             "description": "Content presented to you on this service can be based on your content personalisation profiles, which can reflect your activity on this or other services (for instance, the forms you submit, content you look at), possible interests and personal aspects, such as by adapting the order in which content is shown to you, so that it is even easier for you to find (non-advertising) content that matches your interests.",
             "illustrations": [
                 "You read articles on vegetarian food on a social media platform and then use the cooking app of an unrelated company. The profile built about you on the social media platform will be used to present you vegetarian recipes on the welcome screen of the cooking app.",
@@ -102,7 +102,7 @@
         "11": {
             "id": 11,
             "name": "Use limited data to select content",
-            "data_uses": [],
+            "data_uses": ["personalize.content.limited"],
             "description": "Content presented to you on this service can be based on limited data, such as the website or app you are using, your non-precise location, your device type, or which content you are (or have been) interacting with (for example, to limit the number of times a video or an article is presented to you).",
             "illustrations": [
                 "A travel magazine has published an article on its website about the new online courses proposed by a language school, to improve travelling experiences abroad. The school’s blog posts are inserted directly at the bottom of the page, and selected on the basis of your non-precise location (for instance, blog posts explaining the course curriculum for different languages than the language of the country you are situated in).",

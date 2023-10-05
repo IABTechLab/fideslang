@@ -306,10 +306,25 @@ DEFAULT_DATA_USES = [
         parent_key="personalize",
     ),
     default_use_factory(
-        fides_key="personalize.profiling",
-        name="Personalized Profiling",
+        fides_key="personalize.content.limited",
+        name="Limited Content Personalization",
+        description="Uses limited data for the purpose of serving content.",
+        parent_key="personalize.content",
+        version_added="2.1.1",
+    ),
+    default_use_factory(
+        fides_key="personalize.content.profiling",
+        name="Profiling for Personalization",
         description="Creates profiles for the purpose of serving content.",
-        parent_key="personalize",
+        parent_key="personalize.content",
+        version_added="2.1.1",
+    ),
+    default_use_factory(
+        fides_key="personalize.content.profiled",
+        name="Targeted Content Personalization",
+        description="Uses profiles for the purpose of serving content.",
+        parent_key="personalize.content",
+        version_added="2.1.1",
     ),
     default_use_factory(
         fides_key="personalize.system",

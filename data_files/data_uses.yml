@@ -720,27 +720,57 @@ data_use:
   version_deprecated: null
   replaced_by: null
   is_default: true
-  fides_key: personalize.profiling
-  organization_fides_key: default_organization
-  tags: null
-  name: Personalized Profiling
-  description: Creates profiles for the purpose of serving content.
-  parent_key: personalize
-  legal_basis: null
-  special_category: null
-  recipients: null
-  legitimate_interest: null
-  legitimate_interest_impact_assessment: null
-- version_added: 2.0.0
-  version_deprecated: null
-  replaced_by: null
-  is_default: true
   fides_key: personalize.system
   organization_fides_key: default_organization
   tags: null
   name: System Personalization
   description: Personalizes the system.
   parent_key: personalize
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: null
+  legitimate_interest_impact_assessment: null
+- version_added: 2.1.1
+  version_deprecated: null
+  replaced_by: null
+  is_default: true
+  fides_key: personalize.content.limited
+  organization_fides_key: default_organization
+  tags: null
+  name: Limited Content Personalization
+  description: Uses limited data for the purpose of serving content.
+  parent_key: personalize.content
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: null
+  legitimate_interest_impact_assessment: null
+- version_added: 2.1.1
+  version_deprecated: null
+  replaced_by: null
+  is_default: true
+  fides_key: personalize.content.profiling
+  organization_fides_key: default_organization
+  tags: null
+  name: Profiling for Personalization
+  description: Creates profiles for the purpose of serving content.
+  parent_key: personalize.content
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: null
+  legitimate_interest_impact_assessment: null
+- version_added: 2.1.1
+  version_deprecated: null
+  replaced_by: null
+  is_default: true
+  fides_key: personalize.content.profiled
+  organization_fides_key: default_organization
+  tags: null
+  name: Targeted Content Personalization
+  description: Uses profiles for the purpose of serving content.
+  parent_key: personalize.content
   legal_basis: null
   special_category: null
   recipients: null

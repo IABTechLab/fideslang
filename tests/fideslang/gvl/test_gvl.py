@@ -28,9 +28,7 @@ def test_purpose_to_data_use():
         "marketing.advertising.third_party.targeted",
     ]
 
-    assert (
-        purpose_to_data_use(11) == []
-    )  # purpose 11 is valid, but has no associated data uses
+    assert purpose_to_data_use(11) == ["personalize.content.limited"]
 
     # assert invalid uses raise KeyErrors
     with pytest.raises(KeyError):
