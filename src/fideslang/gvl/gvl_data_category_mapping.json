@@ -48,7 +48,7 @@
       "6": {
         "id": 6,
         "name": "Browsing and interaction data",
-        "description": "Your online activity such as the websites you visit, apps you are using, the content you search for on this service,  or your interactions with content or ads, such as the number of times you have seen a specific content or ad or whether you clicked on it.\n",
+        "description": "Your online activity such as the websites you visit, apps you are using, the content you search for on this service,  or your interactions with content or ads, such as the number of times you have seen a specific content or ad or whether you clicked on it.",
         "fides_data_categories": [
             "user.behavior.purchase_history",
             "user.behavior",
