@@ -31,7 +31,7 @@
       "4": {
         "id": 4,
         "name": "Probabilistic identifiers",
-        "description": "A probabilistic identifier can be created by combining characteristics associated with your device (the type of browser or operating system used) and the IP address of the Internet connection. If you give your agreement, additional characteristics (e.g. the installed font or screen resolution) can also be combined to improve precision of the probabilistic identifier.\nSuch an identifier is considered \"probabilistic\" because several devices can share the same characteristics and Internet connection. It may be used to recognise your device across e.g. web pages from the same site or across multiple sites or apps.",
+        "description": "A probabilistic identifier can be created by combining characteristics associated with your device (the type of browser or operating system used) and the IP address of the Internet connection. If you give your agreement, additional characteristics (e.g. the installed font or screen resolution) can also be combined to improve precision of the probabilistic identifier. Such an identifier is considered \"probabilistic\" because several devices can share the same characteristics and Internet connection. It may be used to recognise your device across e.g. web pages from the same site or across multiple sites or apps.",
         "fides_data_categories": ["user.unique_id.pseudonymous"]
       },
       "5": {
