@@ -1,9 +1,13 @@
+# pylint: disable=too-many-locals
+
 import os
 from json import load
 from os.path import dirname, join
 from typing import Dict, List, Optional
 
-from .models import Feature, MappedPurpose, Purpose
+from .models import Feature, GVLDataCategory, MappedDataCategory, MappedPurpose, Purpose
+
+### (Special) Purposes
 
 PURPOSE_MAPPING_FILE = join(
     dirname(__file__),
@@ -11,24 +15,33 @@ PURPOSE_MAPPING_FILE = join(
     "gvl_data_use_mapping.json",
 )
 
+GVL_PURPOSES: Dict[int, Purpose] = {}
+MAPPED_PURPOSES: Dict[int, MappedPurpose] = {}
+GVL_SPECIAL_PURPOSES: Dict[int, Purpose] = {}
+MAPPED_SPECIAL_PURPOSES: Dict[int, MappedPurpose] = {}
+MAPPED_PURPOSES_BY_DATA_USE: Dict[str, MappedPurpose] = {}
+
+### (Special) Features
+
 FEATURE_MAPPING_FILE = join(
     dirname(__file__),
     "",
     "gvl_feature_mapping.json",
 )
-
-
-GVL_PURPOSES: Dict[int, Purpose] = {}
-MAPPED_PURPOSES: Dict[int, MappedPurpose] = {}
-
-GVL_SPECIAL_PURPOSES: Dict[int, Purpose] = {}
-MAPPED_SPECIAL_PURPOSES: Dict[int, MappedPurpose] = {}
-
 GVL_FEATURES: Dict[int, Feature] = {}
 GVL_SPECIAL_FEATURES: Dict[int, Feature] = {}
 FEATURES_BY_NAME: Dict[str, Feature] = {}
 
-MAPPED_PURPOSES_BY_DATA_USE: Dict[str, MappedPurpose] = {}
+
+### Data Categories
+
+DATA_CATEGORY_MAPPING_FILE = join(
+    dirname(__file__),
+    "",
+    "gvl_data_category_mapping.json",
+)
+GVL_DATA_CATEGORIES: Dict[int, GVLDataCategory] = {}
+MAPPED_GVL_DATA_CATEGORIES: Dict[int, MappedDataCategory] = {}
 
 
 def _load_data() -> None:
@@ -66,6 +79,17 @@ def _load_data() -> None:
             special_feature = Feature.parse_obj(raw_special_feature)
             GVL_SPECIAL_FEATURES[special_feature.id] = special_feature
             FEATURES_BY_NAME[special_feature.name] = special_feature
+
+    with open(
+        os.path.join(os.curdir, DATA_CATEGORY_MAPPING_FILE), encoding="utf-8"
+    ) as data_category_mapping_file:
+        data_category_data = load(data_category_mapping_file)
+
+        for raw_data_category in data_category_data.values():
+            data_category = GVLDataCategory.parse_obj(raw_data_category)
+            mapped_data_category = MappedDataCategory.parse_obj(raw_data_category)
+            GVL_DATA_CATEGORIES[data_category.id] = data_category
+            MAPPED_GVL_DATA_CATEGORIES[mapped_data_category.id] = mapped_data_category
 
 
 def purpose_to_data_use(purpose_id: int, special_purpose: bool = False) -> List[str]:
@@ -106,6 +130,16 @@ def feature_id_to_feature_name(
     if not feature:
         return None
     return feature.name
+
+
+def data_category_id_to_data_categories(data_category_id: int) -> List[str]:
+    """
+    Utility function to return the fideslang data categories associated with the
+    given GVL data category ID.
+
+    Raises a KeyError if an invalid GVL data category ID is provided.
+    """
+    return MAPPED_GVL_DATA_CATEGORIES[data_category_id].fides_data_categories
 
 
 _load_data()

@@ -1,12 +1,13 @@
 import pytest
 
 from fideslang.gvl import (
-    purpose_to_data_use,
     GVL_FEATURES,
     GVL_SPECIAL_FEATURES,
     Feature,
-    feature_name_to_feature,
+    data_category_id_to_data_categories,
     feature_id_to_feature_name,
+    feature_name_to_feature,
+    purpose_to_data_use,
 )
 
 
@@ -64,3 +65,23 @@ def test_feature_id_to_feature_name():
     )
 
     assert feature_id_to_feature_name(feature_id=1001) is None
+
+
+
+def test_data_category_id_to_data_categories():
+    assert data_category_id_to_data_categories(1) == [
+            "user.device.ip_address"
+    ]
+
+    # let's test one other data category just to be comprehensive
+    assert data_category_id_to_data_categories(5) == [
+            "user.authorization",
+            "user.authorization.biometric",
+            "user.authorization.credentials",
+            "user.authorization.password"
+        ]
+
+
+    # assert invalid categories raise KeyErrors
+    with pytest.raises(KeyError):
+        data_category_id_to_data_categories(12)
