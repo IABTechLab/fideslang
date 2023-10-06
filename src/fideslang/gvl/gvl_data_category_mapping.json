@@ -2,7 +2,7 @@
     "1": {
         "id": 1,
         "name": "IP addresses",
-        "description": "Your IP address is a number assigned by your Internet Service Provider to any Internet connection. It is not always specific to your device and is not always a stable identifier.\nIt is used to route information on the Internet and display online content (including ads) on your connected device.",
+        "description": "Your IP address is a number assigned by your Internet Service Provider to any Internet connection. It is not always specific to your device and is not always a stable identifier.  It is used to route information on the Internet and display online content (including ads) on your connected device.",
         "fides_data_categories": [
             "user.device.ip_address"
         ]
