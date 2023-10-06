@@ -21,7 +21,7 @@
       "3": {
         "id": 3,
         "name": "Device identifiers",
-        "description": "A device identifier is a unique string of characters assigned to your device or browser by means of a cookie or other storage technologies. \nIt may be created or accessed to recognise your device e.g. across web pages from the same site or across multiple sites or apps.",
+        "description": "A device identifier is a unique string of characters assigned to your device or browser by means of a cookie or other storage technologies.  It may be created or accessed to recognise your device e.g. across web pages from the same site or across multiple sites or apps.",
         "fides_data_categories": [
             "user.device.cookie_id",
             "user.device.device_id",
