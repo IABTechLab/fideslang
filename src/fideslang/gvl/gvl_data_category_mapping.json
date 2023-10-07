@@ -1,0 +1,171 @@
+{
+    "1": {
+        "id": 1,
+        "name": "IP addresses",
+        "description": "Your IP address is a number assigned by your Internet Service Provider to any Internet connection. It is not always specific to your device and is not always a stable identifier.  It is used to route information on the Internet and display online content (including ads) on your connected device.",
+        "fides_data_categories": [
+            "user.device.ip_address"
+        ]
+      },
+      "2": {
+        "id": 2,
+        "name": "Device characteristics",
+        "description": "Technical characteristics about the device you are using that are not unique to you, such as the language, the time zone or the operating system.",
+        "fides_data_categories": [
+            "user.device",
+            "user.sensor",
+            "user.user_sensor",
+            "user.telemetry"
+        ]
+      },
+      "3": {
+        "id": 3,
+        "name": "Device identifiers",
+        "description": "A device identifier is a unique string of characters assigned to your device or browser by means of a cookie or other storage technologies.  It may be created or accessed to recognise your device e.g. across web pages from the same site or across multiple sites or apps.",
+        "fides_data_categories": [
+            "user.device.cookie_id",
+            "user.device.device_id",
+            "user.device.cookie"
+        ]
+      },
+      "4": {
+        "id": 4,
+        "name": "Probabilistic identifiers",
+        "description": "A probabilistic identifier can be created by combining characteristics associated with your device (the type of browser or operating system used) and the IP address of the Internet connection. If you give your agreement, additional characteristics (e.g. the installed font or screen resolution) can also be combined to improve precision of the probabilistic identifier. Such an identifier is considered \"probabilistic\" because several devices can share the same characteristics and Internet connection. It may be used to recognise your device across e.g. web pages from the same site or across multiple sites or apps.",
+        "fides_data_categories": ["user.unique_id.pseudonymous"]
+      },
+      "5": {
+        "id": 5,
+        "name": "Authentication-derived identifiers",
+        "description": "Where an identifier is created on the basis of authentication data, such as contact details associated with online accounts you have created on websites or apps (e.g. e-mail address, phone number) or customer identifiers (e.g. identifier provided by your telecom operator), that identifier may be used to recognise you across websites, apps and devices when you are logged-in with the same contact details.",
+        "fides_data_categories": [
+            "user.authorization",
+            "user.authorization.biometric",
+            "user.authorization.credentials",
+            "user.authorization.password"
+        ]
+      },
+      "6": {
+        "id": 6,
+        "name": "Browsing and interaction data",
+        "description": "Your online activity such as the websites you visit, apps you are using, the content you search for on this service,  or your interactions with content or ads, such as the number of times you have seen a specific content or ad or whether you clicked on it.",
+        "fides_data_categories": [
+            "user.behavior.purchase_history",
+            "user.behavior",
+            "user.behavior.browsing_history",
+            "user.behavior.media_consumption",
+            "user.behavior.search_history",
+            "user.social"
+        ]
+      },
+      "7": {
+        "id": 7,
+        "name": "User-provided data",
+        "description": "The information you may have provided by way of declaration via a form (e.g. feedback, a comment) or when creating an account (e.g. your age, your occupation).",
+        "fides_data_categories": [
+            "user.account",
+            "user.account.username",
+            "user.account.settings",
+            "user.authorization",
+            "user.authorization.biometric",
+            "user.authorization.credentials",
+            "user.authorization.password",
+            "user.biometric",
+            "user.biometric.fingerprint",
+            "user.biometric.health",
+            "user.biometric.retinal",
+            "user.biometric.voice",
+            "user.contact",
+            "user.contact.organization",
+            "user.contact.address",
+            "user.contact.address.street",
+            "user.contact.address.city",
+            "user.contact.address.postal_code",
+            "user.contact.address.state",
+            "user.contact.address.country",
+            "user.contact.email",
+            "user.contact.phone_number",
+            "user.contact.fax_number",
+            "user.contact.url",
+            "user.job_title",
+            "user.financial",
+            "user.financial.bank_account",
+            "user.financial.credit_card",
+            "user.unique_id",
+            "user.name",
+            "user.name.first",
+            "user.name.last",
+            "user.criminal_history",
+            "user.content",
+            "user.content.private",
+            "user.content.public",
+            "user.content.self_image",
+            "user.demographic.age_range",
+            "user.demographic.date_of_birth",
+            "user.demographic.religious_belief",
+            "user.demographic.gender",
+            "user.demographic.race_ethnicity",
+            "user.demographic.sexual_orientation",
+            "user.demographic.political_opinion",
+            "user.demographic.language",
+            "user.demographic.marital_status",
+            "user.government_id",
+            "user.government_id.national_identification_number",
+            "user.government_id.passport_number",
+            "user.government_id.drivers_license_number",
+            "user.government_id.immigration",
+            "user.government_id.vehicle_registration",
+            "user.government_id.birth_certificate",
+            "user.health_and_medical",
+            "user.health_and_medical.record_id",
+            "user.health_and_medical.insurance_beneficiary_id",
+            "user.health_and_medical.genetic",
+            "user.sensor",
+            "user.childrens",
+            "user.workplace"
+        ]
+      },
+      "8": {
+        "id": 8,
+        "name": "Non-precise location data",
+        "description": "An approximation of your location, expressed as an area with a radius of at least 500 meters. Your approximate location can be deduced from e.g. the IP address of your connection.",
+        "fides_data_categories": [
+            "user.location.imprecise"
+        ]
+      },
+      "9": {
+        "id": 9,
+        "name": "Precise location data",
+        "description": "Your precise location within a radius of less than 500 meters based on your GPS coordinates. It may be used only with your acceptance.",
+        "fides_data_categories": [
+            "user.location.precise"
+        ]
+      },
+      "10": {
+        "id": 10,
+        "name": "Users' profiles",
+        "description": "Certain characteristics (e.g. your possible interests, your purchase intentions, your consumer profile) may be inferred or modeled from your previous online activity (e.g. the content you viewed or the service you used, your time spent on various online content and services) or the information you have provided (e.g. your age, your occupation).",
+        "fides_data_categories":  [
+            "user.demographic",
+            "user.demographic.age_range",
+            "user.demographic.date_of_birth",
+            "user.demographic.gender",
+            "user.demographic.language",
+            "user.demographic.marital_status",
+            "user.demographic.political_opinion",
+            "user.demographic.profile",
+            "user.demographic.race_ethnicity",
+            "user.demographic.religious_belief",
+            "user.demographic.sexual_orientation"
+        ]
+      },
+      "11": {
+        "id": 11,
+        "name": "Privacy choices",
+        "description": "Your preferences regarding the processing of your data, based on the information you have received.",
+        "fides_data_categories":  [
+            "user.privacy_preferences"
+        ]
+      }
+}
+
