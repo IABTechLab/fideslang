@@ -992,7 +992,7 @@ class PrivacyDeclaration(BaseModel):
         default_factory=list, description="The features of processing personal data."
     )
     flexible_legal_basis_for_processing: bool = Field(
-        description="Whether the legal basis for processing is flexible (i.e. editable) for this declaration.",
+        description="Whether the legal basis for processing is 'flexible' (i.e. can be overridden in a privacy notice) for this declaration.",
         default=False,
     )
     legal_basis_for_processing: Optional[LegalBasisForProcessingEnum] = Field(
