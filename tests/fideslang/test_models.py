@@ -419,7 +419,8 @@ class TestSystem:
             uses_cookies=True,
             cookie_refresh=True,
             uses_non_cookie_access=True,
-            legitimate_interest_disclosure_url="http://www.example.com/legitimate_interest_disclosure"
+            legitimate_interest_disclosure_url="http://www.example.com/legitimate_interest_disclosure",
+            flexible_legal_basis_for_processing=True,
         )
 
     @mark.parametrize(
