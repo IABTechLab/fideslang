@@ -75,10 +75,9 @@ def test_data_category_id_to_data_categories():
 
     # let's test one other data category just to be comprehensive
     assert data_category_id_to_data_categories(5) == [
-            "user.authorization",
-            "user.authorization.biometric",
-            "user.authorization.credentials",
-            "user.authorization.password"
+            "user.account",
+            "user.unique_id",
+            "user.device"
         ]
 
 
