@@ -22,7 +22,7 @@ The types of changes are:
 
 - Added support for new TCF-based `System` fields [#173](https://github.com/ethyca/fideslang/pull/173)
 - Added support for `PrivacyDeclaration.flexible_legal_basis_for_profiling` field [#177](https://github.com/ethyca/fideslang/pull/177) [#178](https://github.com/ethyca/fideslang/pull/178)
-- Added GVL data category mapping and functions [#175](https://github.com/ethyca/fideslang/pull/175)
+- Added GVL data category mapping and functions [#175](https://github.com/ethyca/fideslang/pull/175) [#180](https://github.com/ethyca/fideslang/pull/180)
 
 ### Changed
 
