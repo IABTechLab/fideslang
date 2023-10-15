@@ -14,7 +14,19 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/2.1.0...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/2.2.0...main)
+
+## [2.2.0](https://github.com/ethyca/fideslang/compare/2.1.0...2.2.0)
+
+### Added 
+
+- Added support for new TCF-based `System` fields [#173](https://github.com/ethyca/fideslang/pull/173)
+- Added support for `PrivacyDeclaration.flexible_legal_basis_for_profiling` field [#177](https://github.com/ethyca/fideslang/pull/177) [#178](https://github.com/ethyca/fideslang/pull/178)
+- Added GVL data category mapping and functions [#175](https://github.com/ethyca/fideslang/pull/175) [#180](https://github.com/ethyca/fideslang/pull/180)
+
+### Changed
+
+- Changed default taxonomy and GVL mapping to support GVL Purpose 11 [#171](https://github.com/ethyca/fideslang/pull/171) [#174](https://github.com/ethyca/fideslang/pull/174)
 
 ### Fixed
 
