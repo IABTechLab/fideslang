@@ -421,6 +421,13 @@ class TestSystem:
             uses_non_cookie_access=True,
             legitimate_interest_disclosure_url="http://www.example.com/legitimate_interest_disclosure",
             flexible_legal_basis_for_processing=True,
+            system_level_cookies=[
+                {
+                    "name": "COOKIE_ID_EXAMPLE",
+                    "path": "/",
+                    "domain": "example.com/cookie",
+                }
+            ],
         )
 
     @mark.parametrize(
