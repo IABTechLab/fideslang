@@ -414,14 +414,13 @@ class TestSystem:
             responsibility=[DataResponsibilityTitle.CONTROLLER],
             dpo="privacyofficertest@vdx.tv",
             data_security_practices=None,
-            cookies=[{"name": "test_cookie"}],
             cookie_max_age_seconds="31536000",
             uses_cookies=True,
             cookie_refresh=True,
             uses_non_cookie_access=True,
             legitimate_interest_disclosure_url="http://www.example.com/legitimate_interest_disclosure",
             flexible_legal_basis_for_processing=True,
-            system_level_cookies=[
+            cookies=[
                 {
                     "name": "COOKIE_ID_EXAMPLE",
                     "path": "/",

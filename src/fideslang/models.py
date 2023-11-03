@@ -1245,7 +1245,7 @@ class System(FidesModel):
     legitimate_interest_disclosure_url: Optional[AnyUrl] = Field(
         description="A URL that points to the system's publicly accessible legitimate interest disclosure."
     )
-    system_level_cookies: Optional[List[Cookies]] = Field(
+    cookies: Optional[List[Cookies]] = Field(
         description="System-level cookies unassociated with a data use to deliver services and functionality",
     )
 
