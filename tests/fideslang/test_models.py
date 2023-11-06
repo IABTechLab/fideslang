@@ -92,6 +92,10 @@ class TestPrivacyDeclaration:
 
 
 class TestSystem:
+    # TODO: these tests are not effectively evaluating whether the provided constructor args
+    # are actually supported, because our `System` model does not prohibit "extra" fields.
+    # We need to update these tests to assert that the provided args are actually being set
+    # as attributes on the System instance that's instantiated.
     def test_system_valid(self) -> None:
         assert System(
             description="Test Policy",
@@ -390,13 +394,14 @@ class TestSystem:
                     data_shared_with_third_parties=True,
                     third_parties="advertising; marketing",
                     shared_categories=[],
+                    flexible_legal_basis_for_processing=True,
                     cookies=[
                         {"name": "ANON_ID", "path": "/", "domain": "tribalfusion.com"}
                     ],
                 )
             ],
             third_country_transfers=["ARM"],
-            vendor_id="1",
+            vendor_id="gvl.1",
             dataset_references=["test_fides_key_dataset"],
             processes_personal_data=True,
             exempt_from_privacy_regulations=False,
@@ -419,7 +424,7 @@ class TestSystem:
             cookie_refresh=True,
             uses_non_cookie_access=True,
             legitimate_interest_disclosure_url="http://www.example.com/legitimate_interest_disclosure",
-            flexible_legal_basis_for_processing=True,
+            previous_vendor_id="gacp.10",
             cookies=[
                 {
                     "name": "COOKIE_ID_EXAMPLE",
