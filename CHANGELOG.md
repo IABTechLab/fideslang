@@ -14,11 +14,18 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/2.2.0...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/2.2.1...main)
+
+## [2.2.1](https://github.com/ethyca/fideslang/compare/2.2.0...2.2.1)
+
+### Added 
+
+- Added a `System.cookies` property to support `Cookie` records explicitly associated with a `System` generally [#181](https://github.com/ethyca/fideslang/pull/181)
+- Added a `System.previous_vendor_id` property to support to associate a `System` record with a "deprecated" vendor record [#182](https://github.com/ethyca/fideslang/pull/182)
 
 ## [2.2.0](https://github.com/ethyca/fideslang/compare/2.1.0...2.2.0)
 
-### Added 
+### Added
 
 - Added support for new TCF-based `System` fields [#173](https://github.com/ethyca/fideslang/pull/173)
 - Added support for `PrivacyDeclaration.flexible_legal_basis_for_profiling` field [#177](https://github.com/ethyca/fideslang/pull/177) [#178](https://github.com/ethyca/fideslang/pull/178)
