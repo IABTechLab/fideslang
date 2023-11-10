@@ -1,6 +1,6 @@
 # Policy
 
-A Policy is your privacy policy as code, it lists a set of acceptable and non-acceptable rules and uses all 4 privacy attributes  (`data_category`, `data_use`, `data_subject`, and `data_qualifier`). The purpose of the policy is to state what types of data are allowed for certain usages.
+A Policy is your privacy policy as code, it lists a set of acceptable and non-acceptable rules and uses all 3 privacy attributes  (`data_category`, `data_use`, `data_subject`). The purpose of the policy is to state what types of data are allowed for certain usages.
 
   ```
   organization
@@ -33,10 +33,6 @@ The [Data Use](../../taxonomy/data_uses/) privacy attribute describes the variou
 **data_subject**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 The [Data Subjects](../../taxonomy/data_subjects/) privacy attribute describes the individual persons whose data your rule pertains to.
-
-**data_qualifier**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-The [Data Qualifier](../../taxonomy/data_qualifiers/) privacy attribute describes the acceptable or non-acceptable level of deidentification for this data.
 
 **matches**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_enum_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -76,7 +72,6 @@ policy:
           matches: ANY
           values:
             - customer
-        data_qualifier: aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified
 ```
 
 **Demo manifest file:** `/fides/demo_resources/demo_policy.yml`
@@ -113,7 +108,6 @@ policy:
           "customer"
         ]
       },
-      "data_qualifier": "aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified"
     }
   ]
 }

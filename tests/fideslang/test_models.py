@@ -69,26 +69,12 @@ class TestPrivacyDeclaration:
     def test_privacydeclaration_valid(self) -> None:
         assert PrivacyDeclaration(
             data_categories=[],
-            data_qualifier="aggregated_data",
             data_subjects=[],
             data_use="provide",
             egress=[],
             ingress=[],
             name="declaration-name",
         )
-
-    def test_privacy_declaration_data_qualifier_deprecation(self) -> None:
-        with deprecated_call(match="data_qualifier"):
-            assert PrivacyDeclaration(
-                data_categories=[],
-                data_qualifier="aggregated_data",
-                data_subjects=[],
-                data_use="provide",
-                dataset_references=[],
-                egress=["test_system_2"],
-                ingress=["test_system_3"],
-                name="declaration-name",
-            )
 
 
 class TestSystem:
@@ -121,7 +107,6 @@ class TestSystem:
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
-                    data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
                     egress=["test_system_2"],
@@ -172,7 +157,6 @@ class TestSystem:
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
-                    data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
                     egress=["test_system_2"],
@@ -209,7 +193,6 @@ class TestSystem:
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
-                    data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
                     egress=["test_system_2"],
@@ -233,7 +216,6 @@ class TestSystem:
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
-                    data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
                     name="declaration-name",
@@ -262,7 +244,6 @@ class TestSystem:
                 privacy_declarations=[
                     PrivacyDeclaration(
                         data_categories=[],
-                        data_qualifier="aggregated_data",
                         data_subjects=[],
                         data_use="provide",
                         egress=["test_system_2"],
@@ -293,7 +274,6 @@ class TestSystem:
                 privacy_declarations=[
                     PrivacyDeclaration(
                         data_categories=[],
-                        data_qualifier="aggregated_data",
                         data_subjects=[],
                         data_use="provide",
                         egress=["test_system_2"],
@@ -323,7 +303,6 @@ class TestSystem:
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
-                    data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
                     ingress=["user"],
@@ -376,7 +355,6 @@ class TestSystem:
                         "user.demographic",
                         "user.privacy_preferences",
                     ],
-                    data_qualifier="aggregated_data",
                     data_use="functional.storage",
                     data_subjects=[],
                     egress=["test_system_2"],
@@ -489,20 +467,17 @@ class TestDataset:
                     }
                 },
             },
-            data_qualifier="dataset_qualifier_1",
             data_categories=["dataset_data_category_1"],
             fides_meta={"after": ["other_dataset"]},
             collections=[
                 DatasetCollection(
                     name="dataset_collection_1",
-                    data_qualifier="data_collection_data_qualifier_1",
                     data_categories=["dataset_collection_data_category_1"],
                     fides_meta={"after": ["third_dataset.blue_collection"]},
                     fields=[
                         DatasetField(
                             name="dataset_field_1",
                             data_categories=["dataset_field_data_category_1"],
-                            data_qualifier="dataset_field_data_qualifier_1",
                             fides_meta={
                                 "references": [
                                     {
@@ -519,14 +494,12 @@ class TestDataset:
                 ),
                 DatasetCollection(
                     name="dataset_collection_2",
-                    data_qualifier="data_collection_data_qualifier_2",
                     data_categories=["dataset_collection_data_category_2"],
                     fides_meta={"after": ["orange_dataset.dataset_collection_1"]},
                     fields=[
                         DatasetField(
                             name="dataset_field_2",
                             data_categories=["dataset_field_data_category_2"],
-                            data_qualifier="dataset_field_data_qualifier_2",
                             fides_meta={
                                 "identity": "email",
                                 "primary_key": False,
@@ -541,7 +514,6 @@ class TestDataset:
     @mark.parametrize(
         "deprecated_field,value",
         [
-            ("data_qualifier", "dataset_qualifier_1"),
             ("joint_controller", {"name": "Controller_name"}),
             ("retention", "90 days"),
             ("third_country_transfers", ["IRL"]),
@@ -560,7 +532,6 @@ class TestDataset:
     def test_dataset_collection_skip_processing(self):
         collection = DatasetCollection(
             name="dataset_collection_1",
-            data_qualifier="data_collection_data_qualifier_1",
             data_categories=["dataset_collection_data_category_1"],
             fields=[],
         )
@@ -568,7 +539,6 @@ class TestDataset:
 
         collection = DatasetCollection(
             name="dataset_collection_1",
-            data_qualifier="data_collection_data_qualifier_1",
             data_categories=["dataset_collection_data_category_1"],
             fides_meta={"after": ["third_dataset.blue_collection"]},
             fields=[],
@@ -578,7 +548,6 @@ class TestDataset:
 
         collection = DatasetCollection(
             name="dataset_collection_1",
-            data_qualifier="data_collection_data_qualifier_1",
             data_categories=["dataset_collection_data_category_1"],
             fides_meta={"skip_processing": True},
             fields=[],

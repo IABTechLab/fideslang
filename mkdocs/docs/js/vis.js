@@ -733,8 +733,7 @@ Promise.all([
   d3.csv("csv/data_categories.csv"),
   d3.csv("csv/data_uses.csv"),
   d3.csv("csv/data_subjects.csv"),
-  d3.csv("csv/data_qualifiers.csv"),
-]).then(([categoriesCSV, usesCSV, subjectsCSV, qualifiersCSV]) => {
+]).then(([categoriesCSV, usesCSV, subjectsCSV]) => {
   const tooltip = new VisTooltip();
 
   const colors = {
@@ -819,24 +818,6 @@ Promise.all([
         "#c93ffd",
         "#f73ffc",
         "#fb409e",
-      ]),
-    qualifiers: d3
-      .scaleOrdinal()
-      .domain([
-        "data_qualifier",
-        "aggregated",
-        "aggregated.anonymized",
-        "aggregated.anonymized.unlinked_pseudonymized",
-        "aggregated.anonymized.unlinked_pseudonymized.pseudonymized",
-        "aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
-      ])
-      .range([
-        "#2a3045",
-        "#0861ce",
-        "#8459cc",
-        "#c14cbb",
-        "#ed43a0",
-        "#ff4a7f",
       ]),
   };
 

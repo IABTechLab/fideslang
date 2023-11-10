@@ -1,8 +1,8 @@
 from typing import Dict, Union
 
-from fideslang.models import DataCategory, DataQualifier, DataSubject, DataUse
+from fideslang.models import DataCategory, DataSubject, DataUse
 
-CustomType = Union[DataCategory, DataSubject, DataQualifier, DataUse]
+CustomType = Union[DataCategory, DataSubject, DataUse]
 
 
 def default_factory(taxonomy_class: CustomType, **kwargs: Dict) -> CustomType:

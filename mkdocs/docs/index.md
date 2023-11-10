@@ -59,6 +59,7 @@ Data Uses are also hierarchical with natural inheritance, meaning you can easily
 Learn more about [Data Uses in the taxonomy reference now](taxonomy/data_uses.md).
 
 ### 3. Data Subjects
+
 Data Subjects is a label commonly used in the regulatory world to describe the users of a system who's data is being processed. In many systems a generic user label may be sufficient, however the taxonomy is intended to provide greater control through specificity where needed.
 
 Examples of this are:
@@ -71,23 +72,10 @@ Examples of this are:
 
 Learn more about [Data Subjects in the taxonomy reference now](taxonomy/data_subjects.md).
 
-### 4. Data Qualifiers
-Data Qualifiers describe the degree of identification of the given data. Think of this as a spectrum: on one end is completely anonymous data, i.e. it is impossible to identify an individual from it, and on the other end is data that specifically identifies an individual. 
-
-Along this spectrum are labels that describe the degree of identification that a given data might provide, such as:
-
-- `identified`
-- `anonymized`
-- `aggregated`
-
-Learn more about [Data Qualifiers in the taxonomy reference now](taxonomy/data_qualifiers.md).
-
 ### Extensibility and Interoperability
+
 The taxonomy is designed to support common privacy compliance regulations `and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944. 
 
 You can extend the taxonomy to support your system needs. If you do this, we recommend extending from the existing class structures to ensure interoperability inside and outside your organization.
 
 If you have suggestions for missing classifications or concepts, please submit them for addition.
-
-
-
