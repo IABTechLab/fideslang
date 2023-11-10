@@ -6,7 +6,7 @@ Contains all of the Fides resources modeled as Pydantic models.
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Dict, List, Optional, Union
 from warnings import warn
 
 from pydantic import (
@@ -111,6 +111,7 @@ class DefaultModel(BaseModel):
     _is_deprecated_if_replaced = is_deprecated_if_replaced_validator
 
     @field_validator("version_added")
+    @classmethod
     def validate_verion_added(cls, version_added: Optional[str]) -> Optional[str]:
         """
         Validate that the `version_added` field is a proper FidesVersion
@@ -122,6 +123,7 @@ class DefaultModel(BaseModel):
         return version_added
 
     @field_validator("version_deprecated")
+    @classmethod
     def validate_version_deprecated(
         cls, version_deprecated: Optional[str]
     ) -> Optional[str]:
@@ -305,6 +307,7 @@ class DataSubjectRights(BaseModel):
     )
 
     @model_validator(mode="before")
+    @classmethod
     def include_exclude_has_values(cls, values: Dict) -> Dict:
         """
         Validate the if include or exclude is chosen, that at least one
@@ -359,6 +362,7 @@ class DataUse(FidesModel, DefaultModel):
     _no_self_reference = no_self_reference_validator
 
     @model_validator(mode="before")
+    @classmethod
     def deprecate_fields(cls, values: Dict) -> Dict:
         """
         Warn of Data Use fields pending deprecation.
@@ -379,18 +383,26 @@ class DataUse(FidesModel, DefaultModel):
         return values
 
     @field_validator("legitimate_interest")
-    def set_legitimate_interest(cls, value: bool, values: Dict) -> bool:
+    @classmethod
+    def set_legitimate_interest(cls, value: bool, info: FieldValidationInfo) -> bool:
         """Sets if a legitimate interest is used."""
+        values = info.data
+
         if values["legal_basis"] == "Legitimate Interests":
             value = True
         return value
 
     @field_validator("legitimate_interest_impact_assessment")
-    def ensure_impact_assessment(cls, value: AnyUrl, values: Dict) -> AnyUrl:
+    @classmethod
+    def ensure_impact_assessment(
+        cls, value: AnyUrl, info: FieldValidationInfo
+    ) -> AnyUrl:
         """
         Validates an impact assessment is applied if a
         legitimate interest has been defined.
         """
+        values = info.data
+
         if values["legitimate_interest"]:
             assert (
                 value is not None
@@ -518,7 +530,6 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
 
     @field_validator("fides_meta")
     @classmethod
-    @classmethod
     def valid_meta(cls, meta_values: Optional[FidesMeta]) -> Optional[FidesMeta]:
         """Validate upfront that the return_all_elements flag can only be specified on array fields"""
         if not meta_values:
@@ -534,15 +545,17 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
         return meta_values
 
     @field_validator("fields")
-    def validate_object_fields(  # type: ignore
+    @classmethod
+    def validate_object_fields(
         cls,
         fields: Optional[List["DatasetField"]],
-        values: Dict[str, Any],
+        info: FieldValidationInfo,
     ) -> Optional[List["DatasetField"]]:
         """Two validation checks for object fields:
         - If there are sub-fields specified, type should be either empty or 'object'
         - Additionally object fields cannot have data_categories.
         """
+        values = info.data
         declared_data_type = None
         field_name: str = values.get("name")  # type: ignore
 
@@ -571,7 +584,7 @@ DatasetField.model_rebuild()
 class CollectionMeta(BaseModel):
     """Collection-level specific annotations used for query traversal"""
 
-    after: Optional[List[FidesCollectionKey]]
+    after: Optional[List[FidesCollectionKey]] = None
     skip_processing: Optional[bool] = False
 
 
@@ -668,6 +681,7 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
     _unique_items_in_list = field_validator("collections")(unique_items_in_list)
 
     @model_validator(mode="before")
+    @classmethod
     def deprecate_fields(cls, values: Dict) -> Dict:
         """
         Warn of Dataset fields pending deprecation.
@@ -965,11 +979,7 @@ class PrivacyDeclaration(BaseModel):
     cookies: Optional[List[Cookies]] = Field(
         description="Cookies associated with this data use to deliver services and functionality",
     )
-
-    class Config:
-        """Config for the Privacy Declaration"""
-
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class SystemMetadata(BaseModel):
@@ -1020,20 +1030,21 @@ class DataFlow(BaseModel):
     )
 
     @model_validator(mode="after")
-    def user_special_case(cls, info: FieldValidationInfo) -> FieldValidationInfo:
+    def user_special_case(self) -> "DataFlow":
         """
         If either the `fides_key` or the `type` are set to "user",
         then the other must also be set to "user".
         """
 
-        if info.data["fides_key"] == "user" or info.data["type"] == "user":
+        if self.fides_key == "user" or self.type == "user":
             assert (
-                info.data["fides_key"] == "user" and info.data["type"] == "user"
+                self.fides_key == "user" and self.type == "user"
             ), "The 'user' fides_key is required for, and requires, the type 'user'"
 
-        return info
+        return self
 
     @field_validator("type")
+    @classmethod
     def verify_type_is_flowable(cls, value: str) -> str:
         """
         Assert that the value of the `type` field is a member
@@ -1201,6 +1212,7 @@ class System(FidesModel):
     _check_valid_country_code = country_code_validator
 
     @model_validator(mode="before")
+    @classmethod
     def deprecate_fields(cls, values: Dict) -> Dict:
         """
         Warn of System fields pending deprecation.
@@ -1220,6 +1232,7 @@ class System(FidesModel):
         return values
 
     @field_validator("privacy_declarations", check_fields=True)
+    @classmethod
     def privacy_declarations_reference_data_flows(
         cls,
         value: PrivacyDeclaration,
