@@ -264,7 +264,6 @@ class TestGetReferencedMissingKeys:
         )
         expected_referenced_key = {
             "default_organization",
-            "dataset_qualifier_1",
             "dataset_data_category_1",
             "dataset_collection_data_category_1",
             "dataset_field_data_category_1",

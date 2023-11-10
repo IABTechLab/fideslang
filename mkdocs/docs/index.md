@@ -17,7 +17,6 @@ The Fides taxonomy, or categorization, is made up of four main classification gr
         <button class="btn is-selected" data-chart-data="categories">Data Categories</button>
         <button class="btn" data-chart-data="uses">Data Uses</button>
         <button class="btn" data-chart-data="subjects">Data Subjects</button>
-        <button class="btn" data-chart-data="qualifiers">Data Qualifiers</button>
       </div>
     </div>
     <div id="chart-type-control" class="control-group">

@@ -840,13 +840,11 @@ Promise.all([
   const categoriesRoot = stratify(categoriesCSV);
   const usesRoot = stratify(usesCSV);
   const subjectsRoot = stratify(subjectsCSV);
-  const qualifiersRoot = stratify(qualifiersCSV);
 
   const chartData = {
     categories: categoriesRoot,
     uses: usesRoot,
     subjects: subjectsRoot,
-    qualifiers: qualifiersRoot,
   };
   const chartDataButtons = d3
     .select("#data-control")
