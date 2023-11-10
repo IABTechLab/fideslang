@@ -20,7 +20,6 @@ from .models import (
     DataSubject,
     DataUse,
     Evaluation,
-    FidesCollectionKey,
     FidesDatasetReference,
     FidesMeta,
     FidesModel,
@@ -33,6 +32,7 @@ from .models import (
     System,
     Taxonomy,
 )
+from .validation import FidesCollectionKey
 
 FidesModelType = Union[Type[FidesModel], Type[Evaluation]]
 model_map: Dict[str, FidesModelType] = {

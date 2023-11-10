@@ -13,7 +13,6 @@ from fideslang.models import (
     DatasetField,
     DatasetMetadata,
     DataUse,
-    FidesCollectionKey,
     FidesDatasetReference,
     FidesMeta,
     FidesModel,
@@ -87,7 +86,7 @@ class TestVersioning:
     @pytest.mark.parametrize("TaxonomyClass", DEFAULT_TAXONOMY_CLASSES)
     def test_built_from_dict_with_empty_versions(self, TaxonomyClass) -> None:
         """Try building from a dictionary with explicit None values."""
-        TaxonomyClass.parse_obj(
+        TaxonomyClass.model_validate(
             {
                 "organization_fides_key": 1,
                 "fides_key": "user",
@@ -760,13 +759,11 @@ class TestValidateDatasetField:
 class TestCollectionMeta:
     def test_invalid_collection_key(self):
         with pytest.raises(ValidationError):
-            CollectionMeta(after=[FidesCollectionKey("test_key")])
+            CollectionMeta(after=["test_key"])
 
     def test_collection_key_has_too_many_components(self):
         with pytest.raises(ValidationError):
-            CollectionMeta(
-                after=[FidesCollectionKey("test_dataset.test_collection.test_field")]
-            )
+            CollectionMeta(after=["test_dataset.test_collection.test_field"])
 
     def test_valid_collection_key(self):
-        CollectionMeta(after=[FidesCollectionKey("test_dataset.test_collection")])
+        CollectionMeta(after=["test_dataset.test_collection"])

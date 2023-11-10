@@ -3,10 +3,10 @@ Contains all of the additional validation for the resource models.
 """
 import re
 from collections import Counter
-from typing import Dict, Generator, List, Optional, Pattern, Set, Tuple
+from typing import Dict, Generator, List, Optional, Set, Tuple, Annotated, Pattern
 
 from packaging.version import Version
-from pydantic import ConstrainedStr
+from pydantic import FieldValidationInfo, AfterValidator
 
 from fideslang.default_fixtures import COUNTRY_CODES
 
@@ -30,23 +30,40 @@ class FidesVersion(Version):
         return Version(value)
 
 
-class FidesKey(ConstrainedStr):
-    """
-    A FidesKey type that creates a custom constrained string.
-    """
+def fides_key_regex_check(value: str) -> str:
+    """Throws ValueError if val is not a valid FidesKey"""
 
     regex: Pattern[str] = re.compile(r"^[a-zA-Z0-9_.<>-]+$")
+    if not regex.match(value):
+        raise FidesValidationError(
+            f"FidesKeys must only contain alphanumeric characters, '.', '_', '<', '>' or '-'. Value provided: {value}"
+        )
 
-    @classmethod  # This overrides the default method to throw the custom FidesValidationError
-    def validate(cls, value: str) -> str:
-        """Throws ValueError if val is not a valid FidesKey"""
+    return value
 
-        if not cls.regex.match(value):
-            raise FidesValidationError(
-                f"FidesKeys must only contain alphanumeric characters, '.', '_', '<', '>' or '-'. Value provided: {value}"
-            )
 
+fides_key_pattern = "^[a-zA-Z0-9_.<>-]+$"
+FidesKey = Annotated[str, AfterValidator(fides_key_regex_check)]
+
+
+def validate_collection_key_parts(value: str) -> str:
+    """
+    Overrides validation to check FidesCollectionKey format, and that both the dataset
+    and collection names have the FidesKey format.
+    """
+    values = value.split(".")
+    if len(values) == 2:
+        FidesKey(values[0])
+        FidesKey(values[1])
         return value
+    else:
+        raise ValueError(
+            "FidesCollection must be specified in the form 'FidesKey.FidesKey'"
+        )
+
+
+# Dataset.Collection name where both dataset and collection names are valid FidesKeys
+FidesCollectionKey = Annotated[str, AfterValidator(validate_collection_key_parts)]
 
 
 def sort_list_objects_by_name(values: List) -> List:
@@ -77,14 +94,14 @@ def unique_items_in_list(values: List) -> List:
     return values
 
 
-def no_self_reference(value: FidesKey, values: Dict) -> FidesKey:
+def no_self_reference(value: FidesKey, info: FieldValidationInfo) -> FidesKey:
     """
     Check to make sure that the fides_key doesn't match other fides_key
     references within an object.
 
     i.e. DataCategory.parent_key != DataCategory.fides_key
     """
-    fides_key = FidesKey.validate(values.get("fides_key", ""))
+    fides_key = FidesKey(info.data.get("fides_key", ""))
     if value == fides_key:
         raise FidesValidationError("FidesKey can not self-reference!")
     return value
@@ -115,7 +132,7 @@ def deprecated_version_later_than_added(
     return version_deprecated
 
 
-def has_versioning_if_default(is_default: bool, values: Dict) -> bool:
+def has_versioning_if_default(is_default: bool, info: FieldValidationInfo) -> bool:
     """
     Check to make sure that version fields are set for default items.
     """
@@ -123,15 +140,15 @@ def has_versioning_if_default(is_default: bool, values: Dict) -> bool:
     # If it's a default item, it at least needs a starting version
     if is_default:
         try:
-            assert values.get("version_added")
+            assert info.data.get("version_added")
         except AssertionError:
             raise FidesValidationError("Default items must have version information!")
     # If it's not default, it shouldn't have version info
     else:
         try:
-            assert not values.get("version_added")
-            assert not values.get("version_deprecated")
-            assert not values.get("replaced_by")
+            assert not info.data.get("version_added")
+            assert not info.data.get("version_deprecated")
+            assert not info.data.get("replaced_by")
         except AssertionError:
             raise FidesValidationError(
                 "Non-default items can't have version information!"
@@ -151,12 +168,12 @@ def is_deprecated_if_replaced(replaced_by: str, values: Dict) -> str:
     return replaced_by
 
 
-def matching_parent_key(parent_key: FidesKey, values: Dict) -> FidesKey:
+def matching_parent_key(parent_key: FidesKey, info: FieldValidationInfo) -> FidesKey:
     """
     Confirm that the parent_key matches the parent parsed from the FidesKey.
     """
 
-    fides_key = FidesKey.validate(values.get("fides_key", ""))
+    fides_key = FidesKey(info.data.get("fides_key", ""))
     split_fides_key = fides_key.split(".")
 
     # Check if it is a top-level resource

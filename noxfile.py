@@ -4,7 +4,7 @@ nox.options.sessions = []
 nox.options.reuse_existing_virtualenvs = True
 
 TESTED_PYTHON_VERSIONS = ["3.8", "3.9", "3.10", "3.11"]
-TESTED_PYDANTIC_VERSIONS = ["1.8.2", "1.9.2", "1.10.9", "2.3.0"]
+TESTED_PYDANTIC_VERSIONS = ["2.3.0"]
 TESTED_PYYAML_VERSIONS = ["5.4.1", "6.0"]
 
 

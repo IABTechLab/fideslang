@@ -18,5 +18,5 @@ def default_factory(taxonomy_class: CustomType, **kwargs: Dict) -> CustomType:
         # This is the version where we started tracking from, so
         # we use it as the default starting point.
         kwargs["version_added"] = "2.0.0"  # type: ignore[assignment]
-    item = taxonomy_class.parse_obj(kwargs)
+    item = taxonomy_class.model_validate(kwargs)
     return item

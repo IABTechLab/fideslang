@@ -10,14 +10,15 @@ from typing import Any, Dict, List, Optional, Union
 from warnings import warn
 
 from pydantic import (
+    field_validator,
+    model_validator,
+    ConfigDict,
     AnyUrl,
     BaseModel,
-    ConstrainedStr,
     Field,
     HttpUrl,
+    FieldValidationInfo,
     PositiveInt,
-    root_validator,
-    validator,
 )
 
 from fideslang.validation import (
@@ -27,6 +28,7 @@ from fideslang.validation import (
     deprecated_version_later_than_added,
     has_versioning_if_default,
     is_deprecated_if_replaced,
+    FidesCollectionKey,
     matching_parent_key,
     no_self_reference,
     parse_data_type_string,
@@ -36,22 +38,18 @@ from fideslang.validation import (
 )
 
 # Reusable Validators
-country_code_validator = validator("third_country_transfers", allow_reuse=True)(
+country_code_validator = field_validator("third_country_transfers")(
     check_valid_country_code
 )
-matching_parent_key_validator = validator("parent_key", allow_reuse=True, always=True)(
-    matching_parent_key
+matching_parent_key_validator = field_validator("parent_key")(matching_parent_key)
+no_self_reference_validator = field_validator("parent_key")(no_self_reference)
+has_versioning_if_default_validator = field_validator("is_default")(
+    has_versioning_if_default
 )
-no_self_reference_validator = validator("parent_key", allow_reuse=True)(
-    no_self_reference
-)
-has_versioning_if_default_validator = validator(
-    "is_default", allow_reuse=True, always=True
-)(has_versioning_if_default)
-deprecated_version_later_than_added_validator = validator(
-    "version_deprecated", allow_reuse=True
+deprecated_version_later_than_added_validator = field_validator(
+    "version_deprecated",
 )(deprecated_version_later_than_added)
-is_deprecated_if_replaced_validator = validator("replaced_by", allow_reuse=True)(
+is_deprecated_if_replaced_validator = field_validator("replaced_by")(
     is_deprecated_if_replaced
 )
 
@@ -77,13 +75,13 @@ class FidesModel(BaseModel):
         description="Defines the Organization that this resource belongs to.",
     )
     tags: Optional[List[str]] = None
-    name: Optional[str] = name_field
-    description: Optional[str] = description_field
-
-    class Config:
-        "Config for the FidesModel"
-        extra = "ignore"
-        orm_mode = True
+    name: Optional[str] = Field(
+        default=None, description="Human-Readable name for this resource."
+    )
+    description: Optional[str] = Field(
+        default=None, description="A detailed description of what this resource is."
+    )
+    model_config = ConfigDict(extra="ignore", from_attributes=True)
 
 
 class DefaultModel(BaseModel):
@@ -108,17 +106,12 @@ class DefaultModel(BaseModel):
         description="Denotes whether the resource is part of the default taxonomy or not.",
     )
 
-    _has_versioning_if_default: classmethod = has_versioning_if_default_validator
-    _deprecated_version_later_than_added: classmethod = (
-        deprecated_version_later_than_added_validator
-    )
-    _is_deprecated_if_replaced: classmethod = is_deprecated_if_replaced_validator
+    _has_versioning_if_default = has_versioning_if_default_validator
+    _deprecated_version_later_than_added = deprecated_version_later_than_added_validator
+    _is_deprecated_if_replaced = is_deprecated_if_replaced_validator
 
-    @validator("version_added")
-    @classmethod
-    def validate_verion_added(
-        cls, version_added: Optional[str], values: Dict
-    ) -> Optional[str]:
+    @field_validator("version_added")
+    def validate_verion_added(cls, version_added: Optional[str]) -> Optional[str]:
         """
         Validate that the `version_added` field is a proper FidesVersion
         """
@@ -128,10 +121,9 @@ class DefaultModel(BaseModel):
         FidesVersion.validate(version_added)
         return version_added
 
-    @validator("version_deprecated")
-    @classmethod
+    @field_validator("version_deprecated")
     def validate_version_deprecated(
-        cls, version_deprecated: Optional[str], values: Dict
+        cls, version_deprecated: Optional[str]
     ) -> Optional[str]:
         """
         Validate that the `version_deprecated` is a proper FidesVersion
@@ -273,32 +265,28 @@ class SpecialCategoryLegalBasisEnum(str, Enum):
 class DataCategory(FidesModel, DefaultModel):
     """The DataCategory resource model."""
 
-    parent_key: Optional[FidesKey]
+    parent_key: Optional[FidesKey] = None
 
-    _matching_parent_key: classmethod = matching_parent_key_validator
-    _no_self_reference: classmethod = no_self_reference_validator
+    _matching_parent_key = matching_parent_key_validator
+    _no_self_reference = no_self_reference_validator
 
 
 class DataQualifier(FidesModel, DefaultModel):
     """The DataQualifier resource model."""
 
-    parent_key: Optional[FidesKey]
+    parent_key: Optional[FidesKey] = None
 
-    _matching_parent_key: classmethod = matching_parent_key_validator
-    _no_self_reference: classmethod = no_self_reference_validator
+    _matching_parent_key = matching_parent_key_validator
+    _no_self_reference = no_self_reference_validator
 
 
 class Cookies(BaseModel):
     """The Cookies resource model"""
 
     name: str
-    path: Optional[str]
-    domain: Optional[str]
-
-    class Config:
-        """Config for the cookies"""
-
-        orm_mode = True
+    path: Optional[str] = None
+    domain: Optional[str] = None
+    model_config = ConfigDict(from_attributes=True)
 
 
 class DataSubjectRights(BaseModel):
@@ -314,11 +302,11 @@ class DataSubjectRights(BaseModel):
         description="Defines the strategy used when mapping data rights to a data subject.",
     )
     values: Optional[List[DataSubjectRightsEnum]] = Field(
+        default=None,
         description="A list of valid data subject rights to be used when applying data rights to a data subject via a strategy.",
     )
 
-    @root_validator()
-    @classmethod
+    @model_validator(mode="before")
     def include_exclude_has_values(cls, values: Dict) -> Dict:
         """
         Validate the if include or exclude is chosen, that at least one
@@ -335,8 +323,11 @@ class DataSubjectRights(BaseModel):
 class DataSubject(FidesModel, DefaultModel):
     """The DataSubject resource model."""
 
-    rights: Optional[DataSubjectRights] = Field(description=DataSubjectRights.__doc__)
+    rights: Optional[DataSubjectRights] = Field(
+        default=None, description=DataSubjectRights.__doc__ or ""
+    )
     automated_decisions_or_profiling: Optional[bool] = Field(
+        default=None,
         description="A boolean value to annotate whether or not automated decisions/profiling exists for the data subject.",
     )
 
@@ -346,26 +337,30 @@ class DataUse(FidesModel, DefaultModel):
 
     parent_key: Optional[FidesKey] = None
     legal_basis: Optional[LegalBasisEnum] = Field(
+        default=None,
         description="Deprecated. The legal basis category of which the data use falls under. This field is used as part of the creation of an exportable data map.",
     )
     special_category: Optional[SpecialCategoriesEnum] = Field(
+        default=None,
         description="Deprecated. The special category for processing of which the data use falls under. This field is used as part of the creation of an exportable data map.",
     )
     recipients: Optional[List[str]] = Field(
+        default=None,
         description="Deprecated. An array of recipients when sharing personal data outside of your organization.",
     )
     legitimate_interest: Optional[bool] = Field(
+        default=None,
         description="Deprecated. A boolean representation of if the legal basis used is `Legitimate Interest`. Validated at run time and looks for a `legitimate_interest_impact_assessment` to exist if true.",
     )
     legitimate_interest_impact_assessment: Optional[AnyUrl] = Field(
+        default=None,
         description="Deprecated. A url pointing to the legitimate interest impact assessment. Required if the legal bases used is legitimate interest.",
     )
 
-    _matching_parent_key: classmethod = matching_parent_key_validator
-    _no_self_reference: classmethod = no_self_reference_validator
+    _matching_parent_key = matching_parent_key_validator
+    _no_self_reference = no_self_reference_validator
 
-    @root_validator
-    @classmethod
+    @model_validator(mode="before")
     def deprecate_fields(cls, values: Dict) -> Dict:
         """
         Warn of Data Use fields pending deprecation.
@@ -385,16 +380,14 @@ class DataUse(FidesModel, DefaultModel):
                 )
         return values
 
-    @validator("legitimate_interest", always=True)
-    @classmethod
+    @field_validator("legitimate_interest")
     def set_legitimate_interest(cls, value: bool, values: Dict) -> bool:
         """Sets if a legitimate interest is used."""
         if values["legal_basis"] == "Legitimate Interests":
             value = True
         return value
 
-    @validator("legitimate_interest_impact_assessment", always=True)
-    @classmethod
+    @field_validator("legitimate_interest_impact_assessment")
     def ensure_impact_assessment(cls, value: AnyUrl, values: Dict) -> AnyUrl:
         """
         Validates an impact assessment is applied if a
@@ -433,6 +426,7 @@ class DatasetFieldBase(BaseModel):
     name: str = name_field
     description: Optional[str] = description_field
     data_categories: Optional[List[FidesKey]] = Field(
+        default=None,
         description="Arrays of Data Categories, identified by `fides_key`, that applies to this field.",
     )
     data_qualifier: FidesKey = Field(
@@ -440,6 +434,7 @@ class DatasetFieldBase(BaseModel):
         description="A Data Qualifier that applies to this field. Note that this field holds a single value, therefore, the property name is singular.",
     )
     retention: Optional[str] = Field(
+        default=None,
         description="An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
     )
 
@@ -456,7 +451,7 @@ class FidesDatasetReference(BaseModel):
 
     dataset: FidesKey
     field: str
-    direction: Optional[EdgeDirection]
+    direction: Optional[EdgeDirection] = None
 
 
 class FidesMeta(BaseModel):
@@ -467,25 +462,32 @@ class FidesMeta(BaseModel):
         default=None,
     )
     identity: Optional[str] = Field(
-        description="The type of the identity data that should be used to query this collection for a DSR."
+        default=None,
+        description="The type of the identity data that should be used to query this collection for a DSR.",
     )
     primary_key: Optional[bool] = Field(
-        description="Whether the current field can be considered a primary key of the current collection"
+        default=None,
+        description="Whether the current field can be considered a primary key of the current collection",
     )
     data_type: Optional[str] = Field(
-        description="Optionally specify the data type. Fides will attempt to cast values to this type when querying."
+        default=None,
+        description="Optionally specify the data type. Fides will attempt to cast values to this type when querying.",
     )
     length: Optional[PositiveInt] = Field(
-        description="Optionally specify the allowable field length. Fides will not generate values that exceed this size."
+        default=None,
+        description="Optionally specify the allowable field length. Fides will not generate values that exceed this size.",
     )
     return_all_elements: Optional[bool] = Field(
-        description="Optionally specify to query for the entire array if the array is an entrypoint into the node. Default is False."
+        default=None,
+        description="Optionally specify to query for the entire array if the array is an entrypoint into the node. Default is False.",
     )
     read_only: Optional[bool] = Field(
-        description="Optionally specify if a field is read-only, meaning it can't be updated or deleted."
+        default=None,
+        description="Optionally specify if a field is read-only, meaning it can't be updated or deleted.",
     )
 
-    @validator("data_type")
+    @field_validator("data_type")
+    @classmethod
     @classmethod
     def valid_data_type(cls, value: Optional[str]) -> Optional[str]:
         """Validate that all annotated data types exist in the taxonomy"""
@@ -520,7 +522,8 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
         description="An optional array of objects that describe hierarchical/nested fields (typically found in NoSQL databases).",
     )
 
-    @validator("fides_meta")
+    @field_validator("fides_meta")
+    @classmethod
     @classmethod
     def valid_meta(cls, meta_values: Optional[FidesMeta]) -> Optional[FidesMeta]:
         """Validate upfront that the return_all_elements flag can only be specified on array fields"""
@@ -536,8 +539,7 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
             )
         return meta_values
 
-    @validator("fields")
-    @classmethod
+    @field_validator("fields")
     def validate_object_fields(  # type: ignore
         cls,
         fields: Optional[List["DatasetField"]],
@@ -569,28 +571,7 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
 
 
 # this is required for the recursive reference in the pydantic model:
-DatasetField.update_forward_refs()
-
-
-class FidesCollectionKey(ConstrainedStr):
-    """
-    Dataset.Collection name where both dataset and collection names are valid FidesKeys
-    """
-
-    @classmethod
-    def validate(cls, value: str) -> str:
-        """
-        Overrides validation to check FidesCollectionKey format, and that both the dataset
-        and collection names have the FidesKey format.
-        """
-        values = value.split(".")
-        if len(values) == 2:
-            FidesKey.validate(values[0])
-            FidesKey.validate(values[1])
-            return value
-        raise ValueError(
-            "FidesCollection must be specified in the form 'FidesKey.FidesKey'"
-        )
+DatasetField.model_rebuild()
 
 
 class CollectionMeta(BaseModel):
@@ -624,12 +605,8 @@ class DatasetCollection(FidesopsMetaBackwardsCompat):
 
     fides_meta: Optional[CollectionMeta] = None
 
-    _sort_fields: classmethod = validator("fields", allow_reuse=True)(
-        sort_list_objects_by_name
-    )
-    _unique_items_in_list: classmethod = validator("fields", allow_reuse=True)(
-        unique_items_in_list
-    )
+    _sort_fields = field_validator("fields")(sort_list_objects_by_name)
+    _unique_items_in_list = field_validator("fields")(unique_items_in_list)
 
 
 class ContactDetails(BaseModel):
@@ -668,8 +645,8 @@ class DatasetMetadata(BaseModel):
     Object used to hold application specific metadata for a dataset
     """
 
-    resource_id: Optional[str]
-    after: Optional[List[FidesKey]]
+    resource_id: Optional[str] = None
+    after: Optional[List[FidesKey]] = None
 
 
 class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
@@ -686,7 +663,7 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
         description=DatasetMetadata.__doc__, default=None
     )
     joint_controller: Optional[ContactDetails] = Field(
-        description="Deprecated. " + ContactDetails.__doc__,
+        description="Deprecated. " + (ContactDetails.__doc__ or ""),
     )
     retention: Optional[str] = Field(
         description="Deprecated. An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
@@ -698,16 +675,11 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
         description="An array of objects that describe the Dataset's collections.",
     )
 
-    _sort_collections: classmethod = validator("collections", allow_reuse=True)(
-        sort_list_objects_by_name
-    )
-    _check_valid_country_code: classmethod = country_code_validator
-    _unique_items_in_list: classmethod = validator("collections", allow_reuse=True)(
-        unique_items_in_list
-    )
+    _sort_collections = field_validator("collections")(sort_list_objects_by_name)
+    _check_valid_country_code = country_code_validator
+    _unique_items_in_list = field_validator("collections")(unique_items_in_list)
 
-    @root_validator
-    @classmethod
+    @model_validator(mode="before")
     def deprecate_fields(cls, values: Dict) -> Dict:
         """
         Warn of Dataset fields pending deprecation.
@@ -782,11 +754,7 @@ class Evaluation(BaseModel):
         default="",
         description="A human-readable string response for the evaluation.",
     )
-
-    class Config:
-        "Config for the Evaluation"
-        extra = "ignore"
-        orm_mode = True
+    model_config = ConfigDict(extra="ignore", from_attributes=True)
 
 
 # Organization
@@ -811,7 +779,8 @@ class OrganizationMetadata(BaseModel):
     """
 
     resource_filters: Optional[List[ResourceFilter]] = Field(
-        description="A list of filters that can be used when generating or scanning systems."
+        default=None,
+        description="A list of filters that can be used when generating or scanning systems.",
     )
 
 
@@ -828,19 +797,23 @@ class Organization(FidesModel):
         description="An inherited field from the FidesModel that is unused with an Organization.",
     )
     controller: Optional[ContactDetails] = Field(
+        default=None,
         description=ContactDetails.__doc__,
     )
     data_protection_officer: Optional[ContactDetails] = Field(
+        default=None,
         description=ContactDetails.__doc__,
     )
     fidesctl_meta: Optional[OrganizationMetadata] = Field(
+        default=None,
         description=OrganizationMetadata.__doc__,
     )
     representative: Optional[ContactDetails] = Field(
+        default=None,
         description=ContactDetails.__doc__,
     )
     security_policy: Optional[HttpUrl] = Field(
-        description="Am optional URL to the organization security policy."
+        default=None, description="Am optional URL to the organization security policy."
     )
 
 
@@ -907,9 +880,7 @@ class Policy(FidesModel):
         description=PolicyRule.__doc__,
     )
 
-    _sort_rules: classmethod = validator("rules", allow_reuse=True)(
-        sort_list_objects_by_name
-    )
+    _sort_rules = field_validator("rules")(sort_list_objects_by_name)
 
 
 # Registry
@@ -1014,8 +985,7 @@ class PrivacyDeclaration(BaseModel):
         description="Cookies associated with this data use to deliver services and functionality",
     )
 
-    @validator("data_qualifier")
-    @classmethod
+    @field_validator("data_qualifier")
     def deprecate_data_qualifier(cls, value: FidesKey) -> FidesKey:
         """
         Warn that the `data_qualifier` field is deprecated, if set.
@@ -1028,10 +998,7 @@ class PrivacyDeclaration(BaseModel):
 
         return value
 
-    class Config:
-        """Config for the Privacy Declaration"""
-
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class SystemMetadata(BaseModel):
@@ -1081,23 +1048,21 @@ class DataFlow(BaseModel):
         description="An array of data categories describing the data in transit.",
     )
 
-    @root_validator(skip_on_failure=True)
-    @classmethod
-    def user_special_case(cls, values: Dict) -> Dict:
+    @model_validator(mode="after")
+    def user_special_case(cls, info: FieldValidationInfo) -> FieldValidationInfo:
         """
         If either the `fides_key` or the `type` are set to "user",
         then the other must also be set to "user".
         """
 
-        if values["fides_key"] == "user" or values["type"] == "user":
+        if info.data["fides_key"] == "user" or info.data["type"] == "user":
             assert (
-                values["fides_key"] == "user" and values["type"] == "user"
+                info.data["fides_key"] == "user" and info.data["type"] == "user"
             ), "The 'user' fides_key is required for, and requires, the type 'user'"
 
-        return values
+        return info
 
-    @validator("type")
-    @classmethod
+    @field_validator("type")
     def verify_type_is_flowable(cls, value: str) -> str:
         """
         Assert that the value of the `type` field is a member
@@ -1117,31 +1082,37 @@ class System(FidesModel):
     """
 
     registry_id: Optional[int] = Field(
+        default=None,
         description="The id of the system registry, if used.",
     )
     meta: Optional[Dict] = meta_field
     fidesctl_meta: Optional[SystemMetadata] = Field(
+        default=None,
         description=SystemMetadata.__doc__,
     )
     system_type: str = Field(
         description="A required value to describe the type of system being modeled, examples include: Service, Application, Third Party, etc.",
     )
     data_responsibility_title: Optional[DataResponsibilityTitle] = Field(
+        default=None,
         description="Deprecated. The responsibility or role over the system that processes personal data",
     )
     egress: Optional[List[DataFlow]] = Field(
-        description="The resources to which the System sends data."
+        default=None, description="The resources to which the System sends data."
     )
     ingress: Optional[List[DataFlow]] = Field(
-        description="The resources from which the System receives data."
+        default=None, description="The resources from which the System receives data."
     )
     privacy_declarations: List[PrivacyDeclaration] = Field(
         description=PrivacyDeclaration.__doc__,
     )
     joint_controller: Optional[ContactDetails] = Field(
-        description="Deprecated. " + ContactDetails.__doc__,
+        default=None,
+        description="Deprecated. "
+        + (ContactDetails.__doc__ or ""),  # The 'or' is to satisfy a type issue
     )
     third_country_transfers: Optional[List[str]] = Field(
+        default=None,
         description="Deprecated. An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in ISO 3166-1.",
     )
     administrating_department: Optional[str] = Field(
@@ -1149,10 +1120,15 @@ class System(FidesModel):
         description="An optional value to identify the owning department or group of the system within your organization",
     )
     data_protection_impact_assessment: Optional[DataProtectionImpactAssessment] = Field(
-        description="Deprecated. " + DataProtectionImpactAssessment.__doc__,
+        default=None,
+        description="Deprecated. "
+        + (
+            DataProtectionImpactAssessment.__doc__ or ""
+        ),  # The 'or' is to satisfy a type issue
     )
     vendor_id: Optional[str] = Field(
-        description="The unique identifier for the vendor that's associated with this system."
+        default=None,
+        description="The unique identifier for the vendor that's associated with this system.",
     )
     dataset_references: List[FidesKey] = Field(
         default_factory=list,
@@ -1167,7 +1143,8 @@ class System(FidesModel):
         description="This toggle indicates whether the system is exempt from privacy regulation if they do process personal data.",
     )
     reason_for_exemption: Optional[str] = Field(
-        description="The reason that the system is exempt from privacy regulation."
+        default=None,
+        description="The reason that the system is exempt from privacy regulation.",
     )
     uses_profiling: bool = Field(
         default=False,
@@ -1190,42 +1167,46 @@ class System(FidesModel):
         description="Whether this system requires data protection impact assessments.",
     )
     dpa_location: Optional[str] = Field(
-        description="Location where the DPAs or DIPAs can be found."
+        default=None, description="Location where the DPAs or DIPAs can be found."
     )
     dpa_progress: Optional[str] = Field(
-        description="The optional status of a Data Protection Impact Assessment"
+        default=None,
+        description="The optional status of a Data Protection Impact Assessment",
     )
     privacy_policy: Optional[AnyUrl] = Field(
-        description="A URL that points to the System's publicly accessible privacy policy."
+        default=None,
+        description="A URL that points to the System's publicly accessible privacy policy.",
     )
     legal_name: Optional[str] = Field(
-        description="The legal name for the business represented by the system."
+        default=None,
+        description="The legal name for the business represented by the system.",
     )
     legal_address: Optional[str] = Field(
-        description="The legal address for the business represented by the system."
+        default=None,
+        description="The legal address for the business represented by the system.",
     )
     responsibility: List[DataResponsibilityTitle] = Field(
         default_factory=list,
         description=DataResponsibilityTitle.__doc__,
     )
     dpo: Optional[str] = Field(
-        description="The official privacy contact address or DPO."
+        default=None, description="The official privacy contact address or DPO."
     )
     joint_controller_info: Optional[str] = Field(
-        description="The party or parties that share the responsibility for processing personal data."
+        default=None,
+        description="The party or parties that share the responsibility for processing personal data.",
     )  # Use joint_controller_info in favor of joint_controller
     data_security_practices: Optional[str] = Field(
-        description="The data security practices employed by this system."
+        default=None, description="The data security practices employed by this system."
     )
 
-    _sort_privacy_declarations: classmethod = validator(
-        "privacy_declarations", allow_reuse=True
-    )(sort_list_objects_by_name)
+    _sort_privacy_declarations = field_validator("privacy_declarations")(
+        sort_list_objects_by_name
+    )
 
-    _check_valid_country_code: classmethod = country_code_validator
+    _check_valid_country_code = country_code_validator
 
-    @root_validator
-    @classmethod
+    @model_validator(mode="before")
     def deprecate_fields(cls, values: Dict) -> Dict:
         """
         Warn of System fields pending deprecation.
@@ -1244,12 +1225,11 @@ class System(FidesModel):
                 )
         return values
 
-    @validator("privacy_declarations", each_item=True)
-    @classmethod
+    @field_validator("privacy_declarations", check_fields=True)
     def privacy_declarations_reference_data_flows(
         cls,
         value: PrivacyDeclaration,
-        values: Dict,
+        info: FieldValidationInfo,
     ) -> PrivacyDeclaration:
         """
         Any `PrivacyDeclaration`s which include `egress` and/or `ingress` fields must
@@ -1259,8 +1239,8 @@ class System(FidesModel):
         for direction in ["egress", "ingress"]:
             fides_keys = getattr(value, direction, None)
             if fides_keys is not None:
-                data_flows = values[direction]
-                system = values["fides_key"]
+                data_flows = info.data[direction]
+                system = info.data["fides_key"]
                 assert (
                     data_flows is not None and len(data_flows) > 0
                 ), f"PrivacyDeclaration '{value.name}' defines {direction} with one or more resources and is applied to the System '{system}', which does not itself define any {direction}."
@@ -1272,10 +1252,7 @@ class System(FidesModel):
 
         return value
 
-    class Config:
-        """Class for the System config"""
-
-        use_enum_values = True
+    model_config = ConfigDict(use_enum_values=True)
 
 
 # Taxonomy

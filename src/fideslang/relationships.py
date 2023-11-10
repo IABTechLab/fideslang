@@ -75,7 +75,7 @@ def get_referenced_missing_keys(taxonomy: Taxonomy) -> Set[FidesKey]:
     """
     referenced_keys: List[Set[FidesKey]] = [
         find_referenced_fides_keys(resource)
-        for resource_type in taxonomy.__fields_set__
+        for resource_type in taxonomy.model_fields_set
         for resource in getattr(taxonomy, resource_type)
     ]
     key_set: Set[FidesKey] = set(
