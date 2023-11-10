@@ -69,7 +69,6 @@ class TestPrivacyDeclaration:
     def test_privacydeclaration_valid(self) -> None:
         assert PrivacyDeclaration(
             data_categories=[],
-            data_qualifier="aggregated_data",
             data_subjects=[],
             data_use="provide",
             egress=[],
@@ -77,21 +76,12 @@ class TestPrivacyDeclaration:
             name="declaration-name",
         )
 
-    def test_privacy_declaration_data_qualifier_deprecation(self) -> None:
-        with deprecated_call(match="data_qualifier"):
-            assert PrivacyDeclaration(
-                data_categories=[],
-                data_qualifier="aggregated_data",
-                data_subjects=[],
-                data_use="provide",
-                dataset_references=[],
-                egress=["test_system_2"],
-                ingress=["test_system_3"],
-                name="declaration-name",
-            )
-
 
 class TestSystem:
+    # TODO: these tests are not effectively evaluating whether the provided constructor args
+    # are actually supported, because our `System` model does not prohibit "extra" fields.
+    # We need to update these tests to assert that the provided args are actually being set
+    # as attributes on the System instance that's instantiated.
     def test_system_valid(self) -> None:
         assert System(
             description="Test Policy",
@@ -117,7 +107,6 @@ class TestSystem:
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
-                    data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
                     egress=["test_system_2"],
@@ -168,7 +157,6 @@ class TestSystem:
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
-                    data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
                     egress=["test_system_2"],
@@ -205,7 +193,6 @@ class TestSystem:
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
-                    data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
                     egress=["test_system_2"],
@@ -229,7 +216,6 @@ class TestSystem:
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
-                    data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
                     name="declaration-name",
@@ -258,7 +244,6 @@ class TestSystem:
                 privacy_declarations=[
                     PrivacyDeclaration(
                         data_categories=[],
-                        data_qualifier="aggregated_data",
                         data_subjects=[],
                         data_use="provide",
                         egress=["test_system_2"],
@@ -289,7 +274,6 @@ class TestSystem:
                 privacy_declarations=[
                     PrivacyDeclaration(
                         data_categories=[],
-                        data_qualifier="aggregated_data",
                         data_subjects=[],
                         data_use="provide",
                         egress=["test_system_2"],
@@ -319,7 +303,6 @@ class TestSystem:
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
-                    data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
                     ingress=["user"],
@@ -372,13 +355,12 @@ class TestSystem:
                         "user.demographic",
                         "user.privacy_preferences",
                     ],
-                    data_qualifier="aggregated_data",
                     data_use="functional.storage",
                     data_subjects=[],
                     egress=["test_system_2"],
                     ingress=["test_system_3"],
                     features=[
-                        "Match and combine offline data sources",
+                        "Match and combine data from other data sources",
                         "Link different devices",
                         "Receive and use automatically-sent device characteristics for identification",
                     ],
@@ -390,13 +372,14 @@ class TestSystem:
                     data_shared_with_third_parties=True,
                     third_parties="advertising; marketing",
                     shared_categories=[],
+                    flexible_legal_basis_for_processing=True,
                     cookies=[
                         {"name": "ANON_ID", "path": "/", "domain": "tribalfusion.com"}
                     ],
                 )
             ],
             third_country_transfers=["ARM"],
-            vendor_id="1",
+            vendor_id="gvl.1",
             dataset_references=["test_fides_key_dataset"],
             processes_personal_data=True,
             exempt_from_privacy_regulations=False,
@@ -404,7 +387,7 @@ class TestSystem:
             uses_profiling=True,
             legal_basis_for_profiling=["Explicit consent", "Contract"],
             does_international_transfers=True,
-            legal_basis_for_transfers=["Adequacy Decision", "SCCs"],
+            legal_basis_for_transfers=["Adequacy Decision", "SCCs", "New legal basis"],
             requires_data_protection_assessments=True,
             dpa_location="www.example.com/dpa_location",
             privacy_policy="https://vdx.tv/privacy/",
@@ -414,7 +397,19 @@ class TestSystem:
             responsibility=[DataResponsibilityTitle.CONTROLLER],
             dpo="privacyofficertest@vdx.tv",
             data_security_practices=None,
-            cookies=[{"name": "test_cookie"}],
+            cookie_max_age_seconds="31536000",
+            uses_cookies=True,
+            cookie_refresh=True,
+            uses_non_cookie_access=True,
+            legitimate_interest_disclosure_url="http://www.example.com/legitimate_interest_disclosure",
+            previous_vendor_id="gacp.10",
+            cookies=[
+                {
+                    "name": "COOKIE_ID_EXAMPLE",
+                    "path": "/",
+                    "domain": "example.com/cookie",
+                }
+            ],
         )
 
     @mark.parametrize(
@@ -472,20 +467,17 @@ class TestDataset:
                     }
                 },
             },
-            data_qualifier="dataset_qualifier_1",
             data_categories=["dataset_data_category_1"],
             fides_meta={"after": ["other_dataset"]},
             collections=[
                 DatasetCollection(
                     name="dataset_collection_1",
-                    data_qualifier="data_collection_data_qualifier_1",
                     data_categories=["dataset_collection_data_category_1"],
                     fides_meta={"after": ["third_dataset.blue_collection"]},
                     fields=[
                         DatasetField(
                             name="dataset_field_1",
                             data_categories=["dataset_field_data_category_1"],
-                            data_qualifier="dataset_field_data_qualifier_1",
                             fides_meta={
                                 "references": [
                                     {
@@ -502,14 +494,12 @@ class TestDataset:
                 ),
                 DatasetCollection(
                     name="dataset_collection_2",
-                    data_qualifier="data_collection_data_qualifier_2",
                     data_categories=["dataset_collection_data_category_2"],
                     fides_meta={"after": ["orange_dataset.dataset_collection_1"]},
                     fields=[
                         DatasetField(
                             name="dataset_field_2",
                             data_categories=["dataset_field_data_category_2"],
-                            data_qualifier="dataset_field_data_qualifier_2",
                             fides_meta={
                                 "identity": "email",
                                 "primary_key": False,
@@ -524,7 +514,6 @@ class TestDataset:
     @mark.parametrize(
         "deprecated_field,value",
         [
-            ("data_qualifier", "dataset_qualifier_1"),
             ("joint_controller", {"name": "Controller_name"}),
             ("retention", "90 days"),
             ("third_country_transfers", ["IRL"]),
@@ -539,6 +528,32 @@ class TestDataset:
                     deprecated_field: value,
                 }
             )
+
+    def test_dataset_collection_skip_processing(self):
+        collection = DatasetCollection(
+            name="dataset_collection_1",
+            data_categories=["dataset_collection_data_category_1"],
+            fields=[],
+        )
+        assert not collection.fides_meta
+
+        collection = DatasetCollection(
+            name="dataset_collection_1",
+            data_categories=["dataset_collection_data_category_1"],
+            fides_meta={"after": ["third_dataset.blue_collection"]},
+            fields=[],
+        )
+
+        assert collection.fides_meta.skip_processing is False
+
+        collection = DatasetCollection(
+            name="dataset_collection_1",
+            data_categories=["dataset_collection_data_category_1"],
+            fides_meta={"skip_processing": True},
+            fields=[],
+        )
+
+        assert collection.fides_meta.skip_processing
 
 
 class TestDataUse:

@@ -46,8 +46,10 @@ marketing.communications.sms,True,,,,Marketing SMS Communications,default_organi
 operations,True,,,,Operations,default_organization,data_use,,,,,2.0.0,,Supports business processes necessary to the organization's operation.
 personalize,True,,,,Personalize,default_organization,data_use,,,,,2.0.0,,"Personalizes the product, service, application or system."
 personalize.content,True,,,,Content Personalization,default_organization,personalize,,,,,2.0.0,,"Personalizes the content of the product, service, application or system."
-personalize.profiling,True,,,,Personalized Profiling,default_organization,personalize,,,,,2.0.0,,Creates profiles for the purpose of serving content.
 personalize.system,True,,,,System Personalization,default_organization,personalize,,,,,2.0.0,,Personalizes the system.
+personalize.content.limited,True,,,,Limited Content Personalization,default_organization,personalize.content,,,,,2.1.1,,Uses limited data for the purpose of serving content.
+personalize.content.profiling,True,,,,Profiling for Personalization,default_organization,personalize.content,,,,,2.1.1,,Creates profiles for the purpose of serving content.
+personalize.content.profiled,True,,,,Targeted Content Personalization,default_organization,personalize.content,,,,,2.1.1,,Uses profiles for the purpose of serving content.
 sales,True,,,,Sales,default_organization,data_use,,,,,2.0.0,,Supports sales activities such as communications and outreach.
 third_party_sharing,True,,,,Third Party Sharing,default_organization,data_use,,,,,2.0.0,,Transfers data to third parties outside of the system or service's scope.
 third_party_sharing.legal_obligation,True,,,,Sharing for Legal Obligation,default_organization,third_party_sharing,,,,,2.0.0,,"Shares data for legal obligations, including contracts, applicable laws or regulations."

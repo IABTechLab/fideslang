@@ -74,7 +74,6 @@ class TestFindReferencedKeys:
                     name="privacy_declaration_1",
                     data_categories=["privacy_declaration_data_category_1"],
                     data_use="privacy_declaration_data_use_1",
-                    data_qualifier="privacy_declaration_data_qualifier_1",
                     data_subjects=[
                         "privacy_declaration_data_subject_1",
                         "privacy_declaration_data_subject_2",
@@ -91,7 +90,6 @@ class TestFindReferencedKeys:
             "default_organization",
             "privacy_declaration_data_category_1",
             "privacy_declaration_data_use_1",
-            "privacy_declaration_data_qualifier_1",
             "privacy_declaration_data_subject_1",
             "privacy_declaration_data_subject_2",
             "privacy_declaration_data_set_1",
@@ -192,7 +190,6 @@ class TestGetReferencedMissingKeys:
                             name="privacy_declaration_1",
                             data_categories=["privacy_declaration_data_category_1"],
                             data_use="privacy_declaration_data_use_1",
-                            data_qualifier="privacy_declaration_data_qualifier_1",
                             data_subjects=["privacy_declaration_data_subject_1"],
                             dataset_references=["privacy_declaration_data_set_1"],
                         )
@@ -204,7 +201,6 @@ class TestGetReferencedMissingKeys:
             "default_organization",
             "privacy_declaration_data_category_1",
             "privacy_declaration_data_use_1",
-            "privacy_declaration_data_qualifier_1",
             "privacy_declaration_data_subject_1",
             "privacy_declaration_data_set_1",
         }
@@ -231,7 +227,6 @@ class TestGetReferencedMissingKeys:
                                 "values": ["policy_rule_data_subject_1"],
                                 "matches": MatchesEnum.ANY,
                             },
-                            data_qualifier="policy_rule_data_qualifier_1",
                         )
                     ],
                 )
@@ -242,7 +237,6 @@ class TestGetReferencedMissingKeys:
             "policy_rule_data_category_1",
             "policy_rule_data_use_1",
             "policy_rule_data_subject_1",
-            "policy_rule_data_qualifier_1",
         }
         referenced_keys = relationships.get_referenced_missing_keys(taxonomy)
         assert not referenced_keys.difference(expected_referenced_key)
@@ -252,18 +246,15 @@ class TestGetReferencedMissingKeys:
             dataset=[
                 Dataset(
                     fides_key="dataset_1",
-                    data_qualifier="dataset_qualifier_1",
                     data_categories=["dataset_data_category_1"],
                     collections=[
                         DatasetCollection(
                             name="dataset_collection_1",
-                            data_qualifier="data_collection_data_qualifier_1",
                             data_categories=["dataset_collection_data_category_1"],
                             fields=[
                                 DatasetField(
                                     name="dataset_field_1",
                                     data_categories=["dataset_field_data_category_1"],
-                                    data_qualifier="dataset_field_data_qualifier_1",
                                 )
                             ],
                         )
@@ -273,12 +264,9 @@ class TestGetReferencedMissingKeys:
         )
         expected_referenced_key = {
             "default_organization",
-            "dataset_qualifier_1",
             "dataset_data_category_1",
-            "data_collection_data_qualifier_1",
             "dataset_collection_data_category_1",
             "dataset_field_data_category_1",
-            "dataset_field_data_qualifier_1",
         }
         referenced_keys = relationships.get_referenced_missing_keys(taxonomy)
         assert not referenced_keys.difference(expected_referenced_key)

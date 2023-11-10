@@ -217,11 +217,18 @@ class LegalBasisForProfilingEnum(str, Enum):
 
 
 class LegalBasisForTransfersEnum(str, Enum):
-    """The model for describing the legal basis under which data is transferred"""
+    """
+    The model for describing the legal basis under which data is transferred
+
+    We currently do _not_ enforce this enum on the `legal_basis_for_transfers`
+    field, because the set of allowable values seems to be changing frequently
+    and without clear notice in upstream, public data sources.
+    """
 
     ADEQUACY_DECISION = "Adequacy Decision"
     SCCS = "SCCs"
     BCRS = "BCRs"
+    SUPPLEMENTARY_MEASURES = "Supplementary Measures"
     OTHER = "Other"
 
 
@@ -264,15 +271,6 @@ class SpecialCategoryLegalBasisEnum(str, Enum):
 # Privacy Data Types
 class DataCategory(FidesModel, DefaultModel):
     """The DataCategory resource model."""
-
-    parent_key: Optional[FidesKey] = None
-
-    _matching_parent_key = matching_parent_key_validator
-    _no_self_reference = no_self_reference_validator
-
-
-class DataQualifier(FidesModel, DefaultModel):
-    """The DataQualifier resource model."""
 
     parent_key: Optional[FidesKey] = None
 
@@ -429,10 +427,6 @@ class DatasetFieldBase(BaseModel):
         default=None,
         description="Arrays of Data Categories, identified by `fides_key`, that applies to this field.",
     )
-    data_qualifier: FidesKey = Field(
-        default="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
-        description="A Data Qualifier that applies to this field. Note that this field holds a single value, therefore, the property name is singular.",
-    )
     retention: Optional[str] = Field(
         default=None,
         description="An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
@@ -578,6 +572,7 @@ class CollectionMeta(BaseModel):
     """Collection-level specific annotations used for query traversal"""
 
     after: Optional[List[FidesCollectionKey]]
+    skip_processing: Optional[bool] = False
 
 
 class DatasetCollection(FidesopsMetaBackwardsCompat):
@@ -591,10 +586,6 @@ class DatasetCollection(FidesopsMetaBackwardsCompat):
     description: Optional[str] = description_field
     data_categories: Optional[List[FidesKey]] = Field(
         description="Array of Data Category resources identified by `fides_key`, that apply to all fields in the collection.",
-    )
-    data_qualifier: FidesKey = Field(
-        default="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
-        description="Array of Data Qualifier resources identified by `fides_key`, that apply to all fields in the collection.",
     )
     retention: Optional[str] = Field(
         description="An optional string to describe the retention policy for a Dataset collection. This field can also be applied more granularly at the field level of a Dataset.",
@@ -656,9 +647,6 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
     data_categories: Optional[List[FidesKey]] = Field(
         description="Array of Data Category resources identified by `fides_key`, that apply to all collections in the Dataset.",
     )
-    data_qualifier: Optional[FidesKey] = Field(
-        description="Deprecated. Array of Data Qualifier resources identified by `fides_key`, that apply to all collections in the Dataset.",
-    )
     fides_meta: Optional[DatasetMetadata] = Field(
         description=DatasetMetadata.__doc__, default=None
     )
@@ -684,9 +672,9 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
         """
         Warn of Dataset fields pending deprecation.
         """
+        # TODO: Do we want to remove these for Fideslang 3?
         deprecated_fields = [
             "joint_controller",
-            "data_qualifier",
             "retention",
             "third_country_transfers",
         ]
@@ -711,9 +699,6 @@ class ViolationAttributes(BaseModel):
     )
     data_uses: List[str] = Field(
         description="A list of data uses which led to an evaluation violation.",
-    )
-    data_qualifier: str = Field(
-        description="The data qualifier which led to an evaluation violation.",
     )
 
 
@@ -863,10 +848,6 @@ class PolicyRule(BaseModel):
     data_subjects: PrivacyRule = Field(
         description=PrivacyRule.__doc__,
     )
-    data_qualifier: FidesKey = Field(
-        default="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
-        description="The fides key of the data qualifier to be used in a privacy rule.",
-    )
 
 
 class Policy(FidesModel):
@@ -935,9 +916,6 @@ class PrivacyDeclaration(BaseModel):
     data_use: FidesKey = Field(
         description="The Data Use describing a system in a privacy declaration.",
     )
-    data_qualifier: Optional[FidesKey] = Field(
-        description="Deprecated. The fides key of the data qualifier describing a system in a privacy declaration.",
-    )
     data_subjects: List[FidesKey] = Field(
         default_factory=list,
         description="An array of data subjects describing a system in a privacy declaration.",
@@ -953,6 +931,9 @@ class PrivacyDeclaration(BaseModel):
     )
     features: List[str] = Field(
         default_factory=list, description="The features of processing personal data."
+    )
+    flexible_legal_basis_for_processing: Optional[bool] = Field(
+        description="Whether the legal basis for processing is 'flexible' (i.e. can be overridden in a privacy notice) for this declaration.",
     )
     legal_basis_for_processing: Optional[LegalBasisForProcessingEnum] = Field(
         description="The legal basis under which personal data is processed for this purpose."
@@ -985,20 +966,10 @@ class PrivacyDeclaration(BaseModel):
         description="Cookies associated with this data use to deliver services and functionality",
     )
 
-    @field_validator("data_qualifier")
-    def deprecate_data_qualifier(cls, value: FidesKey) -> FidesKey:
-        """
-        Warn that the `data_qualifier` field is deprecated, if set.
-        """
-        if value is not None:
-            warn(
-                "The data_qualifier field is deprecated, and will be removed in a future version of fideslang.",
-                DeprecationWarning,
-            )
+    class Config:
+        """Config for the Privacy Declaration"""
 
-        return value
-
-    model_config = ConfigDict(from_attributes=True)
+        orm_mode = True
 
 
 class SystemMetadata(BaseModel):
@@ -1098,10 +1069,10 @@ class System(FidesModel):
         description="Deprecated. The responsibility or role over the system that processes personal data",
     )
     egress: Optional[List[DataFlow]] = Field(
-        default=None, description="The resources to which the System sends data."
+        description="The resources to which the system sends data."
     )
     ingress: Optional[List[DataFlow]] = Field(
-        default=None, description="The resources from which the System receives data."
+        description="The resources from which the system receives data."
     )
     privacy_declarations: List[PrivacyDeclaration] = Field(
         description=PrivacyDeclaration.__doc__,
@@ -1129,6 +1100,9 @@ class System(FidesModel):
     vendor_id: Optional[str] = Field(
         default=None,
         description="The unique identifier for the vendor that's associated with this system.",
+    )
+    previous_vendor_id: Optional[str] = Field(
+        description="If specified, the unique identifier for the vendor that was previously associated with this system."
     )
     dataset_references: List[FidesKey] = Field(
         default_factory=list,
@@ -1158,7 +1132,7 @@ class System(FidesModel):
         default=False,
         description="Whether this system transfers data to other countries or international organizations.",
     )
-    legal_basis_for_transfers: List[LegalBasisForTransfersEnum] = Field(
+    legal_basis_for_transfers: List[str] = Field(
         default_factory=list,
         description="The legal basis (or bases) under which the data is transferred.",
     )
@@ -1198,6 +1172,26 @@ class System(FidesModel):
     )  # Use joint_controller_info in favor of joint_controller
     data_security_practices: Optional[str] = Field(
         default=None, description="The data security practices employed by this system."
+    )
+    cookie_max_age_seconds: Optional[int] = Field(
+        description="The maximum storage duration, in seconds, for cookies used by this system."
+    )
+    uses_cookies: bool = Field(
+        default=False, description="Whether this system uses cookie storage."
+    )
+    cookie_refresh: bool = Field(
+        default=False,
+        description="Whether the system's cookies are refreshed after being initially set.",
+    )
+    uses_non_cookie_access: bool = Field(
+        default=False,
+        description="Whether the system uses non-cookie methods of storage or accessing information stored on a user's device.",
+    )
+    legitimate_interest_disclosure_url: Optional[AnyUrl] = Field(
+        description="A URL that points to the system's publicly accessible legitimate interest disclosure."
+    )
+    cookies: Optional[List[Cookies]] = Field(
+        description="System-level cookies unassociated with a data use to deliver services and functionality",
     )
 
     _sort_privacy_declarations = field_validator("privacy_declarations")(
@@ -1268,7 +1262,6 @@ class Taxonomy(BaseModel):
     data_category: List[DataCategory] = Field(default_factory=list)
     data_subject: Optional[List[DataSubject]] = Field(default_factory=list)
     data_use: Optional[List[DataUse]] = Field(default_factory=list)
-    data_qualifier: Optional[List[DataQualifier]] = Field(default_factory=list)
 
     dataset: Optional[List[Dataset]] = Field(default_factory=list)
     system: Optional[List[System]] = Field(default_factory=list)

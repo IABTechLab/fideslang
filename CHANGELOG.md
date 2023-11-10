@@ -14,7 +14,53 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/2.0.2...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/2.2.1...main)
+
+## [2.2.1](https://github.com/ethyca/fideslang/compare/2.2.0...2.2.1)
+
+### Added 
+
+- Added a `System.cookies` property to support `Cookie` records explicitly associated with a `System` generally [#181](https://github.com/ethyca/fideslang/pull/181)
+- Added a `System.previous_vendor_id` property to support to associate a `System` record with a "deprecated" vendor record [#182](https://github.com/ethyca/fideslang/pull/182)
+
+## [2.2.0](https://github.com/ethyca/fideslang/compare/2.1.0...2.2.0)
+
+### Added
+
+- Added support for new TCF-based `System` fields [#173](https://github.com/ethyca/fideslang/pull/173)
+- Added support for `PrivacyDeclaration.flexible_legal_basis_for_profiling` field [#177](https://github.com/ethyca/fideslang/pull/177) [#178](https://github.com/ethyca/fideslang/pull/178)
+- Added GVL data category mapping and functions [#175](https://github.com/ethyca/fideslang/pull/175) [#180](https://github.com/ethyca/fideslang/pull/180)
+
+### Changed
+
+- Changed default taxonomy and GVL mapping to support GVL Purpose 11 [#171](https://github.com/ethyca/fideslang/pull/171) [#174](https://github.com/ethyca/fideslang/pull/174)
+
+### Fixed
+
+- Removed mistaken trailing `.` on some data category `name`s in the default taxonomy [#169](https://github.com/ethyca/fideslang/pull/169)
+
+
+## [2.1.0](https://github.com/ethyca/fideslang/compare/2.0.4...2.1.0)
+
+### Added 
+
+- Added GVL mappings and utility functions [#167](https://github.com/ethyca/fideslang/pull/167)
+
+
+## [2.0.4](https://github.com/ethyca/fideslang/compare/2.0.3...2.0.4)
+
+
+### Changed
+
+- Add Collection > Fides Meta > Skip Processing Flag to skip collections in DSR processing [#165](https://github.com/ethyca/fideslang/pull/165)
+
+
+## [2.0.3](https://github.com/ethyca/fideslang/compare/2.0.2...2.0.3)
+
+### Changed
+
+- Relax system legal basis for transfer fields [#162](https://github.com/ethyca/fideslang/pull/162)
+
 
 ## [2.0.2](https://github.com/ethyca/fideslang/compare/2.0.1...2.0.2)
 
@@ -38,6 +84,14 @@ The types of changes are:
 
 - Updated the Data Categories and Data Uses to support GVL [#144](https://github.com/ethyca/fideslang/pull/144)
 - Add version metadata to the default taxonomy items [#147](https://github.com/ethyca/fideslang/pull/147)
+
+
+## [1.4.6 (Hotfix)](https://github.com/ethyca/fideslang/compare/1.4.5...1.4.6)
+
+### Changed
+
+- Relax system legal basis for transfer fields [#162](https://github.com/ethyca/fideslang/pull/162)
+
 
 ## [1.4.5 (Hotfix)](https://github.com/ethyca/fideslang/compare/1.4.4...1.4.5)
 

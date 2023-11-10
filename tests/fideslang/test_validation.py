@@ -8,7 +8,6 @@ from fideslang.models import (
     Dataset,
     DataUse,
     DataSubject,
-    DataQualifier,
     DatasetCollection,
     DatasetField,
     DatasetMetadata,
@@ -24,7 +23,7 @@ from fideslang.models import (
 )
 from fideslang.validation import FidesKey, FidesValidationError, valid_data_type
 
-DEFAULT_TAXONOMY_CLASSES = [DataCategory, DataUse, DataQualifier, DataSubject]
+DEFAULT_TAXONOMY_CLASSES = [DataCategory, DataUse, DataSubject]
 
 
 @pytest.mark.unit
@@ -411,7 +410,6 @@ def test_valid_policy_rule():
         data_categories=PrivacyRule(matches="NONE", values=[]),
         data_uses=PrivacyRule(matches="NONE", values=["provide.service"]),
         data_subjects=PrivacyRule(matches="ANY", values=[]),
-        data_qualifier="aggregated.anonymized.unlinked_pseudonymized.pseudonymized",
     )
 
 
@@ -443,7 +441,6 @@ def test_create_valid_system():
                 data_categories=[],
                 data_use="provide.service",
                 data_subjects=[],
-                data_qualifier="aggregated_data",
                 dataset_references=[],
             )
         ],
@@ -476,7 +473,6 @@ def test_invalid_country_identifier(country_code: str):
                     data_categories=[],
                     data_use="provide.service",
                     data_subjects=[],
-                    data_qualifier="aggregated_data",
                     dataset_references=["test_system"],
                 )
             ],
@@ -502,7 +498,6 @@ def test_valid_country_identifier(country_code: str):
                 data_categories=[],
                 data_use="provide.service",
                 data_subjects=[],
-                data_qualifier="aggregated_data",
                 dataset_references=["test_system"],
             )
         ],

@@ -4,7 +4,6 @@ dataset:
     description: This is a Sample Database Dataset
     data_categories:
       - user.political_opinion
-    data_qualifier: aggregated.anonymized.unlinked_pseudonymized.pseudonymized
     collections:
       - name: users
         description: User's information
@@ -13,7 +12,6 @@ dataset:
             description: A First Name Field
             data_categories:
               - user.name
-            data_qualifier: aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified
 
 system:
   - fides_key: customer_data_sharing_system
@@ -28,7 +26,6 @@ system:
         data_categories:
           - user
         data_use: advertising
-        data_qualifier: aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified
         data_subjects:
           - customer
         ingress:
@@ -53,4 +50,3 @@ policy:
           matches: ANY
           values:
             - customer
-        data_qualifier: aggregated

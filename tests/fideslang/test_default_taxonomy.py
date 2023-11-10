@@ -1,13 +1,14 @@
-from fideslang.default_taxonomy import DEFAULT_TAXONOMY
-import pytest
-from typing import Tuple
 from collections import Counter
+from typing import Tuple
+
+import pytest
+
+from fideslang.default_taxonomy import DEFAULT_TAXONOMY
 
 taxonomy_counts = {
     "data_category": 85,
-    "data_use": 52,
+    "data_use": 55,
     "data_subject": 15,
-    "data_qualifier": 5,
 }
 
 
@@ -44,7 +45,11 @@ class TestDefaultTaxonomy:
 
     @pytest.mark.parametrize("data_type", taxonomy_counts.keys())
     def test_description_uniqueness(self, data_type: str) -> None:
-        keys = [x.description for x in getattr(DEFAULT_TAXONOMY, data_type)]
+        keys = [
+            x.description
+            for x in getattr(DEFAULT_TAXONOMY, data_type)
+            if not x.version_deprecated
+        ]
         duplicate_keys = {
             key: value for key, value in Counter(keys).items() if value > 1
         }
