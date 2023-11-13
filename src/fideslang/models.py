@@ -48,7 +48,7 @@ no_self_reference_validator = field_validator("parent_key")(no_self_reference)
 # Reusable Fields
 name_field = Field(description="Human-Readable name for this resource.")
 description_field = Field(
-    description="A detailed description of what this resource is."
+    default=None, description="A detailed description of what this resource is."
 )
 meta_field = Field(
     default=None,
@@ -524,6 +524,7 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
     fides_meta: Optional[FidesMeta] = None
 
     fields: Optional[List[DatasetField]] = Field(
+        default=None,
         description="An optional array of objects that describe hierarchical/nested fields (typically found in NoSQL databases).",
     )
 
