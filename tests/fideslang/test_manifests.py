@@ -68,7 +68,7 @@ def test_union_manifests(test_manifests):
                 "name": "Test Dataset 1",
                 "description": "Test Dataset 1",
                 "fides_key": "some_dataset",
-                "organization_fides_key": 1,
+                "organization_fides_key": "1",
                 "datasetType": {},
                 "datasetLocation": "somedb:3306",
                 "datasetTables": [],
@@ -77,7 +77,7 @@ def test_union_manifests(test_manifests):
                 "name": "Test Dataset 2",
                 "description": "Test Dataset 2",
                 "fides_key": "another_dataset",
-                "organization_fides_key": 1,
+                "organization_fides_key": "1",
                 "datasetType": {},
                 "datasetLocation": "somedb:3306",
                 "datasetTables": [],
@@ -86,14 +86,14 @@ def test_union_manifests(test_manifests):
         "system": [
             {
                 "name": "Test System 1",
-                "organization_fides_key": 1,
+                "organization_fides_key": "1",
                 "systemType": "mysql",
                 "description": "Test System 1",
                 "fides_key": "some_system",
             },
             {
                 "name": "Test System 2",
-                "organization_fides_key": 1,
+                "organization_fides_key": "1",
                 "systemType": "mysql",
                 "description": "Test System 2",
                 "fides_key": "another_system",
@@ -122,7 +122,7 @@ def test_ingest_manifests(ingestion_manifest_directory):
     assert sorted(actual_result["dataset"], key=lambda x: x["name"]) == [
         {
             "name": "Test Dataset 1",
-            "organization_fides_key": 1,
+            "organization_fides_key": "1",
             "datasetType": {},
             "datasetLocation": "somedb:3306",
             "description": "Test Dataset 1",
@@ -132,7 +132,7 @@ def test_ingest_manifests(ingestion_manifest_directory):
         {
             "name": "Test Dataset 2",
             "description": "Test Dataset 2",
-            "organization_fides_key": 1,
+            "organization_fides_key": "1",
             "datasetType": {},
             "datasetLocation": "somedb:3306",
             "fides_key": "another_dataset",
@@ -142,14 +142,14 @@ def test_ingest_manifests(ingestion_manifest_directory):
     assert sorted(actual_result["system"], key=lambda x: x["name"]) == [
         {
             "name": "Test System 1",
-            "organization_fides_key": 1,
+            "organization_fides_key": "1",
             "systemType": "mysql",
             "description": "Test System 1",
             "fides_key": "some_system",
         },
         {
             "name": "Test System 2",
-            "organization_fides_key": 1,
+            "organization_fides_key": "1",
             "systemType": "mysql",
             "description": "Test System 2",
             "fides_key": "another_system",

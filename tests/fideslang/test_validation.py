@@ -21,7 +21,11 @@ from fideslang.models import (
     PrivacyRule,
     System,
 )
-from fideslang.validation import FidesKey, FidesValidationError, valid_data_type
+from fideslang.validation import (
+    FidesKey,
+    FidesValidationError,
+    valid_data_type,
+)
 
 DEFAULT_TAXONOMY_CLASSES = [DataCategory, DataUse, DataSubject]
 
@@ -35,7 +39,7 @@ class TestVersioning:
         """There should be version info for default items."""
         with pytest.raises(ValidationError):
             TaxonomyClass(
-                organization_fides_key=1,
+                organization_fides_key="1",
                 fides_key="user",
                 name="Custom Test Data",
                 description="Custom Test Data Category",
@@ -47,7 +51,7 @@ class TestVersioning:
         """There shouldn't be version info on a non-default item."""
         with pytest.raises(ValidationError):
             TaxonomyClass(
-                organization_fides_key=1,
+                organization_fides_key="1",
                 fides_key="user",
                 name="Custom Test Data",
                 description="Custom Test Data Category",
@@ -59,7 +63,7 @@ class TestVersioning:
         """Item can't be deprecated in a version earlier than it was added."""
         with pytest.raises(ValidationError):
             TaxonomyClass(
-                organization_fides_key=1,
+                organization_fides_key="1",
                 fides_key="user",
                 name="Custom Test Data",
                 description="Custom Test Data Category",
@@ -73,7 +77,7 @@ class TestVersioning:
         """Item can't be deprecated in a version earlier than it was added."""
         with pytest.raises(ValidationError):
             TaxonomyClass(
-                organization_fides_key=1,
+                organization_fides_key="1",
                 fides_key="user",
                 name="Custom Test Data",
                 description="Custom Test Data Category",
@@ -87,7 +91,7 @@ class TestVersioning:
         """Try building from a dictionary with explicit None values."""
         TaxonomyClass.model_validate(
             {
-                "organization_fides_key": 1,
+                "organization_fides_key": "1",
                 "fides_key": "user",
                 "name": "Custom Test Data",
                 "description": "Custom Test Data Category",
@@ -102,7 +106,7 @@ class TestVersioning:
     def test_built_with_empty_versions(self, TaxonomyClass) -> None:
         """Try building directly with explicit None values."""
         TaxonomyClass(
-            organization_fides_key=1,
+            organization_fides_key="1",
             fides_key="user",
             name="Custom Test Data",
             description="Custom Test Data Category",
@@ -117,7 +121,7 @@ class TestVersioning:
         """Can't be deprecated without being added in an earlier version."""
         with pytest.raises(ValidationError):
             TaxonomyClass(
-                organization_fides_key=1,
+                organization_fides_key="1",
                 fides_key="user",
                 name="Custom Test Data",
                 description="Custom Test Data Category",
@@ -130,7 +134,7 @@ class TestVersioning:
         """If the field is replaced, it must also be deprecated."""
         with pytest.raises(ValidationError):
             TaxonomyClass(
-                organization_fides_key=1,
+                organization_fides_key="1",
                 fides_key="user",
                 name="Custom Test Data",
                 description="Custom Test Data Category",
@@ -143,7 +147,7 @@ class TestVersioning:
     def test_replaced_and_deprecated(self, TaxonomyClass):
         """If the field is replaced, it must also be deprecated."""
         assert TaxonomyClass(
-            organization_fides_key=1,
+            organization_fides_key="1",
             fides_key="user",
             name="Custom Test Data",
             description="Custom Test Data Category",
@@ -158,7 +162,7 @@ class TestVersioning:
         """Check that versions are validated."""
         with pytest.raises(ValidationError):
             TaxonomyClass(
-                organization_fides_key=1,
+                organization_fides_key="1",
                 fides_key="user",
                 name="Custom Test Data",
                 description="Custom Test Data Category",
@@ -170,7 +174,7 @@ class TestVersioning:
     def test_versions_valid(self, TaxonomyClass):
         """Check that versions are validated."""
         assert TaxonomyClass(
-            organization_fides_key=1,
+            organization_fides_key="1",
             fides_key="user",
             name="Custom Test Data",
             description="Custom Test Data Category",
@@ -188,7 +192,7 @@ def test_collections_duplicate_fields_error():
             data_categories=[],
             fields=[
                 DatasetField(
-                    name=1,
+                    name="1",
                     description="Fides Generated Description for Column: 1",
                     data_categories=[],
                 ),
@@ -198,7 +202,7 @@ def test_collections_duplicate_fields_error():
                     data_categories=[],
                 ),
                 DatasetField(
-                    name=1,
+                    name="1",
                     description="Fides Generated Description for Column: 1",
                     data_categories=[],
                 ),
@@ -221,7 +225,7 @@ def test_dataset_duplicate_collections_error():
                     data_categories=[],
                     fields=[
                         DatasetField(
-                            name=1,
+                            name="1",
                             description="Fides Generated Description for Column: 1",
                             data_categories=[],
                         ),
@@ -246,7 +250,7 @@ def test_dataset_duplicate_collections_error():
 @pytest.mark.unit
 def test_top_level_resource():
     DataCategory(
-        organization_fides_key=1,
+        organization_fides_key="1",
         fides_key="user",
         name="Custom Test Data",
         description="Custom Test Data Category",
@@ -258,7 +262,7 @@ def test_top_level_resource():
 def test_fides_key_doesnt_match_stated_parent_key():
     with pytest.raises(ValidationError):
         DataCategory(
-            organization_fides_key=1,
+            organization_fides_key="1",
             fides_key="user.custom_test_data",
             name="Custom Test Data",
             description="Custom Test Data Category",
@@ -270,7 +274,7 @@ def test_fides_key_doesnt_match_stated_parent_key():
 @pytest.mark.unit
 def test_fides_key_matches_stated_parent_key():
     DataCategory(
-        organization_fides_key=1,
+        organization_fides_key="1",
         fides_key="user.account.custom_test_data",
         name="Custom Test Data",
         description="Custom Test Data Category",
@@ -283,7 +287,7 @@ def test_fides_key_matches_stated_parent_key():
 def test_no_parent_key_but_fides_key_contains_parent_key():
     with pytest.raises(ValidationError):
         DataCategory(
-            organization_fides_key=1,
+            organization_fides_key="1",
             fides_key="user.custom_test_data",
             name="Custom Test Data",
             description="Custom Test Data Category",
@@ -294,7 +298,7 @@ def test_no_parent_key_but_fides_key_contains_parent_key():
 @pytest.mark.unit
 def test_fides_key_with_carets():
     DataCategory(
-        organization_fides_key=1,
+        organization_fides_key="1",
         fides_key="<replacement_text>",
         name="Example valid key with brackets",
         description="This key contains a <> which is valid",
@@ -306,7 +310,7 @@ def test_fides_key_with_carets():
 def test_invalid_chars_in_fides_key():
     with pytest.raises(ValidationError):
         DataCategory(
-            organization_fides_key=1,
+            organization_fides_key="1",
             fides_key="!",
             name="Example invalid key",
             description="This key contains a ! so it is invalid",
@@ -317,7 +321,7 @@ def test_invalid_chars_in_fides_key():
 @pytest.mark.unit
 def test_create_valid_data_category():
     DataCategory(
-        organization_fides_key=1,
+        organization_fides_key="1",
         fides_key="user.custom_test_data",
         name="Custom Test Data",
         description="Custom Test Data Category",
@@ -330,7 +334,7 @@ def test_create_valid_data_category():
 def test_circular_dependency_data_category():
     with pytest.raises(ValidationError):
         DataCategory(
-            organization_fides_key=1,
+            organization_fides_key="1",
             fides_key="user",
             name="User Data",
             description="Test Data Category",
@@ -342,7 +346,7 @@ def test_circular_dependency_data_category():
 @pytest.mark.unit
 def test_create_valid_data_use():
     DataUse(
-        organization_fides_key=1,
+        organization_fides_key="1",
         fides_key="provide.service",
         name="Provide the Product or Service",
         parent_key="provide",
@@ -355,7 +359,7 @@ def test_create_valid_data_use():
 def test_circular_dependency_data_use():
     with pytest.raises(ValidationError):
         DataUse(
-            organization_fides_key=1,
+            organization_fides_key="1",
             fides_key="provide.service",
             name="Provide the Product or Service",
             description="Test Data Use",
@@ -402,8 +406,8 @@ def test_invalid_matches_privacy_rule():
 @pytest.mark.unit
 def test_valid_policy_rule():
     assert PolicyRule(
-        organization_fides_key=1,
-        policyId=1,
+        organization_fides_key="1",
+        policyId="1",
         fides_key="test_policy",
         name="Test Policy",
         description="Test Policy",
@@ -416,7 +420,7 @@ def test_valid_policy_rule():
 @pytest.mark.unit
 def test_valid_policy():
     Policy(
-        organization_fides_key=1,
+        organization_fides_key="1",
         fides_key="test_policy",
         name="Test Policy",
         version="1.3",
@@ -429,8 +433,8 @@ def test_valid_policy():
 @pytest.mark.unit
 def test_create_valid_system():
     System(
-        organization_fides_key=1,
-        registryId=1,
+        organization_fides_key="1",
+        registryId="1",
         fides_key="test_system",
         system_type="SYSTEM",
         name="Test System",
@@ -460,8 +464,8 @@ def test_invalid_country_identifier(country_code: str):
     """Validate some invalid country identifiers raise an error"""
     with pytest.raises(ValidationError):
         System(
-            organization_fides_key=1,
-            registryId=1,
+            organization_fides_key="1",
+            registryId="1",
             fides_key="test_system",
             system_type="SYSTEM",
             name="Test System",
@@ -485,8 +489,8 @@ def test_invalid_country_identifier(country_code: str):
 def test_valid_country_identifier(country_code: str):
     """Validates usage of alpha-3 codes per ISO 3166"""
     System(
-        organization_fides_key=1,
-        registryId=1,
+        organization_fides_key="1",
+        registryId="1",
         fides_key="test_system",
         system_type="SYSTEM",
         name="Test System",

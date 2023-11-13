@@ -9,6 +9,7 @@ from enum import Enum
 from typing import Dict, List, Optional, Union
 from warnings import warn
 
+from packaging.version import Version
 from pydantic import (
     field_validator,
     model_validator,
@@ -23,7 +24,6 @@ from pydantic import (
 
 from fideslang.validation import (
     FidesKey,
-    FidesVersion,
     check_valid_country_code,
     deprecated_version_later_than_added,
     has_versioning_if_default,
@@ -114,12 +114,12 @@ class DefaultModel(BaseModel):
     @classmethod
     def validate_verion_added(cls, version_added: Optional[str]) -> Optional[str]:
         """
-        Validate that the `version_added` field is a proper FidesVersion
+        Validate that the `version_added` field is a proper Version
         """
         if not version_added:
             return None
 
-        FidesVersion.validate(version_added)
+        Version(version_added)
         return version_added
 
     @field_validator("version_deprecated")
@@ -133,7 +133,7 @@ class DefaultModel(BaseModel):
         if not version_deprecated:
             return None
 
-        FidesVersion.validate(version_deprecated)
+        Version(version_deprecated)
         return version_deprecated
 
 

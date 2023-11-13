@@ -3,37 +3,27 @@ Contains all of the additional validation for the resource models.
 """
 import re
 from collections import Counter
-from typing import Dict, Generator, List, Optional, Set, Tuple, Annotated, Pattern
+from typing import Dict, List, Optional, Set, Tuple, Annotated, Pattern, Any
 
 from packaging.version import Version
-from pydantic import FieldValidationInfo, AfterValidator
+from pydantic import FieldValidationInfo, GetCoreSchemaHandler
+from pydantic_core import CoreSchema, core_schema
+from pydantic.functional_validators import PlainValidator
 
 from fideslang.default_fixtures import COUNTRY_CODES
 
 VALID_COUNTRY_CODES = [country["alpha3Code"] for country in COUNTRY_CODES]
+FIDES_KEY_PATTERN = r"^[a-zA-Z0-9_.<>-]+$"
 
 
 class FidesValidationError(ValueError):
     """Custom exception for when the pydantic ValidationError can't be used."""
 
 
-class FidesVersion(Version):
-    """Validate strings as proper semantic versions."""
-
-    @classmethod
-    def __get_validators__(cls) -> Generator:
-        yield cls.validate
-
-    @classmethod
-    def validate(cls, value: str) -> Version:
-        """Validates that the provided string is a valid Semantic Version."""
-        return Version(value)
-
-
 def fides_key_regex_check(value: str) -> str:
     """Throws ValueError if val is not a valid FidesKey"""
 
-    regex: Pattern[str] = re.compile(r"^[a-zA-Z0-9_.<>-]+$")
+    regex: Pattern[str] = re.compile(FIDES_KEY_PATTERN)
     if not regex.match(value):
         raise FidesValidationError(
             f"FidesKeys must only contain alphanumeric characters, '.', '_', '<', '>' or '-'. Value provided: {value}"
@@ -42,8 +32,24 @@ def fides_key_regex_check(value: str) -> str:
     return value
 
 
-FIDES_KEY_PATTERN = "^[a-zA-Z0-9_.<>-]+$"
-FidesKey = Annotated[str, AfterValidator(fides_key_regex_check)]
+class FidesKey(str):
+    """
+    Regex-enforced constrained string.
+
+    Used as a unique identifier within a specific resource type.
+    """
+
+    @classmethod
+    def __get_pydantic_core_schema__(
+        cls, source_type: Any, handler: GetCoreSchemaHandler
+    ) -> CoreSchema:
+        return core_schema.no_info_after_validator_function(cls, handler(str))
+
+    @classmethod
+    def validate(cls, value: str) -> str:
+        """Validates that the provided string is a valid Semantic Version."""
+        fides_key_regex_check(value)
+        return value
 
 
 def validate_collection_key_parts(value: str) -> str:
@@ -53,8 +59,8 @@ def validate_collection_key_parts(value: str) -> str:
     """
     values = value.split(".")
     if len(values) == 2:
-        FidesKey(values[0])
-        FidesKey(values[1])
+        FidesKey.validate(values[0])
+        FidesKey.validate(values[1])
     else:
         raise ValueError(
             "FidesCollection must be specified in the form 'FidesKey.FidesKey'"
@@ -63,7 +69,7 @@ def validate_collection_key_parts(value: str) -> str:
 
 
 # Dataset.Collection name where both dataset and collection names are valid FidesKeys
-FidesCollectionKey = Annotated[str, AfterValidator(validate_collection_key_parts)]
+FidesCollectionKey = Annotated[str, PlainValidator(validate_collection_key_parts)]
 
 
 def sort_list_objects_by_name(values: List) -> List:
@@ -108,8 +114,8 @@ def no_self_reference(value: FidesKey, info: FieldValidationInfo) -> FidesKey:
 
 
 def deprecated_version_later_than_added(
-    version_deprecated: Optional[FidesVersion], info: FieldValidationInfo
-) -> Optional[FidesVersion]:
+    version_deprecated: Optional[Version], info: FieldValidationInfo
+) -> Optional[Version]:
     """
     Check to make sure that the deprecated version is later than the added version.
 
@@ -136,19 +142,20 @@ def has_versioning_if_default(is_default: bool, info: FieldValidationInfo) -> bo
     """
     Check to make sure that version fields are set for default items.
     """
+    values = info.data
 
     # If it's a default item, it at least needs a starting version
     if is_default:
         try:
-            assert info.data.get("version_added")
+            assert values.get("version_added")
         except AssertionError:
             raise FidesValidationError("Default items must have version information!")
     # If it's not default, it shouldn't have version info
     else:
         try:
-            assert not info.data.get("version_added")
-            assert not info.data.get("version_deprecated")
-            assert not info.data.get("replaced_by")
+            assert not values.get("version_added")
+            assert not values.get("version_deprecated")
+            assert not values.get("replaced_by")
         except AssertionError:
             raise FidesValidationError(
                 "Non-default items can't have version information!"

@@ -102,7 +102,7 @@ class TestSystem:
             ],
             meta={"some": "meta stuff"},
             name="Test System",
-            organization_fides_key=1,
+            organization_fides_key="1",
             cookies=[{"name": "test_cookie"}],
             privacy_declarations=[
                 PrivacyDeclaration(
@@ -117,7 +117,7 @@ class TestSystem:
                     ],
                 )
             ],
-            registry_id=1,
+            registry_id="1",
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
@@ -153,7 +153,7 @@ class TestSystem:
                 },
             },
             name="Test System",
-            organization_fides_key=1,
+            organization_fides_key="1",
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
@@ -164,7 +164,7 @@ class TestSystem:
                     name="declaration-name",
                 )
             ],
-            registry_id=1,
+            registry_id="1",
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
@@ -189,7 +189,7 @@ class TestSystem:
             ],
             # purposefully omitting the `meta` property to ensure it's effectively optional
             name="Test System",
-            organization_fides_key=1,
+            organization_fides_key="1",
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
@@ -200,7 +200,7 @@ class TestSystem:
                     name="declaration-name",
                 )
             ],
-            registry_id=1,
+            registry_id="1",
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
@@ -212,7 +212,7 @@ class TestSystem:
             fides_key="test_system",
             meta={"some": "meta stuff"},
             name="Test System",
-            organization_fides_key=1,
+            organization_fides_key="1",
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
@@ -221,7 +221,7 @@ class TestSystem:
                     name="declaration-name",
                 )
             ],
-            registry_id=1,
+            registry_id="1",
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
@@ -240,7 +240,7 @@ class TestSystem:
                 ],
                 meta={"some": "meta stuff"},
                 name="Test System",
-                organization_fides_key=1,
+                organization_fides_key="1",
                 privacy_declarations=[
                     PrivacyDeclaration(
                         data_categories=[],
@@ -251,7 +251,7 @@ class TestSystem:
                         name="declaration-name",
                     )
                 ],
-                registry_id=1,
+                registry_id="1",
                 system_type="SYSTEM",
                 tags=["some", "tags"],
             )
@@ -270,7 +270,7 @@ class TestSystem:
                 fides_key="test_system",
                 meta={"some": "meta stuff"},
                 name="Test System",
-                organization_fides_key=1,
+                organization_fides_key="1",
                 privacy_declarations=[
                     PrivacyDeclaration(
                         data_categories=[],
@@ -281,7 +281,7 @@ class TestSystem:
                         name="declaration-name",
                     )
                 ],
-                registry_id=1,
+                registry_id="1",
                 system_type="SYSTEM",
                 tags=["some", "tags"],
             )
@@ -299,7 +299,7 @@ class TestSystem:
             ],
             meta={"some": "meta stuff"},
             name="Test System",
-            organization_fides_key=1,
+            organization_fides_key="1",
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
@@ -309,7 +309,7 @@ class TestSystem:
                     name="declaration-name",
                 )
             ],
-            registry_id=1,
+            registry_id="1",
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
@@ -317,11 +317,11 @@ class TestSystem:
     def test_expanded_system(self):
         assert System(
             fides_key="test_system",
-            organization_fides_key=1,
+            organization_fides_key="1",
             tags=["some", "tags"],
             name="Exponential Interactive, Inc d/b/a VDX.tv",
             description="My system test",
-            registry_id=1,
+            registry_id="1",
             meta={"some": "meta stuff"},
             system_type="SYSTEM",
             egress=[
@@ -443,7 +443,7 @@ class TestSystem:
                     "description": "Test System",
                     "fides_key": "test_system",
                     "name": "Test System",
-                    "registry": 1,
+                    "registry": "1",
                     "system_type": "SYSTEM",
                     "privacy_declarations": [],
                     deprecated_field: value,

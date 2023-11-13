@@ -19,7 +19,7 @@ def parse_dict(
         raise SystemExit(1)
 
     try:
-        parsed_manifest = model_map[resource_type].parse_obj(resource)
+        parsed_manifest = model_map[resource_type].model_validate(resource)
     except Exception as err:
         print(
             "Failed to parse {} from {}:\n{}".format(
@@ -34,7 +34,7 @@ def load_manifests_into_taxonomy(raw_manifests: Dict[str, List[Dict]]) -> Taxono
     """
     Parse the raw resource manifests into resource resources.
     """
-    taxonomy = Taxonomy.parse_obj(
+    taxonomy = Taxonomy.model_validate(
         {
             resource_type: [
                 parse_dict(resource_type, resource) for resource in resource_list
