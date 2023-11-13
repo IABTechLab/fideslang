@@ -22,8 +22,8 @@ from fideslang.models import (
     System,
 )
 from fideslang.validation import (
-    FidesKey,
     FidesValidationError,
+    validate_fides_key,
     valid_data_type,
 )
 
@@ -512,12 +512,12 @@ def test_valid_country_identifier(country_code: str):
 @pytest.mark.unit
 def test_fides_key_validate_bad_key():
     with pytest.raises(FidesValidationError):
-        FidesKey.validate("hi!")
+        validate_fides_key("hi!")
 
 
 @pytest.mark.unit
 def test_fides_key_validate_good_key():
-    FidesKey.validate("hello_test_file<backup>.txt")
+    validate_fides_key("hello_test_file<backup>.txt")
 
 
 @pytest.mark.unit
@@ -715,9 +715,10 @@ class TestValidateDatasetField:
                 ),
                 fields=[DatasetField(name="nested_field")],
             )
-        assert "Object field 'test_field' cannot have specified data_categories" in str(
-            exc
-        )
+            assert (
+                "Object field 'test_field' cannot have specified data_categories"
+                in str(exc)
+            )
 
     def test_object_field_conflicting_types(self):
         with pytest.raises(ValidationError) as exc:
@@ -735,10 +736,10 @@ class TestValidateDatasetField:
                 ),
                 fields=[DatasetField(name="nested_field")],
             )
-        assert (
-            "The data type 'string' on field 'test_field' is not compatible with specified sub-fields."
-            in str(exc)
-        )
+            assert (
+                "The data type 'string' on field 'test_field' is not compatible with specified sub-fields."
+                in str(exc)
+            )
 
     def test_data_categories_on_nested_fields(self):
         DatasetField(

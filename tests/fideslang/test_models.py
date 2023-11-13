@@ -68,11 +68,7 @@ class TestDataFlow:
 class TestPrivacyDeclaration:
     def test_privacydeclaration_valid(self) -> None:
         assert PrivacyDeclaration(
-            data_categories=[],
-            data_subjects=[],
             data_use="provide",
-            egress=[],
-            ingress=[],
             name="declaration-name",
         )
 

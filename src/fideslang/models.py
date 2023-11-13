@@ -565,12 +565,12 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
         if fields and declared_data_type:
             data_type, _ = parse_data_type_string(declared_data_type)
             if data_type != "object":
-                raise ValueError(
+                raise FidesValidationError(
                     f"The data type '{data_type}' on field '{field_name}' is not compatible with specified sub-fields. Convert to an 'object' field."
                 )
 
         if (fields or declared_data_type == "object") and values.get("data_categories"):
-            raise ValueError(
+            raise FidesValidationError(
                 f"Object field '{field_name}' cannot have specified data_categories. Specify category on sub-field instead"
             )
 
@@ -922,47 +922,57 @@ class PrivacyDeclaration(BaseModel):
     """
 
     name: Optional[str] = Field(
+        default=None,
         description="The name of the privacy declaration on the system.",
     )
     data_categories: List[FidesKey] = Field(
+        default=[],
         description="An array of data categories describing a system in a privacy declaration.",
     )
     data_use: FidesKey = Field(
         description="The Data Use describing a system in a privacy declaration.",
     )
     data_subjects: List[FidesKey] = Field(
-        default_factory=list,
+        default=[],
         description="An array of data subjects describing a system in a privacy declaration.",
     )
     dataset_references: Optional[List[FidesKey]] = Field(
+        default=None,
         description="Referenced Dataset fides keys used by the system.",
     )
     egress: Optional[List[FidesKey]] = Field(
-        description="The resources to which data is sent. Any `fides_key`s included in this list reference `DataFlow` entries in the `egress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
+        default=None,
+        description="The resources to which data is sent. Any `fides_key`s included in this list reference `DataFlow` entries in the `egress` array of any `System` resources to which this `PrivacyDeclaration` is applied.",
     )
     ingress: Optional[List[FidesKey]] = Field(
-        description="The resources from which data is received. Any `fides_key`s included in this list reference `DataFlow` entries in the `ingress` array of any `System` resources to which this `PrivacyDeclaration` is applied."
+        default=None,
+        description="The resources from which data is received. Any `fides_key`s included in this list reference `DataFlow` entries in the `ingress` array of any `System` resources to which this `PrivacyDeclaration` is applied.",
     )
     features: List[str] = Field(
-        default_factory=list, description="The features of processing personal data."
+        default=[], description="The features of processing personal data."
     )
     flexible_legal_basis_for_processing: Optional[bool] = Field(
+        default=None,
         description="Whether the legal basis for processing is 'flexible' (i.e. can be overridden in a privacy notice) for this declaration.",
     )
     legal_basis_for_processing: Optional[LegalBasisForProcessingEnum] = Field(
-        description="The legal basis under which personal data is processed for this purpose."
+        default=None,
+        description="The legal basis under which personal data is processed for this purpose.",
     )
     impact_assessment_location: Optional[str] = Field(
-        description="Where the legitimate interest impact assessment is stored"
+        default=None,
+        description="Where the legitimate interest impact assessment is stored",
     )
     retention_period: Optional[str] = Field(
-        description="An optional string to describe the time period for which data is retained for this purpose."
+        default=None,
+        description="An optional string to describe the time period for which data is retained for this purpose.",
     )
     processes_special_category_data: bool = Field(
         default=False,
         description="This system processes special category data",
     )
     special_category_legal_basis: Optional[SpecialCategoryLegalBasisEnum] = Field(
+        default=None,
         description="The legal basis under which the special category data is processed.",
     )
     data_shared_with_third_parties: bool = Field(
@@ -970,13 +980,15 @@ class PrivacyDeclaration(BaseModel):
         description="This system shares data with third parties for this purpose.",
     )
     third_parties: Optional[str] = Field(
+        default=None,
         description="The types of third parties the data is shared with.",
     )
     shared_categories: List[str] = Field(
-        default_factory=list,
+        default=[],
         description="The categories of personal data that this system shares with third parties.",
     )
     cookies: Optional[List[Cookies]] = Field(
+        default=[],
         description="Cookies associated with this data use to deliver services and functionality",
     )
     model_config = ConfigDict(from_attributes=True)
@@ -1080,10 +1092,10 @@ class System(FidesModel):
         description="Deprecated. The responsibility or role over the system that processes personal data",
     )
     egress: Optional[List[DataFlow]] = Field(
-        description="The resources to which the system sends data."
+        default=None, description="The resources to which the system sends data."
     )
     ingress: Optional[List[DataFlow]] = Field(
-        description="The resources from which the system receives data."
+        default=None, description="The resources from which the system receives data."
     )
     privacy_declarations: List[PrivacyDeclaration] = Field(
         description=PrivacyDeclaration.__doc__,
@@ -1113,10 +1125,11 @@ class System(FidesModel):
         description="The unique identifier for the vendor that's associated with this system.",
     )
     previous_vendor_id: Optional[str] = Field(
-        description="If specified, the unique identifier for the vendor that was previously associated with this system."
+        default=None,
+        description="If specified, the unique identifier for the vendor that was previously associated with this system.",
     )
     dataset_references: List[FidesKey] = Field(
-        default_factory=list,
+        default=[],
         description="Referenced Dataset fides keys used by the system.",
     )
     processes_personal_data: bool = Field(
@@ -1136,7 +1149,7 @@ class System(FidesModel):
         description="Whether the vendor uses data to profile a consumer in a way that has a legal effect.",
     )
     legal_basis_for_profiling: List[LegalBasisForProfilingEnum] = Field(
-        default_factory=list,
+        default=[],
         description="The legal basis (or bases) for performing profiling that has a legal effect.",
     )
     does_international_transfers: bool = Field(
@@ -1171,7 +1184,7 @@ class System(FidesModel):
         description="The legal address for the business represented by the system.",
     )
     responsibility: List[DataResponsibilityTitle] = Field(
-        default_factory=list,
+        default=[],
         description=DataResponsibilityTitle.__doc__,
     )
     dpo: Optional[str] = Field(
@@ -1199,9 +1212,11 @@ class System(FidesModel):
         description="Whether the system uses non-cookie methods of storage or accessing information stored on a user's device.",
     )
     legitimate_interest_disclosure_url: Optional[AnyUrl] = Field(
-        description="A URL that points to the system's publicly accessible legitimate interest disclosure."
+        default=None,
+        description="A URL that points to the system's publicly accessible legitimate interest disclosure.",
     )
     cookies: Optional[List[Cookies]] = Field(
+        default=None,
         description="System-level cookies unassociated with a data use to deliver services and functionality",
     )
 
