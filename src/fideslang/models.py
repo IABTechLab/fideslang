@@ -9,27 +9,26 @@ from enum import Enum
 from typing import Dict, List, Optional, Union
 from warnings import warn
 
-from packaging.version import Version, InvalidVersion
+from packaging.version import InvalidVersion, Version
 from pydantic import (
+    AnyUrl,
+    BaseModel,
+    ConfigDict,
+    Field,
+    FieldValidationInfo,
+    HttpUrl,
+    PositiveInt,
     field_validator,
     model_validator,
-    ConfigDict,
-    AnyUrl,
-    ValidationError,
-    BaseModel,
-    Field,
-    HttpUrl,
-    FieldValidationInfo,
-    PositiveInt,
 )
 
 from fideslang.validation import (
+    FidesCollectionKey,
     FidesKey,
+    FidesValidationError,
     check_valid_country_code,
     deprecated_version_later_than_added,
     has_versioning_if_default,
-    FidesValidationError,
-    FidesCollectionKey,
     matching_parent_key,
     no_self_reference,
     parse_data_type_string,
@@ -493,7 +492,6 @@ class FidesMeta(BaseModel):
 
     @field_validator("data_type")
     @classmethod
-    @classmethod
     def valid_data_type(cls, value: Optional[str]) -> Optional[str]:
         """Validate that all annotated data types exist in the taxonomy"""
         return valid_data_type(value)
@@ -598,16 +596,18 @@ class DatasetCollection(FidesopsMetaBackwardsCompat):
     name: str = name_field
     description: Optional[str] = description_field
     data_categories: Optional[List[FidesKey]] = Field(
+        default=None,
         description="Array of Data Category resources identified by `fides_key`, that apply to all fields in the collection.",
     )
     retention: Optional[str] = Field(
+        default=None,
         description="An optional string to describe the retention policy for a Dataset collection. This field can also be applied more granularly at the field level of a Dataset.",
     )
     fields: List[DatasetField] = Field(
         description="An array of objects that describe the collection's fields.",
     )
 
-    fides_meta: Optional[CollectionMeta] = None
+    fides_meta: Optional[CollectionMeta] = Field(default=None)
 
     _sort_fields = field_validator("fields")(sort_list_objects_by_name)
     _unique_items_in_list = field_validator("fields")(unique_items_in_list)
@@ -658,18 +658,23 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
 
     meta: Optional[Dict] = meta_field
     data_categories: Optional[List[FidesKey]] = Field(
+        default=None,
         description="Array of Data Category resources identified by `fides_key`, that apply to all collections in the Dataset.",
     )
     fides_meta: Optional[DatasetMetadata] = Field(
-        description=DatasetMetadata.__doc__, default=None
+        default=None,
+        description=DatasetMetadata.__doc__,
     )
     joint_controller: Optional[ContactDetails] = Field(
+        default=None,
         description="Deprecated. " + (ContactDetails.__doc__ or ""),
     )
     retention: Optional[str] = Field(
+        default=None,
         description="Deprecated. An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
     )
     third_country_transfers: Optional[List[str]] = Field(
+        default=None,
         description="Deprecated. An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).",
     )
     collections: List[DatasetCollection] = Field(
@@ -1002,13 +1007,16 @@ class SystemMetadata(BaseModel):
     """
 
     resource_id: Optional[str] = Field(
-        description="The external resource id for the system being modeled."
+        default=None,
+        description="The external resource id for the system being modeled.",
     )
     endpoint_address: Optional[str] = Field(
-        description="The host of the external resource for the system being modeled."
+        default=None,
+        description="The host of the external resource for the system being modeled.",
     )
     endpoint_port: Optional[str] = Field(
-        description="The port of the external resource for the system being modeled."
+        default=None,
+        description="The port of the external resource for the system being modeled.",
     )
 
 
@@ -1128,8 +1136,8 @@ class System(FidesModel):
         default=None,
         description="If specified, the unique identifier for the vendor that was previously associated with this system.",
     )
-    dataset_references: List[FidesKey] = Field(
-        default=[],
+    dataset_references: Optional[List[FidesKey]] = Field(
+        default=None,
         description="Referenced Dataset fides keys used by the system.",
     )
     processes_personal_data: bool = Field(
@@ -1198,7 +1206,8 @@ class System(FidesModel):
         default=None, description="The data security practices employed by this system."
     )
     cookie_max_age_seconds: Optional[int] = Field(
-        description="The maximum storage duration, in seconds, for cookies used by this system."
+        default=None,
+        description="The maximum storage duration, in seconds, for cookies used by this system.",
     )
     uses_cookies: bool = Field(
         default=False, description="Whether this system uses cookie storage."

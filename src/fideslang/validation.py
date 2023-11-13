@@ -3,11 +3,10 @@ Contains all of the additional validation for the resource models.
 """
 import re
 from collections import Counter
-from typing import Dict, List, Optional, Set, Tuple, Annotated, Pattern, Any
+from typing import Annotated, Dict, List, Optional, Pattern, Set, Tuple
 
 from packaging.version import Version
-from pydantic import FieldValidationInfo, GetCoreSchemaHandler
-from pydantic_core import CoreSchema, core_schema
+from pydantic import FieldValidationInfo
 from pydantic.functional_validators import PlainValidator
 
 from fideslang.default_fixtures import COUNTRY_CODES
@@ -98,7 +97,7 @@ def no_self_reference(value: FidesKey, info: FieldValidationInfo) -> FidesKey:
 
 def deprecated_version_later_than_added(
     version_deprecated: Version, version_added: Optional[str]
-):
+) -> None:
     """
     Check to make sure that the deprecated version is later than the added version.
 
@@ -123,7 +122,7 @@ def has_versioning_if_default(
     version_added: Optional[str],
     version_deprecated: Optional[str],
     replaced_by: Optional[str],
-):
+) -> None:
     """
     Check to make sure that version fields are set for default items.
     """
