@@ -9,12 +9,13 @@ from enum import Enum
 from typing import Dict, List, Optional, Union
 from warnings import warn
 
-from packaging.version import Version
+from packaging.version import Version, InvalidVersion
 from pydantic import (
     field_validator,
     model_validator,
     ConfigDict,
     AnyUrl,
+    ValidationError,
     BaseModel,
     Field,
     HttpUrl,
@@ -27,7 +28,7 @@ from fideslang.validation import (
     check_valid_country_code,
     deprecated_version_later_than_added,
     has_versioning_if_default,
-    is_deprecated_if_replaced,
+    FidesValidationError,
     FidesCollectionKey,
     matching_parent_key,
     no_self_reference,
@@ -43,15 +44,6 @@ country_code_validator = field_validator("third_country_transfers")(
 )
 matching_parent_key_validator = field_validator("parent_key")(matching_parent_key)
 no_self_reference_validator = field_validator("parent_key")(no_self_reference)
-has_versioning_if_default_validator = field_validator("is_default")(
-    has_versioning_if_default
-)
-deprecated_version_later_than_added_validator = field_validator(
-    "version_deprecated",
-)(deprecated_version_later_than_added)
-is_deprecated_if_replaced_validator = field_validator("replaced_by")(
-    is_deprecated_if_replaced
-)
 
 # Reusable Fields
 name_field = Field(description="Human-Readable name for this resource.")
@@ -106,35 +98,42 @@ class DefaultModel(BaseModel):
         description="Denotes whether the resource is part of the default taxonomy or not.",
     )
 
-    _has_versioning_if_default = has_versioning_if_default_validator
-    _deprecated_version_later_than_added = deprecated_version_later_than_added_validator
-    _is_deprecated_if_replaced = is_deprecated_if_replaced_validator
+    @model_validator(mode="after")
+    def verify_version_info(self) -> "DefaultModel":
+        """Compose all of the version checks into a single validator."""
+        version_added = self.version_added
+        version_deprecated = self.version_deprecated
+        replaced_by = self.replaced_by
+        is_default = self.is_default
 
-    @field_validator("version_added")
-    @classmethod
-    def validate_verion_added(cls, version_added: Optional[str]) -> Optional[str]:
-        """
-        Validate that the `version_added` field is a proper Version
-        """
-        if not version_added:
-            return None
+        if version_added:
+            try:
+                Version(version_added)
+            except InvalidVersion:
+                raise FidesValidationError(
+                    f"Field 'version_added' does not have a valid version: {version_added}"
+                )
 
-        Version(version_added)
-        return version_added
+        if version_deprecated:
+            try:
+                Version(version_deprecated)
+            except InvalidVersion:
+                raise FidesValidationError(
+                    f"Field 'version_deprecated' does not have a valid version: {version_deprecated}"
+                )
 
-    @field_validator("version_deprecated")
-    @classmethod
-    def validate_version_deprecated(
-        cls, version_deprecated: Optional[str]
-    ) -> Optional[str]:
-        """
-        Validate that the `version_deprecated` is a proper FidesVersion
-        """
-        if not version_deprecated:
-            return None
+            deprecated_version_later_than_added(
+                Version(version_deprecated), version_added
+            )
 
-        Version(version_deprecated)
-        return version_deprecated
+        has_versioning_if_default(
+            is_default, version_added, version_deprecated, replaced_by
+        )
+
+        if replaced_by and not version_deprecated:
+            raise FidesValidationError("Cannot be replaced without deprecation!")
+
+        return self
 
 
 class DataResponsibilityTitle(str, Enum):

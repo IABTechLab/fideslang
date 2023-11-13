@@ -20,7 +20,7 @@ class FidesValidationError(ValueError):
     """Custom exception for when the pydantic ValidationError can't be used."""
 
 
-def fides_key_regex_check(value: str) -> str:
+def validate_fides_key(value: str) -> str:
     """Throws ValueError if val is not a valid FidesKey"""
 
     regex: Pattern[str] = re.compile(FIDES_KEY_PATTERN)
@@ -32,24 +32,7 @@ def fides_key_regex_check(value: str) -> str:
     return value
 
 
-class FidesKey(str):
-    """
-    Regex-enforced constrained string.
-
-    Used as a unique identifier within a specific resource type.
-    """
-
-    @classmethod
-    def __get_pydantic_core_schema__(
-        cls, source_type: Any, handler: GetCoreSchemaHandler
-    ) -> CoreSchema:
-        return core_schema.no_info_after_validator_function(cls, handler(str))
-
-    @classmethod
-    def validate(cls, value: str) -> str:
-        """Validates that the provided string is a valid Semantic Version."""
-        fides_key_regex_check(value)
-        return value
+FidesKey = Annotated[str, PlainValidator(validate_fides_key)]
 
 
 def validate_collection_key_parts(value: str) -> str:
@@ -59,8 +42,8 @@ def validate_collection_key_parts(value: str) -> str:
     """
     values = value.split(".")
     if len(values) == 2:
-        FidesKey.validate(values[0])
-        FidesKey.validate(values[1])
+        validate_fides_key(values[0])
+        validate_fides_key(values[1])
     else:
         raise ValueError(
             "FidesCollection must be specified in the form 'FidesKey.FidesKey'"
@@ -114,66 +97,53 @@ def no_self_reference(value: FidesKey, info: FieldValidationInfo) -> FidesKey:
 
 
 def deprecated_version_later_than_added(
-    version_deprecated: Optional[Version], info: FieldValidationInfo
-) -> Optional[Version]:
+    version_deprecated: Version, version_added: Optional[str]
+):
     """
     Check to make sure that the deprecated version is later than the added version.
 
     This will also catch errors where the deprecated version is defined but the added
     version is empty.
     """
+    parsed_version_added = Version(version_added) if version_added else Version("0")
 
-    if not version_deprecated:
-        return None
-
-    if version_deprecated < info.data.get("version_added", Version("0")):
+    if version_deprecated < parsed_version_added:
         raise FidesValidationError(
             "Deprecated version number can't be earlier than version added!"
         )
 
-    if version_deprecated == info.data.get("version_added", Version("0")):
+    if version_deprecated == parsed_version_added:
         raise FidesValidationError(
             "Deprecated version number can't be the same as the version added!"
         )
-    return version_deprecated
 
 
-def has_versioning_if_default(is_default: bool, info: FieldValidationInfo) -> bool:
+def has_versioning_if_default(
+    is_default: bool,
+    version_added: Optional[str],
+    version_deprecated: Optional[str],
+    replaced_by: Optional[str],
+):
     """
     Check to make sure that version fields are set for default items.
     """
-    values = info.data
 
     # If it's a default item, it at least needs a starting version
     if is_default:
         try:
-            assert values.get("version_added")
+            assert version_added
         except AssertionError:
             raise FidesValidationError("Default items must have version information!")
     # If it's not default, it shouldn't have version info
     else:
         try:
-            assert not values.get("version_added")
-            assert not values.get("version_deprecated")
-            assert not values.get("replaced_by")
+            assert not version_added
+            assert not version_deprecated
+            assert not replaced_by
         except AssertionError:
             raise FidesValidationError(
                 "Non-default items can't have version information!"
             )
-
-    return is_default
-
-
-def is_deprecated_if_replaced(replaced_by: str, info: FieldValidationInfo) -> str:
-    """
-    Check to make sure that the item has been deprecated if there is a replacement.
-    """
-    values = info.data
-
-    if replaced_by and not values.get("version_deprecated"):
-        raise FidesValidationError("Cannot be replaced without deprecation!")
-
-    return replaced_by
 
 
 def matching_parent_key(parent_key: FidesKey, info: FieldValidationInfo) -> FidesKey:
