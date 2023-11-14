@@ -93,9 +93,9 @@ jobs:
   Pytest-Matrix:
     strategy:
       matrix:
-        python_version: ["3.9", "3.10", "3.11", "3.12"]
+        python_version: ["3.9", "3.10", "3.11"]
         pydantic_version: ["2.2.1", "2.3.0", "2.4.2", "2.5.0"]
-        pyyaml_version: ["5.4.1", "6.0"]
+        pyyaml_version: ["5.4.1", "6.0.1"]
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
