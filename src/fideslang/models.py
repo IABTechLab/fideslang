@@ -41,8 +41,6 @@ from fideslang.validation import (
 country_code_validator = field_validator("third_country_transfers")(
     check_valid_country_code
 )
-matching_parent_key_validator = field_validator("parent_key")(matching_parent_key)
-no_self_reference_validator = field_validator("parent_key")(no_self_reference)
 
 # Reusable Fields
 name_field = Field(description="Human-Readable name for this resource.")
@@ -274,8 +272,16 @@ class DataCategory(FidesModel, DefaultModel):
 
     parent_key: Optional[FidesKey] = None
 
-    _matching_parent_key = matching_parent_key_validator
-    _no_self_reference = no_self_reference_validator
+    @model_validator(mode="after")
+    def parent_key_checks(self) -> "DataCategory":
+        """Verify that the parent key is valid."""
+        fides_key = self.fides_key
+        parent_key = self.parent_key
+
+        no_self_reference(parent_key=parent_key, fides_key=fides_key)
+        matching_parent_key(parent_key=parent_key, fides_key=fides_key)
+
+        return self
 
 
 class Cookies(BaseModel):
@@ -356,8 +362,16 @@ class DataUse(FidesModel, DefaultModel):
         description="Deprecated. A url pointing to the legitimate interest impact assessment. Required if the legal bases used is legitimate interest.",
     )
 
-    _matching_parent_key = matching_parent_key_validator
-    _no_self_reference = no_self_reference_validator
+    @model_validator(mode="after")
+    def parent_key_checks(self) -> "DataUse":
+        """Verify that the parent key is valid."""
+        fides_key = self.fides_key
+        parent_key = self.parent_key
+
+        no_self_reference(parent_key=parent_key, fides_key=fides_key)
+        matching_parent_key(parent_key=parent_key, fides_key=fides_key)
+
+        return self
 
     @model_validator(mode="before")
     @classmethod

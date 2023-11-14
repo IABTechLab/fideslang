@@ -248,139 +248,120 @@ def test_dataset_duplicate_collections_error():
 
 
 @pytest.mark.unit
-def test_top_level_resource():
-    DataCategory(
-        organization_fides_key="1",
-        fides_key="user",
-        name="Custom Test Data",
-        description="Custom Test Data Category",
-    )
-    assert DataCategory
-
-
-@pytest.mark.unit
-def test_fides_key_doesnt_match_stated_parent_key():
-    with pytest.raises(ValidationError):
+class TestFidesKeyValidation:
+    def test_top_level_resource(self):
         DataCategory(
             organization_fides_key="1",
-            fides_key="user.custom_test_data",
+            fides_key="user",
+            name="Custom Test Data",
+            description="Custom Test Data Category",
+        )
+        assert DataCategory
+
+    def test_fides_key_doesnt_match_stated_parent_key(self):
+        with pytest.raises(ValidationError):
+            DataCategory(
+                organization_fides_key="1",
+                fides_key="user.custom_test_data",
+                name="Custom Test Data",
+                description="Custom Test Data Category",
+                parent_key="user.account",
+            )
+        assert DataCategory
+
+    def test_fides_key_matches_stated_parent_key(self):
+        DataCategory(
+            organization_fides_key="1",
+            fides_key="user.account.custom_test_data",
             name="Custom Test Data",
             description="Custom Test Data Category",
             parent_key="user.account",
         )
-    assert DataCategory
+        assert DataCategory
 
+    def test_no_parent_key_but_fides_key_contains_parent_key(self):
+        with pytest.raises(ValidationError):
+            DataCategory(
+                organization_fides_key="1",
+                fides_key="user.custom_test_data",
+                name="Custom Test Data",
+                description="Custom Test Data Category",
+            )
+        assert DataCategory
 
-@pytest.mark.unit
-def test_fides_key_matches_stated_parent_key():
-    DataCategory(
-        organization_fides_key="1",
-        fides_key="user.account.custom_test_data",
-        name="Custom Test Data",
-        description="Custom Test Data Category",
-        parent_key="user.account",
-    )
-    assert DataCategory
+    def test_fides_key_with_carets(self):
+        DataCategory(
+            organization_fides_key="1",
+            fides_key="<replacement_text>",
+            name="Example valid key with brackets",
+            description="This key contains a <> which is valid",
+        )
+        assert DataCategory
 
+    def test_invalid_chars_in_fides_key(self):
+        with pytest.raises(ValidationError):
+            DataCategory(
+                organization_fides_key="1",
+                fides_key="!",
+                name="Example invalid key",
+                description="This key contains a ! so it is invalid",
+            )
+        assert DataCategory
 
-@pytest.mark.unit
-def test_no_parent_key_but_fides_key_contains_parent_key():
-    with pytest.raises(ValidationError):
+    def test_create_valid_data_category(self):
         DataCategory(
             organization_fides_key="1",
             fides_key="user.custom_test_data",
             name="Custom Test Data",
             description="Custom Test Data Category",
-        )
-    assert DataCategory
-
-
-@pytest.mark.unit
-def test_fides_key_with_carets():
-    DataCategory(
-        organization_fides_key="1",
-        fides_key="<replacement_text>",
-        name="Example valid key with brackets",
-        description="This key contains a <> which is valid",
-    )
-    assert DataCategory
-
-
-@pytest.mark.unit
-def test_invalid_chars_in_fides_key():
-    with pytest.raises(ValidationError):
-        DataCategory(
-            organization_fides_key="1",
-            fides_key="!",
-            name="Example invalid key",
-            description="This key contains a ! so it is invalid",
-        )
-    assert DataCategory
-
-
-@pytest.mark.unit
-def test_create_valid_data_category():
-    DataCategory(
-        organization_fides_key="1",
-        fides_key="user.custom_test_data",
-        name="Custom Test Data",
-        description="Custom Test Data Category",
-        parent_key="user",
-    )
-    assert DataCategory
-
-
-@pytest.mark.unit
-def test_circular_dependency_data_category():
-    with pytest.raises(ValidationError):
-        DataCategory(
-            organization_fides_key="1",
-            fides_key="user",
-            name="User Data",
-            description="Test Data Category",
             parent_key="user",
         )
-    assert True
+        assert DataCategory
 
+    def test_circular_dependency_data_category(self):
+        with pytest.raises(ValidationError):
+            DataCategory(
+                organization_fides_key="1",
+                fides_key="user",
+                name="User Data",
+                description="Test Data Category",
+                parent_key="user",
+            )
+        assert True
 
-@pytest.mark.unit
-def test_create_valid_data_use():
-    DataUse(
-        organization_fides_key="1",
-        fides_key="provide.service",
-        name="Provide the Product or Service",
-        parent_key="provide",
-        description="Test Data Use",
-    )
-    assert True
-
-
-@pytest.mark.unit
-def test_circular_dependency_data_use():
-    with pytest.raises(ValidationError):
+    def test_create_valid_data_use(self):
         DataUse(
             organization_fides_key="1",
             fides_key="provide.service",
             name="Provide the Product or Service",
+            parent_key="provide",
             description="Test Data Use",
-            parent_key="provide.service",
         )
-    assert True
+        assert True
 
+    def test_circular_dependency_data_use(self):
+        with pytest.raises(ValidationError):
+            DataUse(
+                organization_fides_key="1",
+                fides_key="provide.service",
+                name="Provide the Product or Service",
+                description="Test Data Use",
+                parent_key="provide.service",
+            )
+        assert True
 
-@pytest.mark.unit
-@pytest.mark.parametrize("fides_key", ["foo_bar", "foo-bar", "foo.bar", "foo_bar_8"])
-def test_fides_model_valid(fides_key: str):
-    fides_key = FidesModel(fides_key=fides_key, name="Foo Bar")
-    assert fides_key
+    @pytest.mark.parametrize(
+        "fides_key", ["foo_bar", "foo-bar", "foo.bar", "foo_bar_8"]
+    )
+    def test_fides_model_valid(self, fides_key: str):
+        fides_model = FidesModel(fides_key=fides_key, name="Foo Bar")
+        assert fides_model
 
-
-@pytest.mark.unit
-@pytest.mark.parametrize("fides_key", ["foo/bar", "foo%bar", "foo^bar"])
-def test_fides_model_fides_key_invalid(fides_key):
-    """Check for a bunch of different possible bad characters here."""
-    with pytest.raises(ValidationError):
-        FidesModel(fides_key=fides_key)
+    @pytest.mark.parametrize("fides_key", ["foo/bar", "foo%bar", "foo^bar"])
+    def test_fides_model_fides_key_invalid(self, fides_key: str):
+        """Check for a bunch of different possible bad characters here."""
+        with pytest.raises(ValidationError):
+            FidesModel(fides_key=fides_key)
 
 
 @pytest.mark.unit

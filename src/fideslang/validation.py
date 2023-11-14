@@ -6,7 +6,6 @@ from collections import Counter
 from typing import Annotated, Dict, List, Optional, Pattern, Set, Tuple
 
 from packaging.version import Version
-from pydantic import FieldValidationInfo
 from pydantic.functional_validators import PlainValidator
 
 from fideslang.default_fixtures import COUNTRY_CODES
@@ -82,19 +81,6 @@ def unique_items_in_list(values: List) -> List:
     return values
 
 
-def no_self_reference(value: FidesKey, info: FieldValidationInfo) -> FidesKey:
-    """
-    Check to make sure that the fides_key doesn't match other fides_key
-    references within an object.
-
-    i.e. DataCategory.parent_key != DataCategory.fides_key
-    """
-    fides_key = FidesKey(info.data.get("fides_key", ""))
-    if value == fides_key:
-        raise FidesValidationError("FidesKey can not self-reference!")
-    return value
-
-
 def deprecated_version_later_than_added(
     version_deprecated: Version, version_added: Optional[str]
 ) -> None:
@@ -145,17 +131,27 @@ def has_versioning_if_default(
             )
 
 
-def matching_parent_key(parent_key: FidesKey, info: FieldValidationInfo) -> FidesKey:
+def no_self_reference(parent_key: Optional[str], fides_key: str) -> None:
+    """
+    Check to make sure that the fides_key doesn't match other fides_key
+    references within an object.
+
+    i.e. DataCategory.parent_key != DataCategory.fides_key
+    """
+    if parent_key == fides_key:
+        raise FidesValidationError("FidesKey can not self-reference!")
+
+
+def matching_parent_key(parent_key: Optional[str], fides_key: str) -> None:
     """
     Confirm that the parent_key matches the parent parsed from the FidesKey.
     """
 
-    fides_key = FidesKey(info.data.get("fides_key", ""))
     split_fides_key = str(fides_key).split(".")
 
     # Check if it is a top-level resource
     if len(split_fides_key) == 1 and not parent_key:
-        return parent_key
+        return
 
     # Reform the parent_key from the fides_key and compare
     parent_key_from_fides_key = ".".join(split_fides_key[:-1])
@@ -165,7 +161,6 @@ def matching_parent_key(parent_key: FidesKey, info: FieldValidationInfo) -> Fide
                 parent_key, parent_key_from_fides_key, fides_key
             )
         )
-    return parent_key
 
 
 def check_valid_country_code(country_code_list: List) -> List:
