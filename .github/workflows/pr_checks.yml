@@ -93,7 +93,7 @@ jobs:
   Pytest-Matrix:
     strategy:
       matrix:
-        python_version: ["3.8", "3.9", "3.10", "3.11"]
+        python_version: ["3.9", "3.10", "3.11", "3.12"]
         pydantic_version: ["2.2.1", "2.3.0", "2.4.2", "2.5.0"]
         pyyaml_version: ["5.4.1", "6.0"]
     runs-on: ubuntu-latest

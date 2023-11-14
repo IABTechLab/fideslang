@@ -1,4 +1,4 @@
-FROM python:3.8-slim-bullseye as base
+FROM python:3.10-slim-bullseye as base
 
 # Update pip in the base image since we'll use it everywhere
 RUN pip install -U pip
