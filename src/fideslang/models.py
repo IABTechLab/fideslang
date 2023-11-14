@@ -15,7 +15,7 @@ from pydantic import (
     BaseModel,
     ConfigDict,
     Field,
-    FieldValidationInfo,
+    ValidationInfo,
     HttpUrl,
     PositiveInt,
     field_validator,
@@ -396,7 +396,7 @@ class DataUse(FidesModel, DefaultModel):
 
     @field_validator("legitimate_interest")
     @classmethod
-    def set_legitimate_interest(cls, value: bool, info: FieldValidationInfo) -> bool:
+    def set_legitimate_interest(cls, value: bool, info: ValidationInfo) -> bool:
         """Sets if a legitimate interest is used."""
         values = info.data
 
@@ -406,9 +406,7 @@ class DataUse(FidesModel, DefaultModel):
 
     @field_validator("legitimate_interest_impact_assessment")
     @classmethod
-    def ensure_impact_assessment(
-        cls, value: AnyUrl, info: FieldValidationInfo
-    ) -> AnyUrl:
+    def ensure_impact_assessment(cls, value: AnyUrl, info: ValidationInfo) -> AnyUrl:
         """
         Validates an impact assessment is applied if a
         legitimate interest has been defined.
@@ -561,7 +559,7 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
     def validate_object_fields(
         cls,
         fields: Optional[List["DatasetField"]],
-        info: FieldValidationInfo,
+        info: ValidationInfo,
     ) -> Optional[List["DatasetField"]]:
         """Two validation checks for object fields:
         - If there are sub-fields specified, type should be either empty or 'object'
@@ -1274,7 +1272,7 @@ class System(FidesModel):
     def privacy_declarations_reference_data_flows(
         cls,
         value: PrivacyDeclaration,
-        info: FieldValidationInfo,
+        info: ValidationInfo,
     ) -> PrivacyDeclaration:
         """
         Any `PrivacyDeclaration`s which include `egress` and/or `ingress` fields must
