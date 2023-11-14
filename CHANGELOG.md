@@ -16,9 +16,16 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/2.2.1...main)
 
+## [3.0.0 Unreleased]
+
+### Changed
+
+- Updated to Pydantic 2.X, which is now the only supported version [#160](https://github.com/ethyca/fideslang/pull/160)
+- Removed Python 3.8 from the list of supported versions [#160](https://github.com/ethyca/fideslang/pull/160)
+
 ## [2.2.1](https://github.com/ethyca/fideslang/compare/2.2.0...2.2.1)
 
-### Added 
+### Added
 
 - Added a `System.cookies` property to support `Cookie` records explicitly associated with a `System` generally [#181](https://github.com/ethyca/fideslang/pull/181)
 - Added a `System.previous_vendor_id` property to support to associate a `System` record with a "deprecated" vendor record [#182](https://github.com/ethyca/fideslang/pull/182)
