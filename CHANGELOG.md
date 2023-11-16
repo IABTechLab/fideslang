@@ -16,6 +16,10 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/2.2.1...main)
 
+### Added
+
+- Give Flexible Legal Basis a default of True [#184](https://github.com/ethyca/fideslang/pull/184)
+
 ## [2.2.1](https://github.com/ethyca/fideslang/compare/2.2.0...2.2.1)
 
 ### Added 

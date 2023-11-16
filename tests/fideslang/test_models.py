@@ -434,6 +434,17 @@ class TestSystem:
             ],
         )
 
+    def test_flexible_legal_basis_default(self):
+        pd = PrivacyDeclaration(
+            data_categories=[],
+            data_qualifier="aggregated_data",
+            data_subjects=[],
+            data_use="provide",
+            ingress=["user"],
+            name="declaration-name",
+        )
+        assert pd.flexible_legal_basis_for_processing
+
     @mark.parametrize(
         "deprecated_field,value",
         [
