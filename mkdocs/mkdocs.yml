@@ -13,7 +13,6 @@ nav:
           - Data Categories: taxonomy/data_categories.md
           - Data Uses: taxonomy/data_uses.md
           - Data Subjects: taxonomy/data_subjects.md
-          - Data Qualifiers: taxonomy/data_qualifiers.md
       - Resources:
           - Organization: resources/organization.md
           - Policy: resources/policy.md

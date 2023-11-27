@@ -23,7 +23,6 @@ system:
         data_use: improve.system
         data_subjects:
           - customer
-        data_qualifier: aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified
         ingress:
           - demo_users_dataset
 
@@ -40,4 +39,3 @@ system:
         data_use: advertising
         data_subjects:
           - customer
-        data_qualifier: aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified

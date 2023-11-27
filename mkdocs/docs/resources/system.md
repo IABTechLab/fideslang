@@ -1,6 +1,6 @@
 # System
 
-A System is a model for describing anything that processes data for your organization (applications, services, 3rd party APIs, etc.) and describes how these datasets are used for business functions of instances of your data resources. It contains all 4 privacy attributes (`data_category`, `data_use`, `data_subject`, and `data_qualifier`).
+A System is a model for describing anything that processes data for your organization (applications, services, 3rd party APIs, etc.) and describes how these datasets are used for business functions of instances of your data resources. It contains all 3 privacy attributes (`data_category`, `data_use`, and `data_subject`).
 
   ```
   organization
@@ -64,7 +64,7 @@ The resources from which the System receives data.
 
 **privacy_declarations**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[array]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-The array of declarations describing the types of data in your system. This is a list of the privcy attributes (`data_category`, `data_use`, `data_subject`, and `data_qualifier`) for each of your systems.
+The array of declarations describing the types of data in your system. This is a list of the privcy attributes (`data_category`, `data_use`, and `data_subject`) for each of your systems.
 
 If a dataset is referenced as part of the system, all applicable data categories set on the dataset are treated as part of the system.
 
@@ -114,7 +114,6 @@ system:
         data_use: improve.system
         data_subjects:
           - customer
-        data_qualifier: identified_data
         egress:
           - another_demo_system
         ingress:
@@ -166,7 +165,6 @@ system:
       "data_subjects": [
         "customer"
       ],
-      "data_qualifier": "identified_data",
       "egress": ["another_demo_system"],
       "ingress": ["yet_another_demo_system"]
     }

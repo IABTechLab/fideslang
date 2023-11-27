@@ -286,15 +286,6 @@ class DataCategory(FidesModel, DefaultModel):
     _no_self_reference: classmethod = no_self_reference_validator
 
 
-class DataQualifier(FidesModel, DefaultModel):
-    """The DataQualifier resource model."""
-
-    parent_key: Optional[FidesKey]
-
-    _matching_parent_key: classmethod = matching_parent_key_validator
-    _no_self_reference: classmethod = no_self_reference_validator
-
-
 class Cookies(BaseModel):
     """The Cookies resource model"""
 
@@ -441,10 +432,6 @@ class DatasetFieldBase(BaseModel):
     description: Optional[str] = description_field
     data_categories: Optional[List[FidesKey]] = Field(
         description="Arrays of Data Categories, identified by `fides_key`, that applies to this field.",
-    )
-    data_qualifier: FidesKey = Field(
-        default="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
-        description="A Data Qualifier that applies to this field. Note that this field holds a single value, therefore, the property name is singular.",
     )
     retention: Optional[str] = Field(
         description="An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
@@ -619,10 +606,6 @@ class DatasetCollection(FidesopsMetaBackwardsCompat):
     data_categories: Optional[List[FidesKey]] = Field(
         description="Array of Data Category resources identified by `fides_key`, that apply to all fields in the collection.",
     )
-    data_qualifier: FidesKey = Field(
-        default="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
-        description="Array of Data Qualifier resources identified by `fides_key`, that apply to all fields in the collection.",
-    )
     retention: Optional[str] = Field(
         description="An optional string to describe the retention policy for a Dataset collection. This field can also be applied more granularly at the field level of a Dataset.",
     )
@@ -687,9 +670,6 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
     data_categories: Optional[List[FidesKey]] = Field(
         description="Array of Data Category resources identified by `fides_key`, that apply to all collections in the Dataset.",
     )
-    data_qualifier: Optional[FidesKey] = Field(
-        description="Deprecated. Array of Data Qualifier resources identified by `fides_key`, that apply to all collections in the Dataset.",
-    )
     fides_meta: Optional[DatasetMetadata] = Field(
         description=DatasetMetadata.__doc__, default=None
     )
@@ -720,9 +700,9 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
         """
         Warn of Dataset fields pending deprecation.
         """
+        # TODO: Do we want to remove these for Fideslang 3?
         deprecated_fields = [
             "joint_controller",
-            "data_qualifier",
             "retention",
             "third_country_transfers",
         ]
@@ -747,9 +727,6 @@ class ViolationAttributes(BaseModel):
     )
     data_uses: List[str] = Field(
         description="A list of data uses which led to an evaluation violation.",
-    )
-    data_qualifier: str = Field(
-        description="The data qualifier which led to an evaluation violation.",
     )
 
 
@@ -898,10 +875,6 @@ class PolicyRule(BaseModel):
     data_subjects: PrivacyRule = Field(
         description=PrivacyRule.__doc__,
     )
-    data_qualifier: FidesKey = Field(
-        default="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
-        description="The fides key of the data qualifier to be used in a privacy rule.",
-    )
 
 
 class Policy(FidesModel):
@@ -972,9 +945,6 @@ class PrivacyDeclaration(BaseModel):
     data_use: FidesKey = Field(
         description="The Data Use describing a system in a privacy declaration.",
     )
-    data_qualifier: Optional[FidesKey] = Field(
-        description="Deprecated. The fides key of the data qualifier describing a system in a privacy declaration.",
-    )
     data_subjects: List[FidesKey] = Field(
         default_factory=list,
         description="An array of data subjects describing a system in a privacy declaration.",
@@ -1025,20 +995,6 @@ class PrivacyDeclaration(BaseModel):
     cookies: Optional[List[Cookies]] = Field(
         description="Cookies associated with this data use to deliver services and functionality",
     )
-
-    @validator("data_qualifier")
-    @classmethod
-    def deprecate_data_qualifier(cls, value: FidesKey) -> FidesKey:
-        """
-        Warn that the `data_qualifier` field is deprecated, if set.
-        """
-        if value is not None:
-            warn(
-                "The data_qualifier field is deprecated, and will be removed in a future version of fideslang.",
-                DeprecationWarning,
-            )
-
-        return value
 
     class Config:
         """Config for the Privacy Declaration"""
@@ -1326,7 +1282,6 @@ class Taxonomy(BaseModel):
     data_category: List[DataCategory] = Field(default_factory=list)
     data_subject: Optional[List[DataSubject]] = Field(default_factory=list)
     data_use: Optional[List[DataUse]] = Field(default_factory=list)
-    data_qualifier: Optional[List[DataQualifier]] = Field(default_factory=list)
 
     dataset: Optional[List[Dataset]] = Field(default_factory=list)
     system: Optional[List[System]] = Field(default_factory=list)
