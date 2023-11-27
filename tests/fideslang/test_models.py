@@ -196,13 +196,17 @@ class TestSystem:
                     name="declaration-name",
                 )
             ],
-            registry_id="1",
+            registry_id=1,
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
         assert system.meta == None
 
     def test_system_valid_no_egress_or_ingress(self) -> None:
+        """
+        If there are no ingress/egress at the System level, as well as
+        none at the PrivacyDeclaration level, it is valid.
+        """
         assert System(
             description="Test Policy",
             fides_key="test_system",
@@ -217,10 +221,78 @@ class TestSystem:
                     name="declaration-name",
                 )
             ],
-            registry_id="1",
+            registry_id=1,
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
+
+    def test_system_no_egress(self) -> None:
+        """
+        If there is an ingress or egress at the PrivacyDeclaration level that
+        isn't at the system level, we should get a validation error.
+        """
+        with raises(ValueError):
+            assert System(
+                description="Test Policy",
+                fides_key="test_system",
+                ingress=[
+                    DataFlow(
+                        fides_key="test_system_3",
+                        type="system",
+                        data_categories=[],
+                    )
+                ],
+                meta={"some": "meta stuff"},
+                name="Test System",
+                organization_fides_key="1",
+                privacy_declarations=[
+                    PrivacyDeclaration(
+                        data_categories=[],
+                        data_subjects=[],
+                        data_use="provide",
+                        egress=["test_system_2"],
+                        ingress=["test_system_3"],
+                        name="declaration-name",
+                    )
+                ],
+                registry_id=1,
+                system_type="SYSTEM",
+                tags=["some", "tags"],
+            )
+
+    def test_system_no_ingress(self) -> None:
+        """
+        If there is an ingress or egress at the PrivacyDeclaration level that
+        isn't at the system level, we should get a validation error.
+        """
+        with raises(ValueError):
+            assert System(
+                description="Test Policy",
+                egress=[
+                    DataFlow(
+                        fides_key="test_system_2",
+                        type="system",
+                        data_categories=[],
+                    )
+                ],
+                fides_key="test_system",
+                meta={"some": "meta stuff"},
+                name="Test System",
+                organization_fides_key="1",
+                privacy_declarations=[
+                    PrivacyDeclaration(
+                        data_categories=[],
+                        data_subjects=[],
+                        data_use="provide",
+                        egress=["test_system_2"],
+                        ingress=["test_system_3"],
+                        name="declaration-name",
+                    )
+                ],
+                registry_id=1,
+                system_type="SYSTEM",
+                tags=["some", "tags"],
+            )
 
     def test_system_user_ingress_valid(self) -> None:
         assert System(
