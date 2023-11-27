@@ -56,7 +56,6 @@ An optional array of contact information if a Joint Controller exists. This info
 An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset
 
 **data_categories**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_string_]<br/>
-**data_qualifiers**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_string_]<br/>
 
 Arrays of Data Category and Data Qualifier resources, identified by `fides_key`, that apply to all collections in the Dataset.
 
@@ -73,7 +72,6 @@ A UI-friendly label for the collection.
 A human-readable description of the collection.
 
 **collections.data_categories**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_string_]<br/>
-**collections.data_qualifiers**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_string_]<br/>
 
 Arrays of Data Category and Data Qualifier resources, identified by `fides_key`, that apply to all fields in the collection.
 
@@ -96,10 +94,6 @@ A human-readable description of the field.
 **collections.fields.data_categories**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_string_]<br/>
 
 Arrays of Data Categories, identified by `fides_key`, that applies to this field.
-
-**collections.fields.data_qualifier**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_string_<br/>
-
-A Data Qualifier that applies to this field. Note that this field holds a single value, therefore, the property name is singular.
 
 **collections.fields.retention**<span class="required"/>&nbsp;&nbsp;_string_
 

@@ -48,19 +48,6 @@ Examples of a Data Subject are:
 
 Learn more about [Data Subject Categories in the taxonomy reference now](https://ethyca.github.io/fideslang/taxonomy/data_subjects/).
 
-### 4. Data Identification Qualifiers
-
-Data Identification Qualifiers describe the degree of identification of the given data.
-Think of this as a spectrum: on one end is completely anonymous data, i.e. it is impossible to identify an individual from it; on the other end is data that specifically identifies an individual.
-
-Along this spectrum are labels that describe the degree of identification that a given data might provide, such as:
-
-- `identified_data`
-- `anonymized_data`
-- `aggregated_data`
-
-Learn more about [Data Identification Qualifiers in the taxonomy reference now](https://ethyca.github.io/fideslang/taxonomy/data_qualifiers/).
-
 ### Extensibility & Interoperability
 
 The taxonomy is designed to support common privacy compliance regulations and standards out of the box, these include GDPR, CCPA, LGPD and ISO 19944.

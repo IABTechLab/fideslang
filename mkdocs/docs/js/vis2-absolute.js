@@ -733,8 +733,7 @@ Promise.all([
   d3.csv("https://ethyca.github.io/fideslang/csv/data_categories.csv"),
   d3.csv("https://ethyca.github.io/fideslang/csv/data_uses.csv"),
   d3.csv("https://ethyca.github.io/fideslang/csv/data_subjects.csv"),
-  d3.csv("https://ethyca.github.io/fideslang/csv/data_qualifiers.csv"),
-]).then(([categoriesCSV, usesCSV, subjectsCSV, qualifiersCSV]) => {
+]).then(([categoriesCSV, usesCSV, subjectsCSV]) => {
   const tooltip = new VisTooltip();
 
   const colors = {
@@ -820,24 +819,6 @@ Promise.all([
         "#f73ffc",
         "#fb409e",
       ]),
-    qualifiers: d3
-      .scaleOrdinal()
-      .domain([
-        "data_qualifier",
-        "aggregated",
-        "aggregated.anonymized",
-        "aggregated.anonymized.unlinked_pseudonymized",
-        "aggregated.anonymized.unlinked_pseudonymized.pseudonymized",
-        "aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
-      ])
-      .range([
-        "#2a3045",
-        "#0861ce",
-        "#8459cc",
-        "#c14cbb",
-        "#ed43a0",
-        "#ff4a7f",
-      ]),
   };
 
   const accessor = {
@@ -859,13 +840,11 @@ Promise.all([
   const categoriesRoot = stratify(categoriesCSV);
   const usesRoot = stratify(usesCSV);
   const subjectsRoot = stratify(subjectsCSV);
-  const qualifiersRoot = stratify(qualifiersCSV);
 
   const chartData = {
     categories: categoriesRoot,
     uses: usesRoot,
     subjects: subjectsRoot,
-    qualifiers: qualifiersRoot,
   };
   const chartDataButtons = d3
     .select("#data-control")
