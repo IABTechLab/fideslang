@@ -283,7 +283,6 @@ class DataCategory(FidesModel, DefaultModel):
 
         return self
 
-
 class Cookies(BaseModel):
     """The Cookies resource model"""
 
@@ -1009,6 +1008,7 @@ class PrivacyDeclaration(BaseModel):
         description="Cookies associated with this data use to deliver services and functionality",
     )
     model_config = ConfigDict(from_attributes=True)
+
 
 
 class SystemMetadata(BaseModel):
