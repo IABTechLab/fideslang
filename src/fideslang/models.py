@@ -1275,7 +1275,9 @@ class System(FidesModel):
         """
 
         if self.privacy_declarations:
-            for declaration in self.privacy_declarations:
+            for (
+                declaration
+            ) in self.privacy_declarations:  # pylint: disable=not-an-iterable
                 for direction in ["egress", "ingress"]:
                     flow_fides_keys = getattr(declaration, direction, None)
                     if flow_fides_keys is not None:
@@ -1286,9 +1288,12 @@ class System(FidesModel):
                             data_flows is not None and len(data_flows) > 0
                         ), f"PrivacyDeclaration '{declaration.name}' defines {direction} with one or more resources and is applied to the System '{system}', which does not itself define any {direction}."
 
-                        for fides_key in flow_fides_keys:
+                        for (
+                            fides_key
+                        ) in flow_fides_keys:  # pylint: disable=not-an-iterable
                             assert fides_key in [
-                                data_flow.fides_key for data_flow in data_flows
+                                data_flow.fides_key
+                                for data_flow in data_flows  # pylint: disable=not-an-iterable
                             ], f"PrivacyDeclaration '{declaration.name}' defines {direction} with '{fides_key}' and is applied to the System '{system}', which does not itself define {direction} with that resource."
 
         return self
