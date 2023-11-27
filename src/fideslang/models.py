@@ -283,6 +283,7 @@ class DataCategory(FidesModel, DefaultModel):
 
         return self
 
+
 class Cookies(BaseModel):
     """The Cookies resource model"""
 
@@ -967,8 +968,8 @@ class PrivacyDeclaration(BaseModel):
     features: List[str] = Field(
         default=[], description="The features of processing personal data."
     )
-    flexible_legal_basis_for_processing: Optional[bool] = Field(
-        default=None,
+    flexible_legal_basis_for_processing: bool = Field(
+        default=True,
         description="Whether the legal basis for processing is 'flexible' (i.e. can be overridden in a privacy notice) for this declaration.",
     )
     legal_basis_for_processing: Optional[LegalBasisForProcessingEnum] = Field(
@@ -1008,7 +1009,6 @@ class PrivacyDeclaration(BaseModel):
         description="Cookies associated with this data use to deliver services and functionality",
     )
     model_config = ConfigDict(from_attributes=True)
-
 
 
 class SystemMetadata(BaseModel):
