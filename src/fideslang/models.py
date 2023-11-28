@@ -1098,6 +1098,7 @@ class System(FidesModel):
     registry_id: Optional[int] = Field(
         default=None,
         description="The id of the system registry, if used.",
+        strict=False,  # This allows Pydantic to coerce '1' -> 1
     )
     meta: Optional[Dict] = meta_field
     fidesctl_meta: Optional[SystemMetadata] = Field(
@@ -1149,7 +1150,7 @@ class System(FidesModel):
         description="If specified, the unique identifier for the vendor that was previously associated with this system.",
     )
     dataset_references: Optional[List[FidesKey]] = Field(
-        default=None,
+        default=[],
         description="Referenced Dataset fides keys used by the system.",
     )
     processes_personal_data: bool = Field(

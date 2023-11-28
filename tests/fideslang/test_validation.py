@@ -404,7 +404,6 @@ def test_valid_policy():
         organization_fides_key="1",
         fides_key="test_policy",
         name="Test Policy",
-        version="1.3",
         description="Test Policy",
         rules=[],
     )
@@ -415,7 +414,7 @@ def test_valid_policy():
 def test_create_valid_system():
     System(
         organization_fides_key="1",
-        registryId="1",
+        registry_id=1,
         fides_key="test_system",
         system_type="SYSTEM",
         name="Test System",
@@ -446,7 +445,7 @@ def test_invalid_country_identifier(country_code: str):
     with pytest.raises(ValidationError):
         System(
             organization_fides_key="1",
-            registryId="1",
+            registry_id="1",
             fides_key="test_system",
             system_type="SYSTEM",
             name="Test System",
@@ -471,7 +470,7 @@ def test_valid_country_identifier(country_code: str):
     """Validates usage of alpha-3 codes per ISO 3166"""
     System(
         organization_fides_key="1",
-        registryId="1",
+        registry_id="1",
         fides_key="test_system",
         system_type="SYSTEM",
         name="Test System",

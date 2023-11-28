@@ -95,7 +95,7 @@ def resources_dict():
         ),
         "system": models.System(
             organization_fides_key="1",
-            registryId="1",
+            registry_id="1",
             fides_key="test_system",
             system_type="SYSTEM",
             name="Test System",
