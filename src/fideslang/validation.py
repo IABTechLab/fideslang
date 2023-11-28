@@ -6,7 +6,7 @@ from collections import Counter
 from typing import Annotated, Dict, List, Optional, Pattern, Set, Tuple
 
 from packaging.version import Version
-from pydantic.functional_validators import PlainValidator
+from pydantic.functional_validators import BeforeValidator
 
 from fideslang.default_fixtures import COUNTRY_CODES
 
@@ -30,7 +30,7 @@ def validate_fides_key(value: str) -> str:
     return value
 
 
-FidesKey = Annotated[str, PlainValidator(validate_fides_key)]
+FidesKey = Annotated[str, BeforeValidator(validate_fides_key)]
 
 
 def validate_collection_key_parts(value: str) -> str:
@@ -50,7 +50,7 @@ def validate_collection_key_parts(value: str) -> str:
 
 
 # Dataset.Collection name where both dataset and collection names are valid FidesKeys
-FidesCollectionKey = Annotated[str, PlainValidator(validate_collection_key_parts)]
+FidesCollectionKey = Annotated[str, BeforeValidator(validate_collection_key_parts)]
 
 
 def sort_list_objects_by_name(values: List) -> List:

@@ -26,6 +26,12 @@ class TestDefaultTaxonomy:
         assert all([x.is_default for x in getattr(DEFAULT_TAXONOMY, data_type)])
 
     @pytest.mark.parametrize("data_type", taxonomy_counts.keys())
+    def test_valid_json_schemas(self, data_type: str) -> None:
+        # If this fails, an error will get thrown
+        getattr(DEFAULT_TAXONOMY, data_type)[0].model_json_schema()
+        assert True
+
+    @pytest.mark.parametrize("data_type", taxonomy_counts.keys())
     def test_key_uniqueness(self, data_type: str) -> None:
         keys = [x.fides_key for x in getattr(DEFAULT_TAXONOMY, data_type)]
         duplicate_keys = {
