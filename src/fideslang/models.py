@@ -1249,26 +1249,6 @@ class System(FidesModel):
 
     _check_valid_country_code = country_code_validator
 
-    @model_validator(mode="before")
-    @classmethod
-    def deprecate_fields(cls, values: Dict) -> Dict:
-        """
-        Warn of System fields pending deprecation.
-        """
-        deprecated_fields = [
-            "joint_controller",
-            "third_country_transfers",
-            "data_responsibility_title",
-            "data_protection_impact_assessment",
-        ]
-        for field in deprecated_fields:
-            if values.get(field) is not None:
-                warn(
-                    f"The {field} field is deprecated, and will be removed in a future version of fideslang.",
-                    DeprecationWarning,
-                )
-        return values
-
     @model_validator(mode="after")
     def verify_privacy_declarations(self) -> "System":
         """
