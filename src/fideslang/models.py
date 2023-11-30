@@ -474,8 +474,8 @@ class FidesMeta(BaseModel):
     """Supplementary metadata used by the Fides application for additional features."""
 
     references: Optional[List[FidesDatasetReference]] = Field(
-        description="Fields that current field references or is referenced by. Used for drawing the edges of a DSR graph.",
         default=None,
+        description="Fields that current field references or is referenced by. Used for drawing the edges of a DSR graph.",
     )
     identity: Optional[str] = Field(
         default=None,
@@ -923,9 +923,11 @@ class DataProtectionImpactAssessment(BaseModel):
         description="A boolean value determining if a data protection impact assessment is required. Defaults to False.",
     )
     progress: Optional[str] = Field(
+        default=None,
         description="The optional status of a Data Protection Impact Assessment. Returned on an exported data map or RoPA.",
     )
     link: Optional[AnyUrl] = Field(
+        default=None,
         description="The optional link to the Data Protection Impact Assessment. Returned on an exported data map or RoPA.",
     )
 
@@ -1058,6 +1060,7 @@ class DataFlow(BaseModel):
         description=f"Specifies the resource model class for which the `fides_key` applies. May be any of {', '.join([member.value for member in FlowableResources])}.",
     )
     data_categories: Optional[List[FidesKey]] = Field(
+        default=None,
         description="An array of data categories describing the data in transit.",
     )
 
