@@ -1,14 +1,9 @@
 import pytest
 
-from fideslang.gvl import (
-    GVL_FEATURES,
-    GVL_SPECIAL_FEATURES,
-    Feature,
-    data_category_id_to_data_categories,
-    feature_id_to_feature_name,
-    feature_name_to_feature,
-    purpose_to_data_use,
-)
+from fideslang.gvl import (GVL_FEATURES, GVL_SPECIAL_FEATURES, Feature,
+                           data_category_id_to_data_categories,
+                           feature_id_to_feature_name, feature_name_to_feature,
+                           purpose_to_data_use)
 
 
 def test_purpose_to_data_use():

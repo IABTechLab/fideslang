@@ -1,31 +1,13 @@
 import pytest
 from pydantic import ValidationError
 
-from fideslang.models import (
-    CollectionMeta,
-    DataCategory,
-    DataFlow,
-    Dataset,
-    DataUse,
-    DataSubject,
-    DatasetCollection,
-    DatasetField,
-    DatasetMetadata,
-    DataUse,
-    FidesDatasetReference,
-    FidesMeta,
-    FidesModel,
-    Policy,
-    PolicyRule,
-    PrivacyDeclaration,
-    PrivacyRule,
-    System,
-)
-from fideslang.validation import (
-    FidesValidationError,
-    validate_fides_key,
-    valid_data_type,
-)
+from fideslang.models import (CollectionMeta, DataCategory, DataFlow, Dataset,
+                              DatasetCollection, DatasetField, DatasetMetadata,
+                              DataSubject, DataUse, FidesDatasetReference,
+                              FidesMeta, FidesModel, Policy, PolicyRule,
+                              PrivacyDeclaration, PrivacyRule, System)
+from fideslang.validation import (FidesValidationError, valid_data_type,
+                                  validate_fides_key)
 
 DEFAULT_TAXONOMY_CLASSES = [DataCategory, DataUse, DataSubject]
 

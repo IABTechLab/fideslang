@@ -308,19 +308,18 @@ class DataSubjectRights(BaseModel):
         description="A list of valid data subject rights to be used when applying data rights to a data subject via a strategy.",
     )
 
-    @model_validator(mode="before")
-    @classmethod
-    def include_exclude_has_values(cls, values: Dict) -> Dict:
+    @model_validator(mode="after")
+    def include_exclude_has_values(self) -> "DataSubjectRights":
         """
         Validate the if include or exclude is chosen, that at least one
         value is present.
         """
-        strategy, rights = values.get("strategy"), values.get("values")
+        strategy, rights = self.strategy, self.values
         if strategy in ("INCLUDE", "EXCLUDE"):
             assert (
                 rights is not None
             ), f"If {strategy} is chosen, rights must also be listed."
-        return values
+        return self
 
 
 class DataSubject(FidesModel, DefaultModel):
@@ -370,27 +369,6 @@ class DataUse(FidesModel, DefaultModel):
         matching_parent_key(parent_key=parent_key, fides_key=fides_key)
 
         return self
-
-    @model_validator(mode="before")
-    @classmethod
-    def deprecate_fields(cls, values: Dict) -> Dict:
-        """
-        Warn of Data Use fields pending deprecation.
-        """
-        deprecated_fields = [
-            "legal_basis",
-            "recipients",
-            "special_category",
-            "legitimate_interest",
-            "legitimate_interest_impact_assessment",
-        ]
-        for field in deprecated_fields:
-            if values.get(field) is not None:
-                warn(
-                    f"The {field} field is deprecated, and will be removed in a future version of fideslang.",
-                    DeprecationWarning,
-                )
-        return values
 
     @field_validator("legitimate_interest")
     @classmethod
@@ -694,26 +672,6 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
     _sort_collections = field_validator("collections")(sort_list_objects_by_name)
     _check_valid_country_code = country_code_validator
     _unique_items_in_list = field_validator("collections")(unique_items_in_list)
-
-    @model_validator(mode="before")
-    @classmethod
-    def deprecate_fields(cls, values: Dict) -> Dict:
-        """
-        Warn of Dataset fields pending deprecation.
-        """
-        # TODO: Do we want to remove these for Fideslang 3?
-        deprecated_fields = [
-            "joint_controller",
-            "retention",
-            "third_country_transfers",
-        ]
-        for field in deprecated_fields:
-            if values.get(field) is not None:
-                warn(
-                    f"The {field} field is deprecated, and will be removed in a future version of fideslang.",
-                    DeprecationWarning,
-                )
-        return values
 
 
 # Evaluation
