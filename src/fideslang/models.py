@@ -11,12 +11,10 @@ from warnings import warn
 
 from packaging.version import InvalidVersion, Version
 from pydantic import (
-    AnyUrl,
     BaseModel,
     ConfigDict,
     Field,
     ValidationInfo,
-    HttpUrl,
     PositiveInt,
     field_validator,
     model_validator,
@@ -357,7 +355,7 @@ class DataUse(FidesModel, DefaultModel):
         default=None,
         description="Deprecated. A boolean representation of if the legal basis used is `Legitimate Interest`. Validated at run time and looks for a `legitimate_interest_impact_assessment` to exist if true.",
     )
-    legitimate_interest_impact_assessment: Optional[AnyUrl] = Field(
+    legitimate_interest_impact_assessment: Optional[str] = Field(
         default=None,
         description="Deprecated. A url pointing to the legitimate interest impact assessment. Required if the legal bases used is legitimate interest.",
     )
@@ -406,7 +404,7 @@ class DataUse(FidesModel, DefaultModel):
 
     @field_validator("legitimate_interest_impact_assessment")
     @classmethod
-    def ensure_impact_assessment(cls, value: AnyUrl, info: ValidationInfo) -> AnyUrl:
+    def ensure_impact_assessment(cls, value: str, info: ValidationInfo) -> str:
         """
         Validates an impact assessment is applied if a
         legitimate interest has been defined.
@@ -828,8 +826,8 @@ class Organization(FidesModel):
         default=None,
         description=ContactDetails.__doc__,
     )
-    security_policy: Optional[HttpUrl] = Field(
-        default=None, description="Am optional URL to the organization security policy."
+    security_policy: Optional[str] = Field(
+        default=None, description="An optional URL to the organization security policy."
     )
 
 
@@ -926,7 +924,7 @@ class DataProtectionImpactAssessment(BaseModel):
         default=None,
         description="The optional status of a Data Protection Impact Assessment. Returned on an exported data map or RoPA.",
     )
-    link: Optional[AnyUrl] = Field(
+    link: Optional[str] = Field(
         default=None,
         description="The optional link to the Data Protection Impact Assessment. Returned on an exported data map or RoPA.",
     )
@@ -1195,7 +1193,7 @@ class System(FidesModel):
         default=None,
         description="The optional status of a Data Protection Impact Assessment",
     )
-    privacy_policy: Optional[AnyUrl] = Field(
+    privacy_policy: Optional[str] = Field(
         default=None,
         description="A URL that points to the System's publicly accessible privacy policy.",
     )
@@ -1236,7 +1234,7 @@ class System(FidesModel):
         default=False,
         description="Whether the system uses non-cookie methods of storage or accessing information stored on a user's device.",
     )
-    legitimate_interest_disclosure_url: Optional[AnyUrl] = Field(
+    legitimate_interest_disclosure_url: Optional[str] = Field(
         default=None,
         description="A URL that points to the system's publicly accessible legitimate interest disclosure.",
     )
