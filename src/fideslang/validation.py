@@ -8,10 +8,6 @@ from typing import Dict, Generator, List, Optional, Pattern, Set, Tuple
 from packaging.version import Version
 from pydantic import ConstrainedStr
 
-from fideslang.default_fixtures import COUNTRY_CODES
-
-VALID_COUNTRY_CODES = [country["alpha3Code"] for country in COUNTRY_CODES]
-
 
 class FidesValidationError(ValueError):
     """Custom exception for when the pydantic ValidationError can't be used."""
@@ -173,20 +169,6 @@ def matching_parent_key(parent_key: FidesKey, values: Dict) -> FidesKey:
         )
     return parent_key
 
-
-def check_valid_country_code(country_code_list: List) -> List:
-    """
-    Validate all listed countries (if present) are valid country codes.
-    """
-    if country_code_list is not None:
-        for country_code in country_code_list:
-            if country_code not in VALID_COUNTRY_CODES:
-                raise FidesValidationError(
-                    "The country identified as {} is not a valid Alpha-3 code per ISO 3166.".format(
-                        country_code
-                    )
-                )
-    return country_code_list
 
 
 def parse_data_type_string(type_string: Optional[str]) -> Tuple[Optional[str], bool]:

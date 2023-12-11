@@ -5,7 +5,6 @@ from fideslang.models import (
     ContactDetails,
     DataCategory,
     DataFlow,
-    DataProtectionImpactAssessment,
     Dataset,
     DatasetCollection,
     DatasetField,
@@ -64,11 +63,7 @@ class TestFindReferencedKeys:
             fides_key="default_organization",
             name="Demo Organization",
             description="An e-commerce organization",
-            third_country_transfers=["USA", "CAN", "GBR"],
             system_type="service",
-            data_protection_impact_assessment=DataProtectionImpactAssessment(
-                is_required=True, progress="ezpz", link="https://ethyca.com"
-            ),
             privacy_declarations=[
                 PrivacyDeclaration(
                     name="privacy_declaration_1",
@@ -128,10 +123,6 @@ class TestFindReferencedKeys:
             fides_key="direct_marketing",
             name="Direct Marketing",
             description="User information for direct marketing purposes",
-            recipients=["Processor - marketing co."],
-            legal_basis="Legitimate Interests",
-            special_category="Vital Interests",
-            legitimate_interest_impact_assessment="https://example.org/legitimate_interest_assessment",
             parent_key=None,
         )
         expected_referenced_key = {"direct_marketing", "default_organization"}

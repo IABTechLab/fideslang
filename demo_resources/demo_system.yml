@@ -4,14 +4,6 @@ system:
     description: A system used for analyzing customer behaviour.
     system_type: Service
     administrating_department: Engineering
-    data_responsibility_title: Controller
-    third_country_transfers:
-    - USA
-    - CAN
-    data_protection_impact_assessment:
-      is_required: True
-      progress: Complete
-      link: https://example.org/analytics_system_data_protection_impact_assessment
     ingress:
       - fides_key: demo_users_dataset
         type: dataset
@@ -30,7 +22,6 @@ system:
     name: Demo Marketing System
     description: Collect data about our users for marketing.
     system_type: Service
-    data_responsibility_title: Processor
     privacy_declarations:
       - name: Collect data for marketing
         data_categories:

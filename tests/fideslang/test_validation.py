@@ -6,11 +6,10 @@ from fideslang.models import (
     DataCategory,
     DataFlow,
     Dataset,
-    DataUse,
-    DataSubject,
     DatasetCollection,
     DatasetField,
     DatasetMetadata,
+    DataSubject,
     DataUse,
     FidesCollectionKey,
     FidesDatasetReference,
@@ -455,55 +454,7 @@ def test_create_valid_system():
     assert True
 
 
-@pytest.mark.unit
-@pytest.mark.parametrize("country_code", ["United States", "US", "usa"])
-def test_invalid_country_identifier(country_code: str):
-    """Validate some invalid country identifiers raise an error"""
-    with pytest.raises(ValidationError):
-        System(
-            organization_fides_key=1,
-            registryId=1,
-            fides_key="test_system",
-            system_type="SYSTEM",
-            name="Test System",
-            description="Test Policy",
-            third_country_transfers=[country_code],
-            privacy_declarations=[
-                PrivacyDeclaration(
-                    name="declaration-name",
-                    data_categories=[],
-                    data_use="provide.service",
-                    data_subjects=[],
-                    dataset_references=["test_system"],
-                )
-            ],
-        )
-    assert True
 
-
-@pytest.mark.unit
-@pytest.mark.parametrize("country_code", ["CAN", "USA", "GBR"])
-def test_valid_country_identifier(country_code: str):
-    """Validates usage of alpha-3 codes per ISO 3166"""
-    System(
-        organization_fides_key=1,
-        registryId=1,
-        fides_key="test_system",
-        system_type="SYSTEM",
-        name="Test System",
-        description="Test Policy",
-        third_country_transfers=[country_code],
-        privacy_declarations=[
-            PrivacyDeclaration(
-                name="declaration-name",
-                data_categories=[],
-                data_use="provide.service",
-                data_subjects=[],
-                dataset_references=["test_system"],
-            )
-        ],
-    )
-    assert True
 
 
 @pytest.mark.unit

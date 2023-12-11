@@ -7,7 +7,6 @@ from __future__ import annotations
 
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
-from warnings import warn
 
 from pydantic import (
     AnyUrl,
@@ -23,7 +22,6 @@ from pydantic import (
 from fideslang.validation import (
     FidesKey,
     FidesVersion,
-    check_valid_country_code,
     deprecated_version_later_than_added,
     has_versioning_if_default,
     is_deprecated_if_replaced,
@@ -35,10 +33,6 @@ from fideslang.validation import (
     valid_data_type,
 )
 
-# Reusable Validators
-country_code_validator = validator("third_country_transfers", allow_reuse=True)(
-    check_valid_country_code
-)
 matching_parent_key_validator = validator("parent_key", allow_reuse=True, always=True)(
     matching_parent_key
 )
@@ -188,19 +182,6 @@ class DataSubjectRightsEnum(str, Enum):
     OBJECT_TO_AUTOMATED_PROCESSING = "Object to Automated Processing"
 
 
-class LegalBasisEnum(str, Enum):
-    """
-    Deprecated. The model for allowable legal basis categories on data uses.
-    """
-
-    CONSENT = "Consent"
-    CONTRACT = "Contract"
-    LEGAL_OBLIGATION = "Legal Obligation"
-    VITAL_INTEREST = "Vital Interest"
-    PUBLIC_INTEREST = "Public Interest"
-    LEGITIMATE_INTEREST = "Legitimate Interests"
-
-
 class LegalBasisForProcessingEnum(str, Enum):
     """
     The model for allowable legal basis categories on privacy declarations.
@@ -239,21 +220,6 @@ class LegalBasisForTransfersEnum(str, Enum):
     SUPPLEMENTARY_MEASURES = "Supplementary Measures"
     OTHER = "Other"
 
-
-class SpecialCategoriesEnum(str, Enum):
-    """
-    Deprecated. Special Categories Enum that was used on Data Uses.
-    """
-
-    CONSENT = "Consent"
-    EMPLOYMENT = "Employment"
-    VITAL_INTEREST = "Vital Interests"
-    NON_PROFIT_BODIES = "Non-profit Bodies"
-    PUBLIC_BY_DATA_SUBJECT = "Public by Data Subject"
-    LEGAL_CLAIMS = "Legal Claims"
-    PUBLIC_INTEREST = "Substantial Public Interest"
-    MEDICAL = "Medical"
-    PUBLIC_HEALTH_INTEREST = "Public Health Interest"
 
 
 class SpecialCategoryLegalBasisEnum(str, Enum):
@@ -343,66 +309,8 @@ class DataUse(FidesModel, DefaultModel):
     """The DataUse resource model."""
 
     parent_key: Optional[FidesKey] = None
-    legal_basis: Optional[LegalBasisEnum] = Field(
-        description="Deprecated. The legal basis category of which the data use falls under. This field is used as part of the creation of an exportable data map.",
-    )
-    special_category: Optional[SpecialCategoriesEnum] = Field(
-        description="Deprecated. The special category for processing of which the data use falls under. This field is used as part of the creation of an exportable data map.",
-    )
-    recipients: Optional[List[str]] = Field(
-        description="Deprecated. An array of recipients when sharing personal data outside of your organization.",
-    )
-    legitimate_interest: Optional[bool] = Field(
-        description="Deprecated. A boolean representation of if the legal basis used is `Legitimate Interest`. Validated at run time and looks for a `legitimate_interest_impact_assessment` to exist if true.",
-    )
-    legitimate_interest_impact_assessment: Optional[AnyUrl] = Field(
-        description="Deprecated. A url pointing to the legitimate interest impact assessment. Required if the legal bases used is legitimate interest.",
-    )
-
     _matching_parent_key: classmethod = matching_parent_key_validator
     _no_self_reference: classmethod = no_self_reference_validator
-
-    @root_validator
-    @classmethod
-    def deprecate_fields(cls, values: Dict) -> Dict:
-        """
-        Warn of Data Use fields pending deprecation.
-        """
-        deprecated_fields = [
-            "legal_basis",
-            "recipients",
-            "special_category",
-            "legitimate_interest",
-            "legitimate_interest_impact_assessment",
-        ]
-        for field in deprecated_fields:
-            if values.get(field) is not None:
-                warn(
-                    f"The {field} field is deprecated, and will be removed in a future version of fideslang.",
-                    DeprecationWarning,
-                )
-        return values
-
-    @validator("legitimate_interest", always=True)
-    @classmethod
-    def set_legitimate_interest(cls, value: bool, values: Dict) -> bool:
-        """Sets if a legitimate interest is used."""
-        if values["legal_basis"] == "Legitimate Interests":
-            value = True
-        return value
-
-    @validator("legitimate_interest_impact_assessment", always=True)
-    @classmethod
-    def ensure_impact_assessment(cls, value: AnyUrl, values: Dict) -> AnyUrl:
-        """
-        Validates an impact assessment is applied if a
-        legitimate interest has been defined.
-        """
-        if values["legitimate_interest"]:
-            assert (
-                value is not None
-            ), "Impact assessment cannot be null for a legitimate interest, please provide a valid url"
-        return value
 
 
 # Dataset
@@ -434,7 +342,7 @@ class DatasetFieldBase(BaseModel):
         description="Arrays of Data Categories, identified by `fides_key`, that applies to this field.",
     )
     retention: Optional[str] = Field(
-        description="An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
+        description="An optional string to describe the retention policy for a dataset collection or field. This field can be applied at either the Collection or field level of a Dataset.",
     )
 
 
@@ -673,15 +581,6 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
     fides_meta: Optional[DatasetMetadata] = Field(
         description=DatasetMetadata.__doc__, default=None
     )
-    joint_controller: Optional[ContactDetails] = Field(
-        description="Deprecated. " + ContactDetails.__doc__,
-    )
-    retention: Optional[str] = Field(
-        description="Deprecated. An optional string to describe the retention policy for a dataset. This field can also be applied more granularly at either the Collection or field level of a Dataset.",
-    )
-    third_country_transfers: Optional[List[str]] = Field(
-        description="Deprecated. An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).",
-    )
     collections: List[DatasetCollection] = Field(
         description="An array of objects that describe the Dataset's collections.",
     )
@@ -689,30 +588,9 @@ class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
     _sort_collections: classmethod = validator("collections", allow_reuse=True)(
         sort_list_objects_by_name
     )
-    _check_valid_country_code: classmethod = country_code_validator
     _unique_items_in_list: classmethod = validator("collections", allow_reuse=True)(
         unique_items_in_list
     )
-
-    @root_validator
-    @classmethod
-    def deprecate_fields(cls, values: Dict) -> Dict:
-        """
-        Warn of Dataset fields pending deprecation.
-        """
-        # TODO: Do we want to remove these for Fideslang 3?
-        deprecated_fields = [
-            "joint_controller",
-            "retention",
-            "third_country_transfers",
-        ]
-        for field in deprecated_fields:
-            if values.get(field) is not None:
-                warn(
-                    f"The {field} field is deprecated, and will be removed in a future version of fideslang.",
-                    DeprecationWarning,
-                )
-        return values
 
 
 # Evaluation
@@ -903,31 +781,6 @@ class Registry(FidesModel):
     """
 
 
-# System
-class DataProtectionImpactAssessment(BaseModel):
-    """
-    The DataProtectionImpactAssessment (DPIA) resource model.
-
-    Contains information in regard to the data protection
-    impact assessment exported on a data map or Record of
-    Processing Activities (RoPA).
-
-    A legal requirement under GDPR for any project that
-    introduces a high risk to personal information.
-    """
-
-    is_required: bool = Field(
-        default=False,
-        description="A boolean value determining if a data protection impact assessment is required. Defaults to False.",
-    )
-    progress: Optional[str] = Field(
-        description="The optional status of a Data Protection Impact Assessment. Returned on an exported data map or RoPA.",
-    )
-    link: Optional[AnyUrl] = Field(
-        description="The optional link to the Data Protection Impact Assessment. Returned on an exported data map or RoPA.",
-    )
-
-
 class PrivacyDeclaration(BaseModel):
     """
     The PrivacyDeclaration resource model.
@@ -1094,9 +947,6 @@ class System(FidesModel):
     system_type: str = Field(
         description="A required value to describe the type of system being modeled, examples include: Service, Application, Third Party, etc.",
     )
-    data_responsibility_title: Optional[DataResponsibilityTitle] = Field(
-        description="Deprecated. The responsibility or role over the system that processes personal data",
-    )
     egress: Optional[List[DataFlow]] = Field(
         description="The resources to which the system sends data."
     )
@@ -1106,18 +956,9 @@ class System(FidesModel):
     privacy_declarations: List[PrivacyDeclaration] = Field(
         description=PrivacyDeclaration.__doc__,
     )
-    joint_controller: Optional[ContactDetails] = Field(
-        description="Deprecated. " + ContactDetails.__doc__,
-    )
-    third_country_transfers: Optional[List[str]] = Field(
-        description="Deprecated. An optional array to identify any third countries where data is transited to. For consistency purposes, these fields are required to follow the Alpha-3 code set in ISO 3166-1.",
-    )
     administrating_department: Optional[str] = Field(
         default="Not defined",
         description="An optional value to identify the owning department or group of the system within your organization",
-    )
-    data_protection_impact_assessment: Optional[DataProtectionImpactAssessment] = Field(
-        description="Deprecated. " + DataProtectionImpactAssessment.__doc__,
     )
     vendor_id: Optional[str] = Field(
         description="The unique identifier for the vendor that's associated with this system."
@@ -1213,27 +1054,6 @@ class System(FidesModel):
         "privacy_declarations", allow_reuse=True
     )(sort_list_objects_by_name)
 
-    _check_valid_country_code: classmethod = country_code_validator
-
-    @root_validator
-    @classmethod
-    def deprecate_fields(cls, values: Dict) -> Dict:
-        """
-        Warn of System fields pending deprecation.
-        """
-        deprecated_fields = [
-            "joint_controller",
-            "third_country_transfers",
-            "data_responsibility_title",
-            "data_protection_impact_assessment",
-        ]
-        for field in deprecated_fields:
-            if values.get(field) is not None:
-                warn(
-                    f"The {field} field is deprecated, and will be removed in a future version of fideslang.",
-                    DeprecationWarning,
-                )
-        return values
 
     @validator("privacy_declarations", each_item=True)
     @classmethod

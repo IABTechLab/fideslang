@@ -1,4 +1,4 @@
-from pytest import deprecated_call, mark, raises
+from pytest import mark, raises
 
 from fideslang import DataFlow, Dataset, Organization, PrivacyDeclaration, System
 from fideslang.models import (
@@ -378,7 +378,6 @@ class TestSystem:
                     ],
                 )
             ],
-            third_country_transfers=["ARM"],
             vendor_id="gvl.1",
             dataset_references=["test_fides_key_dataset"],
             processes_personal_data=True,
@@ -421,44 +420,6 @@ class TestSystem:
             name="declaration-name",
         )
         assert pd.flexible_legal_basis_for_processing
-
-    @mark.parametrize(
-        "deprecated_field,value",
-        [
-            ("data_responsibility_title", "Controller"),
-            (
-                "joint_controller",
-                {
-                    "name": "Jane Doe",
-                    "address": "104 Test Lane; Test Town, TX, 32522",
-                    "email": "jane@example.com",
-                    "phone": "345-255-2555",
-                },
-            ),
-            ("third_country_transfers", ["GBR"]),
-            (
-                "data_protection_impact_assessment",
-                {
-                    "is_required": True,
-                    "progress": "pending",
-                    "link": "https://www.example.com/dpia",
-                },
-            ),
-        ],
-    )
-    def test_system_deprecated_fields(self, deprecated_field, value) -> None:
-        with deprecated_call(match=deprecated_field):
-            assert System(
-                **{
-                    "description": "Test System",
-                    "fides_key": "test_system",
-                    "name": "Test System",
-                    "registry": 1,
-                    "system_type": "SYSTEM",
-                    "privacy_declarations": [],
-                    deprecated_field: value,
-                }
-            )
 
 
 class TestDataset:
@@ -521,24 +482,6 @@ class TestDataset:
             ],
         )
 
-    @mark.parametrize(
-        "deprecated_field,value",
-        [
-            ("joint_controller", {"name": "Controller_name"}),
-            ("retention", "90 days"),
-            ("third_country_transfers", ["IRL"]),
-        ],
-    )
-    def test_dataset_deprecated_fields(self, deprecated_field, value) -> None:
-        with deprecated_call(match=deprecated_field):
-            assert Dataset(
-                **{
-                    "fides_key": "test_dataset",
-                    "collections": [],
-                    deprecated_field: value,
-                }
-            )
-
     def test_dataset_collection_skip_processing(self):
         collection = DatasetCollection(
             name="dataset_collection_1",
@@ -570,16 +513,3 @@ class TestDataUse:
     def test_minimal_data_use(self):
         assert DataUse(fides_key="new_use")
 
-    @mark.parametrize(
-        "deprecated_field,value",
-        [
-            ("legal_basis", "Legal Obligation"),
-            ("special_category", "Substantial Public Interest"),
-            ("recipients", ["Advertising Bureau"]),
-            ("legitimate_interest", False),
-            ("legitimate_interest_impact_assessment", "https://www.example.com"),
-        ],
-    )
-    def test_datause_deprecated_fields(self, deprecated_field, value) -> None:
-        with deprecated_call(match=deprecated_field):
-            assert DataUse(**{"fides_key": "new_use", deprecated_field: value})
