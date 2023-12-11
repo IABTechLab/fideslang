@@ -769,6 +769,7 @@ class Policy(FidesModel):
         sort_list_objects_by_name
     )
 
+
 class PrivacyDeclaration(BaseModel):
     """
     The PrivacyDeclaration resource model.
