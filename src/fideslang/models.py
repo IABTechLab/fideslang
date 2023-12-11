@@ -221,7 +221,6 @@ class LegalBasisForTransfersEnum(str, Enum):
     OTHER = "Other"
 
 
-
 class SpecialCategoryLegalBasisEnum(str, Enum):
     """
     The model for the legal basis for processing special categories of personal data
@@ -770,17 +769,6 @@ class Policy(FidesModel):
         sort_list_objects_by_name
     )
 
-
-# Registry
-class Registry(FidesModel):
-    """
-    The Registry resource model.
-
-    Systems can be assigned to this resource, but it doesn't inherently
-    point to any other resources.
-    """
-
-
 class PrivacyDeclaration(BaseModel):
     """
     The PrivacyDeclaration resource model.
@@ -937,9 +925,6 @@ class System(FidesModel):
     Describes an application and includes a list of PrivacyDeclaration resources.
     """
 
-    registry_id: Optional[int] = Field(
-        description="The id of the system registry, if used.",
-    )
     meta: Optional[Dict] = meta_field
     fidesctl_meta: Optional[SystemMetadata] = Field(
         description=SystemMetadata.__doc__,
@@ -1025,7 +1010,7 @@ class System(FidesModel):
     )
     joint_controller_info: Optional[str] = Field(
         description="The party or parties that share the responsibility for processing personal data."
-    )  # Use joint_controller_info in favor of joint_controller
+    )
     data_security_practices: Optional[str] = Field(
         description="The data security practices employed by this system."
     )
@@ -1053,7 +1038,6 @@ class System(FidesModel):
     _sort_privacy_declarations: classmethod = validator(
         "privacy_declarations", allow_reuse=True
     )(sort_list_objects_by_name)
-
 
     @validator("privacy_declarations", each_item=True)
     @classmethod
@@ -1107,5 +1091,4 @@ class Taxonomy(BaseModel):
     system: Optional[List[System]] = Field(default_factory=list)
     policy: Optional[List[Policy]] = Field(default_factory=list)
 
-    registry: Optional[List[Registry]] = Field(default_factory=list)
     organization: List[Organization] = Field(default_factory=list)

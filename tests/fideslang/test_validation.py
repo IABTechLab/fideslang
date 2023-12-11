@@ -430,7 +430,6 @@ def test_valid_policy():
 def test_create_valid_system():
     System(
         organization_fides_key=1,
-        registryId=1,
         fides_key="test_system",
         system_type="SYSTEM",
         name="Test System",

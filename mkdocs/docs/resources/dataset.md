@@ -4,11 +4,10 @@ A Dataset takes a database schema (tables and columns) and adds Fides privacy ca
 
   ```
   organization
-    |-> registry (optional)
-        |-> system
-            |-> ** dataset **
-                |-> collections
-                    |-> fields
+    |-> system
+        |-> ** dataset **
+            |-> collections
+                |-> fields
   ```
 
 * The schema is represented as a set of "collections" (tables) that contain "fields" (columns). These can also be arbitrarily nested to handle document-type databases (e.g., NoSQL or S3).

@@ -16,7 +16,6 @@ nav:
       - Resources:
           - Organization: resources/organization.md
           - Policy: resources/policy.md
-          - Registry: resources/registry.md
           - System: resources/system.md
           - Dataset: resources/dataset.md
   - About Ethyca: https://ethyca.github.io/fides/ethyca/

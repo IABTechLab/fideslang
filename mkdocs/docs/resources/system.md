@@ -4,9 +4,8 @@ A System is a model for describing anything that processes data for your organiz
 
   ```
   organization
-    |-> registry (optional)
-        |-> ** system **
-            |-> privacy declarations
+    |-> ** system **
+        |-> privacy declarations
   ```
 
 ## Object Structure

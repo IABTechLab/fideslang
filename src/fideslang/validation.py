@@ -170,7 +170,6 @@ def matching_parent_key(parent_key: FidesKey, values: Dict) -> FidesKey:
     return parent_key
 
 
-
 def parse_data_type_string(type_string: Optional[str]) -> Tuple[Optional[str], bool]:
     """Parse the data type string. Arrays are expressed in the form 'type[]'.
 
