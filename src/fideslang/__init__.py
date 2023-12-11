@@ -42,7 +42,6 @@ from .models import (
     PolicyRule,
     PrivacyDeclaration,
     PrivacyRule,
-    Registry,
     System,
     Taxonomy,
 )
@@ -55,7 +54,6 @@ model_map: Dict[str, FidesModelType] = {
     "dataset": Dataset,
     "organization": Organization,
     "policy": Policy,
-    "registry": Registry,
     "system": System,
     "evaluation": Evaluation,
 }

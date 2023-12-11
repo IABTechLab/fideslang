@@ -117,7 +117,6 @@ class TestSystem:
                     ],
                 )
             ],
-            registry_id=1,
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
@@ -164,7 +163,6 @@ class TestSystem:
                     name="declaration-name",
                 )
             ],
-            registry_id=1,
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
@@ -200,7 +198,6 @@ class TestSystem:
                     name="declaration-name",
                 )
             ],
-            registry_id=1,
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
@@ -221,7 +218,6 @@ class TestSystem:
                     name="declaration-name",
                 )
             ],
-            registry_id=1,
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
@@ -251,7 +247,6 @@ class TestSystem:
                         name="declaration-name",
                     )
                 ],
-                registry_id=1,
                 system_type="SYSTEM",
                 tags=["some", "tags"],
             )
@@ -281,7 +276,6 @@ class TestSystem:
                         name="declaration-name",
                     )
                 ],
-                registry_id=1,
                 system_type="SYSTEM",
                 tags=["some", "tags"],
             )
@@ -309,7 +303,6 @@ class TestSystem:
                     name="declaration-name",
                 )
             ],
-            registry_id=1,
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
@@ -321,7 +314,6 @@ class TestSystem:
             tags=["some", "tags"],
             name="Exponential Interactive, Inc d/b/a VDX.tv",
             description="My system test",
-            registry_id=1,
             meta={"some": "meta stuff"},
             system_type="SYSTEM",
             egress=[

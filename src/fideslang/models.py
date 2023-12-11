@@ -771,15 +771,6 @@ class Policy(FidesModel):
     )
 
 
-# Registry
-class Registry(FidesModel):
-    """
-    The Registry resource model.
-
-    Systems can be assigned to this resource, but it doesn't inherently
-    point to any other resources.
-    """
-
 
 # System
 class DataProtectionImpactAssessment(BaseModel):
@@ -962,9 +953,6 @@ class System(FidesModel):
     Describes an application and includes a list of PrivacyDeclaration resources.
     """
 
-    registry_id: Optional[int] = Field(
-        description="The id of the system registry, if used.",
-    )
     meta: Optional[Dict] = meta_field
     fidesctl_meta: Optional[SystemMetadata] = Field(
         description=SystemMetadata.__doc__,
@@ -1132,5 +1120,4 @@ class Taxonomy(BaseModel):
     system: Optional[List[System]] = Field(default_factory=list)
     policy: Optional[List[Policy]] = Field(default_factory=list)
 
-    registry: Optional[List[Registry]] = Field(default_factory=list)
     organization: List[Organization] = Field(default_factory=list)
