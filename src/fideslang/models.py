@@ -340,9 +340,6 @@ class DatasetFieldBase(BaseModel):
     data_categories: Optional[List[FidesKey]] = Field(
         description="Arrays of Data Categories, identified by `fides_key`, that applies to this field.",
     )
-    retention: Optional[str] = Field(
-        description="An optional string to describe the retention policy for a dataset collection or field. This field can be applied at either the Collection or field level of a Dataset.",
-    )
 
 
 class EdgeDirection(str, Enum):
@@ -512,9 +509,6 @@ class DatasetCollection(FidesopsMetaBackwardsCompat):
     description: Optional[str] = description_field
     data_categories: Optional[List[FidesKey]] = Field(
         description="Array of Data Category resources identified by `fides_key`, that apply to all fields in the collection.",
-    )
-    retention: Optional[str] = Field(
-        description="An optional string to describe the retention policy for a Dataset collection. This field can also be applied more granularly at the field level of a Dataset.",
     )
     fields: List[DatasetField] = Field(
         description="An array of objects that describe the collection's fields.",

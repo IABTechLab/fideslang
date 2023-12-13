@@ -62,10 +62,6 @@ A human-readable description of the collection.
 
 Arrays of Data Category resources, identified by `fides_key`, that apply to all fields in the collection.
 
-**collections.retention**<span class="required"/>&nbsp;&nbsp;_string_
-
-An optional string to describe the retention policy for a Dataset collection. This field can also be applied more granularly at the field level of a Dataset.
-
 **collections.fields**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_object_]<br/>
 
 An array of objects that describe the collection's fields.
@@ -81,10 +77,6 @@ A human-readable description of the field.
 **collections.fields.data_categories**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_string_]<br/>
 
 Arrays of Data Categories, identified by `fides_key`, that applies to this field.
-
-**collections.fields.retention**<span class="required"/>&nbsp;&nbsp;_string_
-
-An optional string to describe the retention policy for a field within a Dataset collection.
 
 **collections.fields.fields**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_object_]<br/>
 
@@ -104,7 +96,6 @@ dataset:
         description: User information
         data_categories:
           - user
-        retention: 30 days post account deletion
         fields:
           - name: first_name
             description: User's first name
@@ -118,7 +109,6 @@ dataset:
             description: User's phone numbers
             data_categories:
               - user.contact.phone_number
-            retention: end of user relationship
             fields:
               - name: mobile
                 description: User's mobile phone number
@@ -141,7 +131,6 @@ dataset:
       {
         "name": "users",
         "description": "User information",
-        "retention": "30 days post account deletion",
         "fields": [
           {
             "name": "first_name",
@@ -163,7 +152,6 @@ dataset:
             "data_categories": [
               "user.contact.phone_number"
             ],
-            "retention": "end of user relationship",
             "fields": [
               {
                 "name": "mobile",
