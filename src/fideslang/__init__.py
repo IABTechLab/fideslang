@@ -27,7 +27,6 @@ from .gvl import (
 from .models import (
     DataCategory,
     DataFlow,
-    DataQualifier,
     Dataset,
     DatasetField,
     DatasetFieldBase,
@@ -43,7 +42,6 @@ from .models import (
     PolicyRule,
     PrivacyDeclaration,
     PrivacyRule,
-    Registry,
     System,
     Taxonomy,
 )
@@ -51,13 +49,11 @@ from .models import (
 FidesModelType = Union[Type[FidesModel], Type[Evaluation]]
 model_map: Dict[str, FidesModelType] = {
     "data_category": DataCategory,
-    "data_qualifier": DataQualifier,
     "data_subject": DataSubject,
     "data_use": DataUse,
     "dataset": Dataset,
     "organization": Organization,
     "policy": Policy,
-    "registry": Registry,
     "system": System,
     "evaluation": Evaluation,
 }

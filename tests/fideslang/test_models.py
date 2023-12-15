@@ -1,4 +1,4 @@
-from pytest import deprecated_call, mark, raises
+from pytest import mark, raises
 
 from fideslang import DataFlow, Dataset, Organization, PrivacyDeclaration, System
 from fideslang.models import (
@@ -69,26 +69,12 @@ class TestPrivacyDeclaration:
     def test_privacydeclaration_valid(self) -> None:
         assert PrivacyDeclaration(
             data_categories=[],
-            data_qualifier="aggregated_data",
             data_subjects=[],
             data_use="provide",
             egress=[],
             ingress=[],
             name="declaration-name",
         )
-
-    def test_privacy_declaration_data_qualifier_deprecation(self) -> None:
-        with deprecated_call(match="data_qualifier"):
-            assert PrivacyDeclaration(
-                data_categories=[],
-                data_qualifier="aggregated_data",
-                data_subjects=[],
-                data_use="provide",
-                dataset_references=[],
-                egress=["test_system_2"],
-                ingress=["test_system_3"],
-                name="declaration-name",
-            )
 
 
 class TestSystem:
@@ -121,7 +107,6 @@ class TestSystem:
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
-                    data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
                     egress=["test_system_2"],
@@ -132,7 +117,6 @@ class TestSystem:
                     ],
                 )
             ],
-            registry_id=1,
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
@@ -172,7 +156,6 @@ class TestSystem:
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
-                    data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
                     egress=["test_system_2"],
@@ -180,7 +163,6 @@ class TestSystem:
                     name="declaration-name",
                 )
             ],
-            registry_id=1,
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
@@ -209,7 +191,6 @@ class TestSystem:
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
-                    data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
                     egress=["test_system_2"],
@@ -217,7 +198,6 @@ class TestSystem:
                     name="declaration-name",
                 )
             ],
-            registry_id=1,
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
@@ -233,13 +213,11 @@ class TestSystem:
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
-                    data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
                     name="declaration-name",
                 )
             ],
-            registry_id=1,
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
@@ -262,7 +240,6 @@ class TestSystem:
                 privacy_declarations=[
                     PrivacyDeclaration(
                         data_categories=[],
-                        data_qualifier="aggregated_data",
                         data_subjects=[],
                         data_use="provide",
                         egress=["test_system_2"],
@@ -270,7 +247,6 @@ class TestSystem:
                         name="declaration-name",
                     )
                 ],
-                registry_id=1,
                 system_type="SYSTEM",
                 tags=["some", "tags"],
             )
@@ -293,7 +269,6 @@ class TestSystem:
                 privacy_declarations=[
                     PrivacyDeclaration(
                         data_categories=[],
-                        data_qualifier="aggregated_data",
                         data_subjects=[],
                         data_use="provide",
                         egress=["test_system_2"],
@@ -301,7 +276,6 @@ class TestSystem:
                         name="declaration-name",
                     )
                 ],
-                registry_id=1,
                 system_type="SYSTEM",
                 tags=["some", "tags"],
             )
@@ -323,14 +297,12 @@ class TestSystem:
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
-                    data_qualifier="aggregated_data",
                     data_subjects=[],
                     data_use="provide",
                     ingress=["user"],
                     name="declaration-name",
                 )
             ],
-            registry_id=1,
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
@@ -342,7 +314,6 @@ class TestSystem:
             tags=["some", "tags"],
             name="Exponential Interactive, Inc d/b/a VDX.tv",
             description="My system test",
-            registry_id=1,
             meta={"some": "meta stuff"},
             system_type="SYSTEM",
             egress=[
@@ -376,7 +347,6 @@ class TestSystem:
                         "user.demographic",
                         "user.privacy_preferences",
                     ],
-                    data_qualifier="aggregated_data",
                     data_use="functional.storage",
                     data_subjects=[],
                     egress=["test_system_2"],
@@ -400,7 +370,6 @@ class TestSystem:
                     ],
                 )
             ],
-            third_country_transfers=["ARM"],
             vendor_id="gvl.1",
             dataset_references=["test_fides_key_dataset"],
             processes_personal_data=True,
@@ -437,51 +406,12 @@ class TestSystem:
     def test_flexible_legal_basis_default(self):
         pd = PrivacyDeclaration(
             data_categories=[],
-            data_qualifier="aggregated_data",
             data_subjects=[],
             data_use="provide",
             ingress=["user"],
             name="declaration-name",
         )
         assert pd.flexible_legal_basis_for_processing
-
-    @mark.parametrize(
-        "deprecated_field,value",
-        [
-            ("data_responsibility_title", "Controller"),
-            (
-                "joint_controller",
-                {
-                    "name": "Jane Doe",
-                    "address": "104 Test Lane; Test Town, TX, 32522",
-                    "email": "jane@example.com",
-                    "phone": "345-255-2555",
-                },
-            ),
-            ("third_country_transfers", ["GBR"]),
-            (
-                "data_protection_impact_assessment",
-                {
-                    "is_required": True,
-                    "progress": "pending",
-                    "link": "https://www.example.com/dpia",
-                },
-            ),
-        ],
-    )
-    def test_system_deprecated_fields(self, deprecated_field, value) -> None:
-        with deprecated_call(match=deprecated_field):
-            assert System(
-                **{
-                    "description": "Test System",
-                    "fides_key": "test_system",
-                    "name": "Test System",
-                    "registry": 1,
-                    "system_type": "SYSTEM",
-                    "privacy_declarations": [],
-                    deprecated_field: value,
-                }
-            )
 
 
 class TestDataset:
@@ -500,20 +430,17 @@ class TestDataset:
                     }
                 },
             },
-            data_qualifier="dataset_qualifier_1",
             data_categories=["dataset_data_category_1"],
             fides_meta={"after": ["other_dataset"]},
             collections=[
                 DatasetCollection(
                     name="dataset_collection_1",
-                    data_qualifier="data_collection_data_qualifier_1",
                     data_categories=["dataset_collection_data_category_1"],
                     fides_meta={"after": ["third_dataset.blue_collection"]},
                     fields=[
                         DatasetField(
                             name="dataset_field_1",
                             data_categories=["dataset_field_data_category_1"],
-                            data_qualifier="dataset_field_data_qualifier_1",
                             fides_meta={
                                 "references": [
                                     {
@@ -530,14 +457,12 @@ class TestDataset:
                 ),
                 DatasetCollection(
                     name="dataset_collection_2",
-                    data_qualifier="data_collection_data_qualifier_2",
                     data_categories=["dataset_collection_data_category_2"],
                     fides_meta={"after": ["orange_dataset.dataset_collection_1"]},
                     fields=[
                         DatasetField(
                             name="dataset_field_2",
                             data_categories=["dataset_field_data_category_2"],
-                            data_qualifier="dataset_field_data_qualifier_2",
                             fides_meta={
                                 "identity": "email",
                                 "primary_key": False,
@@ -549,29 +474,9 @@ class TestDataset:
             ],
         )
 
-    @mark.parametrize(
-        "deprecated_field,value",
-        [
-            ("data_qualifier", "dataset_qualifier_1"),
-            ("joint_controller", {"name": "Controller_name"}),
-            ("retention", "90 days"),
-            ("third_country_transfers", ["IRL"]),
-        ],
-    )
-    def test_dataset_deprecated_fields(self, deprecated_field, value) -> None:
-        with deprecated_call(match=deprecated_field):
-            assert Dataset(
-                **{
-                    "fides_key": "test_dataset",
-                    "collections": [],
-                    deprecated_field: value,
-                }
-            )
-
     def test_dataset_collection_skip_processing(self):
         collection = DatasetCollection(
             name="dataset_collection_1",
-            data_qualifier="data_collection_data_qualifier_1",
             data_categories=["dataset_collection_data_category_1"],
             fields=[],
         )
@@ -579,7 +484,6 @@ class TestDataset:
 
         collection = DatasetCollection(
             name="dataset_collection_1",
-            data_qualifier="data_collection_data_qualifier_1",
             data_categories=["dataset_collection_data_category_1"],
             fides_meta={"after": ["third_dataset.blue_collection"]},
             fields=[],
@@ -589,7 +493,6 @@ class TestDataset:
 
         collection = DatasetCollection(
             name="dataset_collection_1",
-            data_qualifier="data_collection_data_qualifier_1",
             data_categories=["dataset_collection_data_category_1"],
             fides_meta={"skip_processing": True},
             fields=[],
@@ -602,16 +505,3 @@ class TestDataUse:
     def test_minimal_data_use(self):
         assert DataUse(fides_key="new_use")
 
-    @mark.parametrize(
-        "deprecated_field,value",
-        [
-            ("legal_basis", "Legal Obligation"),
-            ("special_category", "Substantial Public Interest"),
-            ("recipients", ["Advertising Bureau"]),
-            ("legitimate_interest", False),
-            ("legitimate_interest_impact_assessment", "https://www.example.com"),
-        ],
-    )
-    def test_datause_deprecated_fields(self, deprecated_field, value) -> None:
-        with deprecated_call(match=deprecated_field):
-            assert DataUse(**{"fides_key": "new_use", deprecated_field: value})

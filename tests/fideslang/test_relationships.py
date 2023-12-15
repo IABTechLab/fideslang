@@ -5,7 +5,6 @@ from fideslang.models import (
     ContactDetails,
     DataCategory,
     DataFlow,
-    DataProtectionImpactAssessment,
     Dataset,
     DatasetCollection,
     DatasetField,
@@ -64,17 +63,12 @@ class TestFindReferencedKeys:
             fides_key="default_organization",
             name="Demo Organization",
             description="An e-commerce organization",
-            third_country_transfers=["USA", "CAN", "GBR"],
             system_type="service",
-            data_protection_impact_assessment=DataProtectionImpactAssessment(
-                is_required=True, progress="ezpz", link="https://ethyca.com"
-            ),
             privacy_declarations=[
                 PrivacyDeclaration(
                     name="privacy_declaration_1",
                     data_categories=["privacy_declaration_data_category_1"],
                     data_use="privacy_declaration_data_use_1",
-                    data_qualifier="privacy_declaration_data_qualifier_1",
                     data_subjects=[
                         "privacy_declaration_data_subject_1",
                         "privacy_declaration_data_subject_2",
@@ -91,7 +85,6 @@ class TestFindReferencedKeys:
             "default_organization",
             "privacy_declaration_data_category_1",
             "privacy_declaration_data_use_1",
-            "privacy_declaration_data_qualifier_1",
             "privacy_declaration_data_subject_1",
             "privacy_declaration_data_subject_2",
             "privacy_declaration_data_set_1",
@@ -130,10 +123,6 @@ class TestFindReferencedKeys:
             fides_key="direct_marketing",
             name="Direct Marketing",
             description="User information for direct marketing purposes",
-            recipients=["Processor - marketing co."],
-            legal_basis="Legitimate Interests",
-            special_category="Vital Interests",
-            legitimate_interest_impact_assessment="https://example.org/legitimate_interest_assessment",
             parent_key=None,
         )
         expected_referenced_key = {"direct_marketing", "default_organization"}
@@ -192,7 +181,6 @@ class TestGetReferencedMissingKeys:
                             name="privacy_declaration_1",
                             data_categories=["privacy_declaration_data_category_1"],
                             data_use="privacy_declaration_data_use_1",
-                            data_qualifier="privacy_declaration_data_qualifier_1",
                             data_subjects=["privacy_declaration_data_subject_1"],
                             dataset_references=["privacy_declaration_data_set_1"],
                         )
@@ -204,7 +192,6 @@ class TestGetReferencedMissingKeys:
             "default_organization",
             "privacy_declaration_data_category_1",
             "privacy_declaration_data_use_1",
-            "privacy_declaration_data_qualifier_1",
             "privacy_declaration_data_subject_1",
             "privacy_declaration_data_set_1",
         }
@@ -231,7 +218,6 @@ class TestGetReferencedMissingKeys:
                                 "values": ["policy_rule_data_subject_1"],
                                 "matches": MatchesEnum.ANY,
                             },
-                            data_qualifier="policy_rule_data_qualifier_1",
                         )
                     ],
                 )
@@ -242,7 +228,6 @@ class TestGetReferencedMissingKeys:
             "policy_rule_data_category_1",
             "policy_rule_data_use_1",
             "policy_rule_data_subject_1",
-            "policy_rule_data_qualifier_1",
         }
         referenced_keys = relationships.get_referenced_missing_keys(taxonomy)
         assert not referenced_keys.difference(expected_referenced_key)
@@ -252,18 +237,15 @@ class TestGetReferencedMissingKeys:
             dataset=[
                 Dataset(
                     fides_key="dataset_1",
-                    data_qualifier="dataset_qualifier_1",
                     data_categories=["dataset_data_category_1"],
                     collections=[
                         DatasetCollection(
                             name="dataset_collection_1",
-                            data_qualifier="data_collection_data_qualifier_1",
                             data_categories=["dataset_collection_data_category_1"],
                             fields=[
                                 DatasetField(
                                     name="dataset_field_1",
                                     data_categories=["dataset_field_data_category_1"],
-                                    data_qualifier="dataset_field_data_qualifier_1",
                                 )
                             ],
                         )
@@ -273,12 +255,9 @@ class TestGetReferencedMissingKeys:
         )
         expected_referenced_key = {
             "default_organization",
-            "dataset_qualifier_1",
             "dataset_data_category_1",
-            "data_collection_data_qualifier_1",
             "dataset_collection_data_category_1",
             "dataset_field_data_category_1",
-            "dataset_field_data_qualifier_1",
         }
         referenced_keys = relationships.get_referenced_missing_keys(taxonomy)
         assert not referenced_keys.difference(expected_referenced_key)

@@ -14,7 +14,15 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/2.2.2...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.0...main)
+
+## [3.0.0](https://github.com/ethyca/fideslang/compare/2.2.2...3.0.0)
+
+### Removed
+
+- Removed `DataQualifier` construct and all references [#186](https://github.com/ethyca/fideslang/pull/186)
+- Removed `Registry` construct and all references [#186](https://github.com/ethyca/fideslang/pull/186)
+- Removed deprecated fields on `System`, `DataUse` and `Dataset` models. [#186](https://github.com/ethyca/fideslang/pull/186)
 
 
 ## [2.2.2](https://github.com/ethyca/fideslang/compare/2.2.1...2.2.2)

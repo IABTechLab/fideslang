@@ -13,7 +13,6 @@ from packaging.version import Version
 FILE_RESOURCE_PAIRS: Tuple[Tuple[str, str], ...] = (
     ("data_categories", "data_category"),
     ("data_subjects", "data_subject"),
-    ("data_qualifiers", "data_qualifier"),
     ("data_uses", "data_use"),
 )
 DATA_DIR = "data_files"

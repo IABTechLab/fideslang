@@ -22,12 +22,6 @@ def resources_dict():
             name="Custom Data Category",
             description="Custom Data Category",
         ),
-        "data_qualifier": models.DataQualifier(
-            organization_fides_key=1,
-            fides_key="custom_data_qualifier",
-            name="Custom Data Qualifier",
-            description="Custom Data Qualifier",
-        ),
         "dataset": models.Dataset(
             organization_fides_key=1,
             fides_key="test_sample_db_dataset",
@@ -47,14 +41,12 @@ def resources_dict():
                             description="A First Name Field",
                             path="another.path",
                             data_categories=["user.name"],
-                            data_qualifier="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
                         ),
                         models.DatasetField(
                             name="Email",
                             description="User's Email",
                             path="another.another.path",
                             data_categories=["user.contact.email"],
-                            data_qualifier="aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified",
                         ),
                     ],
                 )
@@ -93,18 +85,9 @@ def resources_dict():
             data_categories=models.PrivacyRule(matches="NONE", values=[]),
             data_uses=models.PrivacyRule(matches="NONE", values=["provide.system"]),
             data_subjects=models.PrivacyRule(matches="ANY", values=[]),
-            data_qualifier="aggregated.anonymized.unlinked_pseudonymized.pseudonymized",
-        ),
-        "registry": models.Registry(
-            organization_fides_key=1,
-            fides_key="test_registry",
-            name="Test Registry",
-            description="Test Regsitry",
-            systems=[],
         ),
         "system": models.System(
             organization_fides_key=1,
-            registryId=1,
             fides_key="test_system",
             system_type="SYSTEM",
             name="Test System",
@@ -115,7 +98,6 @@ def resources_dict():
                     data_categories=[],
                     data_use="provide",
                     data_subjects=[],
-                    data_qualifier="aggregated_data",
                 )
             ],
         ),
