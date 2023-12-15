@@ -1,0 +1,87 @@
+fides_key,is_default,name,organization_fides_key,parent_key,replaced_by,tags,version_added,version_deprecated,description
+data_category,,Data Category,,,,,,,
+system,True,System Data,default_organization,data_category,,,2.0.0,,"Data unique to, and under control of the system."
+system.authentication,True,Authentication Data,default_organization,system,,,2.0.0,,Data used to manage access to the system.
+system.operations,True,Operations Data,default_organization,system,,,2.0.0,,Data used for system operations.
+user,True,User Data,default_organization,data_category,,,2.0.0,,"Data related to the user of the system, either provided directly or derived based on their usage."
+user.account,True,Account Information,default_organization,user,,,2.0.0,,Account creation or registration information.
+user.authorization,True,Authorization Information,default_organization,user,,,2.0.0,,Scope of permissions and access to a system.
+user.behavior,True,Observed Behavior,default_organization,user,,,2.0.0,,Behavioral data about the subject.
+user.biometric,True,Biometric Data,default_organization,user,,,2.0.0,,Encoded characteristics provided by a user.
+user.childrens,True,Children's Data,default_organization,user,,,2.0.0,,Data relating to children.
+user.contact,True,Contact Data,default_organization,user,,,2.0.0,,Contact data collected about a user.
+user.content,True,User Content,default_organization,user,,,2.0.0,,"Content related to, or created by the subject."
+user.demographic,True,Demographic Data,default_organization,user,,,2.0.0,,Demographic data about a user.
+user.location,True,Location Data,default_organization,user,,,2.0.0,,Records of the location of a user.
+user.device,True,Device Data,default_organization,user,,,2.0.0,,"Data related to a user's device, configuration and setting."
+user.payment,True,Payment Data,default_organization,user,,,2.0.0,,Payment data related to user.
+user.social,True,Social Data,default_organization,user,,,2.0.0,,Social activity and interaction data.
+user.unique_id,True,Unique ID,default_organization,user,,,2.0.0,,Unique identifier for a user assigned through system use.
+user.telemetry,True,Telemetry Data,default_organization,user,,,2.0.0,,User identifiable measurement data from system sensors and monitoring.
+user.user_sensor,True,User Sensor Data,default_organization,user,,,2.0.0,,Measurement data about a user's environment through system use.
+user.workplace,True,Workplace,default_organization,user,,,2.0.0,,Organization of employment.
+user.sensor,True,Sensor Data,default_organization,user,,,2.0.0,,Measurement data from sensors and monitoring systems.
+user.financial,True,Financial Data,default_organization,user,,,2.0.0,,Payment data and financial history.
+user.government_id,True,Government ID,default_organization,user,,,2.0.0,,State provided identification data.
+user.health_and_medical,True,Health and Medical Data,default_organization,user,,,2.0.0,,Health records or individual's personal medical information.
+user.name,True,Name,default_organization,user,,,2.0.0,,User's real name.
+user.criminal_history,True,Criminal History,default_organization,user,,,2.0.0,,Criminal records or information about the data subject.
+user.privacy_preferences,True,Privacy Preferences,default_organization,user,,,2.0.0,,Privacy preferences or settings set by the subject.
+user.job_title,True,Job Title,default_organization,user,,,2.0.0,,Professional data.
+user.account.settings,True,Account Settings,default_organization,user.account,,,2.0.0,,Account preferences and settings.
+user.account.username,True,Account Username,default_organization,user.account,,,2.0.0,,Username associated with account.
+user.authorization.credentials,True,Account password,default_organization,user.authorization,,,2.0.0,,Authentication credentials to a system.
+user.authorization.biometric,True,Biometric Credentials,default_organization,user.authorization,,,2.0.0,,Credentials for system authentication.
+user.authorization.password,True,Password,default_organization,user.authorization,,,2.0.0,,Password for system authentication.
+user.behavior.browsing_history,True,Browsing History,default_organization,user.behavior,,,2.0.0,,Content browsing history of a user.
+user.behavior.media_consumption,True,Media Consumption,default_organization,user.behavior,,,2.0.0,,Content consumption history of the subject.
+user.behavior.purchase_history,True,Purchase History,default_organization,user.behavior,,,2.0.0,,Purchase history of the subject.
+user.behavior.search_history,True,Search History,default_organization,user.behavior,,,2.0.0,,Search history of the subject.
+user.biometric.fingerprint,True,Fingerprint,default_organization,user.biometric,,,2.0.0,,Fingerprint encoded data about a subject.
+user.biometric.retinal,True,Retina Scan,default_organization,user.biometric,,,2.0.0,,Retinal data about a subject.
+user.biometric.voice,True,Voice Recording,default_organization,user.biometric,,,2.0.0,,Voice encoded data about a subject.
+user.biometric.health,True,Biometric Health Data,default_organization,user.biometric,,,2.0.0,,Encoded characteristic collected about a user.
+user.contact.address,True,User Contact Address,default_organization,user.contact,,,2.0.0,,Contact address data collected about a user.
+user.contact.email,True,User Contact Email,default_organization,user.contact,,,2.0.0,,User's contact email address.
+user.contact.phone_number,True,User Contact Phone Number,default_organization,user.contact,,,2.0.0,,User's phone number.
+user.contact.url,True,User Website,default_organization,user.contact,,,2.0.0,,Subject's websites or links to social and personal profiles.
+user.contact.fax_number,True,Fax Number,default_organization,user.contact,,,2.0.0,,Data Subject's fax number.
+user.contact.organization,True,Organization,default_organization,user.contact,,,2.0.0,,Data Subject's Organization.
+user.contact.address.city,True,User Contact City,default_organization,user.contact.address,,,2.0.0,,User's city level address data.
+user.contact.address.country,True,User Contact Country,default_organization,user.contact.address,,,2.0.0,,User's country level address data.
+user.contact.address.postal_code,True,User Contact Postal Code,default_organization,user.contact.address,,,2.0.0,,User's postal code.
+user.contact.address.state,True,User Contact State,default_organization,user.contact.address,,,2.0.0,,User's state level address data.
+user.contact.address.street,True,User Contact Street,default_organization,user.contact.address,,,2.0.0,,User's street level address data.
+user.content.private,True,Private Content,default_organization,user.content,,,2.0.0,,"Private content related to, or created by the subject, not publicly available."
+user.content.public,True,Public Content,default_organization,user.content,,,2.0.0,,"Publicly shared Content related to, or created by the subject."
+user.content.self_image,True,User Image,default_organization,user.content,,,2.0.0,,Photograph or image in which subject is whole or partially recognized.
+user.demographic.age_range,True,Age Range,default_organization,user.demographic,,,2.0.0,,Non specific age or age-range of data subject.
+user.demographic.date_of_birth,True,Birth Date,default_organization,user.demographic,,,2.0.0,,Date of birth of data subject.
+user.demographic.gender,True,Gender,default_organization,user.demographic,,,2.0.0,,Gender of data subject.
+user.demographic.language,True,Language,default_organization,user.demographic,,,2.0.0,,Spoken or written language of subject.
+user.demographic.marital_status,True,Marital Status,default_organization,user.demographic,,,2.0.0,,Marital status of data subject.
+user.demographic.political_opinion,True,Political Opinion,default_organization,user.demographic,,,2.0.0,,Political opinion or belief of data subject.
+user.demographic.profile,True,User Profile Data,default_organization,user.demographic,,,2.0.0,,Profile or preference information about the data subject.
+user.demographic.race_ethnicity,True,Race,default_organization,user.demographic,,,2.0.0,,Race or ethnicity of data subject.
+user.demographic.religious_belief,True,Religion,default_organization,user.demographic,,,2.0.0,,Religion or religious beliefs of the data subject.
+user.demographic.sexual_orientation,True,Sexual Orientation,default_organization,user.demographic,,,2.0.0,,Sexual orientation of data subject.
+user.device.cookie,True,Device Cookie,default_organization,user.device,,,2.0.0,,"Data related to a subject, stored within a cookie."
+user.device.cookie_id,True,Cookie ID,default_organization,user.device,,,2.0.0,,Cookie unique identification number.
+user.device.device_id,True,Device ID,default_organization,user.device,,,2.0.0,,Device unique identification number.
+user.device.ip_address,True,IP Address,default_organization,user.device,,,2.0.0,,Unique identifier related to device connection.
+user.financial.bank_account,True,Bank Account Information,default_organization,user.financial,,,2.0.0,,Bank account information belonging to the subject.
+user.financial.credit_card,True,Credit Card Information,default_organization,user.financial,,,2.0.0,,Credit card information belonging to the subject.
+user.government_id.birth_certificate,True,Birth Certificate,default_organization,user.government_id,,,2.0.0,,State issued certificate of birth.
+user.government_id.drivers_license_number,True,Driver's License Number,default_organization,user.government_id,,,2.0.0,,State issued driving identification number.
+user.government_id.immigration,True,Immigration ID,default_organization,user.government_id,,,2.0.0,,State issued immigration or residency data.
+user.government_id.national_identification_number,True,National Identification Number,default_organization,user.government_id,,,2.0.0,,State issued personal identification number.
+user.government_id.passport_number,True,Passport Number,default_organization,user.government_id,,,2.0.0,,State issued passport data.
+user.government_id.vehicle_registration,True,Vehicle Registration,default_organization,user.government_id,,,2.0.0,,State issued license plate or vehicle registration data.
+user.health_and_medical.genetic,True,User's Genetic Data,default_organization,user.health_and_medical,,,2.0.0,,Data about the genetic makeup provided by the subject.
+user.health_and_medical.insurance_beneficiary_id,True,Medical Insurance ID,default_organization,user.health_and_medical,,,2.0.0,,Health insurance beneficiary number of the subject.
+user.health_and_medical.record_id,True,Medical Record ID,default_organization,user.health_and_medical,,,2.0.0,,Medical record identifiers belonging to a subject.
+user.location.imprecise,True,Imprecise Subject Location,default_organization,user.location,,,2.0.0,,Imprecise location derived from sensors (more than 500M).
+user.location.precise,True,Precise Subject Location,default_organization,user.location,,,2.0.0,,Precise location derived from sensors (less than 500M).
+user.name.first,True,First Name,default_organization,user.name,,,2.0.0,,Subject's first name.
+user.name.last,True,Last Name,default_organization,user.name,,,2.0.0,,"Subject's last, or family, name."
+user.unique_id.pseudonymous,True,Pseudonymous User ID,default_organization,user.unique_id,,,2.0.0,,"A pseudonymous, or probabilistic identifier generated from other subject or device data belonging to the subject."
