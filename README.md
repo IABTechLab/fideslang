@@ -14,8 +14,6 @@ Fideslang or Fides Language is a privacy taxonomy and working draft of a propose
 
 The taxonomy is currently comprised of four classification groups that are used together to easily describe the data types and associated processing behaviors of an entire tech stack; both the application processes and any data storage.
 
-[![alt text](mkdocs/docs/img/taxonomy.png "Privacy Taxonomy Declaration")](https://ethyca.github.io/fideslang/explorer/)
-
 [Click here to view an interactive visualization of the taxonomy](https://ethyca.github.io/fideslang/explorer/)
 
 ### 1. Data Categories
