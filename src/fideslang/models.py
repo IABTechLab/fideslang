@@ -5,6 +5,7 @@ Contains all of the Fides resources modeled as Pydantic models.
 """
 from __future__ import annotations
 
+from datetime import datetime
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
@@ -945,6 +946,9 @@ class System(FidesModel):
     )
     previous_vendor_id: Optional[str] = Field(
         description="If specified, the unique identifier for the vendor that was previously associated with this system."
+    )
+    vendor_deleted_date: Optional[datetime] = Field(
+        description="The deleted date of the vendor that's associated with this system."
     )
     dataset_references: List[FidesKey] = Field(
         default_factory=list,

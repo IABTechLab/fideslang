@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pytest import mark, raises
 
 from fideslang import DataFlow, Dataset, Organization, PrivacyDeclaration, System
@@ -371,6 +373,7 @@ class TestSystem:
                 )
             ],
             vendor_id="gvl.1",
+            vendor_deleted_date=datetime.now(),
             dataset_references=["test_fides_key_dataset"],
             processes_personal_data=True,
             exempt_from_privacy_regulations=False,
@@ -504,4 +507,3 @@ class TestDataset:
 class TestDataUse:
     def test_minimal_data_use(self):
         assert DataUse(fides_key="new_use")
-
