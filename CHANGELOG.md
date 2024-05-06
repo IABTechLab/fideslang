@@ -14,7 +14,13 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.0...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.1...main)
+
+## [3.0.1](https://github.com/ethyca/fideslang/compare/3.0.0...3.0.1)
+
+### Added
+
+- Added a `vendor_deleted_date` field to the `System` model [#10](https://github.com/ethyca/fideslang/pull/10)
 
 ## [3.0.0](https://github.com/ethyca/fideslang/compare/2.2.2...3.0.0)
 
