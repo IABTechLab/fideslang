@@ -741,29 +741,21 @@ Promise.all([
       .scaleOrdinal()
       .domain([
         "data_category",
-        "system",
         "user",
       ])
       .range([
         "#2a3045",
         "#0861ce",
-        "#8459cc",
       ]),
     uses: d3
       .scaleOrdinal()
       .domain([
         "data_use",
+        "strictly_necessary",
+        "operational",
         "analytics",
-        "collect",
-        "employment",
-        "essential",
-        "finance",
-        "improve",
-        "marketing",
-        "operations",
-        "personalize",
-        "sales",
-        "third_party_sharing",
+        "advertising_marketing",
+        "disclosure",
         "train_ai_system",
       ])
       .range([
@@ -774,32 +766,18 @@ Promise.all([
         "#ed43a0",
         "#ff4a7f",
         "#ff635b",
-        "#ff8436",
-        "#ffa600",
-        "#ffcf40",
-        "#acff40",
-        "#58ff40",
-        "#52cf70",
       ]),
     subjects: d3
       .scaleOrdinal()
       .domain([
         "data_subject",
-        "anonymous_user",
-        "citizen_voter",
-        "commuter",
-        "consultant",
-        "customer",
+        "consumer",
+        "household",
         "employee",
-        "job_applicant",
-        "next_of_kin",
-        "passenger",
-        "patient",
-        "prospect",
-        "shareholder",
-        "supplier_vendor",
-        "trainee",
-        "visitor",
+        "B2B",
+        "child",
+        "child.child_under_thirteen",
+        "child.child_thirteen_to_sixteen",
       ])
       .range([
         "#2a3045",
@@ -810,14 +788,6 @@ Promise.all([
         "#acff40",
         "#58ff40",
         "#52cf70",
-        "#4ca0a0",
-        "#4670cf",
-        "#4040ff",
-        "#6e40fe",
-        "#9c40fe",
-        "#c93ffd",
-        "#f73ffc",
-        "#fb409e",
       ]),
   };
 

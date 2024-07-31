@@ -1,0 +1,7 @@
+fides_key,is_default,name,organization_fides_key,parent_key,tags,description
+data_qualifier,,Data Qualifier,,,,
+aggregated,True,Aggregated Data,default_organization,data_qualifier,,Statistical data that does not contain individually identifying information but includes information about groups of individuals that renders individual identification impossible.
+aggregated.anonymized,True,Anonymized Data,default_organization,aggregated,,Data where all attributes have been sufficiently altered that the individaul cannot be reidentified by this data or in combination with other datasets.
+aggregated.anonymized.unlinked_pseudonymized,True,Unlinked Pseudonymized Data,default_organization,aggregated.anonymized,,"Data for which all identifiers have been substituted with unrelated values and linkages broken such that it may not be reversed, even by the party that performed the pseudonymization."
+aggregated.anonymized.unlinked_pseudonymized.pseudonymized,True,Pseudonymized Data,default_organization,aggregated.anonymized.unlinked_pseudonymized,,"Data for which all identifiers have been substituted with unrelated values, rendering the individual unidentifiable and cannot be reasonably reversed other than by the party that performed the pseudonymization."
+aggregated.anonymized.unlinked_pseudonymized.pseudonymized.identified,True,Identified Data,default_organization,aggregated.anonymized.unlinked_pseudonymized.pseudonymized,,Data that directly identifies an individual.
