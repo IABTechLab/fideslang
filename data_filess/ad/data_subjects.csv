@@ -1,5 +1,4 @@
-fides_key,parent_key,name,description
-subject,,,
+fides_key,parent_key,title,description
 consumer,subject,,A natural person who is a resident of a State within the United States of America.
 household,subject,,A group of Consumers who cohabitate with one another at the same residential address and share use of common devices or services.
 employee,subject,,"An individual who is an employee of, director of, officer of, medical staff member of, or independent contractor of a business"

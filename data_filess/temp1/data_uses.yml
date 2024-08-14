@@ -1,0 +1,565 @@
+data_use:
+- fides_key: analytics
+  organization_fides_key: default_organization
+  tags: null
+  name: Analytics
+  description: Provides analytics for activities such as system and advertising performance
+    reporting, insights and fraud detection.
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: analytics.reporting
+  organization_fides_key: default_organization
+  tags: null
+  name: Analytics for Reporting
+  description: Provides analytics for general reporting such as system and advertising
+    performance.
+  parent_key: analytics
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: analytics.reporting.ad_performance
+  organization_fides_key: default_organization
+  tags: null
+  name: Analytics for Advertising Performance
+  description: Provides analytics for reporting of advertising performance.
+  parent_key: analytics.reporting
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: analytics.reporting.campaign_insights
+  organization_fides_key: default_organization
+  tags: null
+  name: Analytics for Insights
+  description: Provides analytics for reporting of campaign insights related to advertising
+    and promotion activities.
+  parent_key: analytics.reporting
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: analytics.reporting.system
+  organization_fides_key: default_organization
+  tags: null
+  name: Analytics for System Activity
+  description: Provides analytics for reporting on system activity.
+  parent_key: analytics.reporting
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: analytics.reporting.system.performance
+  organization_fides_key: default_organization
+  tags: null
+  name: Analytics for System Performance
+  description: Provides analytics for reporting on system performance.
+  parent_key: analytics.reporting.system
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: collect
+  organization_fides_key: default_organization
+  tags: null
+  name: Collect
+  description: Collects or stores data in order to use it for another purpose which
+    has not yet been expressly defined.
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: employment
+  organization_fides_key: default_organization
+  tags: null
+  name: Employment
+  description: Processes data for the purpose of recruitment or employment and human
+    resources (HR) related activities.
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: employment.recruitment
+  organization_fides_key: default_organization
+  tags: null
+  name: Employment Recruitment
+  description: Processes data of prospective employees for the purpose of recruitment.
+  parent_key: employment
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: essential
+  organization_fides_key: default_organization
+  tags: null
+  name: Essential
+  description: Operates the service or product, including legal obligations, support
+    and basic system operations.
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: essential.fraud_detection
+  organization_fides_key: default_organization
+  tags: null
+  name: Essential Fraud Detection
+  description: Detects possible fraud or misuse of the product, service, application
+    or system.
+  parent_key: essential
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: essential.legal_obligation
+  organization_fides_key: default_organization
+  tags: null
+  name: Essential Legal Obligation
+  description: Provides service to meet a legal or compliance obligation such as consent
+    management.
+  parent_key: essential
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: essential.service
+  organization_fides_key: default_organization
+  tags: null
+  name: Essential for Service
+  description: Provides the essential product, service, application or system, without
+    which the product/service would not be possible.
+  parent_key: essential
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: essential.service.authentication
+  organization_fides_key: default_organization
+  tags: null
+  name: Essential Service Authentication
+  description: Authenticate users to the product, service, application or system.
+  parent_key: essential.service
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: essential.service.notifications
+  organization_fides_key: default_organization
+  tags: null
+  name: Essential Service Notifications
+  description: Sends notifications about the product, service, application or system.
+  parent_key: essential.service
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: essential.service.operations
+  organization_fides_key: default_organization
+  tags: null
+  name: Essential for Service Operations
+  description: Ensures the operation of the product, service, application or system.
+  parent_key: essential.service
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: essential.service.payment_processing
+  organization_fides_key: default_organization
+  tags: null
+  name: Essential for Service Payment Processing
+  description: Processes payments for the product, service, application or system.
+  parent_key: essential.service
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: essential.service.upgrades
+  organization_fides_key: default_organization
+  tags: null
+  name: Essential for Service Upgrades
+  description: Provides timely system upgrade information options.
+  parent_key: essential.service
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: essential.service.notifications.email
+  organization_fides_key: default_organization
+  tags: null
+  name: Essential Email Service Notifications
+  description: Sends email notifications about the product, service, application or
+    system.
+  parent_key: essential.service.notifications
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: essential.service.notifications.sms
+  organization_fides_key: default_organization
+  tags: null
+  name: Essential SMS Service Notifications
+  description: Sends SMS notifications about the product, service, application or
+    system.
+  parent_key: essential.service.notifications
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: essential.service.operations.support
+  organization_fides_key: default_organization
+  tags: null
+  name: Essential for Serivce Operations Support
+  description: Provides support for the product, service, application or system.
+  parent_key: essential.service.operations
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: essential.service.operations.support.optimization
+  organization_fides_key: default_organization
+  tags: null
+  name: Essential for Serivce Support Optimization
+  description: Optimizes and improves support for the product, service, application
+    or system.
+  parent_key: essential.service.operations.support
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: finance
+  organization_fides_key: default_organization
+  tags: null
+  name: Finance
+  description: Enables finance and accounting activities such as audits and tax reporting.
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: improve
+  organization_fides_key: default_organization
+  tags: null
+  name: Improves the product, service, application or system.
+  description: Improve the product, service, application or system.
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: improve.system
+  organization_fides_key: default_organization
+  tags: null
+  name: System
+  description: Improves the specific product, service, application or system.
+  parent_key: improve
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: marketing
+  organization_fides_key: default_organization
+  tags: null
+  name: Marketing
+  description: Enables marketing, promotion, advertising and sales activities for
+    the product, service, application or system.
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: marketing.advertising
+  organization_fides_key: default_organization
+  tags: null
+  name: Advertising, Marketing or Promotion
+  description: Advertises or promotes the product, service, application or system
+    and associated services.
+  parent_key: marketing
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: marketing.communications
+  organization_fides_key: default_organization
+  tags: null
+  name: Marketing Communications
+  description: Uses combined channels to message and market to a customer, user or
+    prospect.
+  parent_key: marketing
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: marketing.advertising.first_party
+  organization_fides_key: default_organization
+  tags: null
+  name: First Party Advertising
+  description: Serves advertisements based on first party data collected or derived
+    about the user.
+  parent_key: marketing.advertising
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: marketing.advertising.frequency_capping
+  organization_fides_key: default_organization
+  tags: null
+  name: Frequency Capping
+  description: Restricts the number of times a specific advertisement is shown to
+    an individual.
+  parent_key: marketing.advertising
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: marketing.advertising.negative_targeting
+  organization_fides_key: default_organization
+  tags: null
+  name: Negative Targeting
+  description: Enforces rules used to ensure a certain audience or group is not targeted
+    by advertising.
+  parent_key: marketing.advertising
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: marketing.advertising.third_party
+  organization_fides_key: default_organization
+  tags: null
+  name: Third Party Advertising
+  description: Serves advertisements based on data within the system or joined with
+    data provided by 3rd parties.
+  parent_key: marketing.advertising
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: marketing.advertising.first_party.contextual
+  organization_fides_key: default_organization
+  tags: null
+  name: First Party Contextual Advertising
+  description: Serves advertisements based on current content being viewed by the
+    user of the system or service.
+  parent_key: marketing.advertising.first_party
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: marketing.advertising.first_party.targeted
+  organization_fides_key: default_organization
+  tags: null
+  name: First Party Personalized Advertising
+  description: Targets advertisements based on data collected or derived about the
+    user from use of the system.
+  parent_key: marketing.advertising.first_party
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: marketing.advertising.third_party.targeted
+  organization_fides_key: default_organization
+  tags: null
+  name: Third Party Targeted Advertising
+  description: Targets advertisements based on data within the system or joined with
+    data provided by 3rd parties.
+  parent_key: marketing.advertising.third_party
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: marketing.communications.email
+  organization_fides_key: default_organization
+  tags: null
+  name: Marketing Email Communications
+  description: Sends email marketing communications.
+  parent_key: marketing.communications
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: marketing.communications.sms
+  organization_fides_key: default_organization
+  tags: null
+  name: Marketing SMS Communications
+  description: Sends SMS marketing communications.
+  parent_key: marketing.communications
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: operations
+  organization_fides_key: default_organization
+  tags: null
+  name: Operations
+  description: Supports business processes necessary to the organization's operation.
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: personalize
+  organization_fides_key: default_organization
+  tags: null
+  name: Personalize
+  description: Personalizes the product, service, application or system.
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: personalize.content
+  organization_fides_key: default_organization
+  tags: null
+  name: Content Personalization
+  description: Personalizes the content of the product, service, application or system.
+  parent_key: personalize
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: personalize.system
+  organization_fides_key: default_organization
+  tags: null
+  name: System Personalization
+  description: Personalizes the product, service, application or system.
+  parent_key: personalize
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: sales
+  organization_fides_key: default_organization
+  tags: null
+  name: Sales
+  description: Supports sales activities such as communications and outreach.
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: third_party_sharing
+  organization_fides_key: default_organization
+  tags: null
+  name: Third Party Sharing
+  description: Transfers data to third parties outside of the system or service's
+    scope.
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: third_party_sharing.legal_obligation
+  organization_fides_key: default_organization
+  tags: null
+  name: Sharing for Legal Obligation
+  description: Shares data for legal obligations, including contracts, applicable
+    laws or regulations.
+  parent_key: third_party_sharing
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true
+- fides_key: train_ai_system
+  organization_fides_key: default_organization
+  tags: null
+  name: Train AI System
+  description: Trains an AI system or data model for machine learning.
+  parent_key: null
+  legal_basis: null
+  special_category: null
+  recipients: null
+  legitimate_interest: false
+  legitimate_interest_impact_assessment: null
+  is_default: true

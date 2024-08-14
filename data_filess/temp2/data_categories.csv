@@ -1,10 +1,8 @@
 fides_key,is_default,name,organization_fides_key,parent_key,replaced_by,tags,version_added,version_deprecated,description
 data_category,,Data Category,,,,,,,
-data_category,,Data Category,,,,,,,
 system,True,System Data,default_organization,data_category,,,2.0.0,,"Data unique to, and under control of the system."
 system.authentication,True,Authentication Data,default_organization,system,,,2.0.0,,Data used to manage access to the system.
 system.operations,True,Operations Data,default_organization,system,,,2.0.0,,Data used for system operations.
-user,TRUE,User,default_organization,data_category,,,2.0.0,,BLANK
 user,True,User Data,default_organization,data_category,,,2.0.0,,"Data related to the user of the system, either provided directly or derived based on their usage."
 user.account,True,Account Information,default_organization,user,,,2.0.0,,Account creation or registration information.
 user.authorization,True,Authorization Information,default_organization,user,,,2.0.0,,Scope of permissions and access to a system.

@@ -1,11 +1,7 @@
 name,fides_key,parent_key,description
-Data Category,data_category,,
 System Data,system,data_category,"System data that does not belong to, or identify an individual."
-System Operations Data,system.operations,system,Data used for the operations of the system.
-System Authentication Data,system.authentication,system,Data used to manage access to the system.
 User Data,user,data_category,User related data.
 Authorization,user.authorization,user,Scope of permissions and access to a system.
-Account Data,user.account,user,Account information.
 Settings,user.account.settings,user.account,Account preferences and settings.
 Children,user.children,user,Data relating to children 
 Health,user.health,user,Health records or individual's personal medical information.
@@ -17,7 +13,6 @@ Biometrics Retinal,user.biometrics.retinal,user.biometrics,Retinal data about a 
 Biometrics Voice,user.biometrics.voice,user.biometrics,Voice encoded data about a subject.
 Children Under Thirteen,user.children.children_under_thirteen,user.children,Data relating to children under 13.
 Child Thriteen-to-Sixteen,user.children.thirteen_to_sixteen,user.children,Data relating to children between 13-15. 
-Demographic,user.demographic,user,Demographic data.
 Sexual Orientation,user.demographic.sexual_orientation,user.demographic,Sexual orientation of data subject.
 Race or Ethnicity,user.demographic.race_ethnicity,user.demographic,Race or ethnicity of data subject.
 Citzenship or Immigration Status,user.demographic.citizenship_or_immigration_status,user.demographic,Citizen or immigration status of data subject.
@@ -37,7 +32,6 @@ Psychological or Behavioral Condition,user.health.social_psychological_behaviora
 Medical Diagonosis ,user.health.medical_diagnosis ,user.health,Medical diagnosis of a subject.
 Health Condition,user.health.condition,user.health,Health condition of a subject.
 Health record ,user.health.record_id,user.health,Medical record identifiers belonging to a subject.
-Location,user.location,user,Location data.
 Precise Location,user.location.precise,user.location,Precise location derived from sensors (less than 500M).
 Bank Account Information,user.financial.bank_account,user.financial,Bank account information belonging to the subject.
 Behavior,user.behavior,user,Behavioral data about the subject.
@@ -51,7 +45,7 @@ Name,user.name,user,User's real name.
 Criminal History,user.criminal_history,user,Criminal records or information about the data subject.
 Privacy Preferences,user.privacy_preferences,user,Privacy preferences or settings set by the subject.
 Job title,user.job_title,user,Professional data.
-Content,user.content,user,"Content related to, or created by the subject."
+Content,user.content,user ,"Content related to, or created by the subject."
 Username,user.account.username,user.account,Username associated with account.
 Auth Credentials,user.authorization.credentials,user.authorization,Authentication credentials to a system.
 Password,user.authorization.password,user.authorization,Password for system authentication.
@@ -63,7 +57,6 @@ Email,user.contact.email,user.contact,User's contact email address.
 Phone Number,user.contact.phone_number,user.contact,User's phone number.
 Social URL,user.contact.social_url,user.contact,Subject's websites or links to social and personal profiles.
 Fax,user.contact.fax_number,user.contact,Data Subject's fax number.
-Address,user.contact.address,user.contact,Contact address data collected about a user.
 Mailing Address,user.contact.address.mailing_address,user.contact.address,Contact address data collected about a user.
 City,user.contact.address.city,user.contact.address,User's city level address data.
 Country,user.contact.address.country,user.contact.address,User's country level address data.
@@ -88,7 +81,6 @@ Cookie,user.device.cookie,user.device,"Data related to a subject, stored within 
 Cookie ID,user.device.cookie_id,user.device,Cookie unique identification number.
 Device ID,user.device.device_id,user.device,Device unique identification number.
 Internet Protocol Address ,user.device.ip_address,user.device,Unique identifier related to device connection.
-Employment Information,user.employment,user,Employment related information.
 Workplace,user.employment.workplace,user.employment,Organization of employment.
 Credit Card Information ,user.financial.credit_card,user.financial,Credit card information belonging to the subject.
 Birth Certificate ,user.government_id.birth_certificate,user.government_id,State issued certificate of birth.

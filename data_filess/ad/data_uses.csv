@@ -1,11 +1,9 @@
 fides_key,parent_key,title,description
-data_use,,,
-necessary.operations,necessary,,"Provides essential functions such as legal compliance, security, basic system operations, and support. Without the 'necessary' data use, the product or service cannot operate or meet legal and security requirements"
+necessary,data_use,,"Provides essential functions such as legal compliance, security, basic system operations, and support. Without the 'necessary' data use, the product or service cannot operate or meet legal and security requirements"
 operational,data_use,,"Facilitates operations for the service or product, including product improvements. "
 analytics,data_use,,"Provides analytics for activities such as system and advertising performance reporting, insights and advertising fraud detection."
 advertising_marketing,data_use,,"Enables marketing, promotion, advertising and sales activities for the product, service, application or system."
-disclosure,data_use,,Provides information regarding whether the data is being transmitted to other parties.  
-necessary,data_use,,
+disclosure ,data_use,,Provides information regarding whether the data is being transmitted to other parties.  
 necessary.fraud_detection,necessary,,"Detects possible fraud or misuse of the product, service, application or system."
 necessary.legal_obligation,necessary,,Provides service to meet a legal or compliance obligation such as consent management.
 necessary.service,necessary,,"Provides the necessary product, service, application or system, without which the product/service would not be possible."
@@ -25,14 +23,11 @@ necessary.service.upgrades,necessary.service,,Provides timely system upgrade inf
 operational.service,operational,,"Functions relating to provided services, products, applications or systems."
 operational.website_use,operational,,"Provides information relating to how consumers use the website, product, service, application, or system. "
 operational.survey,operational,,"Information relating to surveys provided to assist with improving the website, product, service, application or systems."
-operational.service.customer_support,operational.service,,
-operational.service.customer_support.improve,operational.service.customer_support,,"Improves the specific product, service, application or system."
-analytics.ad_reporting,analytics,,
+operational .service.customer_support.improve,operational .service.customer_support,,"Improves the specific product, service, application or system."
 analytics.ad_reporting.measure_ad_performance,analytics.ad_reporting,,Provides analytics for reporting of advertising performance.
 analytics.ad_reporting.market_research,analytics.ad_reporting,,Provides analytics for reporting of market research. 
 analytics.ad_reporting.ad_fraud_detection,analytics.ad_reporting,,Provides analytics for reporting on fraud detection.
 analytics.ad_reporting.ad_viewability,analytics.ad_reporting,,Provides analytics for reporting on viewability of ads.
-analytics.reporting,analytics,,
 analytics.reporting.ad_performance,analytics.reporting,,Provides analytics for reporting of advertising performance.
 analytics.reporting.content_performance,analytics.reporting,,Analytics for reporting on content performance.
 analytics.reporting.campaign_insights,analytics.reporting,,Provides analytics for reporting of campaign insights related to advertising and promotion activities.
@@ -50,7 +45,6 @@ advertising_marketing.serving,advertising_marketing,,Services to the delivery of
 advertising_marketing.third_party,advertising_marketing,,Serves advertisements based on data within the system or joined with data provided by 3rd parties.
 advertising_marketing.communications.email,advertising_marketing.communications,,Sends email marketing communications.
 advertising_marketing.communications.sms,advertising_marketing.communications,,Sends SMS marketing communications.
-advertising_marketing.personalize,advertising_marketing,,
 advertising_marketing.personalize.content,advertising_marketing.personalize,,"Personalizes the content of the product, service, application or system."
 advertising_marketing.personalize.profiling,advertising_marketing.personalize,,Creates profiles for the purpose of serving content.
 advertising_marketing.personalize.system,advertising_marketing.personalize,,Personalizes the system.
