@@ -103,7 +103,7 @@ class TestFindReferencedKeys:
         assert referenced_keys == set(expected_referenced_key)
 
     def test_find_referenced_fides_keys_2(self) -> None:
-        test_system = System.construct(
+        test_system = System.model_construct(
             name="test_dc",
             fides_key="test_dc",
             description="test description",
@@ -149,7 +149,7 @@ class TestGetReferencedMissingKeys:
                 ),
             ],
             system=[
-                System.construct(
+                System.model_construct(
                     name="test_system",
                     fides_key="test_system",
                     description="test description",

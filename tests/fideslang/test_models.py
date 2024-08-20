@@ -5,11 +5,13 @@ from pytest import mark, raises
 from fideslang import DataFlow, Dataset, Organization, PrivacyDeclaration, System
 from fideslang.models import (
     ContactDetails,
+    Cookies,
     DataResponsibilityTitle,
     DatasetCollection,
     DatasetField,
     DataUse,
 )
+from tests.conftest import assert_error_message_includes
 
 pytestmark = mark.unit
 
@@ -55,16 +57,25 @@ class TestDataFlow:
         )
 
     def test_dataflow_user_fides_key_no_user_type(self) -> None:
-        with raises(ValueError):
+        with raises(ValueError) as exc:
             assert DataFlow(fides_key="user", type="system")
+        assert_error_message_includes(
+            exc, "The 'user' fides_key is required for, and requires, the type 'user'"
+        )
 
     def test_dataflow_user_type_no_user_fides_key(self) -> None:
-        with raises(ValueError):
+        with raises(ValueError) as exc:
             assert DataFlow(fides_key="test_system_1", type="user")
+        assert_error_message_includes(
+            exc, "The 'user' fides_key is required for, and requires, the type 'user'"
+        )
 
     def test_dataflow_invalid_type(self) -> None:
-        with raises(ValueError):
+        with raises(ValueError) as exc:
             assert DataFlow(fides_key="test_system_1", type="invalid")
+        assert_error_message_includes(
+            exc, "'type' must be one of dataset, system, user"
+        )
 
 
 class TestPrivacyDeclaration:
@@ -85,7 +96,7 @@ class TestSystem:
     # We need to update these tests to assert that the provided args are actually being set
     # as attributes on the System instance that's instantiated.
     def test_system_valid(self) -> None:
-        assert System(
+        system = System(
             description="Test Policy",
             egress=[
                 DataFlow(
@@ -104,7 +115,7 @@ class TestSystem:
             ],
             meta={"some": "meta stuff"},
             name="Test System",
-            organization_fides_key=1,
+            organization_fides_key="1",
             cookies=[{"name": "test_cookie"}],
             privacy_declarations=[
                 PrivacyDeclaration(
@@ -122,9 +133,53 @@ class TestSystem:
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
+        assert system.name == "Test System"
+        assert system.fides_key == "test_system"
+        assert system.description == "Test Policy"
+        assert system.egress == [
+            DataFlow(
+                fides_key="test_system_2",
+                type="system",
+                data_categories=[],
+            )
+        ]
+        assert system.ingress == [
+            DataFlow(
+                fides_key="test_system_3",
+                type="system",
+                data_categories=[],
+            )
+        ]
+        assert system.meta == {"some": "meta stuff"}
+        assert system.organization_fides_key == "1"
+        assert system.cookies == [Cookies(name="test_cookie", path=None, domain=None)]
+        assert system.system_type == "SYSTEM"
+        assert system.tags == ["some", "tags"]
+        assert system.privacy_declarations == [
+            PrivacyDeclaration(
+                name="declaration-name",
+                data_categories=[],
+                data_use="provide",
+                data_subjects=[],
+                dataset_references=None,
+                egress=["test_system_2"],
+                ingress=["test_system_3"],
+                features=[],
+                flexible_legal_basis_for_processing=True,
+                legal_basis_for_processing=None,
+                impact_assessment_location=None,
+                retention_period=None,
+                processes_special_category_data=False,
+                special_category_legal_basis=None,
+                data_shared_with_third_parties=False,
+                third_parties=None,
+                shared_categories=[],
+                cookies=[Cookies(name="test_cookie", path="/", domain="example.com")],
+            )
+        ]
 
     def test_system_valid_nested_meta(self) -> None:
-        assert System(
+        system = System(
             description="Test Policy",
             egress=[
                 DataFlow(
@@ -154,7 +209,7 @@ class TestSystem:
                 },
             },
             name="Test System",
-            organization_fides_key=1,
+            organization_fides_key="1",
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
@@ -168,6 +223,18 @@ class TestSystem:
             system_type="SYSTEM",
             tags=["some", "tags"],
         )
+        assert system.meta == {
+            "some": "meta stuff",
+            "some": {
+                "nested": "meta stuff",
+                "more nested": "meta stuff",
+            },
+            "some more": {
+                "doubly": {
+                    "nested": "meta stuff",
+                }
+            },
+        }
 
     def test_system_valid_no_meta(self) -> None:
         system = System(
@@ -189,7 +256,7 @@ class TestSystem:
             ],
             # purposefully omitting the `meta` property to ensure it's effectively optional
             name="Test System",
-            organization_fides_key=1,
+            organization_fides_key="1",
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
@@ -211,7 +278,7 @@ class TestSystem:
             fides_key="test_system",
             meta={"some": "meta stuff"},
             name="Test System",
-            organization_fides_key=1,
+            organization_fides_key="1",
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
@@ -225,7 +292,7 @@ class TestSystem:
         )
 
     def test_system_no_egress(self) -> None:
-        with raises(ValueError):
+        with raises(ValueError) as exc:
             assert System(
                 description="Test Policy",
                 fides_key="test_system",
@@ -238,7 +305,7 @@ class TestSystem:
                 ],
                 meta={"some": "meta stuff"},
                 name="Test System",
-                organization_fides_key=1,
+                organization_fides_key="1",
                 privacy_declarations=[
                     PrivacyDeclaration(
                         data_categories=[],
@@ -252,9 +319,13 @@ class TestSystem:
                 system_type="SYSTEM",
                 tags=["some", "tags"],
             )
+        assert_error_message_includes(
+            exc,
+            "PrivacyDeclaration 'declaration-name' defines egress with one or more resources and is applied to the System 'test_system', which does not itself define any egress.",
+        )
 
     def test_system_no_ingress(self) -> None:
-        with raises(ValueError):
+        with raises(ValueError) as exc:
             assert System(
                 description="Test Policy",
                 egress=[
@@ -267,7 +338,7 @@ class TestSystem:
                 fides_key="test_system",
                 meta={"some": "meta stuff"},
                 name="Test System",
-                organization_fides_key=1,
+                organization_fides_key="1",
                 privacy_declarations=[
                     PrivacyDeclaration(
                         data_categories=[],
@@ -281,6 +352,10 @@ class TestSystem:
                 system_type="SYSTEM",
                 tags=["some", "tags"],
             )
+        assert_error_message_includes(
+            exc,
+            "PrivacyDeclaration 'declaration-name' defines ingress with one or more resources and is applied to the System 'test_system', which does not itself define any ingress.",
+        )
 
     def test_system_user_ingress_valid(self) -> None:
         assert System(
@@ -295,7 +370,7 @@ class TestSystem:
             ],
             meta={"some": "meta stuff"},
             name="Test System",
-            organization_fides_key=1,
+            organization_fides_key="1",
             privacy_declarations=[
                 PrivacyDeclaration(
                     data_categories=[],
@@ -310,9 +385,9 @@ class TestSystem:
         )
 
     def test_expanded_system(self):
-        assert System(
+        system = System(
             fides_key="test_system",
-            organization_fides_key=1,
+            organization_fides_key="1",
             tags=["some", "tags"],
             name="Exponential Interactive, Inc d/b/a VDX.tv",
             description="My system test",
@@ -405,6 +480,7 @@ class TestSystem:
                 }
             ],
         )
+        print(f"dumped={system.model_dump()}")
 
     def test_flexible_legal_basis_default(self):
         pd = PrivacyDeclaration(

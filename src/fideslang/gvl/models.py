@@ -32,7 +32,8 @@ class MappedPurpose(Purpose):
 
 
 class Feature(BaseModel):
-    "Pydantic model for GVL feature records"
+    """Pydantic model for GVL feature records"""
+
     id: int = Field(description="Official GVL feature ID or special feature ID")
     name: str = Field(description="Name of the GVL feature or special feature.")
     description: str = Field(

@@ -3,46 +3,30 @@ Contains all of the additional validation for the resource models.
 """
 import re
 from collections import Counter
-from typing import Dict, Generator, List, Optional, Pattern, Set, Tuple
+from typing import Annotated, Dict, List, Optional, Pattern, Set, Tuple
 
 from packaging.version import Version
-from pydantic import ConstrainedStr
+from pydantic import AfterValidator, AnyHttpUrl, AnyUrl, ValidationInfo
+
+FIDES_KEY_PATTERN = r"^[a-zA-Z0-9_.<>-]+$"
 
 
 class FidesValidationError(ValueError):
     """Custom exception for when the pydantic ValidationError can't be used."""
 
 
-class FidesVersion(Version):
-    """Validate strings as proper semantic versions."""
+def validate_fides_key(value: str) -> str:
+    """Throws ValueError if val is not a valid FidesKey"""
 
-    @classmethod
-    def __get_validators__(cls) -> Generator:
-        yield cls.validate
-
-    @classmethod
-    def validate(cls, value: str) -> Version:
-        """Validates that the provided string is a valid Semantic Version."""
-        return Version(value)
+    regex: Pattern[str] = re.compile(FIDES_KEY_PATTERN)
+    if not regex.match(value):
+        raise FidesValidationError(
+            f"FidesKeys must only contain alphanumeric characters, '.', '_', '<', '>' or '-'. Value provided: {value}"
+        )
+    return value
 
 
-class FidesKey(ConstrainedStr):
-    """
-    A FidesKey type that creates a custom constrained string.
-    """
-
-    regex: Pattern[str] = re.compile(r"^[a-zA-Z0-9_.<>-]+$")
-
-    @classmethod  # This overrides the default method to throw the custom FidesValidationError
-    def validate(cls, value: str) -> str:
-        """Throws ValueError if val is not a valid FidesKey"""
-
-        if not cls.regex.match(value):
-            raise FidesValidationError(
-                f"FidesKeys must only contain alphanumeric characters, '.', '_', '<', '>' or '-'. Value provided: {value}"
-            )
-
-        return value
+FidesKey = Annotated[str, AfterValidator(validate_fides_key)]
 
 
 def sort_list_objects_by_name(values: List) -> List:
@@ -73,22 +57,22 @@ def unique_items_in_list(values: List) -> List:
     return values
 
 
-def no_self_reference(value: FidesKey, values: Dict) -> FidesKey:
+def no_self_reference(value: FidesKey, values: ValidationInfo) -> FidesKey:
     """
     Check to make sure that the fides_key doesn't match other fides_key
     references within an object.
 
     i.e. DataCategory.parent_key != DataCategory.fides_key
     """
-    fides_key = FidesKey.validate(values.get("fides_key", ""))
+    fides_key = validate_fides_key(values.data.get("fides_key", ""))
     if value == fides_key:
-        raise FidesValidationError("FidesKey can not self-reference!")
+        raise FidesValidationError("FidesKey cannot self-reference!")
     return value
 
 
 def deprecated_version_later_than_added(
-    version_deprecated: Optional[FidesVersion], values: Dict
-) -> Optional[FidesVersion]:
+    version_deprecated: Optional[str], values: ValidationInfo
+) -> Optional[str]:
     """
     Check to make sure that the deprecated version is later than the added version.
 
@@ -99,19 +83,27 @@ def deprecated_version_later_than_added(
     if not version_deprecated:
         return None
 
-    if version_deprecated < values.get("version_added", Version("0")):
+    version_added: Optional[str] = values.data.get("version_added")
+
+    # Convert into Versions
+    transformed_version_added: Version = (
+        Version(version_added) if version_added else Version("0")
+    )
+    transformed_version_deprecated: Version = Version(version_deprecated)
+
+    if transformed_version_deprecated < transformed_version_added:
         raise FidesValidationError(
             "Deprecated version number can't be earlier than version added!"
         )
 
-    if version_deprecated == values.get("version_added", Version("0")):
+    if transformed_version_deprecated == transformed_version_added:
         raise FidesValidationError(
             "Deprecated version number can't be the same as the version added!"
         )
     return version_deprecated
 
 
-def has_versioning_if_default(is_default: bool, values: Dict) -> bool:
+def has_versioning_if_default(is_default: bool, values: ValidationInfo) -> bool:
     """
     Check to make sure that version fields are set for default items.
     """
@@ -119,15 +111,15 @@ def has_versioning_if_default(is_default: bool, values: Dict) -> bool:
     # If it's a default item, it at least needs a starting version
     if is_default:
         try:
-            assert values.get("version_added")
+            assert values.data.get("version_added")
         except AssertionError:
             raise FidesValidationError("Default items must have version information!")
     # If it's not default, it shouldn't have version info
     else:
         try:
-            assert not values.get("version_added")
-            assert not values.get("version_deprecated")
-            assert not values.get("replaced_by")
+            assert not values.data.get("version_added")
+            assert not values.data.get("version_deprecated")
+            assert not values.data.get("replaced_by")
         except AssertionError:
             raise FidesValidationError(
                 "Non-default items can't have version information!"
@@ -136,23 +128,23 @@ def has_versioning_if_default(is_default: bool, values: Dict) -> bool:
     return is_default
 
 
-def is_deprecated_if_replaced(replaced_by: str, values: Dict) -> str:
+def is_deprecated_if_replaced(replaced_by: str, values: ValidationInfo) -> str:
     """
     Check to make sure that the item has been deprecated if there is a replacement.
     """
 
-    if replaced_by and not values.get("version_deprecated"):
+    if replaced_by and not values.data.get("version_deprecated"):
         raise FidesValidationError("Cannot be replaced without deprecation!")
 
     return replaced_by
 
 
-def matching_parent_key(parent_key: FidesKey, values: Dict) -> FidesKey:
+def matching_parent_key(parent_key: FidesKey, values: ValidationInfo) -> FidesKey:
     """
     Confirm that the parent_key matches the parent parsed from the FidesKey.
     """
 
-    fides_key = FidesKey.validate(values.get("fides_key", ""))
+    fides_key = validate_fides_key(values.data.get("fides_key", ""))
     split_fides_key = fides_key.split(".")
 
     # Check if it is a top-level resource
@@ -163,7 +155,7 @@ def matching_parent_key(parent_key: FidesKey, values: Dict) -> FidesKey:
     parent_key_from_fides_key = ".".join(split_fides_key[:-1])
     if parent_key_from_fides_key != parent_key:
         raise FidesValidationError(
-            "The parent_key ({0}) does match the parent parsed ({1}) from the fides_key ({2})!".format(
+            "The parent_key ({0}) does not match the parent parsed ({1}) from the fides_key ({2})!".format(
                 parent_key, parent_key_from_fides_key, fides_key
             )
         )
@@ -211,3 +203,19 @@ def valid_data_type(data_type_str: Optional[str]) -> Optional[str]:
         raise ValueError(f"The data type {data_type_str} is not supported.")
 
     return data_type_str
+
+
+def validate_path_of_url(value: AnyUrl) -> str:
+    """Converts an AnyUrl to a string"""
+    return str(value)
+
+
+AnyUrlString = Annotated[AnyUrl, AfterValidator(validate_path_of_url)]
+
+
+def validate_path_of_http_url(value: AnyHttpUrl) -> str:
+    """Converts an AnyHttpUrl to a string"""
+    return str(value)
+
+
+AnyHttpUrlString = Annotated[AnyHttpUrl, AfterValidator(validate_path_of_http_url)]

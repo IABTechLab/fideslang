@@ -16,6 +16,11 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.1...main)
 
+### Changed
+
+- Upgrades Pydantic for V2 support and removes support for Pydantic V1 [#11](https://github.com/ethyca/fideslang/pull/11)
+- Removes Python 3.8 from supported versions [#11](https://github.com/ethyca/fideslang/pull/11)
+- 
 ## [3.0.1](https://github.com/ethyca/fideslang/compare/3.0.0...3.0.1)
 
 ### Added

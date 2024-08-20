@@ -50,16 +50,16 @@ def _load_data() -> None:
     ) as mapping_file:
         data = load(mapping_file)
         for raw_purpose in data["purposes"].values():
-            purpose = Purpose.parse_obj(raw_purpose)
-            mapped_purpose = MappedPurpose.parse_obj(raw_purpose)
+            purpose = Purpose.model_validate(raw_purpose)
+            mapped_purpose = MappedPurpose.model_validate(raw_purpose)
             GVL_PURPOSES[purpose.id] = purpose
             MAPPED_PURPOSES[mapped_purpose.id] = mapped_purpose
             for data_use in mapped_purpose.data_uses:
                 MAPPED_PURPOSES_BY_DATA_USE[data_use] = mapped_purpose
 
         for raw_special_purpose in data["specialPurposes"].values():
-            special_purpose = Purpose.parse_obj(raw_special_purpose)
-            mapped_special_purpose = MappedPurpose.parse_obj(raw_special_purpose)
+            special_purpose = Purpose.model_validate(raw_special_purpose)
+            mapped_special_purpose = MappedPurpose.model_validate(raw_special_purpose)
             GVL_SPECIAL_PURPOSES[special_purpose.id] = special_purpose
             MAPPED_SPECIAL_PURPOSES[mapped_special_purpose.id] = mapped_special_purpose
             for data_use in mapped_special_purpose.data_uses:
@@ -71,12 +71,12 @@ def _load_data() -> None:
         feature_data = load(feature_mapping_file)
 
         for raw_feature in feature_data["features"].values():
-            feature = Feature.parse_obj(raw_feature)
+            feature = Feature.model_validate(raw_feature)
             GVL_FEATURES[feature.id] = feature
             FEATURES_BY_NAME[feature.name] = feature
 
         for raw_special_feature in feature_data["specialFeatures"].values():
-            special_feature = Feature.parse_obj(raw_special_feature)
+            special_feature = Feature.model_validate(raw_special_feature)
             GVL_SPECIAL_FEATURES[special_feature.id] = special_feature
             FEATURES_BY_NAME[special_feature.name] = special_feature
 
@@ -86,8 +86,8 @@ def _load_data() -> None:
         data_category_data = load(data_category_mapping_file)
 
         for raw_data_category in data_category_data.values():
-            data_category = GVLDataCategory.parse_obj(raw_data_category)
-            mapped_data_category = MappedDataCategory.parse_obj(raw_data_category)
+            data_category = GVLDataCategory.model_validate(raw_data_category)
+            mapped_data_category = MappedDataCategory.model_validate(raw_data_category)
             GVL_DATA_CATEGORIES[data_category.id] = data_category
             MAPPED_GVL_DATA_CATEGORIES[mapped_data_category.id] = mapped_data_category
 

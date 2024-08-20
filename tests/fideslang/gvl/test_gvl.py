@@ -67,19 +67,15 @@ def test_feature_id_to_feature_name():
     assert feature_id_to_feature_name(feature_id=1001) is None
 
 
-
 def test_data_category_id_to_data_categories():
-    assert data_category_id_to_data_categories(1) == [
-            "user.device.ip_address"
-    ]
+    assert data_category_id_to_data_categories(1) == ["user.device.ip_address"]
 
     # let's test one other data category just to be comprehensive
     assert data_category_id_to_data_categories(5) == [
-            "user.account",
-            "user.unique_id",
-            "user.device"
-        ]
-
+        "user.account",
+        "user.unique_id",
+        "user.device",
+    ]
 
     # assert invalid categories raise KeyErrors
     with pytest.raises(KeyError):
