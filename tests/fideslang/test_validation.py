@@ -625,6 +625,26 @@ class TestValidateFidesopsMeta:
             read_only=None,
         )
 
+    def test_specify_fides_meta_with_custom_request_field(self):
+        """fidesops_meta copied to fides_meta"""
+        field = DatasetField(
+            name="test_field",
+            fides_meta={"custom_request_field": "site_id", "primary_key": False},
+            fields=[],
+        )
+
+        assert not hasattr(field, "fidesops_meta")
+        assert field.fides_meta == FidesMeta(
+            references=None,
+            identity=None,
+            primary_key=False,
+            data_type=None,
+            length=None,
+            return_all_elements=None,
+            read_only=None,
+            custom_request_field="site_id"
+        )
+
     def test_specify_both_fidesops_meta_and_fides_meta(self):
         """fidesops_meta copied to fides_meta - fides_meta field takes priority"""
         field = DatasetField(
