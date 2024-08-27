@@ -64,6 +64,30 @@ var VisTooltip = class VisTooltip {
             </div>`
           : ""
       }
+      ${
+        accessor.regulation(d.data)
+          ? `<div style="color: red;">
+              <div class="card-subtitle">Sensitive Category:</div>
+              <div>${accessor.regulation(d.data)}</div>
+            </div>`
+          : ""
+      }
+      ${
+        accessor.tcf(d.data)
+          ? `<div>
+              <div class="card-subtitle">TCF Purpose:</div>
+              <div>${accessor.tcf(d.data)}</div>
+            </div>`
+          : ""
+      }
+      ${
+        accessor.mspa(d.data)
+          ? `<div>
+              <div class="card-subtitle">MSPA Activity:</div>
+              <div>${accessor.mspa(d.data)}</div>
+            </div>`
+          : ""
+      }
     </div>
     `;
     this.tooltip.html(content).classed("is-visible", true);
@@ -817,6 +841,9 @@ Promise.all([
         .join(" "),
     colorKey: (d) => d.fides_key,
     description: (d) => d.description,
+    regulation: (d) => d.triggered_laws,
+    tcf: (d) => d.tcf,
+    mspa: (d) => d.mspa
   };
 
   const stratify = d3.stratify().id(accessor.id).parentId(accessor.parentId);
