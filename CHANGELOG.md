@@ -15,7 +15,7 @@ The types of changes are:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.2...main)
-
+- Add custom_request_field to FidesMeta [#13](https://github.com/ethyca/fideslang/pull/13)
 
 ## [3.0.2](https://github.com/ethyca/fideslang/compare/3.0.1...3.0.2)
 
