@@ -402,6 +402,10 @@ class FidesMeta(BaseModel):
         default=None,
         description="Optionally specify if a field is read-only, meaning it can't be updated or deleted.",
     )
+    custom_request_field: Optional[str] = Field(
+        default=None,
+        description="Optionally specify that a field may be used as a custom request field in DSRs. The value is the name of the field in the DSR.",
+    )
 
     @field_validator("data_type")
     @classmethod
