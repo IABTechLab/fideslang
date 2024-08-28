@@ -10,6 +10,7 @@ Fideslang (fee-dez-læŋg, from the Latin term "Fidēs" + "language") is a taxom
 
 Fideslang privacy taxonomy is made up of three main classification groups. These groups are used together to describe the data types, purpose of use, and data owners (subjects) of data being processed, for data privacy and governance purposes. Below you can explore the primary components of the taxonomy.
 
+To learn more about the taxonomy's structure read the [explanation below](#fideslang-privacy-taxonomy-explained)
 
 <div id="vis" class="vis vis-container">
   <div class="controls-container">
