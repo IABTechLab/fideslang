@@ -14,7 +14,10 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.2...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.3...main)
+
+
+## [3.0.3](https://github.com/ethyca/fideslang/compare/3.0.2...3.0.3)
 - Add custom_request_field to FidesMeta [#13](https://github.com/ethyca/fideslang/pull/13)
 
 ## [3.0.2](https://github.com/ethyca/fideslang/compare/3.0.1...3.0.2)
