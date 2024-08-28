@@ -64,6 +64,30 @@ var VisTooltip = class VisTooltip {
             </div>`
           : ""
       }
+      ${
+        accessor.regulation(d.data)
+          ? `<div style="color: red;">
+              <div class="card-subtitle">Sensitive Category:</div>
+              <div>${accessor.regulation(d.data)}</div>
+            </div>`
+          : ""
+      }
+      ${
+        accessor.tcf(d.data)
+          ? `<div>
+              <div class="card-subtitle">TCF Purpose:</div>
+              <div>${accessor.tcf(d.data)}</div>
+            </div>`
+          : ""
+      }
+      ${
+        accessor.mspa(d.data)
+          ? `<div>
+              <div class="card-subtitle">MSPA Activity:</div>
+              <div>${accessor.mspa(d.data)}</div>
+            </div>`
+          : ""
+      }
     </div>
     `;
     this.tooltip.html(content).classed("is-visible", true);
@@ -741,13 +765,13 @@ Promise.all([
       .scaleOrdinal()
       .domain([
         "data_category",
-        "user",
         "system",
+        "user",
       ])
       .range([
         "#2a3045",
         "#0861ce",
-        "#acff40",
+        "#8459cc",
       ]),
     uses: d3
       .scaleOrdinal()
@@ -770,13 +794,21 @@ Promise.all([
       .scaleOrdinal()
       .domain([
         "data_subject",
-        "consumer",
-        "household",
+        "anonymous_user",
+        "citizen_voter",
+        "commuter",
+        "consultant",
+        "customer",
         "employee",
-        "B2B",
-        "child",
-        "child.child_under_thirteen",
-        "child.child_thirteen_to_sixteen",
+        "job_applicant",
+        "next_of_kin",
+        "passenger",
+        "patient",
+        "prospect",
+        "shareholder",
+        "supplier_vendor",
+        "trainee",
+        "visitor",
       ])
       .range([
         "#2a3045",
@@ -787,6 +819,14 @@ Promise.all([
         "#acff40",
         "#58ff40",
         "#52cf70",
+        "#4ca0a0",
+        "#4670cf",
+        "#4040ff",
+        "#6e40fe",
+        "#9c40fe",
+        "#c93ffd",
+        "#f73ffc",
+        "#fb409e",
       ]),
   };
 
@@ -801,6 +841,9 @@ Promise.all([
         .join(" "),
     colorKey: (d) => d.fides_key,
     description: (d) => d.description,
+    regulation: (d) => d.triggered_laws,
+    tcf: (d) => d.tcf,
+    mspa: (d) => d.mspa
   };
 
   const stratify = d3.stratify().id(accessor.id).parentId(accessor.parentId);

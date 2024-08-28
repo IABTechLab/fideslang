@@ -1,24 +1,8 @@
 site_name: Fides Language
-site_url: https://ethyca.github.io/fideslang
+site_url: https://ethyca.github.io/fideslang/privacytaxonomy/ 
 
 nav:
-  - Fides: https://ethyca.github.io/fides/
-  - Fideslang: 
-      - What is Fideslang?: index.md
-      - Overview: overview.md
-      - Fideslang Visual Explorer: explorer.md
-      - Syntax: syntax.md
-      - Taxonomy:
-          - Overview: taxonomy/overview.md
-          - Data Categories: taxonomy/data_categories.md
-          - Data Uses: taxonomy/data_uses.md
-          - Data Subjects: taxonomy/data_subjects.md
-      - Resources:
-          - Organization: resources/organization.md
-          - Policy: resources/policy.md
-          - System: resources/system.md
-          - Dataset: resources/dataset.md
-  - About Ethyca: https://ethyca.github.io/fides/ethyca/
+  - Overview: index.md
 
 theme:
   palette:
@@ -39,8 +23,6 @@ theme:
     text: Source Sans Pro
   features:
     - navigation.top
-    - navigation.instant
-    - navigation.tabs
   custom_dir: overrides
 
 markdown_extensions:
