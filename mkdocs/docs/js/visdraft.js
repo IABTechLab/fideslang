@@ -754,9 +754,9 @@ var VisTree = class VisTree {
 
 
 Promise.all([
-  d3.csv("../csv/data_categories.csv"),
-  d3.csv("../csv/data_uses.csv"),
-  d3.csv("../csv/data_subjects.csv"),
+  d3.csv("csv/data_categories.csv"),
+  d3.csv("csv/data_uses.csv"),
+  d3.csv("csv/data_subjects.csv"),
 ]).then(([categoriesCSV, usesCSV, subjectsCSV]) => {
   const tooltip = new VisTooltip();
 
