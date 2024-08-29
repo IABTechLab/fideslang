@@ -1,0 +1,68 @@
+fides_key,parent_key,name,tcf,mspa,description
+data_use,,Data Use,,,
+necessary.operations,necessary,Necessary Operations,,,"Provides essential functions such as legal compliance, security, basic system operations, and support. Without the 'necessary' data use, the product or service cannot operate or meet legal and security requirements"
+operational,data_use,Operational,,,"Facilitates operations for the service or product, including product improvements. "
+analytics,data_use,Analytics,,,"Provides analytics for activities such as system and advertising performance reporting, insights and advertising fraud detection."
+advertising_marketing,data_use,Advertising & Marketing,,,"Enables marketing, promotion, advertising and sales activities for the product, service, application or system."
+disclosure,data_use,Disclosure,,,Provides information regarding whether the data is being transmitted to other parties.
+necessary,data_use,Necessary,,,
+necessary.fraud_detection,necessary,Fraud Detection,,,"Detects possible fraud or misuse of the product, service, application or system."
+necessary.legal_obligation,necessary,Legal Obligation,,,Provides service to meet a legal or compliance obligation such as consent management.
+necessary.service,necessary,Necessary Service,,,"Provides the necessary product, service, application or system, without which the product/service would not be possible."
+necessary.legal_obligation.hold,necessary.legal_obligation,Legal Hold,,,Provides service to meet a legal hold.
+necessary.service.notifications.email,necessary.service.notifications,Email Notifications,,,"Sends email notifications about the product, service, application or system."
+necessary.service.notifications.sms,necessary.service.notifications,SMS Notifications,,,"Sends SMS notifications about the product, service, application or system."
+necessary.operations.support,necessary.operations,Opertions Support,,,"Provides support for the product, service, application or system."
+necessary.operations.improve,necessary.operations,Operations Improvement,,,"Necessary to optimize and improve support for the product, service, application or system."
+necessary.operations.quality_assurance,necessary.operations,Quality Assuarance,,,"Necessary to provide quality assurance for the product, service, application, or system. "
+necessary.operations.debugging,necessary.operations,Operations Debugging,,,"Necessary to debug the product, service, application, or system."
+necessary.service.authentication,necessary.service,Service Authentication,,,"Authenticate users to the product, service, application or system."
+necessary.service.notifications,necessary.service,Service Notifications,,,"Sends notifications about the product, service, application or system."
+necessary.service.operations,necessary.service,Service Operations,,,"necessary to ensure the operation of the product, service, application or system."
+necessary.service.payment_processing,necessary.service,Payment Processing,,,"necessary to processes payments for the product, service, application or system."
+necessary.service.security,necessary.service,Service Security,,,"necessary to provide security for the product, service, application or system"
+necessary.service.upgrades,necessary.service,Service Upgrades,,,Provides timely system upgrade information options.
+operational.service,operational,Operational Service,,,"Functions relating to provided services, products, applications or systems."
+operational.website_use,operational,Operational Website Use,,,"Provides information relating to how consumers use the website, product, service, application, or system. "
+operational.survey,operational,Operational Survey,,,"Information relating to surveys provided to assist with improving the website, product, service, application or systems."
+operational.service.customer_support,operational.service,Customer Support,,,
+operational.service.customer_support.improve,operational.service.customer_support,Customer Support Improvement,,,"Improves the specific product, service, application or system."
+analytics.ad_reporting,analytics,Ad Reporting,,,
+analytics.ad_reporting.measure_ad_performance,analytics.ad_reporting,Measure Ad Performance,[7] Measuring advertising performance,[1.33vi] Measurement Ad Performance,Provides analytics for reporting of advertising performance.
+analytics.ad_reporting.market_research,analytics.ad_reporting,Market Research,[9] Understand audiences through statistics or combinations of data from different sources,[1.33vii] Apply Market Research to Generate Campaign Insight,Provides analytics for reporting of market research.
+analytics.ad_reporting.ad_fraud_detection,analytics.ad_reporting,Ad Fraud Detection,[7] Measure advertising performance,[1.33viii] Ad Fraud Detection,Provides analytics for reporting on fraud detection.
+analytics.ad_reporting.ad_viewability,analytics.ad_reporting,Ad Viewability,[7] Measuring advertising performance,[1.33ix] Ad Viewability,Provides analytics for reporting on viewability of ads.
+analytics.reporting,analytics,Analytics Reporting,,,
+analytics.reporting.ad_performance,analytics.reporting,Ad Performance Reporting,[7] Measuring advertising performance,[1.33vi] Measurement Ad Performance,Provides analytics for reporting of advertising performance.
+analytics.reporting.content_performance,analytics.reporting,Content Performance Reporting,[7] Measuring advertising performance,[1.33vi] Measurement Ad Performance,Analytics for reporting on content performance.
+analytics.reporting.campaign_insights,analytics.reporting,Campaign Insights Reporting,[7] Measuring advertising performance,[1.33vi] Measurement Ad Performance,Provides analytics for reporting of campaign insights related to advertising and promotion activities.
+analytics.reporting.system,analytics.reporting,System Reporting,[7] Measuring advertising performance,[1.33vi] Measurement Ad Performance,Provides analytics for reporting on system activity.
+analytics.ad_delivery_and_targeting,analytics,Ad Delivery & Targeting,[7] Measuring advertising performance,[1.33vi] Measurement Ad Performance,Provides analytics for reporting of advertising performance.
+advertising_marketing.first_party.contextual,advertising_marketing.first_party,First-Party Contextual Advertising,[6] Use profiles to select personalized content,[1.33ii] First-party advertising,Serves advertisements based on current content being viewed by the user of the system or service.
+advertising_marketing.first_party.targeted,advertising_marketing.first_party,First-Party Targeted Advertising,[6] Use profiles to select personalized content,[1.33ii] First-party advertising,Targets advertisements based on data collected or derived about the user from use of the system.
+advertising_marketing.third_party.targeted,advertising_marketing.third_party,Third-Party Targeted Advertising,,"[1.33iv] Targeted advertising
+",Targets advertisements based on data within the system or joined with data provided by 3rd parties.
+advertising_marketing.communications,advertising_marketing,Advertising Communications,[4] Use profiles to select personalized advertising,"[1.33iv] Targeted advertising
+","Uses combined channels to message and market to a customer, user or prospect."
+advertising_marketing.first_party,advertising_marketing,First-Party Advertising,[6] Use profiles to select personalized content,[1.33ii] First-party advertising,Serves advertisements based on first party data collected or derived about the user.
+advertising_marketing.frequency_capping,advertising_marketing,Frequency Capping,[2] Use limited data to select advertising,[1.33iii] Frequency Capping ,Restricts the number of times a specific advertisement is shown to an individual.
+advertising_marketing.negative_targeting,advertising_marketing,Negative Targeting,[3] Create profiles to personalise content,[1.33v] Negative Targeting,Enforces rules used to ensure a certain audience or group is not targeted by advertising.
+advertising_marketing.profiling,advertising_marketing,Advertising Profiling,[3] Create profiles for personalized advertising,"[1.33iv] Targeted advertising
+",Creates audience profiles for the purpose of targeted advertising
+advertising_marketing.serving,advertising_marketing,Ad Serving,[4] Use profiles to select personalized advertising,[1.33ii] First-party advertising; [1.33iv] Targeted advertising,Services to the delivery of advertising and content.
+advertising_marketing.third_party,advertising_marketing,Third-Party Advertising,[6] Use profiles to select personalized content,"[1.33iv] Targeted advertising
+",Serves advertisements based on data within the system or joined with data provided by 3rd parties.
+advertising_marketing.communications.email,advertising_marketing.communications,Email Marketing Communications,[4] Use profiles to select personalized advertising,[1.33ii] First-party advertising,Sends email marketing communications.
+advertising_marketing.communications.sms,advertising_marketing.communications,SMS Marketing Communications,,[1.33ii] First-party advertising,Sends SMS marketing communications.
+advertising_marketing.personalize,advertising_marketing,Personalized Advertising,[6] Use profiles to select personalized content,[1.33ii] First-party advertising,
+advertising_marketing.personalize.content,advertising_marketing.personalize,Personalized Content,[6] Use profiles to select personalized content,[1.33ii] First-party advertising,"Personalizes the content of the product, service, application or system."
+advertising_marketing.personalize.profiling,advertising_marketing.personalize,Personalized Profiling,[5] Create profiles to personalize content,[1.33ii] First-party advertising,Creates profiles for the purpose of serving content.
+advertising_marketing.personalize.system,advertising_marketing.personalize,Personalized System,[6] Use profiles to select personalized content,[1.33ii] First-party advertising,Personalizes the system.
+disclosure.third_party_sale,disclosure,Disclosure of Third-Party Sale,,,Discloses data for cross-contextual/targeted advertising
+disclosure.outside_counsel,disclosure,Disclosure to Outside Counsel,,,"Discloses data for legal obligations, including contracts, applicable laws or regulations."
+disclosure.law_enforcement,disclosure,"Disclosure to Law Enforcement
+",,,Discloses data for legal obligations arising out of law enforcement requiring it for emergency purposes
+disclosure.share,disclosure,Information Sharing,[4] Use profiles to select personalized advertising,"[1.33iv] Targeted advertising
+","Disclosures data for purposes of sharing data, such as for cross-contextual/targeted advertising"
+disclosure.sale,disclosure,Information Sale,[4] Use profiles to select personalized advertising,"[1.33iv] Targeted advertising
+","Disclosures data for purposes of sharing data, such as for cross-contextual/targeted advertising or for purposes of selling the data for monetary value"

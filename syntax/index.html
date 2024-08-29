@@ -1,0 +1,416 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://iabtechlab.github.io/fideslang/privacytaxonomy/syntax/">
+      
+      <link rel="icon" href="../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-7.2.5">
+    
+    
+      
+        <title>Fides Configuration Syntax - Fides Language Privacy Taxonomy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.be71726b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font-family:"Source Sans Pro";--md-code-font-family:""}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+    
+      <link rel="stylesheet" href="../css/fides.css">
+    
+      <link rel="stylesheet" href="../css/taxonomy.css">
+    
+      <link rel="stylesheet" href="../css/logo.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fides-configuration-syntax" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Fides Language Privacy Taxonomy" class="md-header__button md-logo" aria-label="Fides Language Privacy Taxonomy" data-md-component="logo">
+      
+  <img src="../img/fideslang.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Fides Language Privacy Taxonomy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Fides Configuration Syntax
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Fides Language Privacy Taxonomy" class="md-nav__button md-logo" aria-label="Fides Language Privacy Taxonomy" data-md-component="logo">
+      
+  <img src="../img/fideslang.svg" alt="logo">
+
+    </a>
+    Fides Language Privacy Taxonomy
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#yaml-building-block-of-fides" class="md-nav__link">
+    YAML - Building Block of Fides
+  </a>
+  
+    <nav class="md-nav" aria-label="YAML - Building Block of Fides">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fides-taxonomy" class="md-nav__link">
+    Fides Taxonomy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dot-notation-and-snake_case" class="md-nav__link">
+    Dot Notation and Snake_Case
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-value" class="md-nav__link">
+    Key-Value
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#character-encoding" class="md-nav__link">
+    Character Encoding
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="fides-configuration-syntax">Fides Configuration Syntax</h1>
+<p>Other pages in this language section describe various concepts and resources that appear in the Fides language. This page describes the syntax of the language in more detail to help better interpret Fides whether you're authoring or reading.</p>
+<p>The Fides language is designed to be relatively easy for anyone to read and write. The primary objective is to translate complex privacy compliance concepts into an approachable syntax, it's for this reason Fides is entirely written as YAML configurations.</p>
+<h2 id="yaml-building-block-of-fides">YAML - Building Block of Fides</h2>
+<h3 id="fides-taxonomy">Fides Taxonomy</h3>
+<p>The Fides language is intentionally simple. To assure this, Fides declarations use predefined primitives (e.g. data categories) that are used when describing your datasets, systems, policies, etc. These predefined primitives exist as part of the Fides taxonomy which is maintained in your Fides server so they can be consistently used across your organization's development team. </p>
+<p>You can learn more about the taxonomy structure and how to extend it in the <a href="../taxonomy/overview/">taxonomy guide</a>.</p>
+<h3 id="dot-notation-and-snake_case">Dot Notation and Snake_Case</h3>
+<p>To make writing and reading Fides language as easy for humans as possible, declarations from the privacy taxonomy use <code>dot notation</code> for the keys and use <code>snake_case</code> compound labels.</p>
+<p>For example, to describe a field in a database as contact information relating to a user, you can write its data category as:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># This declares that the contact data is about a given user:</span>
+<span class="l l-Scalar l-Scalar-Plain">user.contact</span>
+</code></pre></div></td></tr></table></div>
+<p>If we require greater specificity, we could declare the contact type as a phone number by using a more specific sub-category:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># This declares that the is data about a given user,</span>
+<span class="c1"># and is from the contact category and of type phone number.</span>
+<span class="l l-Scalar l-Scalar-Plain">user.contact.phone_number</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="key-value">Key-Value</h3>
+<p>The key-value is YAML, and Fides', basic building block. Every item in a Fides YAML document is a member of at least one dictionary. The key is always a <code>string</code>. The value is a scalar so that it can be any datatype. So the value can be a <code>string</code>, a <code>number</code>, or another <code>dictionary</code> - most commonly in Fides, this will be a <code>string</code> that may provide a description or a pointer to a reference object in the taxonomy.</p>
+<p>If we use the example of a user's contact email, to correctly declare this in valid Fides YAML as part of a Dataset, it would be:</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">                           </span><span class="c1"># Group of fields in the dataset.</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User&#39;s Email</span>
+<span class="w">      </span><span class="nt">data_categories</span><span class="p">:</span><span class="w">              </span><span class="c1"># Data category label(s) to assign field.</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user.contact.email</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user.account.contact.email</span>
+</code></pre></div></td></tr></table></div>
+The key for each key-value pair determines what value types are valid (for example, a resource type such as <code>data_categories</code> must use values from the Data Categories taxonomy), but many keys accept arbitrary strings as descriptive labels.</p>
+<p>Finally, as you see in the example above, keys such as <code>data_categories</code> accept a list of values for multi-labeling. In this case, the field email has been assigned the value <strong>user contact email</strong> as well as <strong>account-related contact email</strong>, indicating that it may be either of those categories when used.</p>
+<h2 id="character-encoding">Character Encoding</h2>
+<p>Fides configuration files must always be UTF-8 encoded. While the delimiters of the language are all ASCII characters, Fides accepts non-ASCII characters in key-values, comments, and string values.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <!--
+  Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+
+<!-- Footer -->
+<footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
+  
+
+  </div>
+
+  <div class="fides-footer"> 
+
+    <div class="footer-row">
+      <div class="footer-col"> 
+        <img class="fideslang-logo" src="img/fideslang.svg"/>
+      </div>
+      <div class="footer-col">
+        <div class="social-icons">
+           <a href="https://github.com/iabtechlab/fideslang" id="github"> <div> <!--?xml version="1.0" encoding="UTF-8"?--> <svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <title>Github icon</title> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Octicons-mark-github" fill="#999999"> <path d="M12.5,0 C5.59375,0 0,5.59375 0,12.5 C0,18.03125 3.578125,22.703125 8.546875,24.359375 C9.171875,24.46875 9.40625,24.09375 9.40625,23.765625 C9.40625,23.46875 9.390625,22.484375 9.390625,21.4375 C6.25,22.015625 5.4375,20.671875 5.1875,19.96875 C5.046875,19.609375 4.4375,18.5 3.90625,18.203125 C3.46875,17.96875 2.84375,17.390625 3.890625,17.375 C4.875,17.359375 5.578125,18.28125 5.8125,18.65625 C6.9375,20.546875 8.734375,20.015625 9.453125,19.6875 C9.5625,18.875 9.890625,18.328125 10.25,18.015625 C7.46875,17.703125 4.5625,16.625 4.5625,11.84375 C4.5625,10.484375 5.046875,9.359375 5.84375,8.484375 C5.71875,8.171875 5.28125,6.890625 5.96875,5.171875 C5.96875,5.171875 7.015625,4.84375 9.40625,6.453125 C10.40625,6.171875 11.46875,6.03125 12.53125,6.03125 C13.59375,6.03125 14.65625,6.171875 15.65625,6.453125 C18.046875,4.828125 19.09375,5.171875 19.09375,5.171875 C19.78125,6.890625 19.34375,8.171875 19.21875,8.484375 C20.015625,9.359375 20.5,10.46875 20.5,11.84375 C20.5,16.640625 17.578125,17.703125 14.796875,18.015625 C15.25,18.40625 15.640625,19.15625 15.640625,20.328125 C15.640625,22 15.625,23.34375 15.625,23.765625 C15.625,24.09375 15.859375,24.484375 16.484375,24.359375 C21.421875,22.703125 25,18.015625 25,12.5 C25,5.59375 19.40625,0 12.5,0 Z" id="Path"></path> </g></g> </svg> </div> </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top"], "search": "../assets/javascripts/workers/search.409db549.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56a63758.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+      
+    
+  </body>
+</html>
