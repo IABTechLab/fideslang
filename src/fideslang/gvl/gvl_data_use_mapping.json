@@ -128,6 +128,15 @@
             "illustrations": [
                 "Clicking on a link in an article might normally send you to another page or part of the article. To achieve this, 1°) your browser sends a request to a server linked to the website, 2°) the server answers back (“here is the article you asked for”), using technical information automatically included in the request sent by your device, to properly display the information / images that are part of the article you asked for. Technically, such exchange of information is necessary to deliver the content that appears on your screen."
             ]
+        },
+        "3": {
+            "id": 3,
+            "name": "Save and communicate privacy choices",
+            "data_uses": ["functional.storage.privacy_preferences"],
+            "description": "The choices you make regarding the purposes and entities listed in this notice are saved and made available to those entities in the form of digital signals (such as a string of characters). This is necessary in order to enable both this service and those entities to respect such choices.",
+            "illustrations": [
+                "When you visit a website and are offered a choice between consenting to the use of profiles for personalised advertising or not consenting, the choice you make is saved and made available to advertising providers, so that advertising presented to you respects that choice."
+            ]
         }
     }
 }

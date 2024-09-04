@@ -7,7 +7,7 @@ from typing import Dict, List, Optional
 
 from .models import Feature, GVLDataCategory, MappedDataCategory, MappedPurpose, Purpose
 
-### (Special) Purposes
+### Purposes & Special Purposes
 
 PURPOSE_MAPPING_FILE = join(
     dirname(__file__),
@@ -21,7 +21,7 @@ GVL_SPECIAL_PURPOSES: Dict[int, Purpose] = {}
 MAPPED_SPECIAL_PURPOSES: Dict[int, MappedPurpose] = {}
 MAPPED_PURPOSES_BY_DATA_USE: Dict[str, MappedPurpose] = {}
 
-### (Special) Features
+### Features & Special Features
 
 FEATURE_MAPPING_FILE = join(
     dirname(__file__),
