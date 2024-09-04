@@ -36,7 +36,7 @@ def test_purpose_to_data_use():
         purpose_to_data_use(12)
 
     with pytest.raises(KeyError):
-        purpose_to_data_use(3, True)
+        purpose_to_data_use(4, True)
 
 
 def test_features():
