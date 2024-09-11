@@ -180,6 +180,12 @@ DEFAULT_DATA_USES = [
         parent_key="functional",
     ),
     default_use_factory(
+        fides_key="functional.storage.privacy_preferences",
+        name="Local Data Storage for Privacy Preferences",
+        description="Stores or accesses privacy preferences information from the device as needed when using a product, service, application, or system",
+        parent_key="functional.storage",
+    ),
+    default_use_factory(
         fides_key="functional.service",
         name="Service",
         description="Functions relating to provided services, products, applications or systems.",

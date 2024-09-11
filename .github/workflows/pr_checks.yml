@@ -32,7 +32,7 @@ jobs:
           tags: ${{ env.IMAGE }}
 
       - name: Upload fideslang container
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.CONTAINER }}
           path: /tmp/${{ env.CONTAINER }}.tar

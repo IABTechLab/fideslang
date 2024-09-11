@@ -14,7 +14,14 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.3...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.4...main)
+
+
+## [3.0.4](https://github.com/ethyca/fideslang/compare/3.0.3...3.0.4)
+
+### Added
+
+- Adds mappings and new data use for special purposes 3 [#15](https://github.com/ethyca/fideslang/pull/15)
 
 
 ## [3.0.3](https://github.com/ethyca/fideslang/compare/3.0.2...3.0.3)
