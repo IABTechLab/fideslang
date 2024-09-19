@@ -523,6 +523,29 @@ def validate_fides_collection_key(value: str) -> str:
 FidesCollectionKey = Annotated[str, AfterValidator(validate_fides_collection_key)]
 
 
+class PartitionType(Enum):
+    RANGE = "range"
+    TIME = "time"
+
+
+class TimePartitionInterval(Enum):
+    HOUR = "hour"
+    DAY = "day"
+    MONTH = "month"
+    YEAR = "year"
+
+
+class PartitionSpecification(BaseModel):
+    """Defines partition spec for a collection"""
+
+    field: str  # the field that's partitioned
+    partition_type: PartitionType
+    start_value: Union[int, datetime]  # should also support some sort of NOW()
+    end_value: Union[int, datetime]  # should also support some sort of NOW()
+    interval: Union[int, TimePartitionInterval]
+    partitions_per_query: int = 1
+
+
 class CollectionMeta(BaseModel):
     """Collection-level specific annotations used for query traversal"""
 
@@ -530,6 +553,7 @@ class CollectionMeta(BaseModel):
     erase_after: Optional[List[FidesCollectionKey]] = None
     skip_processing: Optional[bool] = False
     masking_strategy_override: Optional[MaskingStrategyOverride] = None
+    partitioning: Optional[PartitionSpecification] = None
 
 
 class DatasetCollection(FidesopsMetaBackwardsCompat):
