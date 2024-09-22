@@ -544,6 +544,7 @@ class PartitionSpecification(BaseModel):
     end_value: Union[int, datetime]  # should also support some sort of NOW()
     interval: Union[int, TimePartitionInterval]
     partitions_per_query: int = 1
+    where_clauses: Optional[List[str]] = None
 
 
 class CollectionMeta(BaseModel):
