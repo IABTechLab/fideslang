@@ -62,6 +62,18 @@ meta_field = Field(
 )
 
 
+class MaskingStrategies(str, Enum):
+    """Possible options for masking strategy overrides"""
+
+    DELETE = "delete"
+
+
+class MaskingStrategyOverride(BaseModel):
+    """Overrides policy-level masking strategies."""
+
+    strategy: MaskingStrategies
+
+
 class FidesModel(BaseModel):
     """The base model for most top-level Fides objects."""
 
@@ -515,7 +527,9 @@ class CollectionMeta(BaseModel):
     """Collection-level specific annotations used for query traversal"""
 
     after: Optional[List[FidesCollectionKey]] = None
+    erase_after: Optional[List[FidesCollectionKey]] = None
     skip_processing: Optional[bool] = False
+    masking_strategy_override: Optional[MaskingStrategyOverride] = None
 
 
 class DatasetCollection(FidesopsMetaBackwardsCompat):

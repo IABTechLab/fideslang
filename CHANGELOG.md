@@ -16,6 +16,11 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.5...main)
 
+### Changed
+
+- Add collection-level masking strategy overrides and support specifying one collection to be erased after another [#17](https://github.com/ethyca/fideslang/pull/17)
+
+
 ## [3.0.5](https://github.com/ethyca/fideslang/compare/3.0.4...3.0.5)
 
 ### Added

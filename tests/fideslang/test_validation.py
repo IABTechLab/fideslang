@@ -15,6 +15,8 @@ from fideslang.models import (
     FidesDatasetReference,
     FidesMeta,
     FidesModel,
+    MaskingStrategies,
+    MaskingStrategyOverride,
     Policy,
     PolicyRule,
     PrivacyDeclaration,
@@ -642,7 +644,7 @@ class TestValidateFidesopsMeta:
             length=None,
             return_all_elements=None,
             read_only=None,
-            custom_request_field="site_id"
+            custom_request_field="site_id",
         )
 
     def test_specify_both_fidesops_meta_and_fides_meta(self):
@@ -788,6 +790,21 @@ class TestCollectionMeta:
 
     def test_valid_collection_key(self):
         CollectionMeta(after=[FidesCollectionKey("test_dataset.test_collection")])
+
+    def test_delete_masking_strategy(self):
+        meta = CollectionMeta(masking_strategy_override={"strategy": "delete"})
+
+        assert meta.masking_strategy_override == MaskingStrategyOverride(
+            strategy=MaskingStrategies.DELETE
+        )
+
+    def test_erase_after(self):
+        meta = CollectionMeta(
+            erase_after=[FidesCollectionKey("test_dataset.test_collection")]
+        )
+
+        assert meta.erase_after == [FidesCollectionKey("test_dataset.test_collection")]
+
 
 
 class TestAnyUrlString:
