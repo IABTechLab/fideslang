@@ -523,22 +523,20 @@ def validate_fides_collection_key(value: str) -> str:
 FidesCollectionKey = Annotated[str, AfterValidator(validate_fides_collection_key)]
 
 
-class PartitionType(Enum):
-    RANGE = "range"
-    TIME = "time"
+class UserDefinedPartitionWindow(BaseModel):
+    """Defines a user-defined partition window"""
 
-
-class TimePartitionInterval(Enum):
-    HOUR = "hour"
-    DAY = "day"
-    MONTH = "month"
-    YEAR = "year"
+    start: str
+    end: str
+    start_inclusive: bool = True
+    end_inclusive: bool = True
 
 
 class PartitionSpecification(BaseModel):
     """Defines partition spec for a collection"""
 
-    where_clauses: Optional[List[str]] = None
+    field: str
+    windows: Optional[List[UserDefinedPartitionWindow]] = None
 
 
 class CollectionMeta(BaseModel):
