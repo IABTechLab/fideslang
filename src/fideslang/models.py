@@ -579,6 +579,7 @@ class DatasetMetadata(BaseModel):
 
     resource_id: Optional[str] = None
     after: Optional[List[FidesKey]] = None
+    namespace: Optional[Dict] = None
 
 
 class Dataset(FidesModel, FidesopsMetaBackwardsCompat):
