@@ -14,7 +14,11 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.5...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.6...main)
+
+
+
+## [3.0.6](https://github.com/ethyca/fideslang/compare/3.0.5...3.0.6)
 
 ### Changed
 
