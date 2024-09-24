@@ -538,12 +538,6 @@ class TimePartitionInterval(Enum):
 class PartitionSpecification(BaseModel):
     """Defines partition spec for a collection"""
 
-    field: str  # the field that's partitioned
-    partition_type: PartitionType
-    start_value: Union[int, datetime]  # should also support some sort of NOW()
-    end_value: Union[int, datetime]  # should also support some sort of NOW()
-    interval: Union[int, TimePartitionInterval]
-    partitions_per_query: int = 1
     where_clauses: Optional[List[str]] = None
 
 
