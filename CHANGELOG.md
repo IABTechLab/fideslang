@@ -14,8 +14,13 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.4...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.5...main)
 
+## [3.0.5](https://github.com/ethyca/fideslang/compare/3.0.4...3.0.5)
+
+### Added
+
+- Adds namespace field to dataset fides_meta [#18](https://github.com/ethyca/fideslang/pull/18)
 
 ## [3.0.4](https://github.com/ethyca/fideslang/compare/3.0.3...3.0.4)
 
