@@ -523,22 +523,6 @@ def validate_fides_collection_key(value: str) -> str:
 FidesCollectionKey = Annotated[str, AfterValidator(validate_fides_collection_key)]
 
 
-class UserDefinedPartitionWindow(BaseModel):
-    """Defines a user-defined partition window"""
-
-    start: str
-    end: str
-    start_inclusive: bool = True
-    end_inclusive: bool = True
-
-
-class PartitionSpecification(BaseModel):
-    """Defines partition spec for a collection"""
-
-    field: str
-    windows: Optional[List[UserDefinedPartitionWindow]] = None
-
-
 class CollectionMeta(BaseModel):
     """Collection-level specific annotations used for query traversal"""
 
@@ -546,7 +530,10 @@ class CollectionMeta(BaseModel):
     erase_after: Optional[List[FidesCollectionKey]] = None
     skip_processing: Optional[bool] = False
     masking_strategy_override: Optional[MaskingStrategyOverride] = None
-    partitioning: Optional[PartitionSpecification] = None
+
+    # partitioning metadata is kept open-ended as it is an experimental feature -
+    # more strictly defined metadata structures will be supported in the future
+    partitioning: Optional[Dict] = None
 
 
 class DatasetCollection(FidesopsMetaBackwardsCompat):
