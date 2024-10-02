@@ -531,6 +531,10 @@ class CollectionMeta(BaseModel):
     skip_processing: Optional[bool] = False
     masking_strategy_override: Optional[MaskingStrategyOverride] = None
 
+    # partitioning metadata is kept open-ended as it is an experimental feature -
+    # more strictly defined metadata structures will be supported in the future
+    partitioning: Optional[Dict] = None
+
 
 class DatasetCollection(FidesopsMetaBackwardsCompat):
     """

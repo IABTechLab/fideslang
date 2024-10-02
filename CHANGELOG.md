@@ -14,8 +14,14 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.6...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.7...main)
 
+
+## [3.0.7](https://github.com/ethyca/fideslang/compare/3.0.6...3.0.7)
+
+### Added
+
+- Add a loosely-typed `partitioning` field to the `DatasetCollection.fides_meta` structure to support flexible database table partitioning specifications [#21](https://github.com/ethyca/fideslang/pull/21)
 
 
 ## [3.0.6](https://github.com/ethyca/fideslang/compare/3.0.5...3.0.6)
