@@ -471,35 +471,6 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
             )
         return meta_values
 
-    @model_validator(mode="after")
-    def validate_object_fields(
-        self,
-        _: ValidationInfo,
-    ) -> DatasetField:
-        """Two validation checks for object fields:
-        - If there are sub-fields specified, type should be either empty or 'object'
-        - Additionally object fields cannot have data_categories.
-        """
-        fields = self.fields
-        declared_data_type = None
-        field_name: str = self.name
-
-        if self.fides_meta:
-            declared_data_type = self.fides_meta.data_type
-
-        if fields and declared_data_type:
-            data_type, _ = parse_data_type_string(declared_data_type)
-            if data_type != "object":
-                raise ValueError(
-                    f"The data type '{data_type}' on field '{field_name}' is not compatible with specified sub-fields. Convert to an 'object' field."
-                )
-
-        if (fields or declared_data_type == "object") and self.data_categories:
-            raise ValueError(
-                f"Object field '{field_name}' cannot have specified data_categories. Specify category on sub-field instead"
-            )
-        return self
-
 
 # this is required for the recursive reference in the pydantic model:
 DatasetField.model_rebuild()

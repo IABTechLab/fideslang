@@ -717,23 +717,20 @@ class TestValidateDatasetField:
         )
 
     def test_data_categories_at_object_level(self):
-        with pytest.raises(ValidationError) as exc:
-            DatasetField(
-                name="test_field",
-                data_categories=["user"],
-                fides_meta=FidesMeta(
-                    references=None,
-                    identify=None,
-                    primary_key=False,
-                    data_type="object",
-                    length=None,
-                    return_all_elements=None,
-                    read_only=None,
-                ),
-                fields=[DatasetField(name="nested_field")],
-            )
-        assert_error_message_includes(
-            exc, "Object field 'test_field' cannot have specified data_categories"
+        # Data categories at the object level ARE allowed now
+        DatasetField(
+            name="test_field",
+            data_categories=["user"],
+            fides_meta=FidesMeta(
+                references=None,
+                identity=None,
+                primary_key=False,
+                data_type="object",
+                length=None,
+                return_all_elements=None,
+                read_only=None,
+            ),
+            fields=[DatasetField(name="nested_field")],
         )
 
     def test_object_field_conflicting_types(self):
@@ -804,7 +801,6 @@ class TestCollectionMeta:
         )
 
         assert meta.erase_after == [FidesCollectionKey("test_dataset.test_collection")]
-
 
 
 class TestAnyUrlString:
