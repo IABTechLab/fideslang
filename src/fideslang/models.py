@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from datetime import datetime
 from enum import Enum
-from typing import Annotated, Dict, List, Optional, Union
+from typing import Annotated, Dict, List, Optional, Union, Any
 
 from packaging.version import InvalidVersion, Version
 from pydantic import (
@@ -73,6 +73,9 @@ class MaskingStrategyOverride(BaseModel):
 
     strategy: MaskingStrategies
 
+class FieldMaskingStrategyOverride(BaseModel):
+    strategy: str
+    configuration: Dict[str, Any]
 
 class FidesModel(BaseModel):
     """The base model for most top-level Fides objects."""
@@ -417,6 +420,10 @@ class FidesMeta(BaseModel):
     custom_request_field: Optional[str] = Field(
         default=None,
         description="Optionally specify that a field may be used as a custom request field in DSRs. The value is the name of the field in the DSR.",
+    )
+    masking_strategy_override = Optional[FieldMaskingStrategyOverride] = Field(
+        default=None,
+        description="Optionally specify a masking strategy override for this field.",
     )
 
     @field_validator("data_type")
