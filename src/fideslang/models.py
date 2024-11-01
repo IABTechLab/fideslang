@@ -69,13 +69,13 @@ class MaskingStrategies(str, Enum):
 
 
 class MaskingStrategyOverride(BaseModel):
-    """Overrides policy-level masking strategies in collections."""
+    """Overrides collection-level masking strategies."""
 
     strategy: MaskingStrategies
 
 
 class FieldMaskingStrategyOverride(BaseModel):
-    """Overrides policy-level masking strategies in fields."""
+    """Overrides field-level masking strategies."""
 
     strategy: str
     configuration: Dict
