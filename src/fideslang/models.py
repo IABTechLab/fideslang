@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from datetime import datetime
 from enum import Enum
-from typing import Annotated, Dict, List, Optional, Union, Any
+from typing import Annotated, Dict, List, Optional, Union
 
 from packaging.version import InvalidVersion, Version
 from pydantic import (
@@ -69,13 +69,17 @@ class MaskingStrategies(str, Enum):
 
 
 class MaskingStrategyOverride(BaseModel):
-    """Overrides policy-level masking strategies."""
+    """Overrides policy-level masking strategies in collections."""
 
     strategy: MaskingStrategies
 
+
 class FieldMaskingStrategyOverride(BaseModel):
+    """Overrides policy-level masking strategies in fields."""
+
     strategy: str
-    configuration: Dict[str, Any]
+    configuration: Dict
+
 
 class FidesModel(BaseModel):
     """The base model for most top-level Fides objects."""
