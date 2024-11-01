@@ -421,7 +421,7 @@ class FidesMeta(BaseModel):
         default=None,
         description="Optionally specify that a field may be used as a custom request field in DSRs. The value is the name of the field in the DSR.",
     )
-    masking_strategy_override = Optional[FieldMaskingStrategyOverride] = Field(
+    masking_strategy_override: Optional[FieldMaskingStrategyOverride] = Field(
         default=None,
         description="Optionally specify a masking strategy override for this field.",
     )
