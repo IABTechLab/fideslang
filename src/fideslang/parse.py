@@ -2,6 +2,7 @@
 This module handles everything related to parsing resources into Pydantic models,
 either from local files or the server.
 """
+
 from typing import Dict, List
 
 from fideslang import FidesModel, Taxonomy, model_map

@@ -1,4 +1,5 @@
 """This module handles anything related to working with raw manifest files."""
+
 import glob
 from functools import reduce
 from typing import Dict, List, Set, Union

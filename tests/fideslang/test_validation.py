@@ -717,20 +717,25 @@ class TestValidateDatasetField:
         )
 
     def test_data_categories_at_object_level(self):
-        # Data categories at the object level ARE allowed now
-        DatasetField(
+
+        field = DatasetField(
             name="test_field",
             data_categories=["user"],
             fides_meta=FidesMeta(
                 references=None,
-                identity=None,
+                identify=None,
                 primary_key=False,
                 data_type="object",
                 length=None,
                 return_all_elements=None,
                 read_only=None,
-            )
+            ),
+            fields=[DatasetField(name="nested_field")],
         )
+
+        assert field
+        assert field.data_categories == ["user"]
+        assert field.fides_meta.data_type == "object"
 
     def test_data_categories_on_nested_fields(self):
 
@@ -756,17 +761,15 @@ class TestValidateDatasetField:
                         primary_key=False,
                         data_type="string",
                         length=None,
-                        return_all_elements=None,
                         read_only=None,
+                        data_categories=["user"],
                     ),
                 )
             ],
         )
 
         assert field
-        assert field.fields
-        print(f"fields: {field.fields}")
-        print(f"field:  {vars(field)}")
+        assert field.data_categories == ["user"]
         assert field.fields[0].data_categories == ["user"]
 
 

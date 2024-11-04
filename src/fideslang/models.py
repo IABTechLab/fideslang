@@ -470,7 +470,7 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
                 "The 'return_all_elements' attribute can only be specified on array fields."
             )
         return meta_values
-    
+
     @model_validator(mode="after")
     def validate_object_fields(
         self,
@@ -492,6 +492,8 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
                 raise ValueError(
                     f"The data type '{data_type}' on field '{field_name}' is not compatible with specified sub-fields. Convert to an 'object' field."
                 )
+
+        return self
 
 
 # this is required for the recursive reference in the pydantic model:

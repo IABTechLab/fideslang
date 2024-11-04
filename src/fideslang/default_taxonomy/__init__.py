@@ -7,8 +7,8 @@ from .data_subjects import DEFAULT_DATA_SUBJECTS
 from .data_uses import DEFAULT_DATA_USES
 from .organizations import DEFAULT_ORGANIZATIONS
 
-sort_data_types = (
-    lambda x: x.parent_key if hasattr(x, "parent_key") and x.parent_key else x.fides_key
+sort_data_types = lambda x: (
+    x.parent_key if hasattr(x, "parent_key") and x.parent_key else x.fides_key
 )
 
 DEFAULT_TAXONOMY = Taxonomy(

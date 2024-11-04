@@ -1,6 +1,7 @@
 """
 Contains all of the additional validation for the resource models.
 """
+
 import re
 from collections import Counter
 from typing import Annotated, Dict, List, Optional, Pattern, Set, Tuple
