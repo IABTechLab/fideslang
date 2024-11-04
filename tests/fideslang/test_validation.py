@@ -729,40 +729,45 @@ class TestValidateDatasetField:
                 length=None,
                 return_all_elements=None,
                 read_only=None,
-            ),
-            fields=[DatasetField(name="nested_field")],
-        )
-
-    def test_object_field_conflicting_types(self):
-    
-        DatasetField(
-            name="test_field",
-            data_categories=["user"],
-            fides_meta=FidesMeta(
-                references=None,
-                identify=None,
-                primary_key=False,
-                data_type="string",
-                length=None,
-                return_all_elements=None,
-                read_only=None,
-            ),
-            fields=[DatasetField(name="nested_field")],
+            )
         )
 
     def test_data_categories_on_nested_fields(self):
-        DatasetField(
-            name="test_field",
+
+        field = DatasetField(
+            name="test_for_nest",
+            data_categories=["user"],
             fides_meta=FidesMeta(
                 references=None,
                 identify=None,
                 primary_key=False,
                 data_type="object",
                 length=None,
+                return_all_elements=None,
                 read_only=None,
             ),
-            fields=[DatasetField(name="nested_field", data_categories=["user"])],
+            fields=[
+                DatasetField(
+                    name="nested_field",
+                    data_categories=["user"],
+                    fides_meta=FidesMeta(
+                        references=None,
+                        identify=None,
+                        primary_key=False,
+                        data_type="string",
+                        length=None,
+                        return_all_elements=None,
+                        read_only=None,
+                    ),
+                )
+            ],
         )
+
+        assert field
+        assert field.fields
+        print(f"fields: {field.fields}")
+        print(f"field:  {vars(field)}")
+        assert field.fields[0].data_categories == ["user"]
 
 
 class TestCollectionMeta:

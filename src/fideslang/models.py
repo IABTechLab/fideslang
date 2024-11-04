@@ -18,7 +18,6 @@ from pydantic import (
     HttpUrl,
     PositiveInt,
     SerializeAsAny,
-    ValidationInfo,
     field_validator,
     model_validator,
 )
@@ -32,7 +31,6 @@ from fideslang.validation import (
     is_deprecated_if_replaced,
     matching_parent_key,
     no_self_reference,
-    parse_data_type_string,
     sort_list_objects_by_name,
     unique_items_in_list,
     valid_data_type,
