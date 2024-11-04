@@ -18,6 +18,7 @@ from pydantic import (
     HttpUrl,
     PositiveInt,
     SerializeAsAny,
+    ValidationInfo,
     field_validator,
     model_validator,
 )
@@ -31,6 +32,7 @@ from fideslang.validation import (
     is_deprecated_if_replaced,
     matching_parent_key,
     no_self_reference,
+    parse_data_type_string,
     sort_list_objects_by_name,
     unique_items_in_list,
     valid_data_type,
@@ -468,6 +470,30 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
                 "The 'return_all_elements' attribute can only be specified on array fields."
             )
         return meta_values
+    
+    @model_validator(mode="after")
+    def validate_object_fields(
+        self,
+        _: ValidationInfo,
+    ) -> DatasetField:
+        """Two validation checks for object fields:
+        - If there are sub-fields specified, type should be either empty or 'object'
+        """
+        if self.fields:
+            breakpoint()
+        fields = self.fields
+        declared_data_type = None
+        field_name: str = self.name
+
+        if self.fides_meta:
+            declared_data_type = self.fides_meta.data_type
+
+        if fields and declared_data_type:
+            data_type, _ = parse_data_type_string(declared_data_type)
+            if data_type != "object":
+                raise ValueError(
+                    f"The data type '{data_type}' on field '{field_name}' is not compatible with specified sub-fields. Convert to an 'object' field."
+                )
 
 
 # this is required for the recursive reference in the pydantic model:
