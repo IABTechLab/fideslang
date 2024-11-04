@@ -78,7 +78,7 @@ class FieldMaskingStrategyOverride(BaseModel):
     """Overrides field-level masking strategies."""
 
     strategy: str
-    configuration: Dict
+    configuration: Optional[Dict] = {}
 
 
 class FidesModel(BaseModel):
