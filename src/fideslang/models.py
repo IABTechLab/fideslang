@@ -479,8 +479,6 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
         """Two validation checks for object fields:
         - If there are sub-fields specified, type should be either empty or 'object'
         """
-        if self.fields:
-            breakpoint()
         fields = self.fields
         declared_data_type = None
         field_name: str = self.name
