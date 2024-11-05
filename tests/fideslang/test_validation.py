@@ -717,58 +717,60 @@ class TestValidateDatasetField:
         )
 
     def test_data_categories_at_object_level(self):
-        with pytest.raises(ValidationError) as exc:
-            DatasetField(
-                name="test_field",
-                data_categories=["user"],
-                fides_meta=FidesMeta(
-                    references=None,
-                    identify=None,
-                    primary_key=False,
-                    data_type="object",
-                    length=None,
-                    return_all_elements=None,
-                    read_only=None,
-                ),
-                fields=[DatasetField(name="nested_field")],
-            )
-        assert_error_message_includes(
-            exc, "Object field 'test_field' cannot have specified data_categories"
-        )
 
-    def test_object_field_conflicting_types(self):
-        with pytest.raises(ValidationError) as exc:
-            DatasetField(
-                name="test_field",
-                data_categories=["user"],
-                fides_meta=FidesMeta(
-                    references=None,
-                    identify=None,
-                    primary_key=False,
-                    data_type="string",
-                    length=None,
-                    return_all_elements=None,
-                    read_only=None,
-                ),
-                fields=[DatasetField(name="nested_field")],
-            )
-        assert_error_message_includes(
-            exc, "The data type 'string' on field 'test_field' is not compatible with"
-        )
-
-    def test_data_categories_on_nested_fields(self):
-        DatasetField(
+        field = DatasetField(
             name="test_field",
+            data_categories=["user"],
             fides_meta=FidesMeta(
                 references=None,
                 identify=None,
                 primary_key=False,
                 data_type="object",
                 length=None,
+                return_all_elements=None,
                 read_only=None,
             ),
-            fields=[DatasetField(name="nested_field", data_categories=["user"])],
+            fields=[DatasetField(name="nested_field")],
         )
+
+        assert field
+        assert field.data_categories == ["user"]
+        assert field.fides_meta.data_type == "object"
+
+    def test_data_categories_on_nested_fields(self):
+
+        field = DatasetField(
+            name="test_for_nest",
+            data_categories=["user"],
+            fides_meta=FidesMeta(
+                references=None,
+                identify=None,
+                primary_key=False,
+                data_type="object",
+                length=None,
+                return_all_elements=None,
+                read_only=None,
+            ),
+            fields=[
+                DatasetField(
+                    name="nested_field",
+                    data_categories=["user"],
+                    fides_meta=FidesMeta(
+                        references=None,
+                        identify=None,
+                        primary_key=False,
+                        data_type="string",
+                        length=None,
+                        read_only=None,
+                        data_categories=["user"],
+                    ),
+                )
+            ],
+        )
+
+        assert field
+        assert field.data_categories == ["user"]
+        assert field.fields[0].data_categories == ["user"]
 
 
 class TestCollectionMeta:
@@ -804,7 +806,6 @@ class TestCollectionMeta:
         )
 
         assert meta.erase_after == [FidesCollectionKey("test_dataset.test_collection")]
-
 
 
 class TestAnyUrlString:

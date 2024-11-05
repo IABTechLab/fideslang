@@ -9,7 +9,6 @@ To update:
 2. Copy/Paste the JSON response below
 """
 
-
 COUNTRY_CODES = [
     {"name": "Afghanistan", "alpha3Code": "AFG"},
     {"name": "Åland Islands", "alpha3Code": "ALA"},

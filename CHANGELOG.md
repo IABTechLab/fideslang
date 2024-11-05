@@ -16,6 +16,10 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.7...main)
 
+### Changed
+
+- Remove stipulation that sub fields (Field) of a Field object cannot have data categories assigned [#22](https://github.com/ethyca/fideslang/pull/22)
+
 
 ## [3.0.7](https://github.com/ethyca/fideslang/compare/3.0.6...3.0.7)
 
