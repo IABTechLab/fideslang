@@ -489,7 +489,6 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
     ) -> DatasetField:
         """Two validation checks for object fields:
         - If there are sub-fields specified, type should be either empty or 'object'
-        - Additionally object fields cannot have data_categories.
         """
         fields = self.fields
         declared_data_type = None
@@ -505,10 +504,6 @@ class DatasetField(DatasetFieldBase, FidesopsMetaBackwardsCompat):
                     f"The data type '{data_type}' on field '{field_name}' is not compatible with specified sub-fields. Convert to an 'object' field."
                 )
 
-        if (fields or declared_data_type == "object") and self.data_categories:
-            raise ValueError(
-                f"Object field '{field_name}' cannot have specified data_categories. Specify category on sub-field instead"
-            )
         return self
 
 

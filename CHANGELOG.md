@@ -14,9 +14,15 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.7...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.8...main)
 
 - Add field-level masking strategy overrides [#23](https://github.com/ethyca/fideslang/pull/23)
+
+## [3.0.8](https://github.com/ethyca/fideslang/compare/3.0.7...3.0.8)
+
+### Changed
+
+- Remove stipulation that sub fields (Field) of a Field object cannot have data categories assigned [#22](https://github.com/ethyca/fideslang/pull/22)
 
 ## [3.0.7](https://github.com/ethyca/fideslang/compare/3.0.6...3.0.7)
 
