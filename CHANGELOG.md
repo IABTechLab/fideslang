@@ -16,6 +16,7 @@ The types of changes are:
 
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.8...main)
 
+- Add field-level masking strategy overrides [#23](https://github.com/ethyca/fideslang/pull/23)
 
 ## [3.0.8](https://github.com/ethyca/fideslang/compare/3.0.7...3.0.8)
 
