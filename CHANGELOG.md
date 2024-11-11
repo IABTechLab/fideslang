@@ -14,7 +14,11 @@ The types of changes are:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.8...main)
+## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.9...main)
+
+## [3.0.9](https://github.com/ethyca/fideslang/compare/3.0.8...3.0.9)
+
+### Added
 
 - Add field-level masking strategy overrides [#23](https://github.com/ethyca/fideslang/pull/23)
 
