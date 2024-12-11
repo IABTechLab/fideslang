@@ -8,20 +8,21 @@ disclosure,data_use,Disclosure,,,Provides information regarding whether the data
 necessary,data_use,Necessary,,,
 necessary.fraud_detection,necessary,Fraud Detection,,,"Detects possible fraud or misuse of the product, service, application or system."
 necessary.legal_obligation,necessary,Legal Obligation,,,Provides service to meet a legal or compliance obligation such as consent management.
-necessary.service,necessary,Necessary Service,,,"Provides the necessary product, service, application or system, without which the product/service would not be possible."
 necessary.legal_obligation.hold,necessary.legal_obligation,Legal Hold,,,Provides service to meet a legal hold.
-necessary.service.notifications.email,necessary.service.notifications,Email Notifications,,,"Sends email notifications about the product, service, application or system."
-necessary.service.notifications.sms,necessary.service.notifications,SMS Notifications,,,"Sends SMS notifications about the product, service, application or system."
+necessary.legal_obligation.age_verification,necessary.legal_obligation,Age Verification,,,Provides service to verify minimum legal age.
+necessary.legal_obligation.content_moderation,necessary.legal_obligation,Content Moderation,,,Provides service to moderate content.
+necessary.legal_obligation.dsr,necessary.legal_obligation,DSR/Privacy Request,,,Provides service to meet a data subject rights request.
+necessary.operations.notifications.email,necessary.operations.notifications,Email Notifications,,,"Sends email notifications about the product, service, application or system."
+necessary.operations.notifications.sms,necessary.operations.notifications,SMS Notifications,,,"Sends SMS notifications about the product, service, application or system."
 necessary.operations.support,necessary.operations,Opertions Support,,,"Provides support for the product, service, application or system."
 necessary.operations.improve,necessary.operations,Operations Improvement,,,"Necessary to optimize and improve support for the product, service, application or system."
 necessary.operations.quality_assurance,necessary.operations,Quality Assuarance,,,"Necessary to provide quality assurance for the product, service, application, or system. "
 necessary.operations.debugging,necessary.operations,Operations Debugging,,,"Necessary to debug the product, service, application, or system."
-necessary.service.authentication,necessary.service,Service Authentication,,,"Authenticate users to the product, service, application or system."
-necessary.service.notifications,necessary.service,Service Notifications,,,"Sends notifications about the product, service, application or system."
-necessary.service.operations,necessary.service,Service Operations,,,"necessary to ensure the operation of the product, service, application or system."
-necessary.service.payment_processing,necessary.service,Payment Processing,,,"necessary to processes payments for the product, service, application or system."
-necessary.service.security,necessary.service,Service Security,,,"necessary to provide security for the product, service, application or system"
-necessary.service.upgrades,necessary.service,Service Upgrades,,,Provides timely system upgrade information options.
+necessary.operations.authentication,necessary.operations,Service Authentication,,,"Authenticate users to the product, service, application or system."
+necessary.operations.notifications,necessary.operations,Service Notifications,,,"Sends notifications about the product, service, application or system."
+necessary.operations.payment_processing,necessary.operations,Payment Processing,,,"necessary to processes payments for the product, service, application or system."
+necessary.operations.security,necessary.operations,Service Security,,,"necessary to provide security for the product, service, application or system"
+necessary.operations.upgrades,necessary.operations,Service Upgrades,,,Provides timely system upgrade information options.
 operational.service,operational,Operational Service,,,"Functions relating to provided services, products, applications or systems."
 operational.website_use,operational,Operational Website Use,,,"Provides information relating to how consumers use the website, product, service, application, or system. "
 operational.survey,operational,Operational Survey,,,"Information relating to surveys provided to assist with improving the website, product, service, application or systems."
