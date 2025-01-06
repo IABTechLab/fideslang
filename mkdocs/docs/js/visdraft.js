@@ -833,12 +833,7 @@ Promise.all([
   const accessor = {
     id: (d) => d.fides_key,
     parentId: (d) => d.parent_key,
-    name: (d) =>
-      d.fides_key
-        .slice(d.fides_key.lastIndexOf(".") + 1)
-        .split("_")
-        .map((d) => d[0].toUpperCase() + d.slice(1))
-        .join(" "),
+    name: (d) => d.name,
     colorKey: (d) => d.fides_key,
     description: (d) => d.description,
     regulation: (d) => d.triggered_laws,
