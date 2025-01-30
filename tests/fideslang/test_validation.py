@@ -683,6 +683,39 @@ class TestValidateFidesMeta:
 
 
 class TestValidateDatasetField:
+
+    @pytest.mark.parametrize("data_type", ["string", "integer", "float", "boolean", "object", "time", "date", "datetime"])
+    def test_valid_types(self, data_type):
+        field = DatasetField(
+            name="test_field",
+            fides_meta=FidesMeta(
+                references=None,
+                identity="identifiable_field_name",
+                primary_key=False,
+                data_type=data_type,
+                length=None,
+                return_all_elements=None,
+                read_only=None,
+            ),
+        )
+        assert field.fides_meta.data_type == data_type
+
+    @pytest.mark.parametrize("data_type", ["not_string", "not_integer", "not_float", "not_boolean", "not_object", "not_time", "not_date", "not_datetime"])
+    def test_invalid_types(self, data_type):
+        field = DatasetField(
+            name="test_field",
+            fides_meta=FidesMeta(
+                references=None,
+                identity="identifiable_field_name",
+                primary_key=False,
+                data_type="string",
+                length=None,
+                return_all_elements=None,
+                read_only=None,
+            ),
+        )
+        assert field.fides_meta.data_type == "string"
+
     def test_return_all_elements_not_array_field(self):
         with pytest.raises(ValidationError) as exc:
             DatasetField(

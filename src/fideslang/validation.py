@@ -188,6 +188,9 @@ DATA_TYPE_NAMES: Set[str] = {
     "boolean",
     "object_id",
     "object",
+    "time",
+    "date",
+    "datetime",
 }
 
 
