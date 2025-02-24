@@ -17,7 +17,7 @@ The types of changes are:
 ## [Unreleased](https://github.com/ethyca/fideslang/compare/3.0.9...main)
 
 ### Deprecated
-- Deprecated `Cookies` model and `.cookies` property on `System` and `PrivacyDeclaration` [#198](https://github.com/IABTechLab/fideslang/pull/198)
+- Deprecated `Cookies` model and `.cookies` property on `System` and `PrivacyDeclaration` [#199](https://github.com/IABTechLab/fideslang/pull/199)
 
 ## [3.0.9](https://github.com/ethyca/fideslang/compare/3.0.8...3.0.9)
 
