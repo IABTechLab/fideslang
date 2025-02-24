@@ -8,6 +8,7 @@ from __future__ import annotations
 from datetime import datetime
 from enum import Enum
 from typing import Annotated, Dict, List, Optional, Union, Any
+from warnings import warn
 
 from packaging.version import InvalidVersion, Version
 from pydantic import (
@@ -284,12 +285,23 @@ class DataCategory(FidesModel, DefaultModel):
 
 
 class Cookies(BaseModel):
-    """The Cookies resource model"""
+    """
+    DEPRECATED.
+    The Cookies resource model
+    """
 
     name: str
     path: Optional[str] = None
     domain: Optional[str] = None
     model_config = ConfigDict(from_attributes=True)
+
+    @model_validator(mode="after")
+    def validate_cookies(self, _: ValidationInfo) -> Cookies:
+        """
+        Validate that the `cookies` field is deprecated and warn that it should not be used.
+        """
+        warn("The 'cookies' field is deprecated and should not be used.")
+        return self
 
 
 class DataSubjectRights(BaseModel):
@@ -881,9 +893,21 @@ class PrivacyDeclaration(BaseModel):
     )
     cookies: Optional[List[Cookies]] = Field(
         default=None,
-        description="Cookies associated with this data use to deliver services and functionality",
+        description="DEPRECATED. Cookies associated with this data use to deliver services and functionality",
     )
     model_config = ConfigDict(from_attributes=True)
+
+    @field_validator("cookies")
+    @classmethod
+    def validate_cookies(
+        cls, value: Optional[List[Cookies]]
+    ) -> Optional[List[Cookies]]:
+        """
+        Validate that the `cookies` field is deprecated and warn that it should not be used.
+        """
+        if value is not None:
+            warn("The 'cookies' field is deprecated and should not be used.")
+        return value
 
 
 class SystemMetadata(BaseModel):
@@ -1133,6 +1157,18 @@ class System(FidesModel):
                         ], f"PrivacyDeclaration '{privacy_declaration.name}' defines {direction} with '{fides_key}' and is applied to the System '{system}', which does not itself define {direction} with that resource."
 
         return self
+
+    @field_validator("cookies")
+    @classmethod
+    def validate_cookies(
+        cls, value: Optional[List[Cookies]]
+    ) -> Optional[List[Cookies]]:
+        """
+        Validate that the `cookies` field is deprecated and warn that it should not be used.
+        """
+        if value is not None:
+            warn("The 'cookies' field is deprecated and should not be used.")
+        return value
 
     model_config = ConfigDict(use_enum_values=True)
 
