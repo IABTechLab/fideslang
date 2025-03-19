@@ -1,8 +1,10 @@
 # Privacy Taxonomy Implementation Guidelines
 
-This document provides technical implementation guidelines related to the Privacy Taxonomy. The Privacy Implementation & Accountability Task Force (PIAT) developed the guidelines to support industry adoption of the Privacy Taxonomy. The intended audience for this document include product and engineering teams, legal teams, and data governance teams, building technology 
+This document provides technical implementation guidelines related to the Privacy Taxonomy. The Privacy Implementation & Accountability Task Force (PIAT) developed the guidelines to support industry adoption of the Privacy Taxonomy. The intended audience for this document include product and engineering teams, legal teams, and data governance teams.
 
-**Table of Contents**
+**These Implementation Guidelines are open for public comment until April 17th, 2025.**
+
+## **Table of Contents**
 
 [1. Introduction to the Privacy Taxonomy](#1-introduction-to-the-privacy-taxonomy)
 
