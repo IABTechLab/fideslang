@@ -1,8 +1,0 @@
-fides_key,parent_key,name,description
-data_subject,,Data Subject,
-consumer,data_subject,Title,A natural person who is a resident of a State within the United States of America.
-household,data_subject,Title,A group of Consumers who cohabitate with one another at the same residential address and share use of common devices or services.
-employee,data_subject,Title,"An individual who is an employee of, director of, officer of, medical staff member of, or independent contractor of a business"
-B2B,data_subject,Title,Business-to-business; individuals who interact with a business purely in a commercial capacity 
-child,data_subject,Title,A Consumer under the age of 15
-child.child_under_thirteen,child,Title,A Consumer under the age of 13

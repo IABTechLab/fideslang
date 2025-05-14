@@ -1,43 +1,46 @@
 fides_key,parent_key,name,tcf,mspa,description
 data_use,,Data Use,,,
-necessary.operations,necessary,Necessary Operations,,,"Provides essential functions such as legal compliance, security, basic system operations, and support. Without the 'necessary' data use, the product or service cannot operate or meet legal and security requirements"
-operational,data_use,Operational,,,"Facilitates operations for the service or product, including product improvements. "
+necessary.operations,necessary,Operations,,,"Provides essential functions such as legal compliance, security, basic system operations, and support. Without the 'necessary' data use, the product or service cannot operate or meet legal and security requirements"
+functional,data_use,Functional,,,"Facilitates enhanced operations for the service or product, including personalization. "
 analytics,data_use,Analytics,,,"Provides analytics for activities such as system and advertising performance reporting, insights and advertising fraud detection."
 advertising_marketing,data_use,Advertising & Marketing,,,"Enables marketing, promotion, advertising and sales activities for the product, service, application or system."
 disclosure,data_use,Disclosure,,,Provides information regarding whether the data is being transmitted to other parties.
 necessary,data_use,Necessary,,,
 necessary.fraud_detection,necessary,Fraud Detection,,,"Detects possible fraud or misuse of the product, service, application or system."
 necessary.legal_obligation,necessary,Legal Obligation,,,Provides service to meet a legal or compliance obligation such as consent management.
-necessary.service,necessary,Necessary Service,,,"Provides the necessary product, service, application or system, without which the product/service would not be possible."
 necessary.legal_obligation.hold,necessary.legal_obligation,Legal Hold,,,Provides service to meet a legal hold.
-necessary.service.notifications.email,necessary.service.notifications,Email Notifications,,,"Sends email notifications about the product, service, application or system."
-necessary.service.notifications.sms,necessary.service.notifications,SMS Notifications,,,"Sends SMS notifications about the product, service, application or system."
-necessary.operations.support,necessary.operations,Opertions Support,,,"Provides support for the product, service, application or system."
+necessary.legal_obligation.age_verification,necessary.legal_obligation,Age Verification,,,Provides service to verify minimum legal age.
+necessary.legal_obligation.content_moderation,necessary.legal_obligation,Content Moderation,,,Provides service to moderate content.
+necessary.legal_obligation.dsr,necessary.legal_obligation,DSR/Privacy Request,,,Provides service to meet a data subject rights request.
+necessary.operations.notifications.email,necessary.operations.notifications,Email Notifications,,,"Sends email notifications about the product, service, application or system."
+necessary.operations.notifications.sms,necessary.operations.notifications,SMS Notifications,,,"Sends SMS notifications about the product, service, application or system."
+necessary.operations.support,necessary.operations,Operations Support,,,"Provides support for the product, service, application or system."
 necessary.operations.improve,necessary.operations,Operations Improvement,,,"Necessary to optimize and improve support for the product, service, application or system."
 necessary.operations.quality_assurance,necessary.operations,Quality Assuarance,,,"Necessary to provide quality assurance for the product, service, application, or system. "
 necessary.operations.debugging,necessary.operations,Operations Debugging,,,"Necessary to debug the product, service, application, or system."
-necessary.service.authentication,necessary.service,Service Authentication,,,"Authenticate users to the product, service, application or system."
-necessary.service.notifications,necessary.service,Service Notifications,,,"Sends notifications about the product, service, application or system."
-necessary.service.operations,necessary.service,Service Operations,,,"necessary to ensure the operation of the product, service, application or system."
-necessary.service.payment_processing,necessary.service,Payment Processing,,,"necessary to processes payments for the product, service, application or system."
-necessary.service.security,necessary.service,Service Security,,,"necessary to provide security for the product, service, application or system"
-necessary.service.upgrades,necessary.service,Service Upgrades,,,Provides timely system upgrade information options.
-operational.service,operational,Operational Service,,,"Functions relating to provided services, products, applications or systems."
-operational.website_use,operational,Operational Website Use,,,"Provides information relating to how consumers use the website, product, service, application, or system. "
-operational.survey,operational,Operational Survey,,,"Information relating to surveys provided to assist with improving the website, product, service, application or systems."
-operational.service.customer_support,operational.service,Customer Support,,,
-operational.service.customer_support.improve,operational.service.customer_support,Customer Support Improvement,,,"Improves the specific product, service, application or system."
+necessary.operations.authentication,necessary.operations,Service Authentication,,,"Authenticate users to the product, service, application or system."
+necessary.operations.notifications,necessary.operations,Service Notifications,,,"Sends notifications about the product, service, application or system."
+necessary.operations.payment_processing,necessary.operations,Payment Processing,,,"necessary to processes payments for the product, service, application or system."
+necessary.operations.security,necessary.operations,Service Security,,,"necessary to provide security for the product, service, application or system"
+necessary.operations.upgrades,necessary.operations,Service Upgrades,,,Provides timely system upgrade information options.
+necessary.employment,necessary,Employment,,,Provides essential activities for employment.
+necessary.employment.hr,necessary.employment,Human Resources,,,Essential human resources activites for an organization.
+necessary.employment.hr.hiring,necessary.employment.hr,Hiring,,,Essential hiring activities for an organization.
+functional.personalization,functional,Personalization,,,"Functions relating to personalizing the services, products, applications or systems."
+functional.security,functional,Enhanced Security,,,"Enhancing security of the services, products, applications or systems."
+functional.performance,functional,Performance Optimmization,,,"Enhancing performance of the services, products, applications or systems."
+necessary.operations.website_use,necessary.operations,Operational Website Use,,,"Provides information relating to how consumers use the website, product, service, application, or system. "
+necessary.operations.survey,necessary.operations,Operational Survey,,,"Information relating to surveys provided to assist with improving the website, product, service, application or systems."
 analytics.ad_reporting,analytics,Ad Reporting,,,
 analytics.ad_reporting.measure_ad_performance,analytics.ad_reporting,Measure Ad Performance,[7] Measuring advertising performance,[1.33vi] Measurement Ad Performance,Provides analytics for reporting of advertising performance.
 analytics.ad_reporting.market_research,analytics.ad_reporting,Market Research,[9] Understand audiences through statistics or combinations of data from different sources,[1.33vii] Apply Market Research to Generate Campaign Insight,Provides analytics for reporting of market research.
 analytics.ad_reporting.ad_fraud_detection,analytics.ad_reporting,Ad Fraud Detection,[7] Measure advertising performance,[1.33viii] Ad Fraud Detection,Provides analytics for reporting on fraud detection.
 analytics.ad_reporting.ad_viewability,analytics.ad_reporting,Ad Viewability,[7] Measuring advertising performance,[1.33ix] Ad Viewability,Provides analytics for reporting on viewability of ads.
 analytics.reporting,analytics,Analytics Reporting,,,
-analytics.reporting.ad_performance,analytics.reporting,Ad Performance Reporting,[7] Measuring advertising performance,[1.33vi] Measurement Ad Performance,Provides analytics for reporting of advertising performance.
-analytics.reporting.content_performance,analytics.reporting,Content Performance Reporting,[7] Measuring advertising performance,[1.33vi] Measurement Ad Performance,Analytics for reporting on content performance.
-analytics.reporting.campaign_insights,analytics.reporting,Campaign Insights Reporting,[7] Measuring advertising performance,[1.33vi] Measurement Ad Performance,Provides analytics for reporting of campaign insights related to advertising and promotion activities.
+analytics.ad_reporting.content_performance,analytics.ad_reporting,Content Performance Reporting,[7] Measuring advertising performance,[1.33vi] Measurement Ad Performance,Analytics for reporting on content performance.
+analytics.ad_reporting.campaign_insights,analytics.ad_reporting,Campaign Insights Reporting,[7] Measuring advertising performance,[1.33vi] Measurement Ad Performance,Provides analytics for reporting of campaign insights related to advertising and promotion activities.
 analytics.reporting.system,analytics.reporting,System Reporting,[7] Measuring advertising performance,[1.33vi] Measurement Ad Performance,Provides analytics for reporting on system activity.
-analytics.ad_delivery_and_targeting,analytics,Ad Delivery & Targeting,[7] Measuring advertising performance,[1.33vi] Measurement Ad Performance,Provides analytics for reporting of advertising performance.
+analytics.ad_reporting.ad_delivery_and_targeting,analytics.ad_reporting,Ad Delivery & Targeting,[7] Measuring advertising performance,[1.33vi] Measurement Ad Performance,Provides analytics for reporting of advertising performance.
 advertising_marketing.first_party.contextual,advertising_marketing.first_party,First-Party Contextual Advertising,[6] Use profiles to select personalized content,[1.33ii] First-party advertising,Serves advertisements based on current content being viewed by the user of the system or service.
 advertising_marketing.first_party.targeted,advertising_marketing.first_party,First-Party Targeted Advertising,[6] Use profiles to select personalized content,[1.33ii] First-party advertising,Targets advertisements based on data collected or derived about the user from use of the system.
 advertising_marketing.third_party.targeted,advertising_marketing.third_party,Third-Party Targeted Advertising,,"[1.33iv] Targeted advertising

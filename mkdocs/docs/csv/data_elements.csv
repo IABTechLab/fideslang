@@ -4,20 +4,25 @@ system,data_category,System Data,,"System data that does not belong to, or ident
 system.operations,system,System Operations Data,,Data used for the operations of the system.
 system.authentication,system,System Authentication Data,,Data used to manage access to the system.
 user,data_category,User Data,,User related data.
-user.authorization,user,Authorization,,Scope of permissions and access to a system.
 user.account,user,Account Data,,Account information.
-user.account.settings,user.account,Settings,,Account preferences and settings.
-user.children,user,Children,"CA, CT, CO, VA, UT, OR, TX",Data relating to children 
-user.health,user,Health,"CA, CT, CO, VA, UT, OR, TX, WA MHMD, NV Health",Health records or individual's personal medical information.
+user.authorization,user,Authorization,,Scope of permissions and access to a system.
+user.behavior,user,Behavior,"WA MHMD, NV Health",Behavioral data about the subject.
 user.biometrics,user,Biometrics,"CA, CT, CO, VA, UT, OR, TX, WA MHMD, NV Health",Returns encoded characteristics provided by a user.
+user.children,user,Children,"CA, CT, CO, VA, UT, OR, TX",Data relating to children 
+user.contact,user,Contact,,Contact data collected about a user.
+user.content,user,Content,,"Content related to, or created by the subject."
+user.criminal_history,user,Criminal History,,Criminal records or information about the data subject.
+user.demographic,user,Demographic,,Demographic data.
+user.device,user,Device,,"Data related to a user's device, configuration and setting."
+user.financial,user,Financial,,Payment data and financial history.
 user.government_id,user,Government ID,CA,State provided identification data.
+user.health,user,Health,"CA, CT, CO, VA, UT, OR, TX, WA MHMD, NV Health",Health records or individual's personal medical information.
 user.authorization.biometrics,user.authorization,Authorization Biometrics,"CA, CT, CO, VA, UT, OR, TX, WA MHMD, IL BIPA",Credentials for system authentication based on biometrics.
 user.biometrics.fingerprint,user.biometrics,Biometrics Fingerprint,"CA, CT, CO, VA, UT, OR, TX, WA MHMD, IL BIPA",Fingerprint encoded data about a subject.
 user.biometrics.retinal,user.biometrics,Biometrics Retinal,"CA, CT, CO, VA, UT, OR, TX, WA MHMD, IL BIPA ",Retinal data about a subject.
 user.biometrics.voice,user.biometrics,Biometrics Voice,"CA, CT, CO, VA, UT, OR, TX, WA MHMD, IL BIPA ",Voice encoded data about a subject.
 user.children.children_under_thirteen,user.children,Children Under Thirteen,"CA, CT, CO, VA, UT, OR, TX",Data relating to children under 13.
 user.children.thirteen_to_sixteen,user.children,Child Thriteen-to-Sixteen,CA,Data relating to children between 13-15. 
-user.demographic,user,Demographic,,Demographic data.
 user.demographic.sexual_orientation,user.demographic,Sexual Orientation,"CA, CT, CO, VA, UT, OR, TX",Sexual orientation of data subject.
 user.demographic.race_ethnicity,user.demographic,Race or Ethnicity,"CA, CT, CO, VA, UT, OR, TX",Race or ethnicity of data subject.
 user.demographic.citizenship_or_immigration_status,user.demographic,Citzenship or Immigration Status,"CA, CT, CO, VA, UT, OR, TX",Citizen or immigration status of data subject.
@@ -40,18 +45,12 @@ user.health.record_id,user.health,Health record ,"CA, CT, CO, VA, UT, OR, TX, WA
 user.location,user,Location,"CA, CT, VA, UT, OR, TX, WA MHMD, NV Health",Location data.
 user.location.precise,user.location,Precise Location,,Precise location derived from sensors (less than 500M).
 user.financial.bank_account,user.financial,Bank Account Information,,Bank account information belonging to the subject.
-user.behavior,user,Behavior,"WA MHMD, NV Health",Behavioral data about the subject.
-user.contact,user,Contact,,Contact data collected about a user.
-user.device,user,Device,,"Data related to a user's device, configuration and setting."
+user.name,user,Name,,User's real name.
 user.payment,user,Payment,,Payment data related to user.
+user.privacy_preferences,user,Privacy Preferences,,Privacy preferences or settings set by the subject.
+user.settings,user,Settings,,Users preferences and settings.
 user.social_activity,user,Social Activity,,Social activity and interaction data.
 user.unique_id,user,Unique ID,,Unique identifier for a user assigned through system use.
-user.financial,user,Financial,,Payment data and financial history.
-user.name,user,Name,,User's real name.
-user.criminal_history,user,Criminal History,,Criminal records or information about the data subject.
-user.privacy_preferences,user,Privacy Preferences,,Privacy preferences or settings set by the subject.
-user.job_title,user,Job title,,Professional data.
-user.content,user,Content,,"Content related to, or created by the subject."
 user.account.username,user.account,Username,,Username associated with account.
 user.authorization.credentials,user.authorization,Auth Credentials,,Authentication credentials to a system.
 user.authorization.password,user.authorization,Password,,Password for system authentication.
@@ -88,8 +87,6 @@ user.device.cookie,user.device,Cookie,,"Data related to a subject, stored within
 user.device.cookie_id,user.device,Cookie ID,,Cookie unique identification number.
 user.device.device_id,user.device,Device ID,,Device unique identification number.
 user.device.ip_address,user.device,Internet Protocol Address ,,Unique identifier related to device connection.
-user.employment,user,Employment Information,,Employment related information.
-user.employment.workplace,user.employment,Workplace,,Organization of employment.
 user.financial.credit_card,user.financial,Credit Card Information ,,Credit card information belonging to the subject.
 user.government_id.birth_certificate,user.government_id,Birth Certificate ,,State issued certificate of birth.
 user.government_id.vehicle_registration,user.government_id,License Plate or Vehicle Number,,State issued license plate or vehicle registration data.
@@ -101,3 +98,6 @@ user.name.first,user.name,First name,,Subject's first name.
 user.name.last,user.name,Last name,,"Subject's last, or family, name."
 user.unique_id.probablistic,user.unique_id,Probablistic ID,,A probabilistic identifier generated from data subject or device characteristics.
 user.unique_id.deterministic,user.unique_id,Deterministic ID,,A deterministic identifier generated from data subject or device characteristics.
+user.professional_information,user, Professional Information, Information related to the individuals career.
+user.professional_information.workplace,user.professional_information,Workplace,,Organization of employment.
+user.professional_information.job_title,user.professional_information,Job title,,Professional data.
