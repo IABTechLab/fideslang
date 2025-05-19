@@ -34,7 +34,7 @@ user.government_id.immigration,user.government_id,Immigration Status ,"CA, CT, C
 user.government_id.national_identification_number,user.government_id,State Government ID ,CA,State issued personal identification number.
 user.health.treatment,user.health,Health Treatment,"CA, CT, CO, VA, UT, OR, TX, WA MHMD, NV Health, ",Health-realted treatment for a subject
 user.health.prescriptions,user.health,Prescriptions,"CA, CT, CO, VA, UT, OR, TX, WA MHMD, NV Health, ",Prescriptions belonging to a subject
-user.health.symptons,user.health,Symptoms,"CA, CT, CO, VA, UT, OR, TX, WA MHMD, NV Health, ",Medical symptoms associated with a subject
+user.health.symptoms,user.health,Symptoms,"CA, CT, CO, VA, UT, OR, TX, WA MHMD, NV Health, ",Medical symptoms associated with a subject
 user.health.medications,user.health,Medications,"CA, CT, CO, VA, UT, OR, TX, WA MHMD, NV Health, ",Medications taken by a subject
 user.health.reproductive_or_sexual,user.health,Reproductive or Sexual Health,"CA, CT, CO, VA, UT, OR, TX, WA MHMD, NV Health, ",Reproductive or sexual data belonging to a subject
 user.health.genetic ,user.health,Genetic information,"CA, CT, CO, VA, UT, OR, TX, WA MHMD, NV Health, ",Data about the genetic makeup provided by the subject.
@@ -96,7 +96,7 @@ user.health.insurance_beneficiary_id,user.health,Insurance beneficiary ,,Health 
 user.location.coarse,user.location,Coarse Location,,Coarse location derived from sensors (more than 500M).
 user.name.first,user.name,First name,,Subject's first name.
 user.name.last,user.name,Last name,,"Subject's last, or family, name."
-user.unique_id.probablistic,user.unique_id,Probablistic ID,,A probabilistic identifier generated from data subject or device characteristics.
+user.unique_id.probabilistic,user.unique_id,Probabilistic ID,,A probabilistic identifier generated from data subject or device characteristics.
 user.unique_id.deterministic,user.unique_id,Deterministic ID,,A deterministic identifier generated from data subject or device characteristics.
 user.professional_information,user, Professional Information, Information related to the individuals career.
 user.professional_information.workplace,user.professional_information,Workplace,,Organization of employment.
